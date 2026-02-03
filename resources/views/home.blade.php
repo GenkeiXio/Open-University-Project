@@ -101,12 +101,207 @@
         </div>
     </section>
 
-    <section id="about" class="hero-section d-flex align-items-center">
-        About
+    <!-- ABOUT SECTION -->
+    <section id="about" class="hero-section d-flex align-items-center bg-white">
+        <div class="container">
+
+            <!-- SECTION INTRO -->
+            <div class="row mb-5 justify-content-center text-center">
+                <div class="col-lg-8">
+                    <span class="badge badge-custom mb-3">
+                        📘 Institutional Background
+                    </span>
+                    <h2 class="section-title">
+                        The Bicol University<br>
+                        Open University (BUOU)
+                    </h2>
+                    <p class="section-text text-muted mt-3">
+                        The Bicol University Open University was established on
+                        November 20, 1997, following Board of Regents Resolution
+                        No. 24, series of 1997. Its primary objective was to bring
+                        the curricular programs of Bicol University to a wider
+                        population of learners in the Bicol Region through open
+                        and distance education.
+                    </p>
+                </div>
+            </div>
+
+            <!-- EVOLUTION STRIP -->
+            <div class="row g-4 mb-5">
+                <div class="col-md-4">
+                    <div class="stat-card h-100">
+                        🕰️
+                        <h6 class="mt-3">Establishment (1997)</h6>
+                        <p class="text-muted mb-0">
+                            Approved through BOR Resolution No. 24, series of 1997,
+                            the BU Open University was created to widen access to
+                            university education in the region.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="stat-card h-100">
+                        ⚙️
+                        <h6 class="mt-3">Operational Guidelines (2004)</h6>
+                        <p class="text-muted mb-0">
+                            Administrative Order No. 177, series of 2004, provided
+                            the general implementing guidelines for BUOU operations,
+                            emphasizing selected graduate programs through distance education.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="stat-card h-100">
+                        🎓
+                        <h6 class="mt-3">Restructuring (2019)</h6>
+                        <p class="text-muted mb-0">
+                            Under Administrative Order No. 347, series of 2019,
+                            BUOU was mandated as a degree-offering academic unit,
+                            authorized to expand into undergraduate and non-degree
+                            or short-term courses.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PROGRAM OBJECTIVES -->
+            <div class="row align-items-center gy-5">
+                <div class="col-lg-6">
+                    <h5 class="mb-4">🎯 Program Objectives</h5>
+
+                    <div class="stat-card mb-3">
+                        📚
+                        <p class="text-muted mb-0">
+                            Provide wider access to quality education by offering
+                            degree programs through the distance education mode.
+                        </p>
+                    </div>
+
+                    <div class="stat-card mb-3">
+                        👩‍💼
+                        <p class="text-muted mb-0">
+                            Establish an innovative system of continuing education
+                            and career development for professionals unable to
+                            pursue studies through the traditional mode.
+                        </p>
+                    </div>
+
+                    <div class="stat-card">
+                        🧩
+                        <p class="text-muted mb-0">
+                            Develop instructional materials and technologies
+                            appropriate for distance education.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- DISTANCE LEARNING / DELIVERY -->
+                <div class="col-lg-6">
+                    <h5 class="mb-4">💻 Distance Learning & Instruction</h5>
+                    <p class="text-muted">
+                        Delivery of academic programs is through modular and/or online systems. Students access modules, attend tutorials, submit requirements, and take proctored examinations at the BUOU office or via online platforms. Faculty-in-Charge (FICs) and tutors guide learning, ensuring objectives are met and performance is properly assessed.
+                    </p>
+
+                    <p class="text-muted">
+                        The BUOU also partners with local government units and other academic institutions in the region to widen educational access. Instructional materials include modules, video content, and online resources, all designed to support high-quality distance education.
+                    </p>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <section id="programs" class="hero-section d-flex align-items-center">
-        Programs
+    <!-- PROGRAMS SECTION -->
+    <section id="programs" class="hero-section d-flex align-items-start py-5">
+        <div class="container">
+
+            <!-- SECTION INTRO -->
+            <div class="row mb-5 justify-content-center text-center">
+                <div class="col-lg-8">
+                    <span class="badge badge-custom mb-3">
+                        🎓 Graduate Programs
+                    </span>
+                    <h2 class="section-title">
+                        BU Open University Programs
+                    </h2>
+                    <p class="section-text text-muted mt-3">
+                        The BU Open University offers selected graduate programs through flexible Open and Distance Learning (ODeL) methods. Designed for mature learners capable of independent study, these programs combine online learning, tutorials, and practical fieldwork.
+                    </p>
+                </div>
+            </div>
+
+            <!-- PROGRAM CARDS -->
+            <div class="row g-4">
+
+            @php
+                $programs = [
+                    [
+                        'title' => 'Doctor of Education in Educational Leadership & Management (EdDELM)',
+                        'mode' => 'Online (synchronous & asynchronous)',
+                        'focus' => 'Develops high-quality leaders and managers in education.',
+                        'target' => 'Experienced educational leaders and managers seeking enhanced leadership skills in schools, districts, higher education, or NGOs.'
+                    ],
+                    [
+                        'title' => 'Master in Management (MM)',
+                        'mode' => 'Primarily Online with tutorial support',
+                        'focus' => 'Develops skills in analysis, organizational change, and project management.',
+                        'target' => 'Graduate students learning at their own pace using ODeL and Blended Online Learning (BOL) including internships.'
+                    ],
+                    [
+                        'title' => 'Master of Public Administration (MPA)',
+                        'mode' => 'Open and Distance e-Learning (ODeL)',
+                        'focus' => 'Develops competencies for effective management in public sector and civil society.',
+                        'target' => 'Recent graduates and public sector professionals enhancing knowledge in administration, policy development, and problem-solving.'
+                    ],
+                    [
+                        'title' => 'Master in Local Government Management (MLGM)',
+                        'mode' => 'ODeL & Blended Online Learning (BOL)',
+                        'focus' => 'Participatory governance and local government operations.',
+                        'target' => 'Learners using learning packages, online resources, tutorials, and counseling. Assessment via assignments and exams.'
+                    ],
+                    [
+                        'title' => 'Master of Arts in Educational Leadership & Management (MAELM)',
+                        'mode' => 'ODeL',
+                        'focus' => 'Develops research, leadership, and management skills in education.',
+                        'target' => 'Leaders who can manage educational institutions effectively and contribute to community development.'
+                    ],
+                    [
+                        'title' => 'Master of Arts in English Education (MAEngEd)',
+                        'mode' => 'ODeL',
+                        'focus' => 'Enhances teachers’ abilities in innovative instructional design and research.',
+                        'target' => 'Teachers aiming to improve methodology, curriculum design, and materials development for English instruction.'
+                    ],
+                    [
+                        'title' => 'Master of Arts in Social Studies Education (MASocStEd)',
+                        'mode' => 'ODeL',
+                        'focus' => 'Develops advanced teaching competence in social studies.',
+                        'target' => 'Educators equipped to lead curriculum development, research, and social studies teaching in schools and colleges.'
+                    ],
+                ];
+            @endphp
+
+            @foreach($programs as $program)
+                <div class="col-lg-6">
+                    <div class="stat-card h-100 about-hover p-4" 
+                        data-bs-toggle="collapse" 
+                        data-bs-target="#{{ \Str::slug($program['title']) }}" 
+                        aria-expanded="false" 
+                        style="cursor: pointer;">
+                        
+                        <!-- Always visible -->
+                        <h5 class="mb-0">{{ $program['title'] }}</h5>
+
+                        <!-- Collapsible details -->
+                        <div class="collapse mt-3" id="{{ \Str::slug($program['title']) }}">
+                            <p><strong>Mode of Instruction:</strong> {{ $program['mode'] }}</p>
+                            <p><strong>Focus of Study:</strong> {{ $program['focus'] }}</p>
+                            <p><strong>Target Learners:</strong> {{ $program['target'] }}</p>
+                        </div>
+                    </div>
+                </div>
+            @endforeach    
+        </div>
     </section>
 
     <!-- FACULTY SECTION -->

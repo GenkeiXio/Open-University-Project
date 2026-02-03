@@ -1,32 +1,10 @@
+/* ===========================
+   BASE STYLES
+   =========================== */
 body {
     scroll-behavior: smooth;
     font-family: 'Raleway', sans-serif;
     font-weight: 400;
-}
-
-/* Navbar */
-.bu-logo {
-    background: #0d6efd;
-    color: white;
-    font-weight: bold;
-    border-radius: 50%;
-    width: 38px;
-    height: 38px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.btn-orange {
-    background: #f97316;
-    color: white;
-    border-radius: 8px;
-    padding: 10px 18px;
-}
-
-.btn-orange:hover {
-    background: #ea580c;
-    color: white;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -34,7 +12,20 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 700;
 }
 
-/* HERO SECTION */
+/* Text highlight color */
+::selection {
+    background: #ea6a0e; /* orange background */
+    color: white;         /* text color on highlight */
+}
+
+::-moz-selection {
+    background: #ea6a0e; /* Firefox support */
+    color: white;
+}
+
+/* ===========================
+   HERO SECTIONS
+   =========================== */
 .hero-section {
     min-height: 100vh;
     padding-top: 120px;
@@ -52,23 +43,64 @@ h1, h2, h3, h4, h5, h6 {
     max-width: 520px;
 }
 
-.navbar-brand {
-    font-weight: 400;
-}
-
 .badge-custom {
     background: rgba(255,255,255,0.15);
     padding: 8px 14px;
     border-radius: 20px;
 }
 
-/* STAT CARDS */
+/* ===========================
+   NAVBAR AND BUTTONS
+   =========================== */
+.bu-logo {
+    background: #0d6efd;
+    color: white;
+    font-weight: bold;
+    border-radius: 50%;
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.navbar-brand {
+    font-weight: 400;
+}
+
+.btn-orange {
+    background: #f97316;
+    color: white;
+    border-radius: 8px;
+    padding: 10px 18px;
+}
+
+.btn-orange:hover {
+    background: #ea580c;
+    color: white;
+}
+
+/* ===========================
+   STAT CARDS & HOVER ANIMATION
+   =========================== */
 .stat-card {
     background: rgba(255,255,255,0.15);
-    color: white;
+    color: white; /* text color stays white */
     padding: 30px;
     border-radius: 16px;
     text-align: center;
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        background-color 0.3s ease;
+    cursor: pointer;
+}
+
+.stat-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+    background-color: #ea6a0e; /* orange hover */
+    /* text color remains white */
 }
 
 .stat-card h3 {
@@ -85,7 +117,29 @@ h1, h2, h3, h4, h5, h6 {
     padding: 40px;
 }
 
-/* MOBILE */
+/* ===========================
+   ABOUT SECTION HOVER
+   =========================== */
+#about .stat-card {
+    background: rgba(255, 243, 236, 0.3); /* light overlay */
+    color: #333; /* dark text */
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        background-color 0.3s ease;
+    cursor: pointer;
+}
+
+#about .stat-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+    background-color: #f97316; /* subtle orange for hover */
+    color: #333; /* text stays dark for readability */
+}
+
+/* ===========================
+   MOBILE / RESPONSIVE
+   =========================== */
 @media (max-width: 768px) {
     .hero-section {
         text-align: center;
@@ -170,4 +224,3 @@ h1, h2, h3, h4, h5, h6 {
         text-align: left;
     }
 }
-
