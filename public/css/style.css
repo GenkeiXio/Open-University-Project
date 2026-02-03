@@ -145,3 +145,83 @@ h1, h2, h3, h4, h5, h6 {
         text-align: center;
     }
 }
+
+/* FACULTY SECTION */
+.faculty-section {
+    background: #ffffff;
+}
+
+.faculty-title {
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.faculty-subtitle {
+    font-weight: 500;
+    color: #6b7280;
+    margin-top: 5px;
+}
+
+/* FACULTY CARD */
+.faculty-card {
+    padding: 40px;
+    border-radius: 16px;
+    background: #f9fafb;
+}
+
+/* IMAGE */
+.faculty-image-wrapper {
+    position: relative;
+    width: 230px;
+    height: 230px;
+    margin: 0 auto;
+}
+
+.faculty-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    z-index: 2;
+    position: relative;
+}
+
+/* NAME & POSITION */
+.faculty-name {
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.faculty-position {
+    font-weight: 500;
+    color: #374151;
+    margin-bottom: 20px;
+}
+
+/* CREDENTIALS */
+.faculty-credentials {
+    padding-left: 18px;
+}
+
+.faculty-credentials li {
+    margin-bottom: 12px;
+    line-height: 1.6;
+}
+
+.faculty-credentials span {
+    color: #6b7280;
+    font-size: 0.95rem;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+    .faculty-card {
+        padding: 25px;
+        text-align: center;
+    }
+
+    .faculty-credentials {
+        text-align: left;
+    }
+}
+
