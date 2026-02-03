@@ -1,0 +1,93 @@
+body {
+    scroll-behavior: smooth;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 400;
+}
+
+/* Navbar */
+.bu-logo {
+    background: #0d6efd;
+    color: white;
+    font-weight: bold;
+    border-radius: 50%;
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-orange {
+    background: #f97316;
+    color: white;
+    border-radius: 8px;
+    padding: 10px 18px;
+}
+
+.btn-orange:hover {
+    background: #ea580c;
+    color: white;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 700;
+}
+
+/* HERO SECTION */
+.hero-section {
+    min-height: 100vh;
+    padding-top: 120px;
+    background: linear-gradient(180deg, #1f8aa5, #176d86);
+}
+
+.hero-title {
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 800;
+    letter-spacing: -0.5px;
+}
+
+.hero-text {
+    font-size: 1.1rem;
+    max-width: 520px;
+}
+
+.navbar-brand {
+    font-weight: 400;
+}
+
+.badge-custom {
+    background: rgba(255,255,255,0.15);
+    padding: 8px 14px;
+    border-radius: 20px;
+}
+
+/* STAT CARDS */
+.stat-card {
+    background: rgba(255,255,255,0.15);
+    color: white;
+    padding: 30px;
+    border-radius: 16px;
+    text-align: center;
+}
+
+.stat-card h3 {
+    font-size: 2rem;
+    margin: 10px 0 5px;
+}
+
+.stat-card p {
+    margin: 0;
+    font-size: 0.95rem;
+}
+
+.stat-card.wide {
+    padding: 40px;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+    .hero-section {
+        text-align: center;
+    }
+}
