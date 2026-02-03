@@ -20,10 +20,14 @@
             <div class="collapse navbar-collapse" id="buNav">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#programs">Programs</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#admissions">Admissions</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#news">News</a></li>
                     <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#programs">Programs</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#faculty">Faculty</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#admissions">Admissions</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#faqs">FAQS</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#news">News</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#graduates">Graduates</a></li>
+                
                     <li class="nav-item ms-lg-3">
                         <a class="btn btn-orange" href="#">Apply Now</a>
                     </li>
@@ -97,20 +101,34 @@
         </div>
     </section>
 
+    <section id="about" class="hero-section d-flex align-items-center">
+        About
+    </section>
+
     <section id="programs" class="hero-section d-flex align-items-center">
         Programs
+    </section>
+
+    <section id="faculty" class="hero-section d-flex align-items-center">
+        faculty
     </section>
 
     <section id="admissions" class="hero-section d-flex align-items-center">
         Adminssions
     </section>
 
+    <section id="faqs" class="hero-section d-flex align-items-center">
+
+    </section>
+
     <section id="news" class="hero-section d-flex align-items-center">
         News
     </section>
 
-    <section id="about" class="hero-section d-flex align-items-center">
-        About
+    <section id="graduates" class="hero-section d-flex align-items-center">
+
     </section>
+
+    
 
 @endsection
