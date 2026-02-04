@@ -10,14 +10,14 @@
             <div class="row align-items-center gy-5">
 
                 <!-- LEFT CONTENT -->
-                <div class="col-lg-6 text-white">
+                <div class="col-lg-6">
                     <span class="badge badge-custom mb-3">
                         🎓 Distance Education Excellence
                     </span>
 
                     <h1 class="hero-title mt-3">
-                        BICOL UNIVERSITY<br>
-                        OPEN UNIVERSITY<br>
+                        <span class="text-gradient-orange">BICOL UNIVERSITY</span><br>
+                        <span class="text-gradient-blue">OPEN UNIVERSITY</span>
                     </h1>
 
                     <p class="hero-text mt-4">
