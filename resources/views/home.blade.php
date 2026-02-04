@@ -702,6 +702,52 @@
 
                 <div class="faq-item">
                     <button class="faq-question">
+                        How to request approval for use of venue, Facility/equipment?
+                        <span class="icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <ol>
+                            <li>Forward communication: submit the letter request to the office staff .
+                                <ol class="sub-list">
+                                    <li>1.1. The processing time would be 3-5 minutes per transaction.</li>
+                                    <li>1.2. Check the availability of the venue, facility or equipment.The processing time would be 3-5 minutes per transaction. </li>
+                                    <li>1.3 Forward the communication to the Dean.</li>
+                                    <li>1.4. Act on the received communication such as approval, endorsement and other appropriate action. The processing time usually takes 3-5 minutes</li>
+                                </ol>
+                            </li>
+                            <li>2. Receive documents
+                                <ol class="sub-list">
+                                <li>2.1 The client receives the document from the office staff.</li>
+                                </ol>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        How to address the needs of the visitors/clients?
+                        <span class="icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <ol>
+                            <li>Fill out the message slip available in the front desk.</li>
+                            <li>Present the slip to the front desk clerk.
+                                <ol class="sub-list">
+                                    <li>2.1 Receives the accomplished message slip </li>
+                                    <li>2.2 Inform the Dean regarding the concern of the visitor/client.</li>
+                                    <li>2.4 Prepare/record regarding the action of the Dean</li>
+                                    <li>2.5 Provide certification of appearance to the visitor/client.</li>
+                                    <li>2.5 Provide certification of appearance to the visitor/client.</li>
+                                </ol>   
+                            </li>
+                            <li>Receives the Certificate of appearance.</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
                         How to Enroll in BU Open University?
                         <span class="icon">+</span>
                     </button>
@@ -744,45 +790,95 @@
                         </p>
                         <!-- POST-ENROLLMENT NOTES -->
                         <ul>
-                            <li>
-                                After the enrollment process the student/client receives the 
-                                Certificate of Registration and for an official BU email account contact the ICTO.
-                            </li>
-                            <li>
-                                Upon the enrollment process, the student must inform his/her faculty in Charge(FIC) 
-                                as a member of the class and to enroll the student in the BU Learning Management System (BULMS)
-                            </li>
+                            <ol>
+                                <li>
+                                    <strong>Forwards ACtivity proposal to BUOU front desk.</strong>
+                                </li>
+                                <li>
+                                    <strong>For Online:</strong> The student may pay through banks to BUGS Landbank account:
+                                </li>
+                            </ol>
                         </ul>
                     </div>
                 </div>
 
                 <div class="faq-item">
                     <button class="faq-question">
-                        How to request approval for use of venue, facility, or equipment?
+                        How to request for approval to conduct Activity?
                         <span class="icon">+</span>
                     </button>
                     <div class="faq-answer">
-                        <p>
-                            Submit a formal written request addressed to the concerned BU
-                            office, indicating the purpose, schedule, and resources needed.
-                        </p>
+                        <ol>
+                            <li>Forwards ACtivity proposal to BUOU front desk.
+                                <ol class="sub-list">
+                                    <li>1.1 Receives/stamp the activity proposal</li>
+                                    <li>1.2 Assign reference number to the proposal and record in the logbook.</li>
+                                    <li>1.3 Forward the communication to the Dean.</li>
+                                    <li>1.4 Act on the proposal, endorsed or other appropriate action.</li>
+                                    <li>1.5 Encode/record regarding the action of the Dean.</li>
+                                </ol>
+                            </li>
+                            <li>2. Receives the endorsement/ routing slip or transmittal.
+                                <ol class="sub-list">
+                                <li>2.1 Keep the receiving copy.</li>
+                                </ol>
+                            </li>
+                        </ol>
                     </div>
                 </div>
 
                 <div class="faq-item">
                     <button class="faq-question">
-                        How to receive and release official communications or documents?
+                        How to receive and release communication/document?
                         <span class="icon">+</span>
                     </button>
                     <div class="faq-answer">
-                        <p>
-                            All official communications and documents are processed through
-                            the BU Open University administrative office following standard
-                            university protocols.
-                        </p>
+                        <ol>
+                            <li>Forward the communication/document to the front desk.
+                                <ol class="sub-list">
+                                    <li>1.1 Receive the communication/document</li>
+                                    <li>1.2 Assign reference number to the document, classifying as to kind of documents and record it in the logbook.</li>
+                                    <li>1.3 Forward the communication to the Dean.</li>
+                                    <li>1.4 Act on the received communication/documents such as approval, endorsement, and other appropriate action.</li>
+                                    <li>1.5 Encode/record the action of the Dean such as endorsement , memorandum,routing slip or transmittal letter.</li>
+                                    <li>1.6 Forward the communication, memorandum or transmittal letter for review/signature of the Dean.</li>
+                                    <li>1.7 Reproductive copies for dissemination to the concerned persons.</li>
+                                    <li>1.8 Record and release communications/documents to concerned personnel/faculty and/or dissemination.</li>
+                                    <li>1.9 Delivery/disseminate the communication/documents acted upon by the Dean.</li>
+                                    <li>1.10 Store a received/disseminated file copy of the documents in labeled folders, boxes and shelves.</li>
+                                </ol>
+                            </li>
+                        </ol>
                     </div>
                 </div>
 
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Enrolment of Students at BU Open University
+                        <span class="icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p><strong>Master’s and Doctoral Applicants: </strong></p>
+                            <ul>
+                                <li>Notice of Admission </li>
+                                <li>Advising Slip and Certification </li>
+                                <li>Program of Courseworks</li>
+                                <li>Nomination for Thesis/Dissertation Adviser </li>
+                                <li>Concept Note</li>
+                            </ul>
+                        <p><strong>The following documents can be downloaded in the Open Access Drive of BU Graduate School Facebook Page, BUOU Facebook page and Bicol University Website.</strong></p>
+
+                        <ol>
+                            <li>Client’s Steps:
+                                <ol class="sub-list">
+                                    <li>1. Submit the required documents and wait for the notification either online or onsite. </li>
+                                    <li>2. For new students: The student/Client receives the Certificate of Registration and contact the ICTO for official BU email address. </li>
+                                    <li>3. The student informs his/her Faculty in Charge (FIC) as a member of the class.</li>
+                                </ol>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -793,10 +889,8 @@
 
     <section id="graduates" class="grad-section-split py-5">
         <div class="container">
-            
             <div class="grad-card shadow-lg overflow-hidden rounded-4 bg-white">
                 <div class="row g-0 align-items-stretch">
-                    
                     <div class="col-lg-5 position-relative">
                         <div class="grad-img-holder h-100">
                             <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=600&auto=format&fit=crop" alt="Class of 2025" class="img-fluid w-100 h-100 object-fit-cover">
