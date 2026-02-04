@@ -10,8 +10,8 @@
             </div>
 
             <div class="brand-text">
-                <div class="fw-bold" style="line-height: 1.2; color: #176d86;">Bicol University</div>
-                <small class="text-muted" style="display: block; margin-top: -2px;">Open University</small>
+                <div class="fw-bold text-gradient-orange" style="line-height: 1.2;">Bicol University</div>
+                <small class="fw-bold text-gradient-blue" style="display: block; margin-top: -2px;">Open University</small>
             </div>
         </a>
 

@@ -660,8 +660,13 @@
     </section>
 
     <!-- FAQS SECTION -->
-    <section id="faqs" class="d-flex align-items-center bg-white">
+    <section id="faqs" class="hero-section d-flex align-items-center">
         <div class="container">
+            <div class="text-center mb-3">
+                <span class="badge news-bg-orange text-black px-3 py-2 rounded-pill">
+                    📰 BUOU FAQS
+                </span>
+            </div>
             <!-- SECTION HEADER -->
             <div class="row mb-5 justify-content-center text-center">
                 <div class="col-lg-8">
@@ -883,7 +888,7 @@
         </div>
     </section>
 
-    <section id="news" class="news-section position-relative">
+    <section id="news" class="hero-section position-relative">
         
         <div class="news-bg-pattern"></div>
     
@@ -891,12 +896,15 @@
             
             <div class="row justify-content-center mb-5">
                 <div class="col-lg-8 text-center">
-                    <span class="badge news-bg-orange text-white px-3 py-2 rounded-pill mb-3">
+                    <span class="badge news-bg-orange text-black px-3 py-2 rounded-pill mb-3">
                         📰 BUOU Updates
                     </span>
-                    <h2 class="text-white fw-bold display-6">
+                    <h2 class="text-black fw-bold display-6">
                         Latest News & Announcements
                     </h2>
+                    <p class="text-blac-50 mt-2">
+                        Stay connected with the latest milestones, academic opportunities, and community stories from the Bicol University Open University.
+                    </p>
                 </div>
             </div>
     
