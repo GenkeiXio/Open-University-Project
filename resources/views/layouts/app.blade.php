@@ -11,9 +11,6 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
-
-
-
     <!-- Google Font: Raleway -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,43 +18,6 @@
 
 </head>
 <body>
-
-    <!-- NAVBAR -->
-    <nav class="navbar navbar-expand-lg fixed-top navbar-light bg-white shadow-sm">
-        <div class="container">
-            <a class="navbar-brand fw-bold d-flex align-items-center" href="#">
-                <span class="bu-logo me-2">BU</span>
-                <div>
-                    <div>Bicol University</div>
-                    <small class="text-muted">Open University</small>
-                </div>
-            </a>
-
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#buNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="buNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Programs</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Admissions</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Contact</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
 
     @yield('content')
 
