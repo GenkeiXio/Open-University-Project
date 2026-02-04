@@ -89,6 +89,7 @@ h6 {
 .text-gradient-orange {
     background: linear-gradient(to right, #f15a24, #ed1c24);
     -webkit-background-clip: text;
+    background-clip: text; /* Add this standard property line */
     -webkit-text-fill-color: transparent;
     display: inline-block;
 }
@@ -96,6 +97,7 @@ h6 {
 .text-gradient-blue {
     background: linear-gradient(to right, #0054a6, #00aeef);
     -webkit-background-clip: text;
+    background-clip: text; /* Add this standard property line */
     -webkit-text-fill-color: transparent;
     display: inline-block;
 }
@@ -844,7 +846,7 @@ h6 {
     color: #176d86;
     border: none;
     border-radius: 50%;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     font-size: 1.2rem;
     cursor: pointer;
     z-index: 10;
@@ -861,8 +863,12 @@ h6 {
 }
 
 /* Snap buttons to the edges of the wrapper */
-.prev-btn { left: 0; }
-.next-btn { right: 0; }
+.prev-btn {
+    left: 0;
+}
+.next-btn {
+    right: 0;
+}
 
 /* 3. The Mask: Hides the overflow of the cards */
 .news-carousel-container {
@@ -902,9 +908,86 @@ h6 {
         padding: 0; /* Remove padding */
     }
     .slider-arrow {
-        width: 35px; height: 35px;
-        background: rgba(255,255,255,0.9);
+        width: 35px;
+        height: 35px;
+        background: rgba(255, 255, 255, 0.9);
     }
-    .prev-btn { left: 10px; } /* Sit on top of image */
-    .next-btn { right: 10px; }
+    .prev-btn {
+        left: 10px;
+    } /* Sit on top of image */
+    .next-btn {
+        right: 10px;
+    }
+}
+
+/* ===========================
+    SELECTION MENU & TABS
+   =========================== */
+.selection-menu-wrapper {
+    background: #ffffff;
+    padding: 15px 0;
+    top: 70px; /* Adjust this to sit below your main navbar */
+    z-index: 1020;
+    border-bottom: 1px solid #eee;
+}
+
+.nav-pills .nav-link {
+    color: #4b5563;
+    font-weight: 700;
+    font-size: 0.85rem;
+    padding: 10px 24px;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+    background: transparent;
+    text-transform: uppercase;
+}
+
+.nav-pills .nav-link:hover {
+    color: #ea6a0e;
+}
+
+.nav-pills .nav-link.active {
+    background-color: #ea6a0e !important;
+    color: white !important;
+    box-shadow: 0 4px 15px rgba(234, 106, 14, 0.3);
+}
+
+/* Tab Animation */
+.tab-pane.fade {
+    transition: opacity 0.2s linear;
+}
+
+.tab-content {
+    /* This creates the gap between the orange bubble and the Title */
+    margin-top: 5rem;
+}
+
+.selection-menu-wrapper {
+    background-color: white !important;
+    z-index: 1020;
+}
+
+.faculty-title {
+    /* Extra insurance to push the title down */
+    padding-top: 20px;
+}
+
+/* Adjusting Hero spacing now that it's in a tab */
+.hero-section {
+    min-height: 80vh;
+    padding-top: 60px;
+}
+
+@media (max-width: 768px) {
+    .nav-pills {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        justify-content: flex-start !important;
+        padding-bottom: 5px;
+    }
+    .nav-pills .nav-link {
+        white-space: nowrap;
+        padding: 8px 16px;
+    }
 }
