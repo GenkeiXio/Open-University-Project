@@ -224,3 +224,73 @@ h1, h2, h3, h4, h5, h6 {
         text-align: left;
     }
 }
+/* ===========================
+   GRADUATES SECTION: SPLIT DESIGN
+   =========================== */
+
+/* Section Background */
+.grad-section-split {
+    background-color: #f0f4f8; /* Neutral grey-blue to make white card pop */
+    padding: 80px 0;
+}
+
+/* Colors */
+.text-teal { color: #176d86; }
+.text-orange { color: #ea6a0e; }
+.bg-teal { background-color: #176d86; }
+
+/* The Main Card Container */
+.grad-card {
+    border: 1px solid rgba(0,0,0,0.05);
+    /* This ensures the card has a white background */
+    background: #ffffff;
+}
+
+/* Image Handling */
+.grad-img-holder {
+    min-height: 400px; /* Ensures image has height on mobile */
+    position: relative;
+}
+
+/* Crucial: Makes image fill the area without stretching */
+.grad-img-holder img.object-fit-cover {
+    object-fit: cover;
+    object-position: center;
+}
+
+/* The '2025' Badge Overlay */
+.grad-overlay-badge {
+    background: rgba(234, 106, 14, 0.9); /* Semi-transparent Orange */
+    backdrop-filter: blur(5px);
+    border-radius: 8px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    min-width: 140px;
+    text-align: center;
+}
+
+.ls-2 {
+    letter-spacing: 2px;
+}
+
+/* Button Styling Override */
+.btn-orange {
+    background-color: #ea6a0e;
+    border-color: #ea6a0e;
+    color: white;
+}
+.btn-orange:hover {
+    background-color: #d35b05;
+    border-color: #d35b05;
+}
+
+/* RESPONSIVE: Mobile Layout */
+@media (max-width: 991px) {
+    /* On mobile, stack them normally */
+    .grad-img-holder {
+        height: 300px; /* Fixed height for image header on mobile */
+    }
+    
+    .grad-text-body {
+        padding: 2rem !important; /* Reduce padding on mobile */
+    }
+}
