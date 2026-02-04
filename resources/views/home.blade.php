@@ -2,39 +2,7 @@
 
 @section('content')
 
-    <!-- NAVBAR -->
-    <nav class="navbar navbar-expand-lg fixed-top navbar-light bg-white shadow-sm">
-        <div class="container">
-            <a class="navbar-brand fw-bold d-flex align-items-center" href="#">
-                <span class="bu-logo me-2">BU</span>
-                <div>
-                    <div>Bicol University</div>
-                    <small class="text-muted">Open University</small>
-                </div>
-            </a>
-
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#buNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="buNav">
-                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                    <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#programs">Programs</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#faculty">Faculty</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#admissions">Admissions</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#faqs">FAQS</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#news">News</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#graduates">Graduates</a></li>
-                
-                    <li class="nav-item ms-lg-3">
-                        <a class="btn btn-orange" href="#">Apply Now</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    @include('layouts.navbar')
 
     <!-- HERO / HOME SECTION -->
     <section id="home" class="hero-section d-flex align-items-center">
@@ -48,10 +16,8 @@
                     </span>
 
                     <h1 class="hero-title mt-3">
-                        Accessible,<br>
-                        Flexible, Quality<br>
-                        Distance Education in<br>
-                        the Bicol Region
+                        BICOL UNIVERSITY<br>
+                        OPEN UNIVERSITY<br>
                     </h1>
 
                     <p class="hero-text mt-4">
@@ -102,115 +68,156 @@
     </section>
 
     <!-- ABOUT SECTION -->
-    <section id="about" class="hero-section d-flex align-items-center bg-white">
+    <section id="about" class="about-section">
+
+        <!-- INTRO CARD -->
         <div class="container">
-
-            <!-- SECTION INTRO -->
-            <div class="row mb-5 justify-content-center text-center">
-                <div class="col-lg-8">
-                    <span class="badge badge-custom mb-3">
-                        📘 Institutional Background
-                    </span>
-                    <h2 class="section-title">
-                        The Bicol University<br>
-                        Open University (BUOU)
-                    </h2>
-                    <p class="section-text text-muted mt-3">
-                        The Bicol University Open University was established on
-                        November 20, 1997, following Board of Regents Resolution
-                        No. 24, series of 1997. Its primary objective was to bring
-                        the curricular programs of Bicol University to a wider
-                        population of learners in the Bicol Region through open
-                        and distance education.
-                    </p>
-                </div>
-            </div>
-
-            <!-- EVOLUTION STRIP -->
-            <div class="row g-4 mb-5">
-                <div class="col-md-4">
-                    <div class="stat-card h-100">
-                        🕰️
-                        <h6 class="mt-3">Establishment (1997)</h6>
-                        <p class="text-muted mb-0">
-                            Approved through BOR Resolution No. 24, series of 1997,
-                            the BU Open University was created to widen access to
-                            university education in the region.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="stat-card h-100">
-                        ⚙️
-                        <h6 class="mt-3">Operational Guidelines (2004)</h6>
-                        <p class="text-muted mb-0">
-                            Administrative Order No. 177, series of 2004, provided
-                            the general implementing guidelines for BUOU operations,
-                            emphasizing selected graduate programs through distance education.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="stat-card h-100">
-                        🎓
-                        <h6 class="mt-3">Restructuring (2019)</h6>
-                        <p class="text-muted mb-0">
-                            Under Administrative Order No. 347, series of 2019,
-                            BUOU was mandated as a degree-offering academic unit,
-                            authorized to expand into undergraduate and non-degree
-                            or short-term courses.
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- PROGRAM OBJECTIVES -->
-            <div class="row align-items-center gy-5">
-                <div class="col-lg-6">
-                    <h5 class="mb-4">🎯 Program Objectives</h5>
-
-                    <div class="stat-card mb-3">
-                        📚
-                        <p class="text-muted mb-0">
-                            Provide wider access to quality education by offering
-                            degree programs through the distance education mode.
-                        </p>
-                    </div>
-
-                    <div class="stat-card mb-3">
-                        👩‍💼
-                        <p class="text-muted mb-0">
-                            Establish an innovative system of continuing education
-                            and career development for professionals unable to
-                            pursue studies through the traditional mode.
-                        </p>
-                    </div>
-
-                    <div class="stat-card">
-                        🧩
-                        <p class="text-muted mb-0">
-                            Develop instructional materials and technologies
-                            appropriate for distance education.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- DISTANCE LEARNING / DELIVERY -->
-                <div class="col-lg-6">
-                    <h5 class="mb-4">💻 Distance Learning & Instruction</h5>
-                    <p class="text-muted">
-                        Delivery of academic programs is through modular and/or online systems. Students access modules, attend tutorials, submit requirements, and take proctored examinations at the BUOU office or via online platforms. Faculty-in-Charge (FICs) and tutors guide learning, ensuring objectives are met and performance is properly assessed.
-                    </p>
-
-                    <p class="text-muted">
-                        The BUOU also partners with local government units and other academic institutions in the region to widen educational access. Instructional materials include modules, video content, and online resources, all designed to support high-quality distance education.
-                    </p>
-                </div>
+            <div class="about-intro-card text-center">
+                <h2 class="mb-3">The Bicol University Open University</h2>
+                <p class="text-muted mb-0">
+                    On November 20, 1997, the Bicol University (BU) Board of Regents
+                    passed BOR Resolution No. 24, series of 1997, approving the
+                    establishment of the BU Open University to bring the curricular
+                    programs of the University to a wider populace of students in
+                    the Bicol Region.
+                </p>
             </div>
         </div>
+
+        <!-- TIMELINE CARDS -->
+        <div class="container mt-5">
+            <div class="row g-4">
+
+                <div class="col-md-4">
+                    <div class="about-timeline-card">
+                        <span class="timeline-year">1997</span>
+                        <p>
+                            BOR Resolution No. 24, series of 1997 approved the
+                            establishment of the BU Open University.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="about-timeline-card">
+                        <span class="timeline-year">2004</span>
+                        <p>
+                            Administrative Order No. 177, series of 2004 provided the
+                            implementing guidelines, emphasizing graduate programs
+                            via distance education and open learning.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="about-timeline-card">
+                        <span class="timeline-year">2019</span>
+                        <p>
+                            The restructured BUOU was mandated as a degree-offering
+                            and eventually degree-granting academic unit, authorized
+                            to offer undergraduate and non-degree programs.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- OBJECTIVES & DISTANCE LEARNING -->
+        <div class="container mt-5">
+            <div class="row g-5">
+
+                <!-- OBJECTIVES -->
+                <div class="col-lg-6">
+                    <div class="about-content-card h-100">
+                        <h5 class="mb-3">Objectives</h5>
+                        <p class="text-muted">
+                            The BU Open and Distance Education Program seeks to provide
+                            wider access to quality education adhering to the highest
+                            standards of academic excellence in order to produce
+                            trained manpower required for the development of the
+                            Bicol Region. Specifically, the program seeks to:
+                        </p>
+                        <ul>
+                            <li>
+                                Provide wider access to quality education by offering
+                                degree programs via the distance education mode;
+                            </li>
+                            <li>
+                                Establish an innovative system of continuing education
+                                and career development for professionals unable to
+                                avail of the opportunity through the traditional
+                                delivery mode; and
+                            </li>
+                            <li>
+                                Develop instructional materials and technology
+                                appropriate for distance education.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- DISTANCE LEARNING -->
+                <div class="col-lg-6">
+                    <div class="about-content-card h-100">
+                        <h5 class="mb-3">Distance Learning</h5>
+                        <p class="text-muted">
+                            Delivery of academic programs through the distance
+                            education mode is conducted through modular and/or online
+                            systems. The Open University Office serves as the venue
+                            for enrollment, distribution of modules, tutorials,
+                            submission of requirements, internet access, interaction
+                            with students, and proctored examinations.
+                        </p>
+                        <p class="text-muted">
+                            The Distance Learning Center is located at the third floor
+                            of the University Library in the Main Campus of Bicol
+                            University. To serve a wider segment of Bicolanos, the
+                            BU Open University intends to partner with local
+                            government units and academic institutions.
+                        </p>
+                        <p class="text-muted mb-0">
+                            Under Administrative Order No. 347, series of 2019, the
+                            Office is manned by the Dean and supported by core and
+                            affiliate faculty and technical staff.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- MODE OF INSTRUCTION -->
+        <div class="container mt-5">
+            <div class="about-wide-card">
+                <h5 class="mb-3">Mode of Instructional Delivery</h5>
+                <p class="text-muted">
+                    Course modules serve as the primary medium of instructional
+                    delivery. These are prepared by module development teams
+                    consisting of writers, readers, instructional design specialists,
+                    and language editors from the University faculty. Other
+                    instructional materials such as video clippings are also used.
+                </p>
+                <p class="text-muted">
+                    Actual delivery of the modules is facilitated by
+                    Faculty-in-Charge (FICs) and tutors. Each course has a FIC who
+                    ensures the attainment of course objectives and evaluates student
+                    performance through assignments, activities, and supervised
+                    examinations.
+                </p>
+                <p class="text-muted mb-0">
+                    Tutorial sessions form part of the course delivery system and are
+                    held at the BUOU Office at least once a month or as needed,
+                    facilitated by FICs and tutors.
+                </p>
+            </div>
+        </div>
+
     </section>
+
+
+
+
 
     <!-- PROGRAMS SECTION -->
     <section id="programs" class="hero-section d-flex align-items-start py-5">
@@ -784,10 +791,58 @@
         News
     </section>
 
-    <section id="graduates" class="hero-section d-flex align-items-center">
-        Graduates
-    </section>
+    <section id="graduates" class="grad-section-split py-5">
+        <div class="container">
+            
+            <div class="grad-card shadow-lg overflow-hidden rounded-4 bg-white">
+                <div class="row g-0 align-items-stretch">
+                    
+                    <div class="col-lg-5 position-relative">
+                        <div class="grad-img-holder h-100">
+                            <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=600&auto=format&fit=crop" alt="Class of 2025" class="img-fluid w-100 h-100 object-fit-cover">
+                        </div>
+                        
+                        <div class="grad-overlay-badge position-absolute bottom-0 start-0 m-4 p-3 text-white">
+                            <h3 class="display-5 fw-bold mb-0">2025</h3>
+                            <p class="small text-uppercase ls-2 mb-0">Graduates</p>
+                        </div>
+                    </div>
 
-    
+                    <div class="col-lg-7">
+                        <div class="grad-text-body p-5 h-100 d-flex flex-column justify-content-center">
+                            
+                            <div class="mb-4 border-bottom pb-3 border-secondary-subtle">
+                                <span class="badge bg-teal text-white mb-2 px-3 py-2 rounded-1">🎉 Celebration</span>
+                                <h2 class="fw-bold text-dark mt-2">
+                                    Warmest Congratulations to the <br>
+                                    <span class="text-teal">BU Open University Class of 2025</span>
+                                </h2>
+                            </div>
+
+                            <div class="text-muted">
+                                <p>
+                                    The Bicol University Open University extends its warmest congratulations to you. Your unwavering commitment to your studies, despite the challenges of pursuing education through a non-traditional format, is a testament to your <strong class="text-orange">resilience and dedication</strong>.
+                                </p>
+                                <p class="mb-4">
+                                    This accomplishment reflects not only your individual efforts but also the supportive environment fostered by the BUOU community. We are immensely proud of your achievements.
+                                </p>
+                            </div>
+
+                            <div class="d-flex gap-3 mt-auto pt-3">
+                                <a href="#" class="btn btn-orange px-4 py-2 fw-semibold shadow-sm">
+                                    View List of Graduates
+                                </a>
+                                <a href="#" class="btn btn-outline-dark px-4 py-2 fw-semibold">
+                                    Watch Ceremony
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
 
 @endsection
