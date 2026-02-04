@@ -652,8 +652,132 @@
         Admissions
     </section>
 
-    <section id="faqs" class="hero-section d-flex align-items-center">
+    <!-- FAQS SECTION -->
+    <section id="faqs" class="d-flex align-items-center bg-white">
+        <div class="container">
+            <!-- SECTION HEADER -->
+            <div class="row mb-5 justify-content-center text-center">
+                <div class="col-lg-8">
+                    <h2 class="section-title">Frequently Asked Questions</h2>
+                    <p class="section-text text-muted mt-3">
+                        Find quick answers to common inquiries about admission, enrollment,
+                        facilities, and services at the BU Open University.
+                    </p>
+                </div>
+            </div>
 
+            <!-- FAQ ITEMS -->
+            <div class="faq-wrapper mx-auto">
+                <!-- FAQ ITEM -->
+                <div class="faq-item">
+                    <button class="faq-question">
+                        How to request for Admission to BU Open University?
+                        <span class="icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p><strong>For Master’s and Doctoral Applicants:</strong></p>
+                            <ul>
+                                <li>Duly Accomplished Application Form (BUGS Form 1)</li>
+                                <li>One Original and One photocopy of official Transcript of Records (TOR) from college previously attended.</li>
+                                <li>Photocopy of Special Order (for graduates of Private School)</li>
+                                <li>Copy of honorable dismissal from school last attended.</li>
+                                <li>Two letters for recommendation preferably from former professors.</li>
+                                <li>Photocopy of Birth Certificate (NSO or PSA).</li>
+                                <li>Photocopy of Marriage Contract (for married female applicants).</li>
+                                <li>Certificate of English Proficiency for Foreign students. Required TOEFL score for admission is 460 (Additional requirement for International Applicants).</li>
+                            </ul>
+                        <p><strong>The following documents (Duly Accomplished Application Form (BUGS Form 1 & Recommendation for Graduate Study Form) are available at the BUGS Office or can be downloaded at the BUGS Open Access Drive at:</strong></p>
+                        <a class="btn btn-orange" href="https://drive.google.com/drive/u/5/folders/1JKlEhnDs_oJ-4kt461kWpkepN1osYG1M" target="_blank" class="faq-link">
+                            BUGS Open Access Drive
+                        </a>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        How to Enroll in BU Open University?
+                        <span class="icon">+</span>
+                    </button>
+
+                    <div class="faq-answer">
+                        <!-- GENERAL STEPS -->
+                        <ul>
+                            <li>
+                                To process the enrollment of new students, a Notice of Admission (NOA)
+                                issued by the Office of the Dean of the Graduate School must be secured
+                                first to proceed with the enrollment.
+                            </li>
+                            <li>
+                                After submitting the required documents, wait for the notification
+                                either online or onsite.
+                            </li>
+                            <li>
+                                The BUGS Registrar will encode the subject of the student and issue the Assessment 
+                                of Fees via email for online or printed copy for onsite. Upon receiving the Assessment 
+                                of Fees, the student is required to pay the tuition and other fees via online or onsite.
+                            </li>
+                        </ul>
+                        <!-- PAYMENT OPTIONS -->
+                        <ol>
+                            <li>
+                                <strong>For Onsite:</strong> The student may go directly to BUGS Cashier Office. 
+                                Upon payment, the Cashier issues the Certificate of Registration
+                            </li>
+                            <li>
+                                <strong>For Online:</strong> The student may pay through banks to BUGS Landbank account:
+                            </li>
+                        </ol>
+                        <!-- BANK DETAILS (PLAIN TEXT, NOT CENTERED) -->
+                        <p><strong>Account Name:</strong> Bicol University – STF (164)</p>
+                        <p><strong>Account No.:</strong> 0132-0265-48</p>
+                        <p><strong>Bank Branch:</strong> LBP Legazpi</p>
+                        <p>
+                            The BUGS Cashier will confirm the payment in Landbank. Upon conferment, 
+                            the BUGS Cashier will issue a Certificate of Registration via email.
+                        </p>
+                        <!-- POST-ENROLLMENT NOTES -->
+                        <ul>
+                            <li>
+                                After the enrollment process the student/client receives the 
+                                Certificate of Registration and for an official BU email account contact the ICTO.
+                            </li>
+                            <li>
+                                Upon the enrollment process, the student must inform his/her faculty in Charge(FIC) 
+                                as a member of the class and to enroll the student in the BU Learning Management System (BULMS)
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        How to request approval for use of venue, facility, or equipment?
+                        <span class="icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>
+                            Submit a formal written request addressed to the concerned BU
+                            office, indicating the purpose, schedule, and resources needed.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        How to receive and release official communications or documents?
+                        <span class="icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>
+                            All official communications and documents are processed through
+                            the BU Open University administrative office following standard
+                            university protocols.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
     </section>
 
     <section id="news" class="hero-section d-flex align-items-center">
