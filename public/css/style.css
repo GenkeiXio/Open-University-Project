@@ -821,3 +821,88 @@ h6 {
         padding: 60px 0;
     }
 }
+
+/* ===========================
+   NEWS SLIDER / CAROUSEL STYLES (UPDATED)
+   =========================== */
+
+/* 1. The Wrapper: Creates space on left/right for buttons */
+.slider-wrapper {
+    padding: 0 60px; /* 60px padding on sides for buttons */
+}
+
+/* 2. The Buttons: Positioned inside that padding */
+.slider-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 45px;
+    height: 45px;
+    background: #ffffff;
+    color: #176d86;
+    border: none;
+    border-radius: 50%;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    font-size: 1.2rem;
+    cursor: pointer;
+    z-index: 10;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.slider-arrow:hover {
+    background: #ea6a0e;
+    color: white;
+    transform: translateY(-50%) scale(1.1);
+}
+
+/* Snap buttons to the edges of the wrapper */
+.prev-btn { left: 0; }
+.next-btn { right: 0; }
+
+/* 3. The Mask: Hides the overflow of the cards */
+.news-carousel-container {
+    overflow: hidden;
+    border-radius: 16px; /* Optional: rounds the corners of the view area */
+}
+
+/* 4. The Track & Slides (Same as before) */
+.news-slider-track {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    gap: 24px;
+}
+
+.news-slide {
+    flex: 0 0 100%;
+    max-width: 100%;
+}
+
+@media (min-width: 768px) {
+    .news-slide {
+        flex: 0 0 calc(50% - 12px);
+        max-width: calc(50% - 12px);
+    }
+}
+
+@media (min-width: 992px) {
+    .news-slide {
+        flex: 0 0 calc(33.333% - 16px);
+        max-width: calc(33.333% - 16px);
+    }
+}
+
+/* MOBILE FIX: Remove side padding and overlay buttons on small screens */
+@media (max-width: 768px) {
+    .slider-wrapper {
+        padding: 0; /* Remove padding */
+    }
+    .slider-arrow {
+        width: 35px; height: 35px;
+        background: rgba(255,255,255,0.9);
+    }
+    .prev-btn { left: 10px; } /* Sit on top of image */
+    .next-btn { right: 10px; }
+}

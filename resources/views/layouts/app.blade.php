@@ -30,5 +30,6 @@
 
         <!-- Custom JS -->
         <script src="{{ asset('script/script.js') }}"></script>
+        <script src="{{ asset('script/news.js') }}"></script>
     </body>
 </html>

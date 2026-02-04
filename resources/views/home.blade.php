@@ -886,7 +886,7 @@
     <section id="news" class="news-section position-relative">
         
         <div class="news-bg-pattern"></div>
-
+    
         <div class="container position-relative z-1">
             
             <div class="row justify-content-center mb-5">
@@ -897,73 +897,89 @@
                     <h2 class="text-white fw-bold display-6">
                         Latest News & Announcements
                     </h2>
-                    <p class="text-white-50 mt-2">
-                        Stay connected with the latest milestones, academic opportunities, and community stories from the Bicol University Open University.
-                    </p>
                 </div>
             </div>
-
-            <div class="row g-4">
+    
+            <div class="slider-wrapper position-relative">
                 
-                <div class="col-md-4">
-                    <div class="news-card h-100">
-                        <div class="news-img-wrapper">
-                            <img src="https://images.unsplash.com/photo-1544531586-fde5298cdd40?q=80&w=600&auto=format&fit=crop" alt="Anniversary" class="img-fluid w-100">
-                            <div class="news-date-badge">
-                                <span class="d-block fw-bold">20</span>
-                                <span class="small text-uppercase">Nov</span>
+                <button class="slider-arrow prev-btn" aria-label="Previous Slide">
+                    <i class="bi bi-chevron-left"></i>
+                </button>
+    
+                <div class="news-carousel-container">
+                    <div class="news-slider-track">
+                        
+                        <div class="news-slide">
+                            <div class="news-card h-100">
+                                <div class="news-img-wrapper">
+                                    <img src="https://images.unsplash.com/photo-1544531586-fde5298cdd40?q=80&w=600&auto=format&fit=crop" alt="Anniversary" class="img-fluid w-100">
+                                    <div class="news-date-badge">
+                                        <span class="d-block fw-bold">20</span><span class="small text-uppercase">Nov</span>
+                                    </div>
+                                </div>
+                                <div class="news-body">
+                                    <h5 class="news-title">BUOU Celebrates Milestone Anniversary</h5>
+                                    <p class="news-text">Celebrating decades of commitment to providing quality distance education.</p>
+                                    <a href="#" class="news-link">Read Full Story <i class="bi bi-arrow-right"></i></a>
+                                </div>
                             </div>
                         </div>
-                        <div class="news-body">
-                            <h5 class="news-title">BUOU Celebrates Milestone Anniversary</h5>
-                            <p class="news-text">
-                                A moment of reflection on BUOU's remarkable journey, celebrating decades of commitment to providing quality distance education.
-                            </p>
-                            <a href="#" class="news-link">Read Full Story <i class="bi bi-arrow-right"></i></a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="news-card h-100">
-                        <div class="news-img-wrapper">
-                            <img src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?q=80&w=600&auto=format&fit=crop" alt="Padagos Event" class="img-fluid w-100">
-                            <div class="news-date-badge">
-                                <span class="d-block fw-bold">08</span>
-                                <span class="small text-uppercase">Jun</span>
+    
+                        <div class="news-slide">
+                            <div class="news-card h-100">
+                                <div class="news-img-wrapper">
+                                    <img src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?q=80&w=600&auto=format&fit=crop" alt="Padagos Event" class="img-fluid w-100">
+                                    <div class="news-date-badge">
+                                        <span class="d-block fw-bold">08</span><span class="small text-uppercase">Jun</span>
+                                    </div>
+                                </div>
+                                <div class="news-body">
+                                    <h5 class="news-title">PADAGOS: Empowering Growth & Tribute</h5>
+                                    <p class="news-text">The "Padagos" year-end assessment featured a heartfelt tribute from the graduates.</p>
+                                    <a href="#" class="news-link">Read Full Story <i class="bi bi-arrow-right"></i></a>
+                                </div>
                             </div>
                         </div>
-                        <div class="news-body">
-                            <h5 class="news-title">PADAGOS: Empowering Growth & Tribute</h5>
-                            <p class="news-text">
-                                The "Padagos" year-end assessment featured a heartfelt tribute from the graduates to the faculty, highlighting resilience.
-                            </p>
-                            <a href="#" class="news-link">Read Full Story <i class="bi bi-arrow-right"></i></a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="news-card h-100">
-                        <div class="news-img-wrapper">
-                            <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=600&auto=format&fit=crop" alt="New Programs" class="img-fluid w-100">
-                            <div class="news-date-badge">
-                                <span class="d-block fw-bold">15</span>
-                                <span class="small text-uppercase">Jan</span>
+    
+                        <div class="news-slide">
+                            <div class="news-card h-100">
+                                <div class="news-img-wrapper">
+                                    <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=600&auto=format&fit=crop" alt="New Programs" class="img-fluid w-100">
+                                    <div class="news-date-badge">
+                                        <span class="d-block fw-bold">15</span><span class="small text-uppercase">Jan</span>
+                                    </div>
+                                </div>
+                                <div class="news-body">
+                                    <h5 class="news-title">Applications Open for Graduate Programs</h5>
+                                    <p class="news-text">Accepting applicants for the Doctor of Education (EdDELM) and Master of Public Administration.</p>
+                                    <a href="#" class="news-link">View Requirements <i class="bi bi-arrow-right"></i></a>
+                                </div>
                             </div>
                         </div>
-                        <div class="news-body">
-                            <h5 class="news-title">Applications Open for Graduate Programs</h5>
-                            <p class="news-text">
-                                We are now accepting applicants for the Doctor of Education (EdDELM) and Master of Public Administration (MPA).
-                            </p>
-                            <a href="#" class="news-link">View Requirements <i class="bi bi-arrow-right"></i></a>
+    
+                        <div class="news-slide">
+                            <div class="news-card h-100">
+                                <div class="news-img-wrapper">
+                                    <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=600&auto=format&fit=crop" alt="Graduation" class="img-fluid w-100">
+                                    <div class="news-date-badge">
+                                        <span class="d-block fw-bold">28</span><span class="small text-uppercase">Mar</span>
+                                    </div>
+                                </div>
+                                <div class="news-body">
+                                    <h5 class="news-title">Upcoming Virtual Graduation Rites</h5>
+                                    <p class="news-text">Join us as we celebrate the success of our newest batch of graduates online.</p>
+                                    <a href="#" class="news-link">Event Details <i class="bi bi-arrow-right"></i></a>
+                                </div>
+                            </div>
                         </div>
+    
                     </div>
                 </div>
-
+                <button class="slider-arrow next-btn" aria-label="Next Slide">
+                    <i class="bi bi-chevron-right"></i>
+                </button>
+    
             </div>
-            
             <div class="row mt-5">
                 <div class="col-12 text-center">
                     <a href="#" class="btn btn-outline-light rounded-pill px-5 py-2 fw-semibold">
@@ -971,7 +987,7 @@
                     </a>
                 </div>
             </div>
-
+    
         </div>
     </section>
 
