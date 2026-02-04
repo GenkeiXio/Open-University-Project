@@ -488,3 +488,127 @@ h6 {
         text-align: left;
     }
 }
+
+/* ===========================
+   NEWS & UPDATES SECTION
+   =========================== */
+.news-section {
+    padding: 100px 0;
+    /* Uses your Teal brand colors */
+    background: #176d86;
+    background: linear-gradient(160deg, #1f8aa5 0%, #176d86 100%);
+    color: white;
+}
+
+/* Background Pattern */
+.news-bg-pattern {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.1;
+    background-image: radial-gradient(#ffffff 1px, transparent 1px);
+    background-size: 30px 30px;
+    pointer-events: none;
+}
+
+/* Specific Orange Background for this section */
+.news-bg-orange {
+    background-color: #ea6a0e;
+}
+
+/* NEWS CARD STYLING */
+.news-card {
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    border: none;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.news-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+}
+
+/* Image Area */
+.news-img-wrapper {
+    position: relative;
+    height: 220px;
+    overflow: hidden;
+}
+
+.news-img-wrapper img {
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.news-card:hover .news-img-wrapper img {
+    transform: scale(1.05); /* Zoom effect */
+}
+
+/* Floating Date Badge */
+.news-date-badge {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    background: #ea6a0e; /* Specific orange for consistency */
+    color: white;
+    padding: 8px 12px;
+    border-radius: 8px;
+    text-align: center;
+    line-height: 1.1;
+    box-shadow: 0 4px 10px rgba(234, 106, 14, 0.4);
+}
+
+/* Content Area */
+.news-body {
+    padding: 25px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.news-title {
+    font-weight: 700;
+    color: #2c3e50;
+    margin-bottom: 12px;
+    line-height: 1.4;
+    font-family: "Raleway", sans-serif;
+}
+
+.news-text {
+    color: #6c757d;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    flex-grow: 1;
+}
+
+.news-link {
+    color: #176d86; /* Brand Teal */
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: color 0.2s;
+}
+
+.news-link:hover {
+    color: #ea6a0e; /* Orange on hover */
+}
+
+/* Mobile Tweak */
+@media (max-width: 768px) {
+    .news-section {
+        padding: 60px 0;
+    }
+}
