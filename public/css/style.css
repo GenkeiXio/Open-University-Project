@@ -1196,3 +1196,52 @@ h6 {
 .news-img-wrapper img:hover {
     transform: scale(1.01);
 }
+/* --- NEWS SECTION CUSTOM STYLES --- */
+
+/* Width consistency with Faculty */
+.news-accordion-container {
+    max-width: 850px;
+}
+
+/* Button Styling */
+.news-header-btn {
+    background: transparent;
+    border: none;
+    text-align: left;
+    transition: color 0.3s ease;
+    color: #333;
+}
+
+.news-header-btn:hover {
+    color: #ea6a0e !important;
+}
+
+/* Icon Animation (+ to x) */
+.news-icon {
+    font-size: 1.4rem;
+    color: #ea6a0e;
+    transition: transform 0.3s ease;
+    display: inline-block;
+}
+
+/* Rotate icon when item is OPEN (Bootstrap :not(.collapsed)) */
+.news-header-btn:not(.collapsed) .news-icon {
+    transform: rotate(45deg);
+    color: #333;
+}
+
+/* Image handling */
+.news-img {
+    max-height: 300px;
+    width: 100%;
+    object-fit: cover;
+}
+
+.news-bg-orange {
+    background-color: #ea6a0e;
+}
+
+/* Prevents page shifting when scrollbar appears */
+html {
+    overflow-y: scroll;
+}

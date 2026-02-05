@@ -177,14 +177,6 @@
             <section id="programs" class="about-section py-5 bg-white">
                 <div class="container">
 
-                    <div class="faq-wrapper mx-auto mb-5">
-                        <span class="badge badge-custom mb-3 text-uppercase">
-                            Graduate Programs
-                        </span>
-                        <div class="section-text text-muted mt-3 text-justify fs-6" style="line-height: 1.8;">
-                            <p>The BU Open University initially offers selected graduate curricular programs. This is due to the stringent requirement of open learning to have “mature” learners who are capable of undertaking independent self-learning. Due to resource limitation and perceived market, only the following programs will be initially offered thru the open university/distance education mode:</p>
-                        </div>
-                    </div>
                     <div class="faq-wrapper mx-auto about-accordion"> 
                         <h2 class="fw-bold mb-4 text-uppercase" style="letter-spacing: 1px; color: #333;">PROGRAMS</h2>
                         
@@ -446,111 +438,58 @@
         <!------------------>
 
         <div class="tab-pane fade" id="news-section" role="tabpanel" aria-labelledby="news-tab">
-            <section id="news" class="about-section py-5">
-            <section id="news" class="py-5">
+            <section class="py-5">
                 <div class="container">
-                    <div class="faq-wrapper mx-auto about-accordion"> 
+                    <div class="news-accordion-container mx-auto" id="newsAccordion"> 
                         
                         <div class="text-center mb-5">
-                            <span class="badge bg-warning text-dark px-3 py-2 rounded-pill mb-3" style="letter-spacing: 0.5px;">📰 BUOU UPDATES</span>
-                            <h2 class="fw-bold text-uppercase" style="letter-spacing: 1px; color: #333;">Latest News & Announcements</h2>
+                            <span class="badge news-bg-orange text-white px-3 py-2 rounded-pill mb-3">📰 BUOU UPDATES</span>
+                            <h2 class="fw-bold text-uppercase" style="color: #333;">Latest News & Announcements</h2>
                         </div>
 
-                        <div class="faq-item">
-                            <button class="faq-question d-flex justify-content-between align-items-center w-100 py-3 border-bottom" 
-                                    type="button" data-bs-toggle="collapse" data-bs-target="#news-enrollment">
-                                <span class="fw-bold text-uppercase" style="letter-spacing: 0.5px;">Enrollment for 2nd Semester AY 2025-2026</span>
-                                <span class="icon">+</span>
+                        <div class="news-custom-item mb-2">
+                            <button class="news-header-btn d-flex justify-content-between align-items-center w-100 py-3 border-bottom collapsed" 
+                                    type="button" data-bs-toggle="collapse" data-bs-target="#news-collapse-enrollment">
+                                <span class="fw-bold text-uppercase">Enrollment for 2nd Semester AY 2025-2026</span>
+                                <span class="news-icon">+</span>
                             </button>
-                            <div class="faq-answer collapse show" id="news-enrollment">
-                                <div class="py-4 text-muted text-justify">
+                            <div id="news-collapse-enrollment" class="collapse" data-bs-parent="#newsAccordion">
+                                <div class="news-body py-4 text-muted text-justify">
                                     <div class="news-img-wrapper mb-3 text-center">
-                                        <img src="https://images.unsplash.com/photo-1523050335392-93851179ae22?q=80&w=800" class="img-fluid rounded shadow-sm" alt="Enrollment" style="max-height: 300px; width: 100%; object-fit: cover;">
+                                        <img src="https://images.unsplash.com/photo-1523050335392-93851179ae22?q=80&w=800" class="img-fluid rounded shadow-sm news-img" alt="Enrollment">
                                     </div>
-                                    <p class="mb-3">The Bicol University Open University (BUOU) is now accepting applicants for the 2nd Semester of the Academic Year 2025-2026. The general enrollment period for graduate and undergraduate programs is currently underway.</p>
+                                    <p>The Bicol University Open University (BUOU) is now accepting applicants for the 2nd Semester of the Academic Year 2025-2026.</p>
                                     <p class="mb-0 small text-uppercase fw-bold text-primary">Status: Ongoing</p>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="faq-item">
-                            <button class="faq-question d-flex justify-content-between align-items-center w-100 py-3 border-bottom" 
-                                    type="button" data-bs-toggle="collapse" data-bs-target="#news-anniversary">
-                                <span class="fw-bold text-uppercase" style="letter-spacing: 0.5px;">BUOU Marks 27th Founding Anniversary</span>
-                                <span class="icon">+</span>
+                        <div class="news-custom-item mb-2">
+                            <button class="news-header-btn d-flex justify-content-between align-items-center w-100 py-3 border-bottom collapsed" 
+                                    type="button" data-bs-toggle="collapse" data-bs-target="#news-collapse-anniversary">
+                                <span class="fw-bold text-uppercase">BUOU Marks 27th Founding Anniversary</span>
+                                <span class="news-icon">+</span>
                             </button>
-                            <div class="faq-answer collapse" id="news-anniversary">
-                                <div class="py-4 text-muted text-justify">
+                            <div id="news-collapse-anniversary" class="collapse" data-bs-parent="#newsAccordion">
+                                <div class="news-body py-4 text-muted text-justify">
                                     <div class="news-img-wrapper mb-3 text-center">
-                                        <img src="https://images.unsplash.com/photo-1544531586-fde5298cdd40?q=80&w=800" class="img-fluid rounded shadow-sm" alt="Anniversary" style="max-height: 300px; width: 100%; object-fit: cover;">
+                                        <img src="https://images.unsplash.com/photo-1544531586-fde5298cdd40?q=80&w=800" class="img-fluid rounded shadow-sm news-img" alt="Anniversary">
                                     </div>
-                                    <p class="mb-3">BUOU recently celebrated its 27th anniversary with the theme "Embracing a Global and Inclusive Learning Culture." The event highlighted the university's commitment to providing quality distance education to students across the Bicol region and beyond.</p>
+                                    <p>BUOU recently celebrated its 27th anniversary with the theme "Embracing a Global and Inclusive Learning Culture."</p>
                                     <p class="mb-0 small italic">Posted: November 2025</p>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="faq-item">
-                            <button class="faq-question d-flex justify-content-between align-items-center w-100 py-3 border-bottom" 
-                                    type="button" data-bs-toggle="collapse" data-bs-target="#news-ibusis">
-                                <span class="fw-bold text-uppercase" style="letter-spacing: 0.5px;">Transition to iBU (New Student Portal)</span>
-                                <span class="icon">+</span>
+                        <div class="news-custom-item mb-2">
+                            <button class="news-header-btn d-flex justify-content-between align-items-center w-100 py-3 border-bottom collapsed" 
+                                    type="button" data-bs-toggle="collapse" data-bs-target="#news-collapse-portal">
+                                <span class="fw-bold text-uppercase">Transition to iBU (New Student Portal)</span>
+                                <span class="news-icon">+</span>
                             </button>
-                            <div class="faq-answer collapse" id="news-ibusis">
-                                <div class="py-4 text-muted text-justify">
-                                    <p class="mb-3">In line with the university's digitalization efforts, the official student portal has migrated from iBUSIS to the new <strong>iBU</strong> platform. Students are encouraged to update their bookmarks and synchronize their accounts for seamless access to grades and enrollment data.</p>
-                                    <p class="mb-0 small text-uppercase fw-bold text-danger">Notice: Required Action for All Students</p>
-                                </div>
-                    <div class="faq-wrapper mx-auto news-accordion"> 
-                        
-                        <div class="text-center mb-5">
-                            <span class="badge news-bg-orange text-white px-3 py-2 rounded-pill mb-3" style="letter-spacing: 0.5px;">📰 BUOU UPDATES</span>
-                            <h2 class="fw-bold text-uppercase" style="letter-spacing: 1px; color: #333;">Latest News & Announcements</h2>
-                        </div>
-
-                        <div class="faq-item">
-                            <button class="faq-question d-flex justify-content-between align-items-center w-100 py-3 border-bottom" 
-                                    type="button" data-bs-toggle="collapse" data-bs-target="#news-item-enrollment">
-                                <span class="fw-bold text-uppercase" style="letter-spacing: 0.5px;">Enrollment for 2nd Semester AY 2025-2026</span>
-                                <span class="icon">+</span>
-                            </button>
-                            <div class="faq-answer collapse" id="news-item-enrollment">
-                                <div class="py-4 text-muted text-justify">
-                                    <div class="news-img-wrapper mb-3 text-center">
-                                        <img src="https://images.unsplash.com/photo-1523050335392-93851179ae22?q=80&w=800" class="img-fluid rounded shadow-sm" alt="Enrollment" style="max-height: 300px; width: 100%; object-fit: cover;">
-                                    </div>
-                                    <p class="mb-3">The Bicol University Open University (BUOU) is now accepting applicants for the 2nd Semester of the Academic Year 2025-2026. The general enrollment period for graduate and undergraduate programs is currently underway.</p>
-                                    <p class="mb-0 small text-uppercase fw-bold text-primary">Status: Ongoing</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="faq-item">
-                            <button class="faq-question d-flex justify-content-between align-items-center w-100 py-3 border-bottom" 
-                                    type="button" data-bs-toggle="collapse" data-bs-target="#news-item-anniversary">
-                                <span class="fw-bold text-uppercase" style="letter-spacing: 0.5px;">BUOU Marks 27th Founding Anniversary</span>
-                                <span class="icon">+</span>
-                            </button>
-                            <div class="faq-answer collapse" id="news-item-anniversary">
-                                <div class="py-4 text-muted text-justify">
-                                    <div class="news-img-wrapper mb-3 text-center">
-                                        <img src="https://images.unsplash.com/photo-1544531586-fde5298cdd40?q=80&w=800" class="img-fluid rounded shadow-sm" alt="Anniversary" style="max-height: 300px; width: 100%; object-fit: cover;">
-                                    </div>
-                                    <p class="mb-3">BUOU recently celebrated its 27th anniversary with the theme "Embracing a Global and Inclusive Learning Culture." The event highlighted the university's commitment to providing quality distance education to students across the Bicol region and beyond.</p>
-                                    <p class="mb-0 small italic">Posted: November 2025</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="faq-item">
-                            <button class="faq-question d-flex justify-content-between align-items-center w-100 py-3 border-bottom" 
-                                    type="button" data-bs-toggle="collapse" data-bs-target="#news-item-portal">
-                                <span class="fw-bold text-uppercase" style="letter-spacing: 0.5px;">Transition to iBU (New Student Portal)</span>
-                                <span class="icon">+</span>
-                            </button>
-                            <div class="faq-answer collapse" id="news-item-portal">
-                                <div class="py-4 text-muted text-justify">
-                                    <p class="mb-3">In line with the university's digitalization efforts, the official student portal has migrated from iBUSIS to the new <strong>iBU</strong> platform. Students are encouraged to update their bookmarks and synchronize their accounts for seamless access to grades and enrollment data.</p>
+                            <div id="news-collapse-portal" class="collapse" data-bs-parent="#newsAccordion">
+                                <div class="news-body py-4 text-muted text-justify">
+                                    <p>The official student portal has migrated from iBUSIS to the new <strong>iBU</strong> platform. Students are encouraged to synchronize accounts for seamless access.</p>
                                     <p class="mb-0 small text-uppercase fw-bold text-danger">Notice: Required Action for All Students</p>
                                 </div>
                             </div>
