@@ -1029,3 +1029,85 @@ h6 {
     text-align: justify;
     text-justify: inter-word;
 }
+
+/* --- BUOU UNIQUE FAQ STYLES --- */
+.buou-faq-section {
+    background-color: #ffffff;
+}
+
+.buou-faq-main-title {
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #222;
+}
+
+.buou-faq-accordion-wrapper {
+    max-width: 900px;
+}
+
+.buou-faq-card {
+    border-bottom: 1px solid #eee;
+    margin-bottom: 5px;
+}
+
+.buou-faq-btn {
+    width: 100%;
+    padding: 20px 10px;
+    background: none;
+    border: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: left;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
+    color: #444;
+    transition: all 0.3s ease;
+}
+
+.buou-faq-btn:hover {
+    color: #ef6c00;
+}
+
+.buou-faq-icon {
+    font-size: 1.5rem;
+    transition: transform 0.3s ease;
+    font-weight: 300;
+}
+
+/* Rotation Effect when open */
+.buou-faq-btn:not(.collapsed) .buou-faq-icon {
+    transform: rotate(45deg);
+    color: #ef6c00;
+}
+
+.buou-faq-body {
+    padding: 10px 15px 30px 15px;
+    color: #666;
+    line-height: 1.7;
+}
+
+.buou-faq-body ul, .buou-faq-body ol {
+    padding-left: 20px;
+}
+
+.sub-list {
+    list-style: none;
+    font-size: 0.9rem;
+    color: #888;
+}
+
+.btn-orange {
+    background-color: #ef6c00;
+    color: white;
+    border-radius: 4px;
+    padding: 8px 20px;
+}
+.btn-orange:hover {
+    background-color: #d86000;
+    color: white;
+}
+

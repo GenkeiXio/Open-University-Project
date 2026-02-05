@@ -181,96 +181,122 @@
         <!---------------------->
 
         <div class="tab-pane fade" id="programs-section" role="tabpanel" aria-labelledby="programs-tab">
-            <section id="programs" class="hero-section d-flex align-items-start py-5">
+            <section id="programs" class="about-section py-5">
                 <div class="container">
-
-                    <div class="row mb-5">
-                        <div class="col-lg-12">
-                            <span class="badge badge-custom mb-3 text-uppercase">
-                                Graduate Programs
-                            </span>
-                            <div class="section-text text-muted mt-3 text-justify">
-                                <p>The BU Open University initially offers selected graduate curricular programs. This is due to the stringent requirement of open learning to have “mature” learners who are capable of undertaking independent self-learning. Due to resource limitation and perceived market, only the following programs will be initially offered thru the open university/distance education mode:</p>
-                            </div>
+                    <div class="faq-wrapper mx-auto about-accordion"> 
+                        <h2 class="fw-bold mb-4 text-uppercase" style="letter-spacing: 1px; color: #333;">PROGRAMS</h2>
+                        
+                        <div class="about-text-content text-muted fs-6 text-justify mb-5" style="line-height: 1.8;">
+                            <h5 class="fw-bold text-dark text-uppercase mb-3" style="font-size: 1rem; letter-spacing: 0.5px;">Graduate Programs</h5>
+                            <p>
+                                The BU Open University initially offers selected graduate curricular programs. This is due to the stringent requirement of open learning to have “mature” learners who are capable of undertaking independent self-learning. Due to resource limitation and perceived market, only the following programs will be initially offered thru the open university/distance education mode:
+                            </p>
                         </div>
-                    </div>
 
-                    <div class="faq-wrapper mx-auto">
-                        @php
-                            $programs = [
-                                [
-                                    'title' => 'Doctor of education in Educational Leadership & Management (EdDELM)',
-                                    'description' => 'The Doctor of Education in Educational Leadership and Management (EdDELM) is a doctoral degree focused on preparing professionals for leadership and management roles within educational institutions. It equips individuals with advanced knowledge, skills, and practical experience to address challenges and drive positive change in various educational settings.',
-                                    'mode' => 'The mode of instructional delivery of EdDELM is through online, often incorporating both synchronous and asynchronous learning activities.',
-                                    'nature' => 'The program focuses on developing high-quality leaders and managers in education. It equips individuals with the knowledge, skills, and competencies to lead and manage educational institutions effectively, with a focus on strategic planning, organizational development, and the application of research to practice.',
-                                    'target' => 'The Doctor of Education in Educational Leadership and Management (EdDELM) are experienced educational leaders and managers seeking to enhance their knowledge and skills for leadership roles. This includes individuals working in various educational settings like schools, districts, higher education institutions, and even non-profit organizations focused on education.'
-                                ],
-                                [
-                                    'title' => 'Master in Management (MM)',
-                                    'description' => 'The Master in Management (MM) program is offered through Bicol University\'s Open University, which provides flexible learning options for graduate students. It aims to develop students’ analysis, development models, organizational change, and project development management.',
-                                    'mode' => 'the program is primarily delivered online, allowing students to study at their own pace and location. Bicol University Open University provides learning support through tutorials and counseling at the Distance Learning Center (DLC).',
-                                    'nature' => 'The program utilizes Open and Distance e-Learning (ODeL) mode of delivery, with some courses employing Blended Online Learning (BOL) that includes laboratory requirements like internships. Students learn at their own pace and place, using learning materials, e-learning resources, and support from the Distance Learning Center.'
-                                ],
-                                [
-                                    'title' => 'Master of Public Administration (MPA)',
-                                    'description' => 'Bicol University (BU) offers a Master in Public Administration (MPA) program through its Graduate School and Open University. The program is designed for both recent graduates and public sector professionals seeking to enhance their knowledge and skills in public administration. It focuses on developing expertise in administrative theories, policy development, and analytical problem-solving, while also emphasizing the values and political context of public service.',
-                                    'mode' => 'The main mode of instruction is Open and DIstance e-Learning (ODeL), where students engage with learning packages, e-learning materials, Open Educational Resources (OERs), audio, and video content.',
-                                    'nature' => 'MPA focuses on developing public servants, change agents and leaders with advanced competencies and skills for effective management within government, civil society, and international organizations. The program emphasizes developing leadership skills and managerial expertise in public sector contexts.'
-                                ],
-                                [
-                                    'title' => 'Master in Local Government Management (MLGM)',
-                                    'description' => 'The Master in Local Government Management (MLGM) program focuses on the theories, principles, and practices related to participatory governance and the interaction between people, local special bodies, and local government units.',
-                                    'mode' => 'Open and Distance e-Learning (ODeL) emphasizing self-directed learning with online resources and materials provided by the university, and Blended Online Learning (BOL) which is used for courses with specific on-site or online requirements, integrating online learning with some face-to-face or online interaction.',
-                                    'nature' => 'Students engage with learning packages, online resources, and potentially blended learning components for specific courses. Support is provided through tutorials and counseling at the Distance Learning Center, with assessment based on assignments and examinations.'
-                                ],
-                                [
-                                    'title' => 'Master of Arts in Educational Leadership & Management (MAELM)',
-                                    'description' => 'The program Master of Arts in Educational Leadership & Management (MAELM) offered through Bicol University Open University. It involves a combination of foundation, major, and cognate courses, along with the master’s thesis. This program aims to develop competence in educational leadership and management, research skills, and expertise in designing educational programs.',
-                                    'nature' => 'The Master of Arts in Educational Leadership & Management (MAELM) program focuses on developing leaders who can effectively manage and lead educational institutions. The program emphasizes both theoretical understanding and practical application of leadership and management principles, preparing graduates to address challenges in educational organizations and contribute to community development. Students are expected to engage in research, culminating in a thesis, to enhance their leadership and management practices and contribute to the field\'s knowledge base.'
-                                ],
-                                [
-                                    'title' => 'Master of Arts in English Education (MAEngEd)',
-                                    'description' => 'This program is a graduate program designed to develop teachers who are proficient in English instruction and can create innovative teaching materials and research.',
-                                    'nature' => 'It focuses on enhancing teachers\' abilities in innovative instructional program design, research, and application of current trends in English instruction. The program emphasizes developing competencies in various methodological approaches to English instruction, curriculum design, and materials development.'
-                                ],
-                                [
-                                    'title' => 'Master of Arts in Social Studies Education (MASocStEd)',
-                                    'description' => 'Bicol University offers a Master of Arts in Social Studies Education (MASocStEd) program. This program aims to produce graduates who are highly competent in teaching social studies content and methodology, both at the basic education and college level.',
-                                    'nature' => 'This program focuses on developing advanced theoretical and practical competence in social studies teaching and educational leadership. The program emphasizes research skills, curriculum development, and a deep understanding of social and cultural contexts relevant to education. Students will be equipped to become effective educators and catalysts for change within the field of social studies.'
-                                ],
-                            ];
-                        @endphp
-
-                        @foreach($programs as $program)
                         <div class="faq-item">
                             <button class="faq-question d-flex justify-content-between align-items-center w-100 py-3 border-bottom" 
-                                    type="button" 
-                                    data-bs-toggle="collapse" 
-                                    data-bs-target="#prog-{{ \Str::slug($program['title']) }}" 
-                                    aria-expanded="false">
-                                <span class="fw-bold text-start" style="color: #333;">{{ $program['title'] }}</span>
+                                    type="button" data-bs-toggle="collapse" data-bs-target="#prog-eddelm">
+                                <span class="fw-bold text-uppercase" style="letter-spacing: 0.5px;">Doctor of education in Educational Leadership & Management (EdDELM)</span>
                                 <span class="icon">+</span>
                             </button>
-
-                            <div class="faq-answer collapse" id="prog-{{ \Str::slug($program['title']) }}">
+                            <div class="faq-answer collapse" id="prog-eddelm">
                                 <div class="py-4 text-muted text-justify">
-                                    <p class="mb-3">{{ $program['description'] }}</p>
-                                    
-                                    @if(isset($program['mode']))
-                                        <p class="mb-3"><strong>Mode of Instructional Delivery:</strong> {{ $program['mode'] }}</p>
-                                    @endif
-                                    
-                                    <p class="mb-3"><strong>Nature of the Field Study:</strong> {{ $program['nature'] }}</p>
-                                    
-                                    @if(isset($program['target']))
-                                        <p class="mb-0"><strong>Target Clients:</strong> {{ $program['target'] }}</p>
-                                    @endif
+                                    <p class="mb-3">The Doctor of Education in Educational Leadership and Management (EdDELM) is a doctoral degree focused on preparing professionals for leadership and management roles within educational institutions. It equips individuals with advanced knowledge, skills, and practical experience to address challenges and drive positive change in various educational settings.</p>
+                                    <p class="mb-3"><strong>Mode of Instructional Delivery:</strong> The mode of instructional delivery of EdDELM is through online, often incorporating both synchronous and asynchronous learning activities.</p>
+                                    <p class="mb-3"><strong>Nature of the Field Study:</strong> The program focuses on developing high-quality leaders and managers in education. It equips individuals with the knowledge, skills, and competencies to lead and manage educational institutions effectively, with a focus on strategic planning, organizational development, and the application of research to practice.</p>
+                                    <p class="mb-0"><strong>Target Clients:</strong> The Doctor of Education in Educational Leadership and Management (EdDELM) are experienced educational leaders and managers seeking to enhance their knowledge and skills for leadership roles.</p>
                                 </div>
                             </div>
                         </div>
-                        @endforeach
-                    </div>
 
+                        <div class="faq-item">
+                            <button class="faq-question d-flex justify-content-between align-items-center w-100 py-3 border-bottom" 
+                                    type="button" data-bs-toggle="collapse" data-bs-target="#prog-mm">
+                                <span class="fw-bold text-uppercase" style="letter-spacing: 0.5px;">Master in Management (MM)</span>
+                                <span class="icon">+</span>
+                            </button>
+                            <div class="faq-answer collapse" id="prog-mm">
+                                <div class="py-4 text-muted text-justify">
+                                    <p class="mb-3">The Master in Management (MM) program is offered through Bicol University's Open University, which provides flexible learning options for graduate students. It aims to develop students’ analysis, development models, organizational change, and project development management.</p>
+                                    <p class="mb-3"><strong>Mode of Instructional Delivery:</strong> The program is primarily delivered online, allowing students to study at their own pace and location. Bicol University Open University provides learning support through tutorials and counseling at the Distance Learning Center (DLC).</p>
+                                    <p class="mb-0"><strong>Nature of the Field Study:</strong> The program utilizes Open and Distance e-Learning (ODeL) mode of delivery, with some courses employing Blended Online Learning (BOL) that includes laboratory requirements like internships.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <button class="faq-question d-flex justify-content-between align-items-center w-100 py-3 border-bottom" 
+                                    type="button" data-bs-toggle="collapse" data-bs-target="#prog-mpa">
+                                <span class="fw-bold text-uppercase" style="letter-spacing: 0.5px;">Master of Public Administration (MPA)</span>
+                                <span class="icon">+</span>
+                            </button>
+                            <div class="faq-answer collapse" id="prog-mpa">
+                                <div class="py-4 text-muted text-justify">
+                                    <p class="mb-3">The program is designed for both recent graduates and public sector professionals seeking to enhance their knowledge and skills in public administration. It focuses on developing expertise in administrative theories, policy development, and analytical problem-solving.</p>
+                                    <p class="mb-3"><strong>Mode of Instructional Delivery:</strong> The main mode of instruction is Open and Distance e-Learning (ODeL), where students engage with learning packages, e-learning materials, and Open Educational Resources (OERs).</p>
+                                    <p class="mb-0"><strong>Nature of the Field Study:</strong> MPA focuses on developing public servants, change agents and leaders with advanced competencies and skills for effective management within government and civil society.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <button class="faq-question d-flex justify-content-between align-items-center w-100 py-3 border-bottom" 
+                                    type="button" data-bs-toggle="collapse" data-bs-target="#prog-mlgm">
+                                <span class="fw-bold text-uppercase" style="letter-spacing: 0.5px;">Master in Local Government Management (MLGM)</span>
+                                <span class="icon">+</span>
+                            </button>
+                            <div class="faq-answer collapse" id="prog-mlgm">
+                                <div class="py-4 text-muted text-justify">
+                                    <p class="mb-3">The program focuses on the theories, principles, and practices related to participatory governance and the interaction between people, local special bodies, and local government units.</p>
+                                    <p class="mb-3"><strong>Mode of Instructional Delivery:</strong> Open and Distance e-Learning (ODeL) emphasizing self-directed learning with online resources, and Blended Online Learning (BOL) for specific requirements.</p>
+                                    <p class="mb-0"><strong>Nature of the Field Study:</strong> Students engage with learning packages and online resources. Support is provided through tutorials and counseling at the Distance Learning Center.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <button class="faq-question d-flex justify-content-between align-items-center w-100 py-3 border-bottom" 
+                                    type="button" data-bs-toggle="collapse" data-bs-target="#prog-maelm">
+                                <span class="fw-bold text-uppercase" style="letter-spacing: 0.5px;">Master of Arts in Educational Leadership & Management (MAELM)</span>
+                                <span class="icon">+</span>
+                            </button>
+                            <div class="faq-answer collapse" id="prog-maelm">
+                                <div class="py-4 text-muted text-justify">
+                                    <p class="mb-3">It involves a combination of foundation, major, and cognate courses, along with the master’s thesis. This program aims to develop competence in educational leadership and management.</p>
+                                    <p class="mb-0"><strong>Nature of the Field Study:</strong> The program focuses on developing leaders who can effectively manage and lead educational institutions, emphasizing both theoretical understanding and practical application of leadership principles.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <button class="faq-question d-flex justify-content-between align-items-center w-100 py-3 border-bottom" 
+                                    type="button" data-bs-toggle="collapse" data-bs-target="#prog-maenged">
+                                <span class="fw-bold text-uppercase" style="letter-spacing: 0.5px;">Master of Arts in English Education (MAEngEd)</span>
+                                <span class="icon">+</span>
+                            </button>
+                            <div class="faq-answer collapse" id="prog-maenged">
+                                <div class="py-4 text-muted text-justify">
+                                    <p class="mb-3">This program is a graduate program designed to develop teachers who are proficient in English instruction and can create innovative teaching materials and research.</p>
+                                    <p class="mb-0"><strong>Nature of the Field Study:</strong> It focuses on enhancing teachers' abilities in innovative instructional program design, research, and application of current trends in English instruction.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <button class="faq-question d-flex justify-content-between align-items-center w-100 py-3 border-bottom" 
+                                    type="button" data-bs-toggle="collapse" data-bs-target="#prog-masocsted">
+                                <span class="fw-bold text-uppercase" style="letter-spacing: 0.5px;">Master of Arts in Social Studies Education (MASocStEd)</span>
+                                <span class="icon">+</span>
+                            </button>
+                            <div class="faq-answer collapse" id="prog-masocsted">
+                                <div class="py-4 text-muted text-justify">
+                                    <p class="mb-3">This program aims to produce graduates who are highly competent in teaching social studies content and methodology, both at the basic education and college level.</p>
+                                    <p class="mb-0"><strong>Nature of the Field Study:</strong> Focuses on developing advanced theoretical and practical competence in social studies teaching and educational leadership, curriculum development, and social contexts.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
             </section>
         </div>
@@ -465,20 +491,64 @@
         <!------------------>
 
         <div class="tab-pane fade" id="news-section" role="tabpanel" aria-labelledby="news-tab">
-            <section id="news" class="hero-section position-relative py-5">
+            <section id="news" class="about-section py-5">
                 <div class="container">
-                    <div class="text-center mb-5">
-                        <span class="badge news-bg-orange text-black px-3 py-2 rounded-pill mb-3">📰 BUOU Updates</span>
-                        <h2 class="text-black fw-bold display-6">Latest News & Announcements</h2>
-                    </div>
-                    <div class="row g-4">
-                        <div class="col-md-4">
-                            <div class="news-card">
-                                <div class="news-img-wrapper"><img src="https://images.unsplash.com/photo-1544531586-fde5298cdd40?q=80&w=600" class="img-fluid" alt="News"></div>
-                                <div class="news-body"><h5 class="news-title">Anniversary Celebration</h5><p class="news-text">Celebrating decades of quality distance education.</p></div>
+                    <div class="faq-wrapper mx-auto about-accordion"> 
+                        
+                        <div class="text-center mb-5">
+                            <span class="badge bg-warning text-dark px-3 py-2 rounded-pill mb-3" style="letter-spacing: 0.5px;">📰 BUOU UPDATES</span>
+                            <h2 class="fw-bold text-uppercase" style="letter-spacing: 1px; color: #333;">Latest News & Announcements</h2>
+                        </div>
+
+                        <div class="faq-item">
+                            <button class="faq-question d-flex justify-content-between align-items-center w-100 py-3 border-bottom" 
+                                    type="button" data-bs-toggle="collapse" data-bs-target="#news-enrollment">
+                                <span class="fw-bold text-uppercase" style="letter-spacing: 0.5px;">Enrollment for 2nd Semester AY 2025-2026</span>
+                                <span class="icon">+</span>
+                            </button>
+                            <div class="faq-answer collapse show" id="news-enrollment">
+                                <div class="py-4 text-muted text-justify">
+                                    <div class="news-img-wrapper mb-3 text-center">
+                                        <img src="https://images.unsplash.com/photo-1523050335392-93851179ae22?q=80&w=800" class="img-fluid rounded shadow-sm" alt="Enrollment" style="max-height: 300px; width: 100%; object-fit: cover;">
+                                    </div>
+                                    <p class="mb-3">The Bicol University Open University (BUOU) is now accepting applicants for the 2nd Semester of the Academic Year 2025-2026. The general enrollment period for graduate and undergraduate programs is currently underway.</p>
+                                    <p class="mb-0 small text-uppercase fw-bold text-primary">Status: Ongoing</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
+
+                        <div class="faq-item">
+                            <button class="faq-question d-flex justify-content-between align-items-center w-100 py-3 border-bottom" 
+                                    type="button" data-bs-toggle="collapse" data-bs-target="#news-anniversary">
+                                <span class="fw-bold text-uppercase" style="letter-spacing: 0.5px;">BUOU Marks 27th Founding Anniversary</span>
+                                <span class="icon">+</span>
+                            </button>
+                            <div class="faq-answer collapse" id="news-anniversary">
+                                <div class="py-4 text-muted text-justify">
+                                    <div class="news-img-wrapper mb-3 text-center">
+                                        <img src="https://images.unsplash.com/photo-1544531586-fde5298cdd40?q=80&w=800" class="img-fluid rounded shadow-sm" alt="Anniversary" style="max-height: 300px; width: 100%; object-fit: cover;">
+                                    </div>
+                                    <p class="mb-3">BUOU recently celebrated its 27th anniversary with the theme "Embracing a Global and Inclusive Learning Culture." The event highlighted the university's commitment to providing quality distance education to students across the Bicol region and beyond.</p>
+                                    <p class="mb-0 small italic">Posted: November 2025</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <button class="faq-question d-flex justify-content-between align-items-center w-100 py-3 border-bottom" 
+                                    type="button" data-bs-toggle="collapse" data-bs-target="#news-ibusis">
+                                <span class="fw-bold text-uppercase" style="letter-spacing: 0.5px;">Transition to iBU (New Student Portal)</span>
+                                <span class="icon">+</span>
+                            </button>
+                            <div class="faq-answer collapse" id="news-ibusis">
+                                <div class="py-4 text-muted text-justify">
+                                    <p class="mb-3">In line with the university's digitalization efforts, the official student portal has migrated from iBUSIS to the new <strong>iBU</strong> platform. Students are encouraged to update their bookmarks and synchronize their accounts for seamless access to grades and enrollment data.</p>
+                                    <p class="mb-0 small text-uppercase fw-bold text-danger">Notice: Required Action for All Students</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div> 
                 </div>
             </section>
         </div>
@@ -551,250 +621,175 @@
         <!------------------>                                
 
         <div class="tab-pane fade" id="faqs-section" role="tabpanel" aria-labelledby="faqs-tab">
-            <section id="faqs" class="hero-section d-flex align-items-center">
+            <section id="faqs" class="buou-faq-section py-5">
                 <div class="container">
-                    <div class="text-center mb-3">
-                        <span class="badge news-bg-orange text-black px-3 py-2 rounded-pill">
-                            📰 BUOU FAQS
-                        </span>
-                    </div>
-                    <!-- SECTION HEADER -->
                     <div class="row mb-5 justify-content-center text-center">
                         <div class="col-lg-8">
-                            <h2 class="section-title">Frequently Asked Questions</h2>
-                            <p class="section-text text-muted mt-3">
-                                Find quick answers to common inquiries about admission, enrollment,
-                                facilities, and services at the BU Open University.
+                            <span class="badge news-bg-orange text-black px-3 py-2 rounded-pill mb-3">📰 BUOU FAQS</span>
+                            <h2 class="buou-faq-main-title">Frequently Asked Questions</h2>
+                            <p class="text-muted mt-3">
+                                Find quick answers to common inquiries about admission, enrollment, facilities, and services at the BU Open University.
                             </p>
                         </div>
                     </div>
-            
-                    <!-- FAQ ITEMS -->
-                    <div class="faq-wrapper mx-auto">
-                        <!-- FAQ ITEM -->
-                        <div class="faq-item">
-                            <button class="faq-question">
+
+                    <div class="buou-faq-accordion-wrapper mx-auto" id="buouFaqAccordion">
+
+                        <div class="buou-faq-card">
+                            <button class="buou-faq-btn" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
                                 How to request for Admission to BU Open University?
-                                <span class="icon">+</span>
+                                <span class="buou-faq-icon">+</span>
                             </button>
-                            <div class="faq-answer">
-                                <p><strong>For Master’s and Doctoral Applicants:</strong></p>
-                                <ul>
-                                    <li>Duly Accomplished Application Form (BUGS Form 1)</li>
-                                    <li>One Original and One photocopy of official Transcript of Records (TOR) from college
-                                        previously attended.</li>
-                                    <li>Photocopy of Special Order (for graduates of Private School)</li>
-                                    <li>Copy of honorable dismissal from school last attended.</li>
-                                    <li>Two letters for recommendation preferably from former professors.</li>
-                                    <li>Photocopy of Birth Certificate (NSO or PSA).</li>
-                                    <li>Photocopy of Marriage Contract (for married female applicants).</li>
-                                    <li>Certificate of English Proficiency for Foreign students. Required TOEFL score for admission
-                                        is 460 (Additional requirement for International Applicants).</li>
-                                </ul>
-                                <p><strong>The following documents (Duly Accomplished Application Form (BUGS Form 1 & Recommendation
-                                        for Graduate Study Form) are available at the BUGS Office or can be downloaded at the BUGS
-                                        Open Access Drive at:</strong></p>
-                                <a class="btn btn-orange"
-                                    href="https://drive.google.com/drive/u/5/folders/1JKlEhnDs_oJ-4kt461kWpkepN1osYG1M"
-                                    target="_blank" class="faq-link">
-                                    BUGS Open Access Drive
-                                </a>
+                            <div id="faq1" class="collapse" data-bs-parent="#buouFaqAccordion">
+                                <div class="buou-faq-body">
+                                    <p><strong>For Master’s and Doctoral Applicants:</strong></p>
+                                    <ul>
+                                        <li>Duly Accomplished Application Form (BUGS Form 1)</li>
+                                        <li>One Original and One photocopy of official Transcript of Records (TOR) from college previously attended.</li>
+                                        <li>Photocopy of Special Order (for graduates of Private School)</li>
+                                        <li>Copy of honorable dismissal from school last attended.</li>
+                                        <li>Two letters for recommendation preferably from former professors.</li>
+                                        <li>Photocopy of Birth Certificate (NSO or PSA).</li>
+                                        <li>Photocopy of Marriage Contract (for married female applicants).</li>
+                                        <li>Certificate of English Proficiency for Foreign students (TOEFL score 460).</li>
+                                    </ul>
+                                    <p><strong>Forms are available at the BUGS Office or can be downloaded here:</strong></p>
+                                    <a href="https://drive.google.com/drive/u/5/folders/1JKlEhnDs_oJ-4kt461kWpkepN1osYG1M" target="_blank" class="btn btn-orange btn-sm">BUGS Open Access Drive</a>
+                                </div>
                             </div>
                         </div>
-            
-                        <div class="faq-item">
-                            <button class="faq-question">
+
+                        <div class="buou-faq-card">
+                            <button class="buou-faq-btn" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
                                 How to request approval for use of venue, Facility/equipment?
-                                <span class="icon">+</span>
+                                <span class="buou-faq-icon">+</span>
                             </button>
-                            <div class="faq-answer">
-                                <ol>
-                                    <li>Forward communication: submit the letter request to the office staff .
-                                        <ol class="sub-list">
-                                            <li>1.1. The processing time would be 3-5 minutes per transaction.</li>
-                                            <li>1.2. Check the availability of the venue, facility or equipment.The processing time
-                                                would be 3-5 minutes per transaction. </li>
-                                            <li>1.3 Forward the communication to the Dean.</li>
-                                            <li>1.4. Act on the received communication such as approval, endorsement and other
-                                                appropriate action. The processing time usually takes 3-5 minutes</li>
-                                        </ol>
-                                    </li>
-                                    <li>2. Receive documents
-                                        <ol class="sub-list">
-                                            <li>2.1 The client receives the document from the office staff.</li>
-                                        </ol>
-                                    </li>
-                                </ol>
-                            </div>
-                        </div>
-            
-                        <div class="faq-item">
-                            <button class="faq-question">
-                                How to address the needs of the visitors/clients?
-                                <span class="icon">+</span>
-                            </button>
-                            <div class="faq-answer">
-                                <ol>
-                                    <li>Fill out the message slip available in the front desk.</li>
-                                    <li>Present the slip to the front desk clerk.
-                                        <ol class="sub-list">
-                                            <li>2.1 Receives the accomplished message slip </li>
-                                            <li>2.2 Inform the Dean regarding the concern of the visitor/client.</li>
-                                            <li>2.4 Prepare/record regarding the action of the Dean</li>
-                                            <li>2.5 Provide certification of appearance to the visitor/client.</li>
-                                            <li>2.5 Provide certification of appearance to the visitor/client.</li>
-                                        </ol>
-                                    </li>
-                                    <li>Receives the Certificate of appearance.</li>
-                                </ol>
-                            </div>
-                        </div>
-            
-                        <div class="faq-item">
-                            <button class="faq-question">
-                                How to Enroll in BU Open University?
-                                <span class="icon">+</span>
-                            </button>
-            
-                            <div class="faq-answer">
-                                <!-- GENERAL STEPS -->
-                                <ul>
-                                    <li>
-                                        To process the enrollment of new students, a Notice of Admission (NOA)
-                                        issued by the Office of the Dean of the Graduate School must be secured
-                                        first to proceed with the enrollment.
-                                    </li>
-                                    <li>
-                                        After submitting the required documents, wait for the notification
-                                        either online or onsite.
-                                    </li>
-                                    <li>
-                                        The BUGS Registrar will encode the subject of the student and issue the Assessment
-                                        of Fees via email for online or printed copy for onsite. Upon receiving the Assessment
-                                        of Fees, the student is required to pay the tuition and other fees via online or onsite.
-                                    </li>
-                                </ul>
-                                <!-- PAYMENT OPTIONS -->
-                                <ol>
-                                    <li>
-                                        <strong>For Onsite:</strong> The student may go directly to BUGS Cashier Office.
-                                        Upon payment, the Cashier issues the Certificate of Registration
-                                    </li>
-                                    <li>
-                                        <strong>For Online:</strong> The student may pay through banks to BUGS Landbank account:
-                                    </li>
-                                </ol>
-                                <!-- BANK DETAILS (PLAIN TEXT, NOT CENTERED) -->
-                                <p><strong>Account Name:</strong> Bicol University – STF (164)</p>
-                                <p><strong>Account No.:</strong> 0132-0265-48</p>
-                                <p><strong>Bank Branch:</strong> LBP Legazpi</p>
-                                <p>
-                                    The BUGS Cashier will confirm the payment in Landbank. Upon conferment,
-                                    the BUGS Cashier will issue a Certificate of Registration via email.
-                                </p>
-                                <!-- POST-ENROLLMENT NOTES -->
-                                <ul>
+                            <div id="faq2" class="collapse" data-bs-parent="#buouFaqAccordion">
+                                <div class="buou-faq-body">
                                     <ol>
-                                        <li>
-                                            <strong>Forwards ACtivity proposal to BUOU front desk.</strong>
+                                        <li>Forward communication: submit the letter request to the office staff.
+                                            <ul class="sub-list mt-2">
+                                                <li>1.1. Processing time: 3-5 minutes per transaction.</li>
+                                                <li>1.2. Check availability of venue/facility/equipment.</li>
+                                                <li>1.3. Forward communication to the Dean.</li>
+                                                <li>1.4. Dean acts on communication (approval/endorsement).</li>
+                                            </ul>
                                         </li>
-                                        <li>
-                                            <strong>For Online:</strong> The student may pay through banks to BUGS Landbank account:
+                                        <li class="mt-2">Receive documents: Client receives the document from office staff.</li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="buou-faq-card">
+                            <button class="buou-faq-btn" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                                How to address the needs of the visitors/clients?
+                                <span class="buou-faq-icon">+</span>
+                            </button>
+                            <div id="faq3" class="collapse" data-bs-parent="#buouFaqAccordion">
+                                <div class="buou-faq-body">
+                                    <ol>
+                                        <li>Fill out the message slip available in the front desk.</li>
+                                        <li>Present the slip to the front desk clerk.
+                                            <ul class="sub-list mt-2">
+                                                <li>2.1 Receives the accomplished message slip.</li>
+                                                <li>2.2 Inform the Dean regarding the concern.</li>
+                                                <li>2.4 Prepare/record regarding the action of the Dean.</li>
+                                                <li>2.5 Provide certification of appearance.</li>
+                                            </ul>
+                                        </li>
+                                        <li class="mt-2">Receives the Certificate of appearance.</li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="buou-faq-card">
+                            <button class="buou-faq-btn" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                                How to Enroll in BU Open University?
+                                <span class="buou-faq-icon">+</span>
+                            </button>
+                            <div id="faq4" class="collapse" data-bs-parent="#buouFaqAccordion">
+                                <div class="buou-faq-body">
+                                    <ul>
+                                        <li>Secure a Notice of Admission (NOA) from the Office of the Dean.</li>
+                                        <li>Wait for notification either online or onsite.</li>
+                                        <li>Registrar will encode subjects and issue Assessment of Fees via email or print.</li>
+                                    </ul>
+                                    <p class="mt-3"><strong>Payment Options:</strong></p>
+                                    <ol>
+                                        <li><strong>Onsite:</strong> Pay at BUGS Cashier Office for Certificate of Registration.</li>
+                                        <li><strong>Online:</strong> Landbank Account: 0132-0265-48 | Name: Bicol University – STF (164) | Branch: LBP Legazpi.</li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="buou-faq-card">
+                            <button class="buou-faq-btn" type="button" data-bs-toggle="collapse" data-bs-target="#faq5">
+                                How to request for approval to conduct Activity?
+                                <span class="buou-faq-icon">+</span>
+                            </button>
+                            <div id="faq5" class="collapse" data-bs-parent="#buouFaqAccordion">
+                                <div class="buou-faq-body">
+                                    <ol>
+                                        <li>Forward Activity proposal to BUOU front desk.
+                                            <ul class="sub-list mt-2">
+                                                <li>1.1 Receives/stamp the activity proposal.</li>
+                                                <li>1.2 Assign reference number and record in logbook.</li>
+                                                <li>1.3 Forward to the Dean.</li>
+                                                <li>1.4 Dean acts on proposal (endorsed/other action).</li>
+                                            </ul>
+                                        </li>
+                                        <li class="mt-2">Receives the endorsement/routing slip or transmittal.</li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="buou-faq-card">
+                            <button class="buou-faq-btn" type="button" data-bs-toggle="collapse" data-bs-target="#faq6">
+                                How to receive and release communication/document?
+                                <span class="buou-faq-icon">+</span>
+                            </button>
+                            <div id="faq6" class="collapse" data-bs-parent="#buouFaqAccordion">
+                                <div class="buou-faq-body">
+                                    <ol>
+                                        <li>Forward document to front desk.
+                                            <ul class="sub-list mt-2">
+                                                <li>1.1 Receive and assign reference number.</li>
+                                                <li>1.3 Forward to the Dean for review/signature.</li>
+                                                <li>1.7 Reproduce copies for dissemination.</li>
+                                                <li>1.10 Store file copies in labeled folders/boxes.</li>
+                                            </ul>
                                         </li>
                                     </ol>
-                                </ul>
+                                </div>
                             </div>
                         </div>
-            
-                        <div class="faq-item">
-                            <button class="faq-question">
-                                How to request for approval to conduct Activity?
-                                <span class="icon">+</span>
-                            </button>
-                            <div class="faq-answer">
-                                <ol>
-                                    <li>Forwards ACtivity proposal to BUOU front desk.
-                                        <ol class="sub-list">
-                                            <li>1.1 Receives/stamp the activity proposal</li>
-                                            <li>1.2 Assign reference number to the proposal and record in the logbook.</li>
-                                            <li>1.3 Forward the communication to the Dean.</li>
-                                            <li>1.4 Act on the proposal, endorsed or other appropriate action.</li>
-                                            <li>1.5 Encode/record regarding the action of the Dean.</li>
-                                        </ol>
-                                    </li>
-                                    <li>2. Receives the endorsement/ routing slip or transmittal.
-                                        <ol class="sub-list">
-                                            <li>2.1 Keep the receiving copy.</li>
-                                        </ol>
-                                    </li>
-                                </ol>
-                            </div>
-                        </div>
-            
-                        <div class="faq-item">
-                            <button class="faq-question">
-                                How to receive and release communication/document?
-                                <span class="icon">+</span>
-                            </button>
-                            <div class="faq-answer">
-                                <ol>
-                                    <li>Forward the communication/document to the front desk.
-                                        <ol class="sub-list">
-                                            <li>1.1 Receive the communication/document</li>
-                                            <li>1.2 Assign reference number to the document, classifying as to kind of documents and
-                                                record it in the logbook.</li>
-                                            <li>1.3 Forward the communication to the Dean.</li>
-                                            <li>1.4 Act on the received communication/documents such as approval, endorsement, and
-                                                other appropriate action.</li>
-                                            <li>1.5 Encode/record the action of the Dean such as endorsement , memorandum,routing
-                                                slip or transmittal letter.</li>
-                                            <li>1.6 Forward the communication, memorandum or transmittal letter for review/signature
-                                                of the Dean.</li>
-                                            <li>1.7 Reproductive copies for dissemination to the concerned persons.</li>
-                                            <li>1.8 Record and release communications/documents to concerned personnel/faculty
-                                                and/or dissemination.</li>
-                                            <li>1.9 Delivery/disseminate the communication/documents acted upon by the Dean.</li>
-                                            <li>1.10 Store a received/disseminated file copy of the documents in labeled folders,
-                                                boxes and shelves.</li>
-                                        </ol>
-                                    </li>
-                                </ol>
-                            </div>
-                        </div>
-            
-                        <div class="faq-item">
-                            <button class="faq-question">
+
+                        <div class="buou-faq-card">
+                            <button class="buou-faq-btn" type="button" data-bs-toggle="collapse" data-bs-target="#faq7">
                                 Enrolment of Students at BU Open University
-                                <span class="icon">+</span>
+                                <span class="buou-faq-icon">+</span>
                             </button>
-                            <div class="faq-answer">
-                                <p><strong>Master’s and Doctoral Applicants: </strong></p>
-                                <ul>
-                                    <li>Notice of Admission </li>
-                                    <li>Advising Slip and Certification </li>
-                                    <li>Program of Courseworks</li>
-                                    <li>Nomination for Thesis/Dissertation Adviser </li>
-                                    <li>Concept Note</li>
-                                </ul>
-                                <p><strong>The following documents can be downloaded in the Open Access Drive of BU Graduate School
-                                        Facebook Page, BUOU Facebook page and Bicol University Website.</strong></p>
-            
-                                <ol>
-                                    <li>Client’s Steps:
-                                        <ol class="sub-list">
-                                            <li>1. Submit the required documents and wait for the notification either online or
-                                                onsite. </li>
-                                            <li>2. For new students: The student/Client receives the Certificate of Registration and
-                                                contact the ICTO for official BU email address. </li>
-                                            <li>3. The student informs his/her Faculty in Charge (FIC) as a member of the class.
-                                            </li>
-                                        </ol>
-                                    </li>
-                                </ol>
+                            <div id="faq7" class="collapse" data-bs-parent="#buouFaqAccordion">
+                                <div class="buou-faq-body">
+                                    <p><strong>Required for Master’s/Doctoral:</strong></p>
+                                    <ul class="mb-3">
+                                        <li>Notice of Admission, Advising Slip, Program Courseworks, Adviser Nomination, Concept Note.</li>
+                                    </ul>
+                                    <p><strong>Client Steps:</strong></p>
+                                    <ol>
+                                        <li>Submit documents and wait for notification.</li>
+                                        <li>New Students: Receive Certificate of Registration and contact ICTO for BU email.</li>
+                                        <li>Inform Faculty in Charge (FIC) of your enrollment.</li>
+                                    </ol>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
+
+                    </div> </div>
             </section>
         </div>
 
