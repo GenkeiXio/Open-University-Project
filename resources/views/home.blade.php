@@ -34,14 +34,15 @@
 
     <div class="container-fluid bg-white">
         <div class="row g-0">
-            <div class="col-lg-2 d-none d-lg-block border-end py-5">
+            
+            <div class="col-lg-3 d-none d-lg-block border-end py-5">
                 <div class="px-4 sticky-top" style="top: 160px;">
                     <h5 class="fw-bold text-uppercase border-bottom pb-2">BUOU News</h5>
                     <p class="small text-muted">BUOU Official FB Page</p>
                 </div>
             </div>
 
-            <div class="col-lg-8">
+            <div class="col-lg-6 px-lg-5">
                 <div class="tab-content" id="buouTabContent">
                     
                     <!------------------>
@@ -51,54 +52,23 @@
                     <div class="tab-pane fade show active" id="home-section" role="tabpanel" aria-labelledby="home-tab">
                         <section id="home" class="hero-section py-5 bg-white">
                             <div class="container">
-                                <div class="row align-items-center gy-5">
-                        
-                                    <div class="col-lg-6 text-start">
+                                <div class="row justify-content-center align-items-center">
+                                    
+                                    <div class="col-lg-8 text-center">
                                         <span class="badge badge-custom mb-3">
                                             🎓 Distance Education Excellence
                                         </span>
-                        
+
                                         <h1 class="hero-title mt-2">
                                             <span class="text-gradient-orange">BICOL UNIVERSITY</span><br>
                                             <span class="text-gradient-blue">OPEN UNIVERSITY</span>
                                         </h1>
-                        
-                                        <p class="hero-text mt-4 text-muted justify-content-center">
-                                            Empowering learners anywhere through open and distance learning.
-                                            Achieve your academic goals with Bicol University Open University.
+
+                                        <p class="hero-text mt-4 text-muted mx-auto" style="max-width: 600px;">
+                                            Breaking Barriers, Connecting People to Quality Education 
                                         </p>
                                     </div>
-                        
-                                    <div class="col-lg-6">
-                                        <div class="row g-4">
-                        
-                                            <div class="col-md-6">
-                                                <div class="stat-card border-0 shadow-sm rounded-4">
-                                                    <div class="fs-2 mb-2">📘</div>
-                                                    <h3 class="fw-bold text-gradient-blue">5+</h3>
-                                                    <p class="text-muted small text-uppercase fw-semibold">Graduate Programs</p>
-                                                </div>
-                                            </div>
-                        
-                                            <div class="col-md-6">
-                                                <div class="stat-card border-0 shadow-sm rounded-4">
-                                                    <div class="fs-2 mb-2">👥</div>
-                                                    <h3 class="fw-bold text-gradient-blue">500+</h3>
-                                                    <p class="text-muted small text-uppercase fw-semibold">Enrolled Students</p>
-                                                </div>
-                                            </div>
-                        
-                                            <div class="col-12">
-                                                <div class="stat-card wide border-0 shadow-sm rounded-4">
-                                                    <div class="fs-2 mb-2">🎓</div>
-                                                    <h3 class="fw-bold text-gradient-blue">100%</h3>
-                                                    <p class="text-muted small text-uppercase fw-semibold">Flexible Online & Modular Learning</p>
-                                                </div>
-                                            </div>
-                        
-                                        </div>
-                                    </div>
-                        
+
                                 </div>
                             </div>
                         </section>
@@ -753,13 +723,16 @@
                 </div>
             </div>
 
-            <div class="col-lg-2 d-none d-lg-block border-start py-5 text-center">
-                <div class="px-3 sticky-top" style="top: 160px;">
-                    <img src="{{ asset('assets/Faculty/SirBenedicto.jpg') }}" class="img-fluid rounded shadow-sm mb-3" alt="Dean">
+            <div class="col-lg-3 d-none d-lg-block border-start py-5 text-center">
+                <div class="px-4 sticky-top" style="top: 160px;">
+                    <div class="mb-3 mx-auto" style="max-width: 180px;">
+                        <img src="{{ asset('assets/Faculty/SirBenedicto.jpg') }}" class="img-fluid rounded shadow-sm" alt="Dean">
+                    </div>
                     <h6 class="fw-bold mb-0">Dr. Benedicto B. Balilo Jr.</h6>
                     <p class="small text-muted">Dean, BU Open University</p>
                 </div>
             </div>
+            
         </div>
     </div>
 
