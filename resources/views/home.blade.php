@@ -4,7 +4,7 @@
 
     @include('layouts.navbar')
 
-    <div class="selection-menu-wrapper sticky-top bg-white py-3 shadow-sm" style="top: 85px;"> 
+    <div class="selection-menu-wrapper sticky-top bg-white py-3 shadow-sm" style="top: 80px;"> 
         <div class="container">
             <ul class="nav nav-pills justify-content-center gap-2 mb-0" id="buouTab" role="tablist">
                 <li class="nav-item" role="presentation">
@@ -59,11 +59,11 @@
                                 Achieve your academic goals with Bicol University Open University.
                             </p>
             
-                            <div class="mt-4 d-flex flex-wrap gap-3">
+                            <!-- <div class="mt-4 d-flex flex-wrap gap-3">
                                 <a href="#" class="btn btn-orange">Apply Now</a>
                                 <a href="#" class="btn btn-outline-light">View Programs</a>
                                 <a href="#" class="btn btn-outline-light">Contact Us</a>
-                            </div>
+                            </div> -->
                         </div>
             
                         <!-- RIGHT STATS -->
@@ -108,151 +108,71 @@
         <!------------------->
 
         <div class="tab-pane fade" id="about-section" role="tabpanel" aria-labelledby="about-tab">
-            <section id="about" class="about-section">
-            
-                <!-- INTRO CARD -->
+            <section id="about" class="about-section py-5">
                 <div class="container">
-                    <div class="about-intro-card text-center">
-                        <h2 class="mb-3">The Bicol University Open University</h2>
-                        <p class="text-muted mb-0">
-                            On November 20, 1997, the Bicol University (BU) Board of Regents
-                            passed BOR Resolution No. 24, series of 1997, approving the
-                            establishment of the BU Open University to bring the curricular
-                            programs of the University to a wider populace of students in
-                            the Bicol Region.
-                        </p>
-                    </div>
-                </div>
-            
-                <!-- TIMELINE CARDS -->
-                <div class="container mt-5">
-                    <div class="row g-4">
-            
-                        <div class="col-md-4">
-                            <div class="about-timeline-card">
-                                <span class="timeline-year">1997</span>
-                                <p>
-                                    BOR Resolution No. 24, series of 1997 approved the
-                                    establishment of the BU Open University.
-                                </p>
+                    <div class="faq-wrapper mx-auto about-accordion"> 
+                        <h2 class="fw-bold mb-4 text-uppercase" style="letter-spacing: 1px; color: #333;">THE BICOL UNIVERSITY OPEN UNIVERSITY</h2>
+                        
+                        <div class="about-text-content text-muted fs-6 text-justify mb-5" style="line-height: 1.8;">
+                            <p class="mb-4">
+                                On November 20, 1997, the Bicol University (BU) Board of Regents (BOR) passed BOR Resolution No. 24 series of 1997 which approved the setting up of the BU Open University. The Objective of the BU Open University was to bring the curricular programs of the university to a wider populace of students in the Bicol Region.
+                            </p>
+                            <p class="mb-4">
+                                To fully operationalize BOR Resolution No. 24 in accordance with the present thrust and direction set forth in the BU comprehensive Development Plan, Administrative Order No. 177, series of 2004 was issued to provide the general Implementing guidelines for the operation of the BU Open University. The emphasis of the BU Open University under the present leadership is to initially address the educational capability enhancement need of professionals by offering selected graduate programs via distance education/open learning. The long-term direction of the BU Open University is to eventually offer some baccalaureate courses in support of regional development.
+                            </p>
+                            <p class="mb-5">
+                                The re-structured BU Open University (BUOU) is now mandated to be the degree-offering and eventually a degree-granting academic unit of the University. It was also given authority by the Board of Regents to expand its program offering into offering selected undergraduate courses and non-degree/short term courses needed in the region.
+                            </p>
+                        </div>
+
+                        <div class="faq-item">
+                            <button class="faq-question d-flex justify-content-between align-items-center w-100 py-3 border-bottom" 
+                                    type="button" data-bs-toggle="collapse" data-bs-target="#about-objectives">
+                                <span class="fw-bold text-uppercase" style="letter-spacing: 0.5px;">OBJECTIVES</span>
+                                <span class="icon">+</span>
+                            </button>
+                            <div class="faq-answer collapse" id="about-objectives">
+                                <div class="py-4 text-muted text-justify">
+                                    <p>The BU open/Distance Education Program seeks to provide wider access to quality education adhering to the highest standards of academic excellence in order to produce trained manpower required for the development of the Bicol Region. The Program Specially seeks to:</p>
+                                    <ul class="mt-3">
+                                        <li class="mb-2">Provide wider access to quality education by offering degree programs via the distance education mode;</li>
+                                        <li class="mb-2">Establish an innovative system of continuing education of professionals and career development for those unable to avail of the opportunity thru the usual traditional delivery mode; and</li>
+                                        <li class="mb-0">Develop instructional materials and technology appropriate for distance education.</li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
-            
-                        <div class="col-md-4">
-                            <div class="about-timeline-card">
-                                <span class="timeline-year">2004</span>
-                                <p>
-                                    Administrative Order No. 177, series of 2004 provided the
-                                    implementing guidelines, emphasizing graduate programs
-                                    via distance education and open learning.
-                                </p>
+
+                        <div class="faq-item">
+                            <button class="faq-question d-flex justify-content-between align-items-center w-100 py-3 border-bottom" 
+                                    type="button" data-bs-toggle="collapse" data-bs-target="#about-distance">
+                                <span class="fw-bold text-uppercase" style="letter-spacing: 0.5px;">THE DISTANCE LEARNING</span>
+                                <span class="icon">+</span>
+                            </button>
+                            <div class="faq-answer collapse" id="about-distance">
+                                <div class="py-4 text-muted text-justify">
+                                    <p class="mb-3">Delivery of academic programs via the distance education mode will be thru modular and/or online. The Open University office shall serve as the venue of curricular activities and where student of the program shall convene for the following activities: (a) enrollment; (b) obtaining their modules and other instructional materials; (c) attending tutorials; (d) submitting course requirements; (e) accessing the internet; (f) meeting and interacting with other students; (g) taking proctored examinations; and (h) performing other activities related to the course.</p>
+                                    <p class="mb-3">At the present, there is a Distance Learning Office/Center in the Main campus of Bicol University at the third floor of the University Library. The DLC in the main Campus is open to serve students coming from various parts of the region. To better serve a wider segment of the bicolanos, the BU Open University intends to engage in partnership with local government units and other academic institution in the region.</p>
+                                    <p class="mb-0">Under AO No. 347 series of 2019 specifying the Revised Implementing Guidelines of BUOU, the Office is manned by the Dean and supported by Core and Affiliate Faculty an Technical Staff to serve as the link between the BUOU and the Distance education students in the region of offshore.</p>
+                                </div>
                             </div>
                         </div>
-            
-                        <div class="col-md-4">
-                            <div class="about-timeline-card">
-                                <span class="timeline-year">2019</span>
-                                <p>
-                                    The restructured BUOU was mandated as a degree-offering
-                                    and eventually degree-granting academic unit, authorized
-                                    to offer undergraduate and non-degree programs.
-                                </p>
+
+                        <div class="faq-item">
+                            <button class="faq-question d-flex justify-content-between align-items-center w-100 py-3 border-bottom" 
+                                    type="button" data-bs-toggle="collapse" data-bs-target="#about-delivery">
+                                <span class="fw-bold text-uppercase" style="letter-spacing: 0.5px;">MODE OF INSTRUCTIONAL DELIVERY</span>
+                                <span class="icon">+</span>
+                            </button>
+                            <div class="faq-answer collapse" id="about-delivery">
+                                <div class="py-4 text-muted text-justify">
+                                    <p class="mb-3">The course modules are the basic medium of instructional delivery. These are prepared by Module Development Teams consisting of writers, readers, instructional design specialists, and language editors drawn from the faculty complement of the University. Other instructional materials like video clippings and the like shall also be used in the process of course delivery.</p>
+                                    <p class="mb-3">Actual delivery of these course modules is taken care of by Faculty-in-Charge (FIC) and tutors. Each course or subject has a FIC or course supervisor who ensures the attainment of the objectives of the course and who rates or evaluates the performance of distance education students. Performance of students enrolled in the distance education mode is assessed through submitted assignments, exercises and activities, and supervised examinations.</p>
+                                    <p class="mb-0">Tutorial sessions are part of the course delivery system of the open university/distance education mode. These are designed to facilitate clarification of topics/issues and ensure informed discussions among module users. Tutorial sessions shall, therefore, be held at the BUOU Office at least once a month or depending on the students need. Facilitating these sessions shall, therefore, be held at the OU Office with the FICS and/or tutors who will be the link with the learners.</p>
+                                </div>
                             </div>
                         </div>
-            
-                    </div>
-                </div>
-            
-                <!-- OBJECTIVES & DISTANCE LEARNING -->
-                <div class="container mt-5">
-                    <div class="row g-5">
-            
-                        <!-- OBJECTIVES -->
-                        <div class="col-lg-6">
-                            <div class="about-content-card h-100">
-                                <h5 class="mb-3">Objectives</h5>
-                                <p class="text-muted">
-                                    The BU Open and Distance Education Program seeks to provide
-                                    wider access to quality education adhering to the highest
-                                    standards of academic excellence in order to produce
-                                    trained manpower required for the development of the
-                                    Bicol Region. Specifically, the program seeks to:
-                                </p>
-                                <ul>
-                                    <li>
-                                        Provide wider access to quality education by offering
-                                        degree programs via the distance education mode;
-                                    </li>
-                                    <li>
-                                        Establish an innovative system of continuing education
-                                        and career development for professionals unable to
-                                        avail of the opportunity through the traditional
-                                        delivery mode; and
-                                    </li>
-                                    <li>
-                                        Develop instructional materials and technology
-                                        appropriate for distance education.
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-            
-                        <!-- DISTANCE LEARNING -->
-                        <div class="col-lg-6">
-                            <div class="about-content-card h-100">
-                                <h5 class="mb-3">Distance Learning</h5>
-                                <p class="text-muted">
-                                    Delivery of academic programs through the distance
-                                    education mode is conducted through modular and/or online
-                                    systems. The Open University Office serves as the venue
-                                    for enrollment, distribution of modules, tutorials,
-                                    submission of requirements, internet access, interaction
-                                    with students, and proctored examinations.
-                                </p>
-                                <p class="text-muted">
-                                    The Distance Learning Center is located at the third floor
-                                    of the University Library in the Main Campus of Bicol
-                                    University. To serve a wider segment of Bicolanos, the
-                                    BU Open University intends to partner with local
-                                    government units and academic institutions.
-                                </p>
-                                <p class="text-muted mb-0">
-                                    Under Administrative Order No. 347, series of 2019, the
-                                    Office is manned by the Dean and supported by core and
-                                    affiliate faculty and technical staff.
-                                </p>
-                            </div>
-                        </div>
-            
-                    </div>
-                </div>
-            
-                <!-- MODE OF INSTRUCTION -->
-                <div class="container mt-5">
-                    <div class="about-wide-card">
-                        <h5 class="mb-3">Mode of Instructional Delivery</h5>
-                        <p class="text-muted">
-                            Course modules serve as the primary medium of instructional
-                            delivery. These are prepared by module development teams
-                            consisting of writers, readers, instructional design specialists,
-                            and language editors from the University faculty. Other
-                            instructional materials such as video clippings are also used.
-                        </p>
-                        <p class="text-muted">
-                            Actual delivery of the modules is facilitated by
-                            Faculty-in-Charge (FICs) and tutors. Each course has a FIC who
-                            ensures the attainment of course objectives and evaluates student
-                            performance through assignments, activities, and supervised
-                            examinations.
-                        </p>
-                        <p class="text-muted mb-0">
-                            Tutorial sessions form part of the course delivery system and are
-                            held at the BUOU Office at least once a month or as needed,
-                            facilitated by FICs and tutors.
-                        </p>
-                    </div>
-                </div>
-            
+                    </div> </div>
             </section>
         </div>
 
@@ -263,100 +183,95 @@
         <div class="tab-pane fade" id="programs-section" role="tabpanel" aria-labelledby="programs-tab">
             <section id="programs" class="hero-section d-flex align-items-start py-5">
                 <div class="container">
-            
-                    <!-- SECTION INTRO -->
-                    <div class="row mb-5 justify-content-center text-center">
-                        <div class="col-lg-8">
-                            <span class="badge badge-custom mb-3">
-                                🎓 Graduate Programs
+
+                    <div class="row mb-5">
+                        <div class="col-lg-12">
+                            <span class="badge badge-custom mb-3 text-uppercase">
+                                Graduate Programs
                             </span>
-                            <h2 class="section-title">
-                                BU Open University Programs
-                            </h2>
-                            <p class="section-text text-muted mt-3">
-                                The BU Open University offers selected graduate programs through flexible Open and Distance Learning
-                                (ODeL) methods. Designed for mature learners capable of independent study, these programs combine
-                                online learning, tutorials, and practical fieldwork.
-                            </p>
+                            <div class="section-text text-muted mt-3 text-justify">
+                                <p>The BU Open University initially offers selected graduate curricular programs. This is due to the stringent requirement of open learning to have “mature” learners who are capable of undertaking independent self-learning. Due to resource limitation and perceived market, only the following programs will be initially offered thru the open university/distance education mode:</p>
+                            </div>
                         </div>
                     </div>
-            
-                    <!-- PROGRAM CARDS -->
-                    <div class="row g-4">
-            
+
+                    <div class="faq-wrapper mx-auto">
                         @php
-                        $programs = [
-                        [
-                        'title' => 'Doctor of Education in Educational Leadership & Management (EdDELM)',
-                        'mode' => 'Online (synchronous & asynchronous)',
-                        'focus' => 'Develops high-quality leaders and managers in education.',
-                        'target' => 'Experienced educational leaders and managers seeking enhanced leadership skills in schools,
-                        districts, higher education, or NGOs.'
-                        ],
-                        [
-                        'title' => 'Master in Management (MM)',
-                        'mode' => 'Primarily Online with tutorial support',
-                        'focus' => 'Develops skills in analysis, organizational change, and project management.',
-                        'target' => 'Graduate students learning at their own pace using ODeL and Blended Online Learning (BOL)
-                        including internships.'
-                        ],
-                        [
-                        'title' => 'Master of Public Administration (MPA)',
-                        'mode' => 'Open and Distance e-Learning (ODeL)',
-                        'focus' => 'Develops competencies for effective management in public sector and civil society.',
-                        'target' => 'Recent graduates and public sector professionals enhancing knowledge in administration, policy
-                        development, and problem-solving.'
-                        ],
-                        [
-                        'title' => 'Master in Local Government Management (MLGM)',
-                        'mode' => 'ODeL & Blended Online Learning (BOL)',
-                        'focus' => 'Participatory governance and local government operations.',
-                        'target' => 'Learners using learning packages, online resources, tutorials, and counseling. Assessment via
-                        assignments and exams.'
-                        ],
-                        [
-                        'title' => 'Master of Arts in Educational Leadership & Management (MAELM)',
-                        'mode' => 'ODeL',
-                        'focus' => 'Develops research, leadership, and management skills in education.',
-                        'target' => 'Leaders who can manage educational institutions effectively and contribute to community
-                        development.'
-                        ],
-                        [
-                        'title' => 'Master of Arts in English Education (MAEngEd)',
-                        'mode' => 'ODeL',
-                        'focus' => 'Enhances teachers’ abilities in innovative instructional design and research.',
-                        'target' => 'Teachers aiming to improve methodology, curriculum design, and materials development for
-                        English instruction.'
-                        ],
-                        [
-                        'title' => 'Master of Arts in Social Studies Education (MASocStEd)',
-                        'mode' => 'ODeL',
-                        'focus' => 'Develops advanced teaching competence in social studies.',
-                        'target' => 'Educators equipped to lead curriculum development, research, and social studies teaching in
-                        schools and colleges.'
-                        ],
-                        ];
+                            $programs = [
+                                [
+                                    'title' => 'Doctor of education in Educational Leadership & Management (EdDELM)',
+                                    'description' => 'The Doctor of Education in Educational Leadership and Management (EdDELM) is a doctoral degree focused on preparing professionals for leadership and management roles within educational institutions. It equips individuals with advanced knowledge, skills, and practical experience to address challenges and drive positive change in various educational settings.',
+                                    'mode' => 'The mode of instructional delivery of EdDELM is through online, often incorporating both synchronous and asynchronous learning activities.',
+                                    'nature' => 'The program focuses on developing high-quality leaders and managers in education. It equips individuals with the knowledge, skills, and competencies to lead and manage educational institutions effectively, with a focus on strategic planning, organizational development, and the application of research to practice.',
+                                    'target' => 'The Doctor of Education in Educational Leadership and Management (EdDELM) are experienced educational leaders and managers seeking to enhance their knowledge and skills for leadership roles. This includes individuals working in various educational settings like schools, districts, higher education institutions, and even non-profit organizations focused on education.'
+                                ],
+                                [
+                                    'title' => 'Master in Management (MM)',
+                                    'description' => 'The Master in Management (MM) program is offered through Bicol University\'s Open University, which provides flexible learning options for graduate students. It aims to develop students’ analysis, development models, organizational change, and project development management.',
+                                    'mode' => 'the program is primarily delivered online, allowing students to study at their own pace and location. Bicol University Open University provides learning support through tutorials and counseling at the Distance Learning Center (DLC).',
+                                    'nature' => 'The program utilizes Open and Distance e-Learning (ODeL) mode of delivery, with some courses employing Blended Online Learning (BOL) that includes laboratory requirements like internships. Students learn at their own pace and place, using learning materials, e-learning resources, and support from the Distance Learning Center.'
+                                ],
+                                [
+                                    'title' => 'Master of Public Administration (MPA)',
+                                    'description' => 'Bicol University (BU) offers a Master in Public Administration (MPA) program through its Graduate School and Open University. The program is designed for both recent graduates and public sector professionals seeking to enhance their knowledge and skills in public administration. It focuses on developing expertise in administrative theories, policy development, and analytical problem-solving, while also emphasizing the values and political context of public service.',
+                                    'mode' => 'The main mode of instruction is Open and DIstance e-Learning (ODeL), where students engage with learning packages, e-learning materials, Open Educational Resources (OERs), audio, and video content.',
+                                    'nature' => 'MPA focuses on developing public servants, change agents and leaders with advanced competencies and skills for effective management within government, civil society, and international organizations. The program emphasizes developing leadership skills and managerial expertise in public sector contexts.'
+                                ],
+                                [
+                                    'title' => 'Master in Local Government Management (MLGM)',
+                                    'description' => 'The Master in Local Government Management (MLGM) program focuses on the theories, principles, and practices related to participatory governance and the interaction between people, local special bodies, and local government units.',
+                                    'mode' => 'Open and Distance e-Learning (ODeL) emphasizing self-directed learning with online resources and materials provided by the university, and Blended Online Learning (BOL) which is used for courses with specific on-site or online requirements, integrating online learning with some face-to-face or online interaction.',
+                                    'nature' => 'Students engage with learning packages, online resources, and potentially blended learning components for specific courses. Support is provided through tutorials and counseling at the Distance Learning Center, with assessment based on assignments and examinations.'
+                                ],
+                                [
+                                    'title' => 'Master of Arts in Educational Leadership & Management (MAELM)',
+                                    'description' => 'The program Master of Arts in Educational Leadership & Management (MAELM) offered through Bicol University Open University. It involves a combination of foundation, major, and cognate courses, along with the master’s thesis. This program aims to develop competence in educational leadership and management, research skills, and expertise in designing educational programs.',
+                                    'nature' => 'The Master of Arts in Educational Leadership & Management (MAELM) program focuses on developing leaders who can effectively manage and lead educational institutions. The program emphasizes both theoretical understanding and practical application of leadership and management principles, preparing graduates to address challenges in educational organizations and contribute to community development. Students are expected to engage in research, culminating in a thesis, to enhance their leadership and management practices and contribute to the field\'s knowledge base.'
+                                ],
+                                [
+                                    'title' => 'Master of Arts in English Education (MAEngEd)',
+                                    'description' => 'This program is a graduate program designed to develop teachers who are proficient in English instruction and can create innovative teaching materials and research.',
+                                    'nature' => 'It focuses on enhancing teachers\' abilities in innovative instructional program design, research, and application of current trends in English instruction. The program emphasizes developing competencies in various methodological approaches to English instruction, curriculum design, and materials development.'
+                                ],
+                                [
+                                    'title' => 'Master of Arts in Social Studies Education (MASocStEd)',
+                                    'description' => 'Bicol University offers a Master of Arts in Social Studies Education (MASocStEd) program. This program aims to produce graduates who are highly competent in teaching social studies content and methodology, both at the basic education and college level.',
+                                    'nature' => 'This program focuses on developing advanced theoretical and practical competence in social studies teaching and educational leadership. The program emphasizes research skills, curriculum development, and a deep understanding of social and cultural contexts relevant to education. Students will be equipped to become effective educators and catalysts for change within the field of social studies.'
+                                ],
+                            ];
                         @endphp
-            
+
                         @foreach($programs as $program)
-                        <div class="col-lg-6">
-                            <div class="stat-card h-100 about-hover p-4" data-bs-toggle="collapse"
-                                data-bs-target="#{{ \Str::slug($program['title']) }}" aria-expanded="false"
-                                style="cursor: pointer;">
-            
-                                <!-- Always visible -->
-                                <h5 class="mb-0">{{ $program['title'] }}</h5>
-            
-                                <!-- Collapsible details -->
-                                <div class="collapse mt-3" id="{{ \Str::slug($program['title']) }}">
-                                    <p><strong>Mode of Instruction:</strong> {{ $program['mode'] }}</p>
-                                    <p><strong>Focus of Study:</strong> {{ $program['focus'] }}</p>
-                                    <p><strong>Target Learners:</strong> {{ $program['target'] }}</p>
+                        <div class="faq-item">
+                            <button class="faq-question d-flex justify-content-between align-items-center w-100 py-3 border-bottom" 
+                                    type="button" 
+                                    data-bs-toggle="collapse" 
+                                    data-bs-target="#prog-{{ \Str::slug($program['title']) }}" 
+                                    aria-expanded="false">
+                                <span class="fw-bold text-start" style="color: #333;">{{ $program['title'] }}</span>
+                                <span class="icon">+</span>
+                            </button>
+
+                            <div class="faq-answer collapse" id="prog-{{ \Str::slug($program['title']) }}">
+                                <div class="py-4 text-muted text-justify">
+                                    <p class="mb-3">{{ $program['description'] }}</p>
+                                    
+                                    @if(isset($program['mode']))
+                                        <p class="mb-3"><strong>Mode of Instructional Delivery:</strong> {{ $program['mode'] }}</p>
+                                    @endif
+                                    
+                                    <p class="mb-3"><strong>Nature of the Field Study:</strong> {{ $program['nature'] }}</p>
+                                    
+                                    @if(isset($program['target']))
+                                        <p class="mb-0"><strong>Target Clients:</strong> {{ $program['target'] }}</p>
+                                    @endif
                                 </div>
                             </div>
                         </div>
                         @endforeach
                     </div>
+
+                </div>
             </section>
         </div>
 

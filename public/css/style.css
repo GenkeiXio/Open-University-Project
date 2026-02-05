@@ -991,3 +991,41 @@ h6 {
         padding: 8px 16px;
     }
 }
+
+.text-justify {
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+/* Remove white box styling for the About section specifically */
+.about-accordion .faq-item {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    margin-bottom: 0; /* Tightens the spacing between text and line */
+}
+
+.about-accordion .faq-question {
+    background: transparent !important;
+    padding-left: 0 !important; /* Align text to the far left */
+    padding-right: 0 !important; /* Align icon to the far right */
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important; /* Subtle line to separate items */
+    color: #333 !important;
+}
+
+.about-accordion .faq-answer {
+    background: transparent !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.about-accordion .faq-item:hover {
+    transform: none !important; /* Removes the hover "lift" effect */
+    box-shadow: none !important;
+}
+
+/* Fix for the justify alignment on narrow accordion text */
+.about-accordion .text-justify {
+    text-align: justify;
+    text-justify: inter-word;
+}
