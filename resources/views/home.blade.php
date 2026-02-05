@@ -4,29 +4,29 @@
 
     @include('layouts.navbar')
 
-    <div class="selection-menu-wrapper sticky-top bg-white py-3 shadow-sm" style="top: 80px;"> 
+    <div class="selection-menu-wrapper sticky-top py-3" style="top: 80px;"> 
         <div class="container">
             <ul class="nav nav-pills justify-content-center gap-2 mb-0" id="buouTab" role="tablist">
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-section" type="button" role="tab" aria-controls="home-section" aria-selected="true">HOME</button>
+                    <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-section" type="button" role="tab">HOME</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="about-tab" data-bs-toggle="tab" data-bs-target="#about-section" type="button" role="tab" aria-controls="about-section" aria-selected="false">ABOUT</button>
+                    <button class="nav-link" id="about-tab" data-bs-toggle="tab" data-bs-target="#about-section" type="button" role="tab">ABOUT</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="programs-tab" data-bs-toggle="tab" data-bs-target="#programs-section" type="button" role="tab" aria-controls="programs-section" aria-selected="false">PROGRAMS</button>
+                    <button class="nav-link" id="programs-tab" data-bs-toggle="tab" data-bs-target="#programs-section" type="button" role="tab">PROGRAMS</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="faculty-tab" data-bs-toggle="tab" data-bs-target="#faculty-section" type="button" role="tab" aria-controls="faculty-section" aria-selected="false">FACULTY</button>
+                    <button class="nav-link" id="faculty-tab" data-bs-toggle="tab" data-bs-target="#faculty-section" type="button" role="tab">FACULTY</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="news-tab" data-bs-toggle="tab" data-bs-target="#news-section" type="button" role="tab" aria-controls="news-section" aria-selected="false">NEWS</button>
+                    <button class="nav-link" id="news-tab" data-bs-toggle="tab" data-bs-target="#news-section" type="button" role="tab">NEWS</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="graduates-tab" data-bs-toggle="tab" data-bs-target="#graduates-section" type="button" role="tab" aria-controls="graduates-section" aria-selected="false">GRADUATES</button>
+                    <button class="nav-link" id="graduates-tab" data-bs-toggle="tab" data-bs-target="#graduates-section" type="button" role="tab">GRADUATES</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="faqs-tab" data-bs-toggle="tab" data-bs-target="#faqs-section" type="button" role="tab" aria-controls="faqs-section" aria-selected="false">FAQS</button>
+                    <button class="nav-link" id="faqs-tab" data-bs-toggle="tab" data-bs-target="#faqs-section" type="button" role="tab">FAQS</button>
                 </li>
             </ul>
         </div>
@@ -39,58 +39,50 @@
         <!------------------>
 
         <div class="tab-pane fade show active" id="home-section" role="tabpanel" aria-labelledby="home-tab">
-            <section id="home" class="hero-section d-flex align-items-center">
+            <section id="home" class="hero-section py-5 bg-white">
                 <div class="container">
                     <div class="row align-items-center gy-5">
             
-                        <!-- LEFT CONTENT -->
-                        <div class="col-lg-6">
+                        <div class="col-lg-6 text-start">
                             <span class="badge badge-custom mb-3">
                                 🎓 Distance Education Excellence
                             </span>
             
-                            <h1 class="hero-title mt-3">
+                            <h1 class="hero-title mt-2">
                                 <span class="text-gradient-orange">BICOL UNIVERSITY</span><br>
                                 <span class="text-gradient-blue">OPEN UNIVERSITY</span>
                             </h1>
             
-                            <p class="hero-text mt-4">
+                            <p class="hero-text mt-4 text-muted justify-content-center">
                                 Empowering learners anywhere through open and distance learning.
                                 Achieve your academic goals with Bicol University Open University.
                             </p>
-            
-                            <!-- <div class="mt-4 d-flex flex-wrap gap-3">
-                                <a href="#" class="btn btn-orange">Apply Now</a>
-                                <a href="#" class="btn btn-outline-light">View Programs</a>
-                                <a href="#" class="btn btn-outline-light">Contact Us</a>
-                            </div> -->
                         </div>
             
-                        <!-- RIGHT STATS -->
                         <div class="col-lg-6">
                             <div class="row g-4">
             
                                 <div class="col-md-6">
-                                    <div class="stat-card">
-                                        📘
-                                        <h3>5+</h3>
-                                        <p>Graduate Programs</p>
+                                    <div class="stat-card border-0 shadow-sm rounded-4">
+                                        <div class="fs-2 mb-2">📘</div>
+                                        <h3 class="fw-bold text-gradient-blue">5+</h3>
+                                        <p class="text-muted small text-uppercase fw-semibold">Graduate Programs</p>
                                     </div>
                                 </div>
             
                                 <div class="col-md-6">
-                                    <div class="stat-card">
-                                        👥
-                                        <h3>500+</h3>
-                                        <p>Enrolled Students</p>
+                                    <div class="stat-card border-0 shadow-sm rounded-4">
+                                        <div class="fs-2 mb-2">👥</div>
+                                        <h3 class="fw-bold text-gradient-blue">500+</h3>
+                                        <p class="text-muted small text-uppercase fw-semibold">Enrolled Students</p>
                                     </div>
                                 </div>
             
                                 <div class="col-12">
-                                    <div class="stat-card wide">
-                                        🎓
-                                        <h3>100%</h3>
-                                        <p>Flexible Online & Modular Learning</p>
+                                    <div class="stat-card wide border-0 shadow-sm rounded-4">
+                                        <div class="fs-2 mb-2">🎓</div>
+                                        <h3 class="fw-bold text-gradient-blue">100%</h3>
+                                        <p class="text-muted small text-uppercase fw-semibold">Flexible Online & Modular Learning</p>
                                     </div>
                                 </div>
             
@@ -108,7 +100,7 @@
         <!------------------->
 
         <div class="tab-pane fade" id="about-section" role="tabpanel" aria-labelledby="about-tab">
-            <section id="about" class="about-section py-5">
+            <section id="about" class="about-section py-5 bg-white">
                 <div class="container">
                     <div class="faq-wrapper mx-auto about-accordion"> 
                         <h2 class="fw-bold mb-4 text-uppercase" style="letter-spacing: 1px; color: #333;">THE BICOL UNIVERSITY OPEN UNIVERSITY</h2>
@@ -172,30 +164,29 @@
                                 </div>
                             </div>
                         </div>
-                    </div> </div>
+                    </div> 
+                </div>
             </section>
-        </div>
+        </div>  
 
         <!---------------------->
         <!-- PROGRAMS SECTION -->
         <!---------------------->
 
         <div class="tab-pane fade" id="programs-section" role="tabpanel" aria-labelledby="programs-tab">
-            <section id="programs" class="hero-section d-flex align-items-start py-5">
+            <section id="programs" class="hero-section d-flex align-items-start py-5 bg-white">
                 <div class="container">
 
-                    <div class="row mb-5">
-                        <div class="col-lg-12">
-                            <span class="badge badge-custom mb-3 text-uppercase">
-                                Graduate Programs
-                            </span>
-                            <div class="section-text text-muted mt-3 text-justify">
-                                <p>The BU Open University initially offers selected graduate curricular programs. This is due to the stringent requirement of open learning to have “mature” learners who are capable of undertaking independent self-learning. Due to resource limitation and perceived market, only the following programs will be initially offered thru the open university/distance education mode:</p>
-                            </div>
+                    <div class="faq-wrapper mx-auto mb-5">
+                        <span class="badge badge-custom mb-3 text-uppercase">
+                            Graduate Programs
+                        </span>
+                        <div class="section-text text-muted mt-3 text-justify fs-6" style="line-height: 1.8;">
+                            <p>The BU Open University initially offers selected graduate curricular programs. This is due to the stringent requirement of open learning to have “mature” learners who are capable of undertaking independent self-learning. Due to resource limitation and perceived market, only the following programs will be initially offered thru the open university/distance education mode:</p>
                         </div>
                     </div>
 
-                    <div class="faq-wrapper mx-auto">
+                    <div class="faq-wrapper mx-auto programs-accordion">
                         @php
                             $programs = [
                                 [
@@ -280,179 +271,132 @@
         <!--------------------->
 
         <div class="tab-pane fade" id="faculty-section" role="tabpanel" aria-labelledby="faculty-tab">
-            <section id="faculty" class="faculty-section py-5">
+            <section id="faculty" class="faculty-section py-5 bg-white">
                 <div class="container">
-
-                    <div class="text-center mb-5">
-                        <h2 class="faculty-title">BU OPEN UNIVERSITY FACULTY</h2>
-                        <p class="faculty-subtitle">A.Y. 2025–2026</p>
-                    </div>
-
-                    <div class="row align-items-center faculty-card gy-4 mb-5">
-                        <div class="col-md-4 text-center">
-                            <div class="faculty-image-wrapper">
-                                <img src="{{ asset('images/faculty/MARIA JANE B. MASCARIÑAS.jpg') }}" alt="MARIA JANE B. MASCARIÑAS" class="faculty-image">
-                            </div>
-                        </div>
-
-                        <div class="col-md-8">
-                            <h4 class="faculty-name">MARIA JANE B. MASCARIÑAS, PhD</h4>
-                            <p class="faculty-position">Professor VI / Graduate Faculty</p>
-
-                            <ul class="faculty-credentials">
-                                <li>Bachelor of Science in Agribusiness <span>(BU College of Agriculture, 1985)</span></li>
-                                <li>Master of Management major in Rural Development Management <span>(University of the Philippines Los Baños, 1991)</span></li>
-                                <li>PhD in Extension Education, minor in Environmental Studies <span>(University of the Philippines Los Baños, 1995)</span></li>
-                            </ul>
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8 text-center mb-5">
+                            <h2 class="faculty-title text-uppercase" style="letter-spacing: 1px;">BU Open University Faculty</h2>
+                            <p class="faculty-subtitle text-muted">A.Y. 2025–2026</p>
                         </div>
                     </div>
 
-                    <div class="row align-items-center faculty-card gy-4 mb-5">
-                        <div class="col-md-4 text-center">
-                            <div class="faculty-image-wrapper">
-                                <img src="{{ asset('images/faculty/MELINDA D. DE GUZMAN.jpg') }}" alt="MELINDA D. DE GUZMAN" class="faculty-image">
-                            </div>
-                        </div>
-                        <div class="col-md-8">
-                            <h4 class="faculty-name">MELINDA D. DE GUZMAN, EdD</h4>
-                            <p class="faculty-position">Professor VI/ Program Adviser</p>
-                            <ul class="faculty-credentials">
-                                <li>Bachelors of Science in Nursing <span>(Bicol University College of Nursing, 1985)</span></li>
-                                <li>Methods of Teaching <span>(Bicol University, 1987)</span></li>
-                                <li>Master in Management <span>(Bicol University Graduate School, 1989)</span></li>
-                                <li>MA in Educational Leadership and Management <span>(MAELM)</span> and EdD in Educational Leadership and Management <span>(EdDELM)</span></li>
-                                <li>EdD Educational Management <span>(Bicol University Graduate School, 1993)</span></li>
-                            </ul>
-                        </div>
-                    </div>
+                    @php
+                        $faculties = [
+                            [
+                                'name' => 'MARIA JANE B. MASCARIÑAS, PhD',
+                                'position' => 'Professor VI / Graduate Faculty',
+                                'image' => 'MaamMaria.jpg',
+                                'credentials' => [
+                                    'Bachelor of Science in Agribusiness (BU College of Agriculture, 1985)',
+                                    'Master of Management major in Rural Development Management (University of the Philippines Los Baños, 1991)',
+                                    'PhD in Extension Education, minor in Environmental Studies (University of the Philippines Los Baños, 1995)'
+                                ]
+                            ],
+                            [
+                                'name' => 'MELINDA D. DE GUZMAN, EdD',
+                                'position' => 'Professor VI/ Program Adviser',
+                                'image' => 'MaamMelinda.jpg',
+                                'credentials' => [
+                                    'Bachelors of Science in Nursing (Bicol University College of Nursing, 1985)',
+                                    'Methods of Teaching (Bicol University, 1987)',
+                                    'Master in Management (Bicol University Graduate School, 1989)',
+                                    'MA in Educational Leadership and Management (MAELM) and EdD in Educational Leadership and Management (EdDELM)',
+                                    'EdD Educational Management (Bicol University Graduate School, 1993)'
+                                ]
+                            ],
+                            [
+                                'name' => 'EMILY M. AGONOS, PhD',
+                                'position' => 'Associate Professor V/Program Adviser',
+                                'image' => 'MaamEmily.jpg',
+                                'credentials' => [
+                                    'Master in Management (MM)',
+                                    'BS Commerce Accounting (1989)',
+                                    'CCT (2003) - (Bicol University)',
+                                    'Master in Management (Bicol University Graduate School)',
+                                    'PhD in Development Management (Bicol University Graduate School, 2018)'
+                                ]
+                            ],
+                            [
+                                'name' => 'RAMON T. DE LEON, PhD',
+                                'position' => 'Associate Professor I/ Program Adviser',
+                                'image' => 'SirRamon.jpg',
+                                'credentials' => [
+                                    'Master in Local Government Management (MLGM)',
+                                    'MA in Social Studies Education (MASocStEd)',
+                                    'AB Economics (Adamson University-Manila, 1987)',
+                                    'Master in Business Administration (Divine Word College of Legazpi, 1995)',
+                                    'PhD in Counselor Education (University of Santo Tomas, 2012)',
+                                    'PhD in Counseling Psychology (Cand.) (De la Salle University - Manila)'
+                                ]
+                            ],
+                            [
+                                'name' => 'ROLDAN C. CABILES, PhD',
+                                'position' => 'Assistant Professor II/ Program Adviser',
+                                'image' => 'SirRoldan.jpg',
+                                'credentials' => [
+                                    'MA in English Education (MAEngEd)',
+                                    'Bachelor of Secondary Education major in English (Bicol University College of Education, 2015)',
+                                    'Master of Arts in English Education (Bicol University Graduate School, 2018)',
+                                    'PhD in Educational Foundations (Bicol University Graduate School, 2021)'
+                                ]
+                            ],
+                            [
+                                'name' => 'JOSE CARLO B. LAVAPIE, MPA',
+                                'position' => 'Assistant Professor I/ Program Adviser',
+                                'image' => 'SirJose.jpg',
+                                'credentials' => [
+                                    'Master in Public Administration (MPA)',
+                                    'Bachelor of Arts major in Philosophy minor in Religious Education (Holy Rosary Minor Seminary)',
+                                    'PhD in Extension Education, minor in Environmental Studies (University of the Philippines Los Baños, 1995)'
+                                ]
+                            ],
+                            [
+                                'name' => 'PROF. ROLLIE N. MONTEALEGRE',
+                                'position' => 'Instructor I',
+                                'image' => 'SirRollie.jpg',
+                                'credentials' => [
+                                    'Bachelor of Science in Computer Science (Bicol University College of Science, 2006)',
+                                    'Master in Information System (Bicol University Graduate School)'
+                                ]
+                            ],
+                            [
+                                'name' => 'JULIE ANNE C. QUIÑONES',
+                                'position' => 'Faculty Member',
+                                'image' => 'MaamJulie.jpg',
+                                'credentials' => [
+                                    'Bachelor in Secondary Education Major in Biological Science',
+                                    'Master of Arts in Biology Education',
+                                    'Doctor of Education in Educational Leadership and Management'
+                                ]
+                            ],
+                        ];
+                    @endphp
 
-                    <div class="row align-items-center faculty-card gy-4 mb-5">
-                        <div class="col-md-4 text-center">
-                            <div class="faculty-image-wrapper">
-                                <img src="{{ asset('images/faculty/EMILY M. AGONOS.jpg') }}" alt="EMILY M. AGONOS" class="faculty-image">
-                            </div>
-                        </div>
-                        <div class="col-md-8">
-                            <h4 class="faculty-name">EMILY M. AGONOS, PhD</h4>
-                            <p class="faculty-position">Associate Professor V/Program Adviser</p>
-                            <ul class="faculty-credentials">
-                                <li>Master in Management <span>(MM)</span></li>
-                                <li>BS Commerce Accounting <span>(1989)</span></li>
-                                <li>CCT <span>(2003)</span> - <span>(Bicol University)</span></li>
-                                <li>Master in Management <span>(Bicol University Graduate School)</span></li>
-                                <li>PhD in Development Management <span>(Bicol University Graduate School, 2018)</span></li>
-                            </ul>
-                        </div>
-                    </div>
+                    <div class="row justify-content-center">
+                        <div class="col-lg-10"> @foreach($faculties as $faculty)
+                                <div class="row align-items-center faculty-card gy-4 mb-5 border-0 shadow-sm rounded-4 p-4">
+                                    <div class="col-md-4">
+                                        <div class="faculty-image-wrapper">
+                                            <img src="{{ asset('assets/Faculty/' . $faculty['image']) }}" 
+                                                alt="{{ $faculty['name'] }}" 
+                                                class="faculty-image">
+                                        </div>
+                                    </div>
 
-                    <div class="row align-items-center faculty-card gy-4 mb-5">
-                        <div class="col-md-4 text-center">
-                            <div class="faculty-image-wrapper">
-                                <img src="{{ asset('images/faculty/RAMON T. DE LEON.jpg') }}" alt="RAMON T. DE LEON" class="faculty-image">
-                            </div>
-                        </div>
-                        <div class="col-md-8">
-                            <h4 class="faculty-name">RAMON T. DE LEON, PhD</h4>
-                            <p class="faculty-position">Associate Professor I/ Program Adviser</p>
-                            <ul class="faculty-credentials">
-                                <li>Master in Local Government Management <span>(MLGM)</span></li>
-                                <li>MA in Social Studies Education <span>(MASocStEd)</span></li>
-                                <li>AB Economics <span>(Adamson University-Manila, 1987)</span></li>
-                                <li>Master in Business Administration <span>(Divine Word College of Legazpi, 1995)</span></li>
-                                <li>PhD in Counselor Education <span>(University of Santo Tomas, 2012)</span></li>
-                                <li>PhD in Counseling Psychology <span>(Cand.) (De la Salle University - Manila)</span></li>
-                            </ul>
-                        </div>
-                    </div>
+                                    <div class="col-md-8">
+                                        <h4 class="faculty-name fw-bold mb-1" style="color: #2c3e50;">{{ $faculty['name'] }}</h4>
+                                        <p class="faculty-position text-muted mb-3">{{ $faculty['position'] }}</p>
 
-                    <div class="row align-items-center faculty-card gy-4 mb-5">
-                        <div class="col-md-4 text-center">
-                            <div class="faculty-image-wrapper">
-                                <img src="{{ asset('images/faculty/ROLDAN C. CABILES.jpg') }}" alt="ROLDAN C. CABILES" class="faculty-image">
-                            </div>
-                        </div>
-                        <div class="col-md-8">
-                            <h4 class="faculty-name">ROLDAN C. CABILES, PhD</h4>
-                            <p class="faculty-position">Assistant Professor II/ Program Adviser</p>
-                            <ul class="faculty-credentials">
-                                <li>MA in English Education <span>(MAEngEd)</span></li>
-                                <li>Bachelor of Secondary Education major in English <span>(Bicol University College of Education, 2015)</span></li>
-                                <li>Master of Arts in English Education <span>(Bicol University Graduate School, 2018)</span></li>
-                                <li>PhD in Educational Foundations <span>(Bicol University Graduate School, 2021)</span></li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="row align-items-center faculty-card gy-4 mb-5">
-                        <div class="col-md-4 text-center">
-                            <div class="faculty-image-wrapper">
-                                <img src="{{ asset('images/faculty/JOSE CARLO B. LAVAPIE.jpg') }}" alt="JOSE CARLO B. LAVAPIE" class="faculty-image">
-                            </div>
-                        </div>
-                        <div class="col-md-8">
-                            <h4 class="faculty-name">JOSE CARLO B. LAVAPIE, MPA</h4>
-                            <p class="faculty-position">Assistant Professor I/ Program Adviser</p>
-                            <ul class="faculty-credentials">
-                                <li>Master in Public Administration <span>(MPA)</span></li>
-                                <li>Bachelor of Arts major in Philosophy minor in Religious Education <span>(Holy Rosary Minor Seminary)</span></li>
-                                <li>PhD in Extension Education, minor in Environmental Studies <span>(University of the Philippines Los Baños, 1995)</span></li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="row align-items-center faculty-card gy-4 mb-5">
-                        <div class="col-md-4 text-center">
-                            <div class="faculty-image-wrapper">
-                                <img src="{{ asset('images/faculty/PROF. ROLLIE N. MONTEALEGRE.jpg') }}" alt="PROF. ROLLIE N. MONTEALEGRE" class="faculty-image">
-                            </div>
-                        </div>
-                        <div class="col-md-8">
-                            <h4 class="faculty-name">PROF. ROLLIE N. MONTEALEGRE</h4>
-                            <p class="faculty-position">Instructor I</p>
-                            <ul class="faculty-credentials">
-                                <li>Bachelor of Science in Computer Science <span>(Bicol University College of Science, 2006)</span></li>
-                                <li>Master in Information System <span>(Bicol University Graduate School)</span></li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="row align-items-center faculty-card gy-4 mb-5">
-                        <div class="col-md-4 text-center">
-                            <div class="faculty-image-wrapper">
-                                <img src="{{ asset('images/faculty/JULIE ANNE C. QUIÑONES.jpg') }}" alt="JULIE ANNE C. QUIÑONES" class="faculty-image">
-                            </div>
-                        </div>
-                        <div class="col-md-8">
-                            <h4 class="faculty-name">JULIE ANNE C. QUIÑONES</h4>
-                            <ul class="faculty-credentials">
-                                <li>Bachelor in Secondary Education Major in Biological Science</li>
-                                <li>Master of Arts in Biology Education</li>
-                                <li>Doctor of Education in Educational Leadership and Management</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <hr class="my-5">
-
-                    <div class="text-center mb-5">
-                        <h2 class="faculty-title">AFFILIATE FACULTY</h2>
-                        <p class="faculty-subtitle">A.Y. 2025–2026</p>
-                    </div>
-
-                    <div class="row align-items-center faculty-card gy-4 mb-5">
-                        <div class="col-md-4 text-center">
-                            <div class="faculty-image-wrapper">
-                                <img src="{{ asset('images/faculty/RAMESIS M. LORINO, PhD .jpg') }}" alt="RAMESIS M. LORINO, PhD " class="faculty-image">
-                            </div>
-                        </div>
-                        <div class="col-md-8">
-                            <h4 class="faculty-name">RAMESIS M. LORINO, PhD </h4>
-                            <ul class="faculty-credentials">
-                                <li>Master of Public Administration <span>(MPA)</span></li>
-                                <li>BSBA Management <span>(Bicol University, 1990)</span></li>
-                                <li>Master in Mgt. major in Public Management <span>(Tabaco College, 2003)</span></li>
-                                <li>PhD Public Administration <span>(Bicol University Graduate School, 2009)</span></li>
-                            </ul>
+                                        <ul class="faculty-credentials list-unstyled">
+                                            @foreach($faculty['credentials'] as $credential)
+                                                <li class="mb-2 text-muted" style="font-size: 0.95rem; line-height: 1.6;">
+                                                    {{ $credential }}
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                </div>
+                            @endforeach
                         </div>
                     </div>
 
@@ -465,20 +409,64 @@
         <!------------------>
 
         <div class="tab-pane fade" id="news-section" role="tabpanel" aria-labelledby="news-tab">
-            <section id="news" class="hero-section position-relative py-5">
+            <section id="news" class="py-5">
                 <div class="container">
-                    <div class="text-center mb-5">
-                        <span class="badge news-bg-orange text-black px-3 py-2 rounded-pill mb-3">📰 BUOU Updates</span>
-                        <h2 class="text-black fw-bold display-6">Latest News & Announcements</h2>
-                    </div>
-                    <div class="row g-4">
-                        <div class="col-md-4">
-                            <div class="news-card">
-                                <div class="news-img-wrapper"><img src="https://images.unsplash.com/photo-1544531586-fde5298cdd40?q=80&w=600" class="img-fluid" alt="News"></div>
-                                <div class="news-body"><h5 class="news-title">Anniversary Celebration</h5><p class="news-text">Celebrating decades of quality distance education.</p></div>
+                    <div class="faq-wrapper mx-auto news-accordion"> 
+                        
+                        <div class="text-center mb-5">
+                            <span class="badge news-bg-orange text-white px-3 py-2 rounded-pill mb-3" style="letter-spacing: 0.5px;">📰 BUOU UPDATES</span>
+                            <h2 class="fw-bold text-uppercase" style="letter-spacing: 1px; color: #333;">Latest News & Announcements</h2>
+                        </div>
+
+                        <div class="faq-item">
+                            <button class="faq-question d-flex justify-content-between align-items-center w-100 py-3 border-bottom" 
+                                    type="button" data-bs-toggle="collapse" data-bs-target="#news-item-enrollment">
+                                <span class="fw-bold text-uppercase" style="letter-spacing: 0.5px;">Enrollment for 2nd Semester AY 2025-2026</span>
+                                <span class="icon">+</span>
+                            </button>
+                            <div class="faq-answer collapse" id="news-item-enrollment">
+                                <div class="py-4 text-muted text-justify">
+                                    <div class="news-img-wrapper mb-3 text-center">
+                                        <img src="https://images.unsplash.com/photo-1523050335392-93851179ae22?q=80&w=800" class="img-fluid rounded shadow-sm" alt="Enrollment" style="max-height: 300px; width: 100%; object-fit: cover;">
+                                    </div>
+                                    <p class="mb-3">The Bicol University Open University (BUOU) is now accepting applicants for the 2nd Semester of the Academic Year 2025-2026. The general enrollment period for graduate and undergraduate programs is currently underway.</p>
+                                    <p class="mb-0 small text-uppercase fw-bold text-primary">Status: Ongoing</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
+
+                        <div class="faq-item">
+                            <button class="faq-question d-flex justify-content-between align-items-center w-100 py-3 border-bottom" 
+                                    type="button" data-bs-toggle="collapse" data-bs-target="#news-item-anniversary">
+                                <span class="fw-bold text-uppercase" style="letter-spacing: 0.5px;">BUOU Marks 27th Founding Anniversary</span>
+                                <span class="icon">+</span>
+                            </button>
+                            <div class="faq-answer collapse" id="news-item-anniversary">
+                                <div class="py-4 text-muted text-justify">
+                                    <div class="news-img-wrapper mb-3 text-center">
+                                        <img src="https://images.unsplash.com/photo-1544531586-fde5298cdd40?q=80&w=800" class="img-fluid rounded shadow-sm" alt="Anniversary" style="max-height: 300px; width: 100%; object-fit: cover;">
+                                    </div>
+                                    <p class="mb-3">BUOU recently celebrated its 27th anniversary with the theme "Embracing a Global and Inclusive Learning Culture." The event highlighted the university's commitment to providing quality distance education to students across the Bicol region and beyond.</p>
+                                    <p class="mb-0 small italic">Posted: November 2025</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <button class="faq-question d-flex justify-content-between align-items-center w-100 py-3 border-bottom" 
+                                    type="button" data-bs-toggle="collapse" data-bs-target="#news-item-portal">
+                                <span class="fw-bold text-uppercase" style="letter-spacing: 0.5px;">Transition to iBU (New Student Portal)</span>
+                                <span class="icon">+</span>
+                            </button>
+                            <div class="faq-answer collapse" id="news-item-portal">
+                                <div class="py-4 text-muted text-justify">
+                                    <p class="mb-3">In line with the university's digitalization efforts, the official student portal has migrated from iBUSIS to the new <strong>iBU</strong> platform. Students are encouraged to update their bookmarks and synchronize their accounts for seamless access to grades and enrollment data.</p>
+                                    <p class="mb-0 small text-uppercase fw-bold text-danger">Notice: Required Action for All Students</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div> 
                 </div>
             </section>
         </div>

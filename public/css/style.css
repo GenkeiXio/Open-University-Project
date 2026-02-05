@@ -89,7 +89,7 @@ h6 {
 .text-gradient-orange {
     background: linear-gradient(to right, #f15a24, #ed1c24);
     -webkit-background-clip: text;
-    background-clip: text; /* Add this standard property line */
+    background-clip: text; /* Standard property to fix compatibility warning */
     -webkit-text-fill-color: transparent;
     display: inline-block;
 }
@@ -97,7 +97,7 @@ h6 {
 .text-gradient-blue {
     background: linear-gradient(to right, #0054a6, #00aeef);
     -webkit-background-clip: text;
-    background-clip: text; /* Add this standard property line */
+    background-clip: text; /* Standard property to fix compatibility warning */
     -webkit-text-fill-color: transparent;
     display: inline-block;
 }
@@ -354,20 +354,29 @@ h6 {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
 }
 
+/* ===========================
+    FACULTY RECTANGULAR STYLE
+   =========================== */
 .faculty-image-wrapper {
-    position: relative;
-    width: 230px;
-    height: 230px;
+    width: 100%;
+    max-width: 280px; /* Adjust size to match your preference */
     margin: 0 auto;
+    overflow: hidden;
+    border-radius: 8px; /* Slight rounding on corners as seen in modern UI */
 }
 
 .faculty-image {
     width: 100%;
-    height: 100%;
+    height: auto;
+    display: block;
     object-fit: cover;
-    border-radius: 50%;
-    z-index: 2;
-    position: relative;
+    /* Removed border-radius: 50% to maintain rectangular shape */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.faculty-card:hover .faculty-image {
+    transform: scale(1.02); /* Subtle hover effect */
 }
 
 .faculty-name {
@@ -924,11 +933,13 @@ h6 {
     SELECTION MENU & TABS
    =========================== */
 .selection-menu-wrapper {
-    background: #ffffff;
+    /* Set background to exactly match your page background color #f0f4f8 */
+    background-color: #f0f4f8 !important;
     padding: 15px 0;
-    top: 70px; /* Adjust this to sit below your main navbar */
+    top: 85px; /* Offset to sit below your main white navbar */
     z-index: 1020;
-    border-bottom: 1px solid #eee;
+    border-bottom: none !important;
+    box-shadow: none !important;
 }
 
 .nav-pills .nav-link {
@@ -938,7 +949,6 @@ h6 {
     padding: 10px 24px;
     border-radius: 50px;
     transition: all 0.3s ease;
-    border: 1px solid transparent;
     background: transparent;
     text-transform: uppercase;
 }
@@ -947,6 +957,7 @@ h6 {
     color: #ea6a0e;
 }
 
+/* The orange bubble active state from your reference image */
 .nav-pills .nav-link.active {
     background-color: #ea6a0e !important;
     color: white !important;
@@ -1028,4 +1039,78 @@ h6 {
 .about-accordion .text-justify {
     text-align: justify;
     text-justify: inter-word;
+}
+
+/* Specific Styling for Programs Accordion */
+.programs-accordion .faq-item {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    margin-bottom: 0;
+}
+
+.programs-accordion .faq-question {
+    background: transparent !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important;
+    color: #333 !important;
+    transition: color 0.3s ease;
+}
+
+.programs-accordion .faq-question:hover {
+    color: #ea6a0e !important; /* Changes text color to orange on hover */
+}
+
+.programs-accordion .faq-answer {
+    background: transparent !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.programs-accordion .faq-item:hover {
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+/* Specific Styling for News Accordion */
+.news-accordion .faq-item {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    margin-bottom: 0;
+}
+
+.news-accordion .faq-question {
+    background: transparent !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important;
+    color: #333 !important;
+    transition: color 0.3s ease;
+}
+
+.news-accordion .faq-question:hover {
+    color: #ea6a0e !important;
+}
+
+.news-accordion .faq-answer {
+    background: transparent !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.news-accordion .faq-item:hover {
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+/* Ensure images within news accordions don't overflow */
+.news-img-wrapper img {
+    border: 1px solid #eee;
+    transition: transform 0.3s ease;
+}
+
+.news-img-wrapper img:hover {
+    transform: scale(1.01);
 }
