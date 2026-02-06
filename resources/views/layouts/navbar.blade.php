@@ -28,7 +28,7 @@
                 <li class="nav-item"><a class="nav-link" href="#admissions">Admissions</a></li>
                 <li class="nav-item"><a class="nav-link" href="#faqs">FAQS</a></li>
                 <li class="nav-item"><a class="nav-link" href="#news">News</a></li>
-                <li class="nav-item"><a class="nav-link" href="#graduates">Graduates</a></li> -->
+                <li class="nav-item"><a class="nav-link" href="#contacts">Graduates</a></li> -->
                 <li class="nav-item ms-lg-3">
                     <a class="btn btn-orange" href="#">Apply Now</a>
                 </li>

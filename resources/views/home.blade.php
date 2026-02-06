@@ -3,10 +3,11 @@
 @section('content')
 
     @include('layouts.navbar')
+    
 
     <div class="selection-menu-wrapper sticky-top py-3" style="top: 80px;"> 
         <div class="container">
-            <ul class="nav nav-pills justify-content-center gap-2 mb-0" id="buouTab" role="tablist">
+            <ul class="nav nav-pills justify-content-center mb-0" id="buouTab" role="tablist">
                 <li class="nav-item" role="presentation">
                     <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-section" type="button" role="tab">HOME</button>
                 </li>
@@ -23,7 +24,7 @@
                     <button class="nav-link" id="news-tab" data-bs-toggle="tab" data-bs-target="#news-section" type="button" role="tab">NEWS</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="graduates-tab" data-bs-toggle="tab" data-bs-target="#graduates-section" type="button" role="tab">GRADUATES</button>
+                    <button class="nav-link" id="contacts-tab" data-bs-toggle="tab" data-bs-target="#contacts-section" type="button" role="tab">CONTACTS</button>
                 </li>
                 <li class="nav-item" role="presentation">
                     <button class="nav-link" id="faqs-tab" data-bs-toggle="tab" data-bs-target="#faqs-section" type="button" role="tab">FAQS</button>
@@ -469,79 +470,85 @@
                                         </button>
                                         <div id="news-collapse-portal" class="collapse" data-bs-parent="#newsAccordion">
                                             <div class="news-body py-4 text-muted text-justify">
-                                                <p>The official student portal has migrated from iBUSIS to the new <strong>iBU</strong> platform. Students are encouraged to synchronize accounts for seamless access.</p>
+                                                <p>The official student portal has migrated from iBUSIS to the new <strong>iBU</strong> platform.</p>
                                                 <p class="mb-0 small text-uppercase fw-bold text-danger">Notice: Required Action for All Students</p>
                                             </div>
                                         </div>
                                     </div>
 
+                                    <div class="news-custom-item mb-2">
+                                        <button class="news-header-btn d-flex justify-content-between align-items-center w-100 py-3 border-bottom collapsed" 
+                                                type="button" data-bs-toggle="collapse" data-bs-target="#news-collapse-graduates">
+                                            <span class="fw-bold text-uppercase">Warmest Congratulations to our BUOU Graduates 2025</span>
+                                            <span class="news-icon">+</span>
+                                        </button>
+                                        <div id="news-collapse-graduates" class="collapse" data-bs-parent="#newsAccordion">
+                                            <div class="news-body py-4 text-muted text-justify">
+                                                <p>
+                                                    The Bicol University Open University extends its warmest congratulations to the graduating class of 2025.  Your unwavering commitment to your studies, despite the challenges of pursuing education through a non-traditional format, is a testament to your resilience and dedication.  We commend your perseverance and celebrate this significant milestone in your academic journey.
+                                                </p>
+                                                <p>
+                                                    This accomplishment reflects not only your individual efforts but also the supportive environment fostered by the BUOU community.  We are immensely proud of your achievements and the contributions you will undoubtedly make to your communities and the wider world.  Your success inspires us to continue our mission of providing a global and Inclusive Learning Culture.
+                                                </p>
+                                                <p>
+                                                    As you embark on new endeavors, may this graduation mark the beginning of a fulfilling and successful future.  The Bicol University Open University remains committed to supporting your continued growth and development.  We wish you all the best in your future pursuits and look forward to witnessing your future successes.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div> 
                             </div>
                         </section>
                     </div>
 
                     <!----------------------->
-                    <!-- GRADUATES SECTION -->
+                    <!-- Contacts SECTION -->
                     <!----------------------->
 
-                    <div class="tab-pane fade" id="graduates-section" role="tabpanel" aria-labelledby="graduates-tab">
-                        <section id="graduates" class="grad-section-split py-5">
+                    <div class="tab-pane fade" id="contacts-section" role="tabpanel" aria-labelledby="contacts-tab">
+                        <section id="contacts" class="contact-page-section py-5 bg-white">
                             <div class="container">
-                                <div class="grad-card shadow-lg overflow-hidden rounded-4 bg-white">
-                                    <div class="row g-0 align-items-stretch">
-                                        <div class="col-lg-5 position-relative">
-                                            <div class="grad-img-holder h-100">
-                                                <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=600&auto=format&fit=crop"
-                                                    alt="Class of 2025" class="img-fluid w-100 h-100 object-fit-cover">
-                                            </div>
-                        
-                                            <div class="grad-overlay-badge position-absolute bottom-0 start-0 m-4 p-3 text-white">
-                                                <h3 class="display-5 fw-bold mb-0">2025</h3>
-                                                <p class="small text-uppercase ls-2 mb-0">Graduates</p>
-                                            </div>
+                                <div class="contact-wrapper mx-auto about-accordion"> 
+                                    <h2 class="fw-bold mb-4 text-uppercase" style="letter-spacing: 1px; color: #333;">Contact Information</h2>
+                                    
+                                    <div class="contact-text-content text-muted fs-6 mb-5" style="line-height: 1.8;">
+                                        <p class="mb-4">
+                                            The emphasis of the BU Open University under the present leadership is to initially address the educational capability enhancement need of professionals by offering selected graduate programs via distance education/open learning.
+                                        </p>
+
+                                        <div class="contact-person-item mb-4">
+                                            <h5 class="fw-bold text-dark mb-1">DR. BENEDICTO B. BALILO JR.</h5>
+                                            <p class="fst-italic mb-1">Dean</p>
+                                            <a href="mailto:bjbbalilo@bicol-u.edu.ph" class="text-primary d-block">bjbbalilo@bicol-u.edu.ph</a>
+                                            <a href="mailto:bu-ou@bicol-u.edu.ph" class="text-primary d-block">bu-ou@bicol-u.edu.ph</a>
                                         </div>
-                        
-                                        <div class="col-lg-7">
-                                            <div class="grad-text-body p-5 h-100 d-flex flex-column justify-content-center">
-                        
-                                                <div class="mb-4 border-bottom pb-3 border-secondary-subtle">
-                                                    <span class="badge bg-teal text-white mb-2 px-3 py-2 rounded-1">🎉 Celebration</span>
-                                                    <h2 class="fw-bold text-dark mt-2">
-                                                        Warmest Congratulations to the <br>
-                                                        <span class="text-teal">BU Open University Class of 2025</span>
-                                                    </h2>
-                                                </div>
-                        
-                                                <div class="text-muted">
-                                                    <p>
-                                                        The Bicol University Open University extends its warmest congratulations to you. Your
-                                                        unwavering commitment to your studies, despite the challenges of pursuing education
-                                                        through a non-traditional format, is a testament to your <strong
-                                                            class="text-orange">resilience and dedication</strong>.
-                                                    </p>
-                                                    <p class="mb-4">
-                                                        This accomplishment reflects not only your individual efforts but also the supportive
-                                                        environment fostered by the BUOU community. We are immensely proud of your achievements.
-                                                    </p>
-                                                </div>
-                        
-                                                <div class="d-flex gap-3 mt-auto pt-3">
-                                                    <a href="#" class="btn btn-orange px-4 py-2 fw-semibold shadow-sm">
-                                                        View List of Graduates
-                                                    </a>
-                                                    <a href="#" class="btn btn-outline-dark px-4 py-2 fw-semibold">
-                                                        Watch Ceremony
-                                                    </a>
-                                                </div>
-                        
-                                            </div>
+
+                                        <hr class="my-4" style="opacity: 0.1;">
+
+                                        <div class="contact-person-item mb-4">
+                                            <h5 class="fw-bold text-dark mb-1">Prof. Jose Carlo B. Lavapie</h5>
+                                            <p class="fst-italic mb-1">Assoc. Dean</p>
+                                            <a href="mailto:jcblavapie@bicol-u.edu.ph" class="text-primary d-block">jcblavapie@bicol-u.edu.ph</a>
                                         </div>
-                        
+
+                                        <hr class="my-4" style="opacity: 0.1;">
+
+                                        <div class="contact-person-item mb-4">
+                                            <h5 class="fw-bold text-dark mb-1">Ms. Veronica O. Gomez</h5>
+                                            <p class="fst-italic mb-1">Registrar</p>
+                                            <a href="mailto:vogomez@bicol-u.edu.ph" class="text-primary d-block">vogomez@bicol-u.edu.ph</a>
+                                        </div>
+
+                                        <div class="contact-qr-section mt-5 p-4 rounded text-center">
+                                            <p class="fw-bold text-uppercase mb-3">FB Page QR Code:</p>
+                                            <img src="{{ asset('assets/QR/ContactsQR.png') }}" alt="FB Page QR Code" class="img-fluid rounded shadow-sm" style="max-width: 200px;">
+                                        </div>
                                     </div>
-                                </div>
+                                </div> 
                             </div>
                         </section>
                     </div>
+                    
 
                     <!------------------>
                     <!-- FAQs SECTION -->
@@ -725,15 +732,94 @@
 
             <div class="col-lg-3 d-none d-lg-block border-start py-5 text-center">
                 <div class="px-4 sticky-top" style="top: 160px;">
-                    <div class="mb-3 mx-auto" style="max-width: 180px;">
-                        <img src="{{ asset('assets/Faculty/SirBenedicto.jpg') }}" class="img-fluid rounded shadow-sm" alt="Dean">
+
+                    <div id="facultySlider" class="carousel slide" data-bs-ride="false">
+
+                        <!-- SLIDES -->
+                        <div class="carousel-inner text-center pb-4">
+
+                            <!-- SLIDE 1 -->
+                            <div class="carousel-item active">
+                                <div class="mb-3 mx-auto" style="max-width: 180px;">
+                                    <img src="{{ asset('assets/Faculty/SirBalilo.jpg') }}"
+                                        class="img-fluid rounded shadow-sm"
+                                        alt="Dean">
+                                </div>
+
+                                <h6 class="fw-bold mb-0">Dr. Benedicto B. Balilo Jr.</h6>
+                                <p class="small text-muted">Dean, BU Open University</p>
+                            </div>
+
+                            <!-- SLIDE 2 -->
+                            <div class="carousel-item">
+                                <div class="mb-3 mx-auto" style="max-width: 180px;">
+                                    <img src="{{ asset('assets/Faculty/SirJose.jpg') }}"
+                                        class="img-fluid rounded shadow-sm"
+                                        alt="Associate Dean">
+                                </div>
+
+                                <h6 class="fw-bold mb-0">Prof. Jose Carlo B. Lavapie</h6>
+                                <p class="small text-muted">Associate Dean, BU Open University</p>
+                            </div>
+
+                        </div>
+
+                        <!-- ✅ INDICATORS BELOW -->
+                        <div class="carousel-indicators position-static mt-3">
+                            <button type="button"
+                                data-bs-target="#facultySlider"
+                                data-bs-slide-to="0"
+                                class="active"
+                                aria-current="true"></button>
+
+                            <button type="button"
+                                data-bs-target="#facultySlider"
+                                data-bs-slide-to="1"></button>
+                        </div>
+
                     </div>
-                    <h6 class="fw-bold mb-0">Dr. Benedicto B. Balilo Jr.</h6>
-                    <p class="small text-muted">Dean, BU Open University</p>
+
                 </div>
             </div>
-            
+
+            <!-- AI CHATBOT -->
+            <div class="ai-chatbot">
+                <!-- Floating Button -->
+                <div class="chat-toggle" id="chatToggle">
+                    <i data-lucide="message-circle"></i>
+                </div>
+
+                <!-- Chat Box -->
+                <div class="chat-box" id="chatBox">
+                    <!-- Header -->
+                    <div class="chat-header">
+                        <div class="chat-title">
+                            <div class="chat-avatar">BU</div>
+                            <div>
+                                <strong>BUOU Assistant</strong>
+                                <p>Ask me anything about BU Open University</p>
+                            </div>
+                        </div>
+                        <button class="chat-close" id="chatClose">✕</button>
+                    </div>
+
+                    <!-- Messages -->
+                    <div class="chat-body">
+                        <div class="chat-message bot">
+                            Hello! I'm the BU Open University assistant. How can I help you today? 
+                            You can ask me about our programs, admissions, enrollment, or any other questions.
+                        </div>
+                    </div>
+
+                    <!-- Input -->
+                    <div class="chat-input">
+                        <input type="text" placeholder="Type your question..." />
+                        <button>➤</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
+    @include('layouts.footer')
 @endsection
