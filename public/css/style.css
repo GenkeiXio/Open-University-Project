@@ -396,6 +396,53 @@ h6 {
 }
 
 /* ===========================
+    RESPONSIVE / MEDIA QUERIES
+    =========================== */
+@media (max-width: 991px) {
+    .grad-img-holder {
+        height: 300px;
+    }
+
+    .grad-text-body {
+        padding: 2rem !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-section {
+        text-align: center;
+    }
+
+    #about {
+        padding: 4rem 0;
+    }
+
+    .about-hero {
+        padding: 4rem 1rem 3rem;
+    }
+
+    .about-intro-card,
+    .about-wide-card,
+    .about-content-card {
+        padding: 2rem;
+    }
+
+    .timeline-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+    }
+
+    .faculty-card {
+        padding: 25px;
+        text-align: center;
+    }
+
+    .faculty-credentials {
+        text-align: left;
+    }
+}
+
+/* ===========================
     GRADUATES SECTION
     =========================== */
 .grad-section-split {
@@ -441,53 +488,6 @@ h6 {
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
     min-width: 140px;
     text-align: center;
-}
-
-/* ===========================
-    RESPONSIVE / MEDIA QUERIES
-    =========================== */
-@media (max-width: 991px) {
-    .grad-img-holder {
-        height: 300px;
-    }
-
-    .grad-text-body {
-        padding: 2rem !important;
-    }
-}
-
-@media (max-width: 768px) {
-    .hero-section {
-        text-align: center;
-    }
-
-    #about {
-        padding: 4rem 0;
-    }
-
-    .about-hero {
-        padding: 4rem 1rem 3rem;
-    }
-
-    .about-intro-card,
-    .about-wide-card,
-    .about-content-card {
-        padding: 2rem;
-    }
-
-    .timeline-grid {
-        grid-template-columns: 1fr;
-        gap: 2.5rem;
-    }
-
-    .faculty-card {
-        padding: 25px;
-        text-align: center;
-    }
-
-    .faculty-credentials {
-        text-align: left;
-    }
 }
 
 /* FAQ SECTION */
