@@ -741,7 +741,7 @@
                             <!-- SLIDE 1 -->
                             <div class="carousel-item active">
                                 <div class="mb-3 mx-auto" style="max-width: 180px;">
-                                    <img src="{{ asset('assets/Faculty/SirJose.jpg') }}"
+                                    <img src="{{ asset('assets/Faculty/SirBalilo.jpg') }}"
                                         class="img-fluid rounded shadow-sm"
                                         alt="Dean">
                                 </div>
