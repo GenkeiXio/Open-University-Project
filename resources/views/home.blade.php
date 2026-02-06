@@ -3,6 +3,7 @@
 @section('content')
 
     @include('layouts.navbar')
+    
 
     <div class="selection-menu-wrapper sticky-top py-3" style="top: 80px;"> 
         <div class="container">
@@ -742,4 +743,5 @@
         </div>
     </div>
 
+    @include('layouts.footer')
 @endsection
