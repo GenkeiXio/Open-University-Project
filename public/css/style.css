@@ -89,7 +89,7 @@ h6 {
 .text-gradient-orange {
     background: linear-gradient(to right, #f15a24, #ed1c24);
     -webkit-background-clip: text;
-    background-clip: text; /* Add this standard property line */
+    background-clip: text; /* Standard property to fix compatibility warning */
     -webkit-text-fill-color: transparent;
     display: inline-block;
 }
@@ -97,7 +97,7 @@ h6 {
 .text-gradient-blue {
     background: linear-gradient(to right, #0054a6, #00aeef);
     -webkit-background-clip: text;
-    background-clip: text; /* Add this standard property line */
+    background-clip: text; /* Standard property to fix compatibility warning */
     -webkit-text-fill-color: transparent;
     display: inline-block;
 }
@@ -354,20 +354,29 @@ h6 {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
 }
 
+/* ===========================
+    FACULTY RECTANGULAR STYLE
+   =========================== */
 .faculty-image-wrapper {
-    position: relative;
-    width: 230px;
-    height: 230px;
+    width: 100%;
+    max-width: 280px; /* Adjust size to match your preference */
     margin: 0 auto;
+    overflow: hidden;
+    border-radius: 8px; /* Slight rounding on corners as seen in modern UI */
 }
 
 .faculty-image {
     width: 100%;
-    height: 100%;
+    height: auto;
+    display: block;
     object-fit: cover;
-    border-radius: 50%;
-    z-index: 2;
-    position: relative;
+    /* Removed border-radius: 50% to maintain rectangular shape */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.faculty-card:hover .faculty-image {
+    transform: scale(1.02); /* Subtle hover effect */
 }
 
 .faculty-name {
@@ -924,11 +933,13 @@ h6 {
     SELECTION MENU & TABS
    =========================== */
 .selection-menu-wrapper {
-    background: #ffffff;
+    /* Set background to exactly match your page background color #f0f4f8 */
+    background-color: #f0f4f8 !important;
     padding: 15px 0;
-    top: 70px; /* Adjust this to sit below your main navbar */
+    top: 85px; /* Offset to sit below your main white navbar */
     z-index: 1020;
-    border-bottom: 1px solid #eee;
+    border-bottom: none !important;
+    box-shadow: none !important;
 }
 
 .nav-pills .nav-link {
@@ -938,7 +949,6 @@ h6 {
     padding: 10px 24px;
     border-radius: 50px;
     transition: all 0.3s ease;
-    border: 1px solid transparent;
     background: transparent;
     text-transform: uppercase;
 }
@@ -947,6 +957,7 @@ h6 {
     color: #ea6a0e;
 }
 
+/* The orange bubble active state from your reference image */
 .nav-pills .nav-link.active {
     background-color: #ea6a0e !important;
     color: white !important;
@@ -1028,4 +1039,209 @@ h6 {
 .about-accordion .text-justify {
     text-align: justify;
     text-justify: inter-word;
+}
+
+/* --- BUOU UNIQUE FAQ STYLES --- */
+.buou-faq-section {
+    background-color: #ffffff;
+}
+
+.buou-faq-main-title {
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #222;
+}
+
+.buou-faq-accordion-wrapper {
+    max-width: 900px;
+}
+
+.buou-faq-card {
+    border-bottom: 1px solid #eee;
+    margin-bottom: 5px;
+}
+
+.buou-faq-btn {
+    width: 100%;
+    padding: 20px 10px;
+    background: none;
+    border: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: left;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
+    color: #444;
+    transition: all 0.3s ease;
+}
+
+.buou-faq-btn:hover {
+    color: #ef6c00;
+}
+
+.buou-faq-icon {
+    font-size: 1.5rem;
+    transition: transform 0.3s ease;
+    font-weight: 300;
+}
+
+/* Rotation Effect when open */
+.buou-faq-btn:not(.collapsed) .buou-faq-icon {
+    transform: rotate(45deg);
+    color: #ef6c00;
+}
+
+.buou-faq-body {
+    padding: 10px 15px 30px 15px;
+    color: #666;
+    line-height: 1.7;
+}
+
+.buou-faq-body ul,
+.buou-faq-body ol {
+    padding-left: 20px;
+}
+
+.sub-list {
+    list-style: none;
+    font-size: 0.9rem;
+    color: #888;
+}
+
+.btn-orange {
+    background-color: #ef6c00;
+    color: white;
+    border-radius: 4px;
+    padding: 8px 20px;
+}
+.btn-orange:hover {
+    background-color: #d86000;
+    color: white;
+}
+
+/* Specific Styling for Programs Accordion */
+.programs-accordion .faq-item {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    margin-bottom: 0;
+}
+
+.programs-accordion .faq-question {
+    background: transparent !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important;
+    color: #333 !important;
+    transition: color 0.3s ease;
+}
+
+.programs-accordion .faq-question:hover {
+    color: #ea6a0e !important; /* Changes text color to orange on hover */
+}
+
+.programs-accordion .faq-answer {
+    background: transparent !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.programs-accordion .faq-item:hover {
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+/* Specific Styling for News Accordion */
+.news-accordion .faq-item {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    margin-bottom: 0;
+}
+
+.news-accordion .faq-question {
+    background: transparent !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important;
+    color: #333 !important;
+    transition: color 0.3s ease;
+}
+
+.news-accordion .faq-question:hover {
+    color: #ea6a0e !important;
+}
+
+.news-accordion .faq-answer {
+    background: transparent !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.news-accordion .faq-item:hover {
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+/* Ensure images within news accordions don't overflow */
+.news-img-wrapper img {
+    border: 1px solid #eee;
+    transition: transform 0.3s ease;
+}
+
+.news-img-wrapper img:hover {
+    transform: scale(1.01);
+}
+/* --- NEWS SECTION CUSTOM STYLES --- */
+
+/* Width consistency with Faculty */
+.news-accordion-container {
+    max-width: 850px;
+}
+
+/* Button Styling */
+.news-header-btn {
+    background: transparent;
+    border: none;
+    text-align: left;
+    transition: color 0.3s ease;
+    color: #333;
+}
+
+.news-header-btn:hover {
+    color: #ea6a0e !important;
+}
+
+/* Icon Animation (+ to x) */
+.news-icon {
+    font-size: 1.4rem;
+    color: #ea6a0e;
+    transition: transform 0.3s ease;
+    display: inline-block;
+}
+
+/* Rotate icon when item is OPEN (Bootstrap :not(.collapsed)) */
+.news-header-btn:not(.collapsed) .news-icon {
+    transform: rotate(45deg);
+    color: #333;
+}
+
+/* Image handling */
+.news-img {
+    max-height: 300px;
+    width: 100%;
+    object-fit: cover;
+}
+
+.news-bg-orange {
+    background-color: #ea6a0e;
+}
+
+/* Prevents page shifting when scrollbar appears */
+html {
+    overflow-y: scroll;
 }
