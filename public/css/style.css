@@ -65,10 +65,10 @@ h6 {
 }
 
 .hero-title {
-    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-size: clamp(1.8rem, 5vw, 3.2rem); /* Slightly smaller minimum for mobile */
     font-weight: 800;
     letter-spacing: -0.5px;
-    line-height: 1.1;
+    line-height: 1.2; /* Increased slightly so the lines don't touch */
 }
 
 .hero-text {
@@ -89,17 +89,23 @@ h6 {
 .text-gradient-orange {
     background: linear-gradient(to right, #f15a24, #ed1c24);
     -webkit-background-clip: text;
-    background-clip: text; /* Standard property to fix compatibility warning */
+    background-clip: text;
     -webkit-text-fill-color: transparent;
-    display: inline-block;
+    /* Changed from inline-block to inline */
+    display: inline; 
+    /* Prevents the text from wrapping within the span */
+    white-space: nowrap; 
 }
 
 .text-gradient-blue {
     background: linear-gradient(to right, #0054a6, #00aeef);
     -webkit-background-clip: text;
-    background-clip: text; /* Standard property to fix compatibility warning */
+    background-clip: text;
     -webkit-text-fill-color: transparent;
-    display: inline-block;
+    /* Changed from inline-block to inline */
+    display: inline;
+    /* Prevents the text from wrapping within the span */
+    white-space: nowrap;
 }
 
 .btn-orange {
