@@ -732,11 +732,53 @@
 
             <div class="col-lg-3 d-none d-lg-block border-start py-5 text-center">
                 <div class="px-4 sticky-top" style="top: 160px;">
-                    <div class="mb-3 mx-auto" style="max-width: 180px;">
-                        <img src="{{ asset('assets/Faculty/SirBenedicto.jpg') }}" class="img-fluid rounded shadow-sm" alt="Dean">
+
+                    <div id="facultySlider" class="carousel slide" data-bs-ride="false">
+
+                        <!-- SLIDES -->
+                        <div class="carousel-inner text-center pb-4">
+
+                            <!-- SLIDE 1 -->
+                            <div class="carousel-item active">
+                                <div class="mb-3 mx-auto" style="max-width: 180px;">
+                                    <img src="{{ asset('assets/Faculty/SirJose.jpg') }}"
+                                        class="img-fluid rounded shadow-sm"
+                                        alt="Dean">
+                                </div>
+
+                                <h6 class="fw-bold mb-0">Dr. Benedicto B. Balilo Jr.</h6>
+                                <p class="small text-muted">Dean, BU Open University</p>
+                            </div>
+
+                            <!-- SLIDE 2 -->
+                            <div class="carousel-item">
+                                <div class="mb-3 mx-auto" style="max-width: 180px;">
+                                    <img src="{{ asset('assets/Faculty/SirJose.jpg') }}"
+                                        class="img-fluid rounded shadow-sm"
+                                        alt="Associate Dean">
+                                </div>
+
+                                <h6 class="fw-bold mb-0">Prof. Jose Carlo B. Lavapie</h6>
+                                <p class="small text-muted">Associate Dean, BU Open University</p>
+                            </div>
+
+                        </div>
+
+                        <!-- ✅ INDICATORS BELOW -->
+                        <div class="carousel-indicators position-static mt-3">
+                            <button type="button"
+                                data-bs-target="#facultySlider"
+                                data-bs-slide-to="0"
+                                class="active"
+                                aria-current="true"></button>
+
+                            <button type="button"
+                                data-bs-target="#facultySlider"
+                                data-bs-slide-to="1"></button>
+                        </div>
+
                     </div>
-                    <h6 class="fw-bold mb-0">Dr. Benedicto B. Balilo Jr.</h6>
-                    <p class="small text-muted">Dean, BU Open University</p>
+
                 </div>
             </div>
 
