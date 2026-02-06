@@ -30,6 +30,12 @@
 
         <!-- Custom JS -->
         <script src="{{ asset('script/script.js') }}"></script>
-        <script src="{{ asset('script/news.js') }}"></script>
+        <script src="{{ asset('script/ai_chatbot.js') }}"></script>
+
+        <script src="https://unpkg.com/lucide@latest"></script>
+        
+        <script>
+            lucide.createIcons();
+        </script>
     </body>
 </html>

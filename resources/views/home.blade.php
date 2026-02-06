@@ -6,7 +6,7 @@
 
     <div class="selection-menu-wrapper sticky-top py-3" style="top: 80px;"> 
         <div class="container">
-            <ul class="nav nav-pills justify-content-center gap-2 mb-0" id="buouTab" role="tablist">
+            <ul class="nav nav-pills justify-content-center mb-0" id="buouTab" role="tablist">
                 <li class="nav-item" role="presentation">
                     <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-section" type="button" role="tab">HOME</button>
                 </li>
@@ -732,7 +732,43 @@
                     <p class="small text-muted">Dean, BU Open University</p>
                 </div>
             </div>
-            
+
+            <!-- AI CHATBOT -->
+            <div class="ai-chatbot">
+                <!-- Floating Button -->
+                <div class="chat-toggle" id="chatToggle">
+                    <i data-lucide="message-circle"></i>
+                </div>
+
+                <!-- Chat Box -->
+                <div class="chat-box" id="chatBox">
+                    <!-- Header -->
+                    <div class="chat-header">
+                        <div class="chat-title">
+                            <div class="chat-avatar">BU</div>
+                            <div>
+                                <strong>BUOU Assistant</strong>
+                                <p>Ask me anything about BU Open University</p>
+                            </div>
+                        </div>
+                        <button class="chat-close" id="chatClose">✕</button>
+                    </div>
+
+                    <!-- Messages -->
+                    <div class="chat-body">
+                        <div class="chat-message bot">
+                            Hello! I'm the BU Open University assistant. How can I help you today? 
+                            You can ask me about our programs, admissions, enrollment, or any other questions.
+                        </div>
+                    </div>
+
+                    <!-- Input -->
+                    <div class="chat-input">
+                        <input type="text" placeholder="Type your question..." />
+                        <button>➤</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
