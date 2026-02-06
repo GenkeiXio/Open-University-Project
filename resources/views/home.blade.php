@@ -469,12 +469,32 @@
                                         </button>
                                         <div id="news-collapse-portal" class="collapse" data-bs-parent="#newsAccordion">
                                             <div class="news-body py-4 text-muted text-justify">
-                                                <p>The official student portal has migrated from iBUSIS to the new <strong>iBU</strong> platform. Students are encouraged to synchronize accounts for seamless access.</p>
+                                                <p>The official student portal has migrated from iBUSIS to the new <strong>iBU</strong> platform.</p>
                                                 <p class="mb-0 small text-uppercase fw-bold text-danger">Notice: Required Action for All Students</p>
                                             </div>
                                         </div>
                                     </div>
 
+                                    <div class="news-custom-item mb-2">
+                                        <button class="news-header-btn d-flex justify-content-between align-items-center w-100 py-3 border-bottom collapsed" 
+                                                type="button" data-bs-toggle="collapse" data-bs-target="#news-collapse-graduates">
+                                            <span class="fw-bold text-uppercase">Warmest Congratulations to our BUOU Graduates 2025</span>
+                                            <span class="news-icon">+</span>
+                                        </button>
+                                        <div id="news-collapse-graduates" class="collapse" data-bs-parent="#newsAccordion">
+                                            <div class="news-body py-4 text-muted text-justify">
+                                                <p>
+                                                    The Bicol University Open University extends its warmest congratulations to the graduating class of 2025.  Your unwavering commitment to your studies, despite the challenges of pursuing education through a non-traditional format, is a testament to your resilience and dedication.  We commend your perseverance and celebrate this significant milestone in your academic journey.
+                                                </p>
+                                                <p>
+                                                    This accomplishment reflects not only your individual efforts but also the supportive environment fostered by the BUOU community.  We are immensely proud of your achievements and the contributions you will undoubtedly make to your communities and the wider world.  Your success inspires us to continue our mission of providing a global and Inclusive Learning Culture.
+                                                </p>
+                                                <p>
+                                                    As you embark on new endeavors, may this graduation mark the beginning of a fulfilling and successful future.  The Bicol University Open University remains committed to supporting your continued growth and development.  We wish you all the best in your future pursuits and look forward to witnessing your future successes.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div> 
                             </div>
                         </section>
@@ -484,64 +504,7 @@
                     <!-- GRADUATES SECTION -->
                     <!----------------------->
 
-                    <div class="tab-pane fade" id="graduates-section" role="tabpanel" aria-labelledby="graduates-tab">
-                        <section id="graduates" class="grad-section-split py-5">
-                            <div class="container">
-                                <div class="grad-card shadow-lg overflow-hidden rounded-4 bg-white">
-                                    <div class="row g-0 align-items-stretch">
-                                        <div class="col-lg-5 position-relative">
-                                            <div class="grad-img-holder h-100">
-                                                <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=600&auto=format&fit=crop"
-                                                    alt="Class of 2025" class="img-fluid w-100 h-100 object-fit-cover">
-                                            </div>
-                        
-                                            <div class="grad-overlay-badge position-absolute bottom-0 start-0 m-4 p-3 text-white">
-                                                <h3 class="display-5 fw-bold mb-0">2025</h3>
-                                                <p class="small text-uppercase ls-2 mb-0">Graduates</p>
-                                            </div>
-                                        </div>
-                        
-                                        <div class="col-lg-7">
-                                            <div class="grad-text-body p-5 h-100 d-flex flex-column justify-content-center">
-                        
-                                                <div class="mb-4 border-bottom pb-3 border-secondary-subtle">
-                                                    <span class="badge bg-teal text-white mb-2 px-3 py-2 rounded-1">🎉 Celebration</span>
-                                                    <h2 class="fw-bold text-dark mt-2">
-                                                        Warmest Congratulations to the <br>
-                                                        <span class="text-teal">BU Open University Class of 2025</span>
-                                                    </h2>
-                                                </div>
-                        
-                                                <div class="text-muted">
-                                                    <p>
-                                                        The Bicol University Open University extends its warmest congratulations to you. Your
-                                                        unwavering commitment to your studies, despite the challenges of pursuing education
-                                                        through a non-traditional format, is a testament to your <strong
-                                                            class="text-orange">resilience and dedication</strong>.
-                                                    </p>
-                                                    <p class="mb-4">
-                                                        This accomplishment reflects not only your individual efforts but also the supportive
-                                                        environment fostered by the BUOU community. We are immensely proud of your achievements.
-                                                    </p>
-                                                </div>
-                        
-                                                <div class="d-flex gap-3 mt-auto pt-3">
-                                                    <a href="#" class="btn btn-orange px-4 py-2 fw-semibold shadow-sm">
-                                                        View List of Graduates
-                                                    </a>
-                                                    <a href="#" class="btn btn-outline-dark px-4 py-2 fw-semibold">
-                                                        Watch Ceremony
-                                                    </a>
-                                                </div>
-                        
-                                            </div>
-                                        </div>
-                        
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
-                    </div>
+                    
 
                     <!------------------>
                     <!-- FAQs SECTION -->
