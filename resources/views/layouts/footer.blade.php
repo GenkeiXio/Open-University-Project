@@ -6,23 +6,35 @@
             <div class="col-lg-12">
                 <div class="row g-3 mb-4 justify-content-center text-center">
                     <div class="col-2">
-                        <div class="logo-box" style="background: white; padding: 10px; border-radius: 4px; aspect-ratio: 1/1; display: flex; align-items: center; justify-content: center; max-width: 100px; margin: 0 auto;">
-                            <img src="logo1.png" alt="Logo 1" class="img-fluid" style="max-height: 80%;">
+                        <div class="logo-box" style="border-radius: 4px; aspect-ratio: 1/1; display: flex; align-items: center; justify-content: center; max-width: 100px; margin: 0 auto;">
+                            <img src="{{ asset('assets/Logo/OU LOGO.jpg') }}" 
+                                alt="Logo 1" 
+                                class="img-fluid" 
+                                style="max-height: 80%; border-radius: 50%; aspect-ratio: 1/1; object-fit: cover;">
                         </div>
                     </div>
                     <div class="col-2">
-                        <div class="logo-box" style="background: white; padding: 10px; border-radius: 4px; aspect-ratio: 1/1; display: flex; align-items: center; justify-content: center; max-width: 100px; margin: 0 auto;">
-                            <img src="logo2.png" alt="Logo 2" class="img-fluid" style="max-height: 80%;">
+                        <div class="logo-box" style="aspect-ratio: 1/1; display: flex; align-items: center; justify-content: center; max-width: 100px; margin: 0 auto;">
+                            <img src="{{ asset('assets/Logo/BU logo.png') }}" 
+                                alt="Logo 1" 
+                                class="img-fluid" 
+                                style="max-height: 100%; aspect-ratio: 1/1; object-fit: cover;">
                         </div>
                     </div>
                     <div class="col-2">
-                        <div class="logo-box" style="background: white; padding: 10px; border-radius: 4px; aspect-ratio: 1/1; display: flex; align-items: center; justify-content: center; max-width: 100px; margin: 0 auto;">
-                            <img src="logo3.png" alt="Logo 3" class="img-fluid" style="max-height: 80%;">
+                        <div class="logo-box" style="aspect-ratio: 1/1; display: flex; align-items: center; justify-content: center; max-width: 100px; margin: 0 auto;">
+                            <img src="{{ asset('assets/Logo/BAGONG PILIPINAS LOGO.webp') }}" 
+                                alt="Logo 1" 
+                                class="img-fluid" 
+                                style="max-height: 100%; aspect-ratio: 1/1; object-fit: cover;">
                         </div>
                     </div>
                     <div class="col-2">
-                        <div class="logo-box" style="background: white; padding: 10px; border-radius: 4px; aspect-ratio: 1/1; display: flex; align-items: center; justify-content: center; max-width: 100px; margin: 0 auto;">
-                            <img src="logo4.png" alt="Logo 4" class="img-fluid" style="max-height: 80%;">
+                        <div class="logo-box" style="aspect-ratio: 1/1; display: flex; align-items: center; justify-content: center; max-width: 100px; margin: 0 auto;">
+                            <img src="{{ asset('assets/Logo/DPO LOGO.png') }}" 
+                                alt="Logo 1" 
+                                class="img-fluid" 
+                                style="max-height: 100%; aspect-ratio: 1/1; object-fit: cover;">
                         </div>
                     </div>
                 </div>
