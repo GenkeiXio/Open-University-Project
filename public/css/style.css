@@ -1394,3 +1394,28 @@ html {
     right: 24px;
     left: auto;
 }
+
+/* ✅ Move indicators below carousel */
+.carousel-indicators {
+    position: static !important;
+    margin-top: 15px;
+}
+
+/* ✅ Perfect circle dots */
+.carousel-indicators button,
+.carousel-indicators [data-bs-target] {
+    width: 12px !important;
+    height: 12px !important;
+    border-radius: 50% !important;
+
+    background-color: #ccc !important;
+    border: none !important;
+
+    margin: 0 6px;
+    opacity: 1 !important;
+}
+
+/* ✅ Active dot orange */
+.carousel-indicators .active {
+    background-color: orange !important;
+}
