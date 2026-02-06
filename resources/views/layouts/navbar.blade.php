@@ -21,14 +21,14 @@
 
         <div class="collapse navbar-collapse" id="buNav">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
-                <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+                <!-- <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
                 <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
                 <li class="nav-item"><a class="nav-link" href="#programs">Programs</a></li>
                 <li class="nav-item"><a class="nav-link" href="#faculty">Faculty</a></li>
                 <li class="nav-item"><a class="nav-link" href="#admissions">Admissions</a></li>
                 <li class="nav-item"><a class="nav-link" href="#faqs">FAQS</a></li>
                 <li class="nav-item"><a class="nav-link" href="#news">News</a></li>
-                <li class="nav-item"><a class="nav-link" href="#graduates">Graduates</a></li>
+                <li class="nav-item"><a class="nav-link" href="#graduates">Graduates</a></li> -->
                 <li class="nav-item ms-lg-3">
                     <a class="btn btn-orange" href="#">Apply Now</a>
                 </li>
