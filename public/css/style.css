@@ -138,6 +138,50 @@ h6 {
     color: white;
 }
 
+/* Modern Welcome Card */
+.welcome-card {
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 18px;
+    padding: 22px 30px;
+    max-width: 720px;
+    margin: auto;
+    border: 1px solid rgba(0,0,0,0.06);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.08);
+    transition: 0.4s ease;
+}
+
+/* Title */
+.welcome-title {
+    font-family: "Playfair Display", serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #1e4fa1;
+}
+
+/* Message Text */
+.welcome-text {
+    font-family: "Merriweather", serif;
+    font-size: 1rem;
+    line-height: 1.75;
+    color: #333;
+    font-style: italic;
+}
+
+/* Signature */
+.welcome-signature strong {
+    font-family: "Playfair Display", serif;
+    font-size: 1.05rem;
+    color: #111;
+}
+
+/* Smooth animation */
+.welcome-card.fade-out {
+    opacity: 0;
+    transform: translateY(10px);
+}
+
+
 /* ===========================
     STAT CARDS (COMBINED & ORGANIZED)
     =========================== */

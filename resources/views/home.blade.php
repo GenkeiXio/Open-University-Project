@@ -68,8 +68,18 @@
                                         <p class="hero-text mt-4 text-muted mx-auto" style="max-width: 600px;">
                                             Breaking Barriers, Connecting People to Quality Education 
                                         </p>
-                                    </div>
 
+                                        <!-- MODERN WELCOME CARD -->
+                                        <div class="welcome-card mt-4 mx-auto">
+                                            <h3 id="welcomeTitle" class="welcome-title"></h3>
+                                            <p id="welcomeText" class="welcome-text"></p>
+
+                                            <div class="welcome-signature mt-3">
+                                                <strong id="welcomeSignature"></strong><br>
+                                                <span id="welcomePosition" class="text-muted small"></span>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </section>
@@ -734,7 +744,6 @@
                 <div class="px-4 sticky-top" style="top: 160px;">
 
                     <div id="facultySlider" class="carousel slide" data-bs-ride="false">
-
                         <!-- SLIDES -->
                         <div class="carousel-inner text-center pb-4">
 
@@ -761,20 +770,13 @@
                                 <h6 class="fw-bold mb-0">Prof. Jose Carlo B. Lavapie</h6>
                                 <p class="small text-muted">Associate Dean, BU Open University</p>
                             </div>
-
                         </div>
 
                         <!-- ✅ INDICATORS BELOW -->
                         <div class="carousel-indicators position-static mt-3">
-                            <button type="button"
-                                data-bs-target="#facultySlider"
-                                data-bs-slide-to="0"
-                                class="active"
-                                aria-current="true"></button>
+                            <button type="button" data-bs-target="#facultySlider" data-bs-slide-to="0" class="active" aria-current="true"></button>
 
-                            <button type="button"
-                                data-bs-target="#facultySlider"
-                                data-bs-slide-to="1"></button>
+                            <button type="button" data-bs-target="#facultySlider" data-bs-slide-to="1"></button>
                         </div>
                     </div>
 
