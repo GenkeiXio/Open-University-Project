@@ -1419,3 +1419,38 @@ html {
 .carousel-indicators .active {
     background-color: orange !important;
 }
+
+/* News Button Custom Styling */
+.buou-side-news-btn {
+    display: inline-block;
+    width: 100%;
+    padding: 8px 0;
+    border: 2px solid #f15a24;
+    color: #f15a24;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.7rem;
+    letter-spacing: 1px;
+    border-radius: 50px; /* Pill shape from reference image */
+    transition: all 0.3s ease;
+}
+
+.buou-side-news-btn:hover {
+    background-color: #f15a24;
+    color: white !important;
+    box-shadow: 0 4px 12px rgba(241, 90, 36, 0.25);
+}
+
+/* Subtle image zoom on card hover */
+.buou-side-news-card:hover .buou-side-news-img-frame img {
+    transform: scale(1.05);
+}
+
+.buou-side-news-card {
+    transition: all 0.3s ease;
+}
+
+.buou-side-news-card:hover {
+    border-color: #f15a24 !important;
+    background-color: #fff9f7; /* Very slight orange tint on hover */
+}

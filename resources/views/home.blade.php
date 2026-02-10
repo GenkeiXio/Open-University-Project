@@ -18,6 +18,9 @@
                     <button class="nav-link" id="programs-tab" data-bs-toggle="tab" data-bs-target="#programs-section" type="button" role="tab">PROGRAMS</button>
                 </li>
                 <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="admissions-tab" data-bs-toggle="tab" data-bs-target="#admissions-section" type="button" role="tab">ADMISSIONS</button>
+                </li>
+                <li class="nav-item" role="presentation">
                     <button class="nav-link" id="faculty-tab" data-bs-toggle="tab" data-bs-target="#faculty-section" type="button" role="tab">FACULTY</button>
                 </li>
                 <li class="nav-item" role="presentation">
@@ -33,14 +36,18 @@
         </div>
     </div>
 
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v24.0&appId=APP_ID"></script>
+
     <div class="container-fluid bg-white">
         <div class="row g-0">
             
-            <div class="col-lg-3 d-none d-lg-block border-end py-5">
+            <div class="col-lg-3 d-none d-lg-block border-end py-5">;
                 <div class="px-4 sticky-top" style="top: 160px;">
                     <h5 class="fw-bold text-uppercase border-bottom pb-2">BUOU News</h5>
                     <p class="small text-muted">BUOU Official FB Page</p>
                 </div>
+            
             </div>
 
             <div class="col-lg-6 px-lg-5">
@@ -740,7 +747,7 @@
 
                             <!-- SLIDE 1 -->
                             <div class="carousel-item active">
-                                <div class="mb-3 mx-auto" style="max-width: 180px;">
+                                <div class="mb-3 mx-auto" style="max-width: 205px;">
                                     <img src="{{ asset('assets/Faculty/SirBalilo.jpg') }}"
                                         class="img-fluid rounded shadow-sm"
                                         alt="Dean">
@@ -780,7 +787,52 @@
                     </div>
 
                 </div>
+
+                <div class="buou-side-news-container mt-5 text-start">
+                    <div class="d-flex align-items-center mb-3">
+                        <h6 class="fw-bold text-uppercase mb-0" style="letter-spacing: 1.5px; color: #333; font-size: 0.9rem;">Latest News</h6>
+                        <div class="flex-grow-1 ms-3" style="height: 2px; background: linear-gradient(to right, #eee, transparent);"></div>
+                    </div>
+
+                    <div class="buou-side-news-card mb-4 p-3 shadow-sm" style="background: #ffffff; border-radius: 12px; border: 1px solid #f0f0f0;">
+                        <div class="buou-side-news-img-frame mb-3" style="overflow: hidden; border-radius: 8px;">
+                            <img src="{{ asset('assets/News/RTSPC_News.jpg') }}" 
+                                class="img-fluid" 
+                                alt="News 1" 
+                                style="transition: transform 0.5s ease; width: 100%; height: auto;">
+                        </div>
+                        <h6 class="buou-side-news-title fw-bold mb-1" style="line-height: 1.4; color: #2d3436; font-size: 0.85rem;">
+                            BUeño journos shine at 23rd RTSPC; 20 advance to Luzon-Wide tilt
+                        </h6>
+                        <p class="buou-side-news-date mb-3" style="font-size: 0.7rem; color: #a0a0a0; font-style: italic;">
+                            February 2, 2026
+                        </p>
+                        <div class="text-center">
+                            <a href="#" class="buou-side-news-btn">READ MORE</a>
+                        </div>
+                    </div>
+
+                    <div class="buou-side-news-card mb-4 p-3 shadow-sm" style="background: #ffffff; border-radius: 12px; border: 1px solid #f0f0f0;">
+                        <div class="buou-side-news-img-frame mb-3" style="overflow: hidden; border-radius: 8px;">
+                            <img src="{{ asset('assets/News/PASUC_Summit.jpg') }}" 
+                                class="img-fluid" 
+                                alt="News 2" 
+                                style="transition: transform 0.5s ease; width: 100%; height: auto;">
+                        </div>
+                        <h6 class="buou-side-news-title fw-bold mb-1" style="line-height: 1.4; color: #2d3436; font-size: 0.85rem;">
+                            Nebres leads national push for Culture, Arts at 2026 PASUC Summit
+                        </h6>
+                        <p class="buou-side-news-date mb-3" style="font-size: 0.7rem; color: #a0a0a0; font-style: italic;">
+                            January 22, 2026
+                        </p>
+                        <div class="text-center">
+                            <a href="#" class="buou-side-news-btn">READ MORE</a>
+                        </div>
+                    </div>
+                </div>
             </div>
+
+        
 
             <!-- AI CHATBOT -->
             <div class="ai-chatbot">
