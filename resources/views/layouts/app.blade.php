@@ -18,6 +18,8 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Merriweather:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+
 
 
     </head>
@@ -31,6 +33,7 @@
         <!-- Custom JS -->
         <script src="{{ asset('script/script.js') }}"></script>
         <script src="{{ asset('script/ai_chatbot.js') }}"></script>
+        <script src="{{ asset('script/home.js') }}"></script>
 
         <script src="https://unpkg.com/lucide@latest"></script>
         
