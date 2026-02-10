@@ -3,47 +3,45 @@
 @section('content')
 
     @include('layouts.navbar')
-    
 
-    <div class="selection-menu-wrapper sticky-top py-3" style="top: 80px;"> 
-        <div class="container">
-            <ul class="nav nav-pills justify-content-center mb-0" id="buouTab" role="tablist">
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-section" type="button" role="tab">HOME</button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="about-tab" data-bs-toggle="tab" data-bs-target="#about-section" type="button" role="tab">ABOUT</button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="programs-tab" data-bs-toggle="tab" data-bs-target="#programs-section" type="button" role="tab">PROGRAMS</button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="faculty-tab" data-bs-toggle="tab" data-bs-target="#faculty-section" type="button" role="tab">FACULTY</button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="news-tab" data-bs-toggle="tab" data-bs-target="#news-section" type="button" role="tab">NEWS</button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="contacts-tab" data-bs-toggle="tab" data-bs-target="#contacts-section" type="button" role="tab">CONTACTS</button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="faqs-tab" data-bs-toggle="tab" data-bs-target="#faqs-section" type="button" role="tab">FAQS</button>
-                </li>
-            </ul>
-        </div>
-    </div>
-
-    <div class="container-fluid bg-white">
+    <div class="container-fluid bg-white" style="margin-top: 80px;">
         <div class="row g-0">
             
             <div class="col-lg-3 d-none d-lg-block border-end py-5">
-                <div class="px-4 sticky-top" style="top: 160px;">
+                <div class="px-4 sticky-top" style="top: 100px;"> 
                     <h5 class="fw-bold text-uppercase border-bottom pb-2">BUOU News</h5>
                     <p class="small text-muted">BUOU Official FB Page</p>
                 </div>
             </div>
 
-            <div class="col-lg-6 px-lg-5">
+            <div class="col-lg-6 px-lg-5 pt-4 pb-5">
+                
+                <div class="selection-menu-wrapper py-3 mb-5"> 
+                    <ul class="nav nav-pills justify-content-center mb-0" id="buouTab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-section" type="button" role="tab">HOME</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="about-tab" data-bs-toggle="tab" data-bs-target="#about-section" type="button" role="tab">ABOUT</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="programs-tab" data-bs-toggle="tab" data-bs-target="#programs-section" type="button" role="tab">PROGRAMS</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="faculty-tab" data-bs-toggle="tab" data-bs-target="#faculty-section" type="button" role="tab">FACULTY</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="news-tab" data-bs-toggle="tab" data-bs-target="#news-section" type="button" role="tab">NEWS</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="contacts-tab" data-bs-toggle="tab" data-bs-target="#contacts-section" type="button" role="tab">CONTACTS</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="faqs-tab" data-bs-toggle="tab" data-bs-target="#faqs-section" type="button" role="tab">FAQS</button>
+                        </li>
+                    </ul>
+                </div>
+
                 <div class="tab-content" id="buouTabContent">
                     
                     <!------------------>
@@ -53,8 +51,7 @@
                     <div class="tab-pane fade show active" id="home-section" role="tabpanel" aria-labelledby="home-tab">
                         <section id="home" class="hero-section py-5 bg-white">
                             <div class="container">
-                                <div class="row justify-content-center align-items-center">
-                                    
+                                <div class="row justify-content-center">
                                     <div class="col-lg-8 text-center">
                                         <span class="badge badge-custom mb-3">
                                             🎓 Distance Education Excellence
@@ -68,13 +65,16 @@
                                         <p class="hero-text mt-4 text-muted mx-auto" style="max-width: 600px;">
                                             Breaking Barriers, Connecting People to Quality Education 
                                         </p>
-                                    </div>
 
+                                        <div id="welcomeMessageBox" class="mt-4 text-center">
+                                            <h3 id="welcomeTitle" class="fw-bold"></h3>
+                                            <p id="welcomeText" class="text-muted"></p>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </section>
                     </div>
-
 
                     <!------------------->
                     <!-- ABOUT SECTION -->
@@ -148,7 +148,7 @@
                                 </div> 
                             </div>
                         </section>
-                    </div>  
+                    </div> 
 
                     <!---------------------->
                     <!-- PROGRAMS SECTION -->

@@ -65,7 +65,11 @@ h6 {
 }
 
 .hero-title {
-    font-size: clamp(1.8rem, 5vw, 3.2rem); /* Slightly smaller minimum for mobile */
+    font-size: clamp(
+        1.8rem,
+        5vw,
+        3.2rem
+    ); /* Slightly smaller minimum for mobile */
     font-weight: 800;
     letter-spacing: -0.5px;
     line-height: 1.2; /* Increased slightly so the lines don't touch */
@@ -92,9 +96,9 @@ h6 {
     background-clip: text;
     -webkit-text-fill-color: transparent;
     /* Changed from inline-block to inline */
-    display: inline; 
+    display: inline;
     /* Prevents the text from wrapping within the span */
-    white-space: nowrap; 
+    white-space: nowrap;
 }
 
 .text-gradient-blue {
@@ -192,6 +196,7 @@ h6 {
 
 #about .container {
     max-width: 1100px;
+    margin-top: -75px;
 }
 
 #about h2 {
@@ -939,13 +944,9 @@ h6 {
     SELECTION MENU & TABS
    =========================== */
 .selection-menu-wrapper {
-    /* Set background to exactly match your page background color #f0f4f8 */
-    background-color: #f0f4f8 !important;
-    padding: 15px 0;
-    top: 85px; /* Offset to sit below your main white navbar */
-    z-index: 1020;
-    border-bottom: none !important;
-    box-shadow: none !important;
+    background-color: transparent !important;
+    margin-top: -15px; /* Adds breathing room between navbar and the orange bubble */
+    z-index: 1010;
 }
 
 .nav-pills .nav-link {
@@ -976,8 +977,7 @@ h6 {
 }
 
 .tab-content {
-    /* This creates the gap between the orange bubble and the Title */
-    margin-top: 5rem;
+    margin-top: 3rem; /* Adjusted from 5rem to keep it tight but clean like the screenshot */
 }
 
 .selection-menu-wrapper {
@@ -990,10 +990,9 @@ h6 {
     padding-top: 20px;
 }
 
-/* Adjusting Hero spacing now that it's in a tab */
 .hero-section {
-    min-height: 80vh;
-    padding-top: 60px;
+    padding-top: 20px; /* Reduced since the container now has margin-top */
+    min-height: auto;
 }
 
 @media (max-width: 768px) {
@@ -1261,7 +1260,7 @@ html {
     bottom: 24px;
     right: 24px;
     z-index: 9999;
-    font-family: 'Raleway', sans-serif;
+    font-family: "Raleway", sans-serif;
 }
 
 /* Floating Button */
@@ -1276,7 +1275,7 @@ html {
     justify-content: center;
     font-size: 26px;
     cursor: pointer;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
 }
 
 /* Chat Box */
@@ -1288,7 +1287,7 @@ html {
     height: 480px;
     background: #ffffff;
     border-radius: 16px;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
     display: none;
     flex-direction: column;
     overflow: hidden;
@@ -1318,7 +1317,7 @@ html {
 .chat-avatar {
     width: 36px;
     height: 36px;
-    background: rgba(255,255,255,0.2);
+    background: rgba(255, 255, 255, 0.2);
     border-radius: 50%;
     display: flex;
     align-items: center;
