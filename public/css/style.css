@@ -33,6 +33,10 @@ body {
     font-weight: 400;
 }
 
+.no-select {
+    user-select: none;
+}
+
 h1,
 h2,
 h3,
@@ -140,45 +144,69 @@ h6 {
 
 /* Modern Welcome Card */
 .welcome-card {
-    background: rgba(255,255,255,0.95);
-    backdrop-filter: blur(10px);
-    border-radius: 18px;
-    padding: 22px 30px;
-    max-width: 720px;
-    margin: auto;
-    border: 1px solid rgba(0,0,0,0.06);
-    box-shadow: 0 20px 50px rgba(0,0,0,0.08);
-    transition: 0.4s ease;
+    max-width: 750px;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    border-top: 5px solid #e67e22; /* BU Orange */
+    padding: 30px;
+    transition: 0.3s ease;
+}
+
+.welcome-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.12);
 }
 
 /* Title */
 .welcome-title {
-    font-family: "Playfair Display", serif;
-    font-size: 1.4rem;
-    font-weight: 700;
-    color: #1e4fa1;
+    font-weight: 800;
+    font-size: 1.6rem;
+    color: #003a8f; /* BU Blue */
+}
+
+/* Divider */
+.welcome-divider {
+    width: 60px;
+    height: 3px;
+    background: #e67e22;
+    margin: 0 auto;
+    border-radius: 2px;
 }
 
 /* Message Text */
 .welcome-text {
-    font-family: "Merriweather", serif;
-    font-size: 1rem;
-    line-height: 1.75;
-    color: #333;
-    font-style: italic;
+    font-size: 1.05rem;
+    color: #444;
+    line-height: 1.7;
+    margin-top: 10px;
 }
 
 /* Signature */
-.welcome-signature strong {
-    font-family: "Playfair Display", serif;
-    font-size: 1.05rem;
-    color: #111;
+.welcome-name {
+    font-size: 1.1rem;
+    color: #003a8f;
+    font-weight: 700;
 }
 
-/* Smooth animation */
-.welcome-card.fade-out {
-    opacity: 0;
-    transform: translateY(10px);
+.welcome-position {
+    font-size: 0.9rem;
+    color: #e67e22;
+    font-weight: 600;
+}
+
+.welcome-text::before {
+    content: "“";
+    font-size: 2rem;
+    color: #e67e22;
+    font-weight: bold;
+}
+
+.welcome-text::after {
+    content: "”";
+    font-size: 2rem;
+    color: #e67e22;
+    font-weight: bold;
 }
 
 
@@ -1498,3 +1526,4 @@ html {
     border-color: #f15a24 !important;
     background-color: #fff9f7; /* Very slight orange tint on hover */
 }
+

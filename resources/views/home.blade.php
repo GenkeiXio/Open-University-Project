@@ -35,10 +35,10 @@
 
     
 
-    <div class="container-fluid bg-white position-relative">
+    <div class="container-fluid position-relative px-0">
         <div class="row g-0">
             <div id="fb-root"></div>
-    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v24.0&appId=APP_ID"></script>
+            <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v24.0&appId=APP_ID"></script>
             <div class="col-lg-3 d-none d-lg-block border-end py-5">;
                 <div class="px-4 sticky-top" style="top: 160px;">
                     <h5 class="fw-bold text-uppercase border-bottom pb-2">BUOU News</h5>
@@ -87,13 +87,13 @@
                                         </p>
 
                                         <!-- MODERN WELCOME CARD -->
-                                        <div class="welcome-card mt-4 mx-auto">
+                                        <div class="welcome-card mt-4 mx-auto text-center p-4">
                                             <h3 id="welcomeTitle" class="welcome-title"></h3>
+                                            <div class="welcome-divider my-2"></div>
                                             <p id="welcomeText" class="welcome-text"></p>
-
-                                            <div class="welcome-signature mt-3">
-                                                <strong id="welcomeSignature"></strong><br>
-                                                <span id="welcomePosition" class="text-muted small"></span>
+                                            <div class="welcome-signature mt-4">
+                                                <strong id="welcomeSignature" class="welcome-name"></strong><br>
+                                                <span id="welcomePosition" class="welcome-position"></span>
                                             </div>
                                         </div>
                                     </div>
@@ -101,7 +101,6 @@
                             </div>
                         </section>
                     </div>
-
 
                     <!------------------->
                     <!-- ABOUT SECTION -->

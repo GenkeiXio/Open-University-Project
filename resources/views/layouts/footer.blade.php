@@ -1,7 +1,7 @@
 <footer class="buou-footer mt-5" style="background-color: #2c2c2c; color: white;">
     <div class="footer-top-bar" style="height: 8px; background-color: #e67e22;"></div>
 
-    <div class="container py-5">
+    <div class="container-fluid py-5">
         <div class="row justify-content-center">
             <div class="col-lg-12">
                 <div class="row g-3 mb-4 justify-content-center text-center">
