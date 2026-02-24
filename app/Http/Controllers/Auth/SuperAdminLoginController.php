@@ -4,32 +4,43 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-use App\Models\SuperAdmin;
 use Illuminate\Support\Facades\Session;
 
 class SuperAdminLoginController extends Controller
 {
-    public function showLogin() {
-        return view('auth.login');
+    public function showLogin()
+    {
+        return view('Auth.login');
     }
 
-    public function login(Request $request) {
+    public function login(Request $request)
+    {
         $request->validate([
             'username' => 'required',
             'password' => 'required'
         ]);
 
-        $admin = SuperAdmin::where('username', $request->username)
-            ->where('status', 'active')
+        // Allow username OR email login
+        $admin = DB::table('super_admins')
+            ->where('username', $request->username)
             ->first();
 
         if (!$admin || !Hash::check($request->password, $admin->password)) {
-            return back()->with('error', 'Invalid credentials');
+            return back()->with('error', 'Invalid username or password');
         }
 
-        Session::put('superadmin', $admin);
+        // Store session
+        Session::put('superadmin', $admin->superadmin_id);
+        Session::put('superadmin_name', $admin->f_name . ' ' . $admin->l_name);
 
-        return redirect('/superadmin/dashboard');
+        return redirect('/Super-Admin/super_admin');
+    }
+
+    public function logout()
+    {
+        Session::flush();
+        return redirect('/superadmin/login');
     }
 }

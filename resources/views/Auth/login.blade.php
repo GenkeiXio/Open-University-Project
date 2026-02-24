@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="style.css">
-    <title>Login and Register</title>
+    <title>OU Login and Register</title>
 </head>
 
     <body>
@@ -74,6 +74,4 @@
     </body>
 
     <link rel="stylesheet" href="{{ asset('css/login.css') }}">
-    <script src="{{ asset('script/login.js') }}"></script>
-
 </html>
