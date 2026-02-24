@@ -1099,6 +1099,11 @@ h6 {
 
 .tab-content {
     margin-top: 1rem; /* Adjusted from 5rem to keep it tight but clean like the screenshot */
+    visibility: hidden;
+}
+
+.tab-content.ready {
+    visibility: visible;
 }
 
 .selection-menu-wrapper {
@@ -1573,4 +1578,53 @@ html {
 .buou-side-news-card:hover {
     border-color: #f15a24 !important;
     background-color: #fff9f7; /* Very slight orange tint on hover */
+}
+
+/* Blue Gradient Module Cards */
+.buou-module-card {
+    /* Exact colors from the blue banner image you provided */
+    background: linear-gradient(180deg, #004a99 0%, #176d86 100%);
+    border-radius: 12px;
+    height: 100%;
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+    cursor: pointer;
+    border: none;
+}
+
+.buou-module-link {
+    text-decoration: none !important;
+}
+
+.buou-module-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 25px rgba(0, 74, 153, 0.3) !important;
+}
+
+/* Typography remains white to pop against the blue */
+.buou-module-title {
+    color: white;
+    font-weight: 800;
+    font-size: 0.75rem;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 2rem;
+}
+
+/* Icon backgrounds stay white */
+.buou-module-icon-bg {
+    background-color: white;
+    width: 85px;
+    height: 85px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px;
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
 }
