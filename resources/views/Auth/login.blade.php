@@ -8,6 +8,10 @@
     <link rel="stylesheet" href="{{ asset('css/login.css') }}">
 </head>
 <body>
+    <a href="{{ route('home') }}" class="back-to-home">
+        <i class="fa-solid fa-house"></i>
+    </a>
+    
     <div class="login-bg-image"></div>
 
     <div class="container" id="container">

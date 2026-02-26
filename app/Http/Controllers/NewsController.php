@@ -2,25 +2,34 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\News; //
 use Illuminate\Http\Request;
+use App\Models\News;     //
+use App\Models\Activity; //
 
 class NewsController extends Controller
 {
     /**
-     * Display the BUOU Home page with dynamic news.
+     * Display the BUOU Home page with News and Activities.
      */
     public function index()
     {
-        // Fetch all news ordered by newest first
+        // 1. Fetch all News, newest first
         $allNews = News::orderBy('created_at', 'desc')->get();
 
-        // Take the 2 most recent news items for the sidebar
+        // 2. Separate the Top 2 for the Sidebar
         $latestNewsItems = $allNews->take(2);
 
-        // Get everything else for the News Section tab (starting from index 2)
+        // 3. Get the rest for the Archive Tab
         $archiveNews = $allNews->slice(2);
 
-        return view('home', compact('latestNewsItems', 'archiveNews'));
+        // 4. Fetch all Calendar Activities, ordered by date
+        $activities = Activity::orderBy('event_date', 'asc')->get();
+
+        // 5. Return the view with all necessary data
+        return view('home', compact(
+            'latestNewsItems', 
+            'archiveNews', 
+            'activities'
+        ));
     }
 }

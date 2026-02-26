@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Auth; //
 
 class SuperAdminLoginController extends Controller
 {
@@ -22,7 +23,6 @@ class SuperAdminLoginController extends Controller
             'password' => 'required'
         ]);
 
-        // Allow username OR email login
         $admin = DB::table('admins')
             ->where('username', $request->username)
             ->first();
@@ -38,9 +38,15 @@ class SuperAdminLoginController extends Controller
         return redirect('/Super-Admin/super_admin');
     }
 
-    public function logout()
+    public function logout(Request $request)
     {
-        Session::flush();
+        // Clear your custom sessions
+        session()->forget('superadmin');
+        session()->forget('superadmin_name');
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
         return redirect('/superadmin/login');
     }
 }

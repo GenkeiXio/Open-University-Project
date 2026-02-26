@@ -72,8 +72,8 @@
           <hr class="my-3">
 
 
-          <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="flex items-center gap-2 px-3 text-gray-700 dark:text-gray-100">
-            <i data-lucide="log-out"></i> LogOut
+          <a href="{{ route('logout') }}" class="flex items-center gap-2 px-3 text-red-600 hover:bg-red-100 dark:hover:bg-red-800/40 transition">
+              <i data-lucide="log-out"></i> LogOut
           </a>
           <form id="logout-form" method="POST" action="{{ route('logout') }}" class="hidden">@csrf</form>
         </nav>
