@@ -11,7 +11,7 @@ class SuperAdminMiddleware
 {
     public function handle(Request $request, Closure $next): Response
     {
-        if (!Session::has('superadmin')) {
+        if (!Session::has('admin_id')) {
             return redirect('/superadmin/login');
         }
 

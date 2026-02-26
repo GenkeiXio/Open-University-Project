@@ -105,7 +105,7 @@
             <!-- Welcome -->
             <p class="text-gray-500 dark:text-gray-400 mb-6">
             Welcome to the Open University Administrative Portal, 
-            <span class="font-semibold text-blue-600 dark:text-blue-400">{{ session('superadmin_name') ?? 'Super Admin' }}</span> 
+            <span class="font-semibold text-blue-600 dark:text-blue-400">{{ session('admin_name') ?? 'Super Admin' }}</span> 
             👋 You have full system oversight and management privileges.
             </p>
 

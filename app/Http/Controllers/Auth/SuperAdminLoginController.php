@@ -22,7 +22,6 @@ class SuperAdminLoginController extends Controller
             'password' => 'required'
         ]);
 
-        // Allow username OR email login
         $admin = DB::table('admins')
             ->where('username', $request->username)
             ->first();
@@ -31,11 +30,25 @@ class SuperAdminLoginController extends Controller
             return back()->with('error', 'Invalid username or password');
         }
 
-        // Store session
-        Session::put('superadmin', $admin->admin_id);
-        Session::put('superadmin_name', $admin->f_name . ' ' . $admin->l_name);
+        if ($admin->status !== 'active') {
+            return back()->with('error', 'Account is inactive. Contact administrator.');
+        }
 
-        return redirect('/Super-Admin/super_admin');
+        // Store session
+        Session::put('admin_id', $admin->admin_id);
+        Session::put('admin_name', $admin->f_name . ' ' . $admin->l_name);
+        Session::put('admin_role', $admin->role);
+
+        // 🔥 ROLE BASED REDIRECT
+        if ($admin->role === 'super admin') {
+            return redirect('/Super-Admin/super_admin');
+        }
+
+        if ($admin->role === 'faculty') {
+            return redirect()->route('Faculty.faculty');
+        }
+
+        return back()->with('error', 'Unauthorized role.');
     }
 
     public function logout()

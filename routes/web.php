@@ -23,3 +23,12 @@ Route::middleware(['superadmin'])->group(function () {
         ]);
     });
 });
+
+// Faculty Dashboard
+Route::middleware(['superadmin'])->group(function () {
+    Route::get('/Faculty/faculty', function () {
+        return view('Faculty.faculty', [
+            'staffName' => session('admin_name')
+        ]);
+    })->name('Faculty.faculty');
+});
