@@ -9,8 +9,8 @@ class SuperAdmin extends Authenticatable
 {
     use Notifiable;
 
-    protected $table = 'super_admins';
-    protected $primaryKey = 'superadmin_id';
+    protected $table = 'admins';
+    protected $primaryKey = 'admin_id';
 
     protected $fillable = [
         'f_name', 'l_name', 'username', 'password', 'role', 'status'

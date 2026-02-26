@@ -23,7 +23,7 @@ class SuperAdminLoginController extends Controller
         ]);
 
         // Allow username OR email login
-        $admin = DB::table('super_admins')
+        $admin = DB::table('admins')
             ->where('username', $request->username)
             ->first();
 
@@ -32,7 +32,7 @@ class SuperAdminLoginController extends Controller
         }
 
         // Store session
-        Session::put('superadmin', $admin->superadmin_id);
+        Session::put('superadmin', $admin->admin_id);
         Session::put('superadmin_name', $admin->f_name . ' ' . $admin->l_name);
 
         return redirect('/Super-Admin/super_admin');
