@@ -26,7 +26,7 @@ class NewsSeeder extends Seeder
             'title' => 'Nebres leads national push for Culture',
             'content' => 'Details about the PASUC Summit...',
             'image' => 'News/PASUC_Summit.jpg',
-            'created_at' => now()->subDays(5),
+            'created_at' => now()->subDays(1),
         ]);
 
         // News #3 (Older - will automatically move to Archive)
@@ -34,7 +34,7 @@ class NewsSeeder extends Seeder
             'title' => 'Old News Item',
             'content' => 'This will move to the News Section tab...',
             'image' => 'News/image3.jpg',
-            'created_at' => now()->subDays(1),
+            'created_at' => now()->subDays(5),
         ]);
     }
 }

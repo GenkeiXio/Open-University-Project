@@ -70,11 +70,11 @@
             <hr class="my-3">
 
             <!-- Logout -->
-            <form action="{{ route('logout') }}" method="POST">
-                @csrf
-                <button type="submit" class="btn btn-link nav-link">Logout</button>
-            </form>
-            <form id="logout-form" method="GET" action="{{ url('/superadmin/logout') }}" class="hidden">@csrf</form>
+            <div class="pt-4">
+                <a href="{{ route('logout') }}" class="flex items-center gap-2 w-full px-3 py-2 rounded-xl text-red-600 hover:bg-red-100 dark:hover:bg-red-800/40 transition">
+                    <i data-lucide="log-out"></i> Logout
+                </a>
+            </div>
             </nav>
         </aside>
 
@@ -198,6 +198,34 @@
                 No system logs available yet
             </div>
             </div>
+
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow p-6 mt-6">
+    <h3 class="text-lg font-semibold mb-4">Current Calendar Activities</h3>
+    <div class="overflow-x-auto">
+        <table class="w-full text-left text-sm">
+            <thead>
+                <tr class="border-b dark:border-gray-700">
+                    <th class="py-2 px-4">Date</th>
+                    <th class="py-2 px-4">Title</th>
+                    <th class="py-2 px-4">Location/Time</th>
+                    <th class="py-2 px-4 text-center">Theme</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($activities as $activity)
+                <tr class="border-b dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700/50">
+                    <td class="py-3 px-4 font-medium">{{ \Carbon\Carbon::parse($activity->event_date)->format('M d, Y') }}</td>
+                    <td class="py-3 px-4">{{ $activity->title }}</td>
+                    <td class="py-3 px-4 text-gray-500">{{ $activity->time_or_location }}</td>
+                    <td class="py-3 px-4 text-center">
+                        <span class="inline-block w-3 h-3 rounded-full" style="background-color: {{ $activity->color_code }}"></span>
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+</div>
 
         </main>
     </div>
