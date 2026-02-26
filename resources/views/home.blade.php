@@ -81,7 +81,8 @@
 
                     @include('partials.FAQs')
 
-                </div> 
+                </div>
+                 
             </div>
 
             <!--------------------->
@@ -100,7 +101,5 @@
     </div>
 
     @include('layouts.footer')
-
-    <script src="{{ asset('script/refresh.js') }}"></script>
 
 @endsection

@@ -36,7 +36,7 @@
         <script src="{{ asset('script/home.js') }}"></script>
 
         <script src="https://unpkg.com/lucide@latest"></script>
-        
+        <script src="{{ asset('script/refresh.js') }}"></script>
         <script>
             lucide.createIcons();
         </script>

@@ -70,9 +70,10 @@
             <hr class="my-3">
 
             <!-- Logout -->
-            <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="flex items-center gap-2 px-3 text-gray-700 dark:text-gray-100">
-                <i data-lucide="log-out"></i> LogOut
-            </a>
+            <form action="{{ route('logout') }}" method="POST">
+                @csrf
+                <button type="submit" class="btn btn-link nav-link">Logout</button>
+            </form>
             <form id="logout-form" method="GET" action="{{ url('/superadmin/logout') }}" class="hidden">@csrf</form>
             </nav>
         </aside>

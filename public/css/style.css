@@ -1628,3 +1628,30 @@ html {
     padding: 12px;
     box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
 }
+
+/* Custom Scrollbar for Calendar */
+.calendar-scroll-area::-webkit-scrollbar {
+    width: 6px;
+}
+
+.calendar-scroll-area::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+.calendar-scroll-area::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 10px;
+}
+
+.calendar-scroll-area::-webkit-scrollbar-thumb:hover {
+    background: #176d86; /* Brand Blue */
+}
+
+.calendar-day-item {
+    transition: transform 0.2s ease;
+}
+
+.calendar-day-item:hover {
+    transform: translateX(5px);
+}

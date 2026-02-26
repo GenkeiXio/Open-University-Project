@@ -29,50 +29,99 @@
                         </div>
                     </div>
 
+                    <!----------------->
+                    <!-- Latest News -->
+                    <!----------------->
+
                     <div class="buou-side-news-container mt-4 text-start">
                         <div class="d-flex align-items-center mb-3">
                             <h6 class="fw-bold text-uppercase mb-0" style="letter-spacing: 1.5px; color: #333; font-size: 0.9rem;">
                                 Latest News
                             </h6>
-                            <div class="flex-grow-1 ms-3" style="height: 2px; background: linear-gradient(to right, #eee, transparent);">
-                                
-                            </div>
+                            <div class="flex-grow-1 ms-3" style="height: 2px; background: linear-gradient(to right, #eee, transparent);"></div>
                         </div>
 
-                        <div class="buou-side-news-card mb-4 p-3 shadow-sm" style="background: #ffffff; border-radius: 12px; border: 1px solid #f0f0f0;">
-                            <div class="buou-side-news-img-frame mb-3" style="overflow: hidden; border-radius: 8px;">
-                                <img src="{{ asset('assets/News/RTSPC_News.jpg') }}" 
-                                    class="img-fluid" 
-                                    alt="News 1" 
-                                    style="transition: transform 0.5s ease; width: 100%; height: auto;">
+                        @forelse($latestNewsItems as $news)
+                            <div class="buou-side-news-card mb-4 p-3 shadow-sm" style="background: #ffffff; border-radius: 12px; border: 1px solid #f0f0f0;">
+                                <div class="buou-side-news-img-frame mb-3" style="overflow: hidden; border-radius: 8px;">
+                                    <img src="{{ asset('assets/' . $news->image) }}" 
+                                        class="img-fluid" 
+                                        alt="{{ $news->title }}" 
+                                        style="transition: transform 0.5s ease; width: 100%; height: auto;">
+                                </div>
+                                <h6 class="buou-side-news-title fw-bold mb-1" style="line-height: 1.4; color: #2d3436; font-size: 0.85rem;">
+                                    {{ $news->title }}
+                                </h6>
+                                <p class="buou-side-news-date mb-3" style="font-size: 0.7rem; color: #a0a0a0; font-style: italic;">
+                                    {{ $news->created_at->format('F d, Y') }}
+                                </p>
+                                <div class="text-center">
+                                    <a href="#news-tab" class="buou-side-news-btn" data-bs-toggle="tab" data-bs-target="#news-section">READ MORE</a>
+                                </div>
                             </div>
-                            <h6 class="buou-side-news-title fw-bold mb-1" style="line-height: 1.4; color: #2d3436; font-size: 0.85rem;">
-                                BUeño journos shine at 23rd RTSPC; 20 advance to Luzon-Wide tilt
+                        @empty
+                            <p class="text-muted small text-center">No recent updates available.</p>
+                        @endforelse
+                    </div>
+
+                    <!---------------------------->
+                    <!-- Calendar of Activities -->
+                    <!---------------------------->
+
+                    <div class="buou-side-calendar-container mt-5 text-start">
+                        <div class="d-flex align-items-center mb-3">
+                            <h6 class="fw-bold text-uppercase mb-0" style="letter-spacing: 1.5px; color: #333; font-size: 0.9rem;">
+                                Calendar of Activities
                             </h6>
-                            <p class="buou-side-news-date mb-3" style="font-size: 0.7rem; color: #a0a0a0; font-style: italic;">
-                                February 2, 2026
-                            </p>
-                            <div class="text-center">
-                                <a href="#" class="buou-side-news-btn">READ MORE</a>
-                            </div>
+                            <div class="flex-grow-1 ms-3" style="height: 2px; background: linear-gradient(to right, #eee, transparent);"></div>
                         </div>
 
-                        <div class="buou-side-news-card mb-4 p-3 shadow-sm" style="background: #ffffff; border-radius: 12px; border: 1px solid #f0f0f0;">
-                            <div class="buou-side-news-img-frame mb-3" style="overflow: hidden; border-radius: 8px;">
-                                <img src="{{ asset('assets/News/PASUC_Summit.jpg') }}" 
-                                    class="img-fluid" 
-                                    alt="News 2" 
-                                    style="transition: transform 0.5s ease; width: 100%; height: auto;">
+                        <div class="calendar-scroll-area shadow-sm" style="max-height: 400px; overflow-y: auto; background: #fff; border-radius: 12px; border: 1px solid #f0f0f0; padding: 15px;">
+                            
+                            <div class="calendar-day-item d-flex mb-4">
+                                <div class="calendar-date-box text-center me-3" style="min-width: 50px;">
+                                    <div class="fw-bold text-white rounded-top" style="background: #176d86; font-size: 0.7rem; padding: 2px 0;">FEB</div>
+                                    <div class="fw-bold border border-top-0 rounded-bottom" style="font-size: 1.1rem; color: #333; padding: 5px 0; background: #f8f9fa;">24</div>
+                                </div>
+                                <div class="calendar-info">
+                                    <h6 class="fw-bold mb-1" style="font-size: 0.85rem; color: #2d3436;">Comprehensive Examinations</h6>
+                                    <p class="mb-0 text-muted" style="font-size: 0.75rem;"><i class="bi bi-clock me-1"></i> 7:00 PM - Online</p>
+                                </div>
                             </div>
-                            <h6 class="buou-side-news-title fw-bold mb-1" style="line-height: 1.4; color: #2d3436; font-size: 0.85rem;">
-                                Nebres leads national push for Culture, Arts at 2026 PASUC Summit
-                            </h6>
-                            <p class="buou-side-news-date mb-3" style="font-size: 0.7rem; color: #a0a0a0; font-style: italic;">
-                                January 22, 2026
-                            </p>
-                            <div class="text-center">
-                                <a href="#" class="buou-side-news-btn">READ MORE</a>
+
+                            <div class="calendar-day-item d-flex mb-4">
+                                <div class="calendar-date-box text-center me-3" style="min-width: 50px;">
+                                    <div class="fw-bold text-white rounded-top" style="background: #ea6a0e; font-size: 0.7rem; padding: 2px 0;">MAR</div>
+                                    <div class="fw-bold border border-top-0 rounded-bottom" style="font-size: 1.1rem; color: #333; padding: 5px 0; background: #f8f9fa;">05</div>
+                                </div>
+                                <div class="calendar-info">
+                                    <h6 class="fw-bold mb-1" style="font-size: 0.85rem; color: #2d3436;">Thesis Defense Period</h6>
+                                    <p class="mb-0 text-muted" style="font-size: 0.75rem;"><i class="bi bi-geo-alt me-1"></i> BUOU Conference Room</p>
+                                </div>
                             </div>
+
+                            <div class="calendar-day-item d-flex mb-4">
+                                <div class="calendar-date-box text-center me-3" style="min-width: 50px;">
+                                    <div class="fw-bold text-white rounded-top" style="background: #176d86; font-size: 0.7rem; padding: 2px 0;">MAR</div>
+                                    <div class="fw-bold border border-top-0 rounded-bottom" style="font-size: 1.1rem; color: #333; padding: 5px 0; background: #f8f9fa;">15</div>
+                                </div>
+                                <div class="calendar-info">
+                                    <h6 class="fw-bold mb-1" style="font-size: 0.85rem; color: #2d3436;">Deadline: Grade Submission</h6>
+                                    <p class="mb-0 text-muted" style="font-size: 0.75rem;"><i class="bi bi-info-circle me-1"></i> 2nd Semester AY 2025-26</p>
+                                </div>
+                            </div>
+
+                            <div class="calendar-day-item d-flex">
+                                <div class="calendar-date-box text-center me-3" style="min-width: 50px;">
+                                    <div class="fw-bold text-white rounded-top" style="background: #ea6a0e; font-size: 0.7rem; padding: 2px 0;">APR</div>
+                                    <div class="fw-bold border border-top-0 rounded-bottom" style="font-size: 1.1rem; color: #333; padding: 5px 0; background: #f8f9fa;">20</div>
+                                </div>
+                                <div class="calendar-info">
+                                    <h6 class="fw-bold mb-1" style="font-size: 0.85rem; color: #2d3436;">BU Day Celebration</h6>
+                                    <p class="mb-0 text-muted" style="font-size: 0.75rem;"><i class="bi bi-flag me-1"></i> Main Campus</p>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                 </div>
