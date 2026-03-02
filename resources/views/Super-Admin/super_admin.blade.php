@@ -1,253 +1,78 @@
-<!DOCTYPE html>
-<html lang="en" class="transition-colors duration-300">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>OU Super Admin Dashboard</title>
+@extends('Super-Admin.adminlayout')
 
-  <!-- Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-    }
-  </script>
+@section('title', 'OU Super Admin Dashboard')
 
-  <!-- Lucide Icons -->
-  <script src="https://unpkg.com/lucide@latest"></script>
+@section('content')
 
-  <!-- Inter Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-  <style>
-    body {
-      font-family: 'Inter', sans-serif;
-      cursor: default !important;  /* Forces arrow pointer everywhere */
-      user-select: none;  /* Blocks text selection/editing on non-inputs */
-    }
+    <div class="max-w-7xl mx-auto">
 
-    input, textarea {
-      cursor: text !important;  /* Keeps I-beam in text fields */
-      user-select: text;  /* Allows selection in inputs */
-    }
-
-    .custom-scrollbar::-webkit-scrollbar {
-      width: 6px;
-    }
-    .custom-scrollbar::-webkit-scrollbar-thumb {
-      background-color: rgba(156, 163, 175, 0.6); /* gray-400 */
-      border-radius: 4px;
-    }
-    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-      background-color: rgba(107, 114, 128, 0.8); /* gray-500 */
-    }
-  </style>
-</head>
-  <body class="bg-white dark:bg-[#1a1a1a] text-gray-700 dark:text-gray-200 transition-colors duration-300">
-    <div class="flex min-h-screen">
-        <!-- Sidebar -->
-        <aside class="w-64 border-r border-gray-200 dark:border-gray-700 bg-white dark:bg-[#181818] p-4 space-y-4">
-            <!-- Logo -->
-            <div class="mb-6 flex items-center space-x-2">
-            <h1 class="text-[22px] font-extrabold uppercase tracking-wide">
-                <span class="text-blue-500">BICOL</span> <span class="text-orange-500">UNIVERSITY</span>
-            </h1>
+        <div class="flex justify-between items-center mb-10">
+            <div>
+                <h1 class="text-4xl font-bold text-gray-900 dark:text-gray-100">Super Admin Dashboard</h1>
+                <p class="text-gray-500 dark:text-gray-400 mt-1">Full control over the BUOU platform.</p>
             </div>
+            <!-- Optional: Add a button for quick actions -->
 
-            <!-- Sidebar menu -->
-            <nav class="space-y-2 text-sm">
-            <div class="text-gray-400 font-semibold dark:text-gray-500">Open University</div>
-
-            <!-- Dashboard link -->
-            <a href="{{ url('/Super-Admin/super_admin') }}" class="flex items-center gap-2 w-full px-3 py-2 rounded-xl bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-100 hover:bg-blue-100 dark:hover:bg-blue-800/40 transition">
-                <i data-lucide="house"></i> Dashboard
-            </a>
-
-            <!-- User Management (UI only) -->
-            <a href="#" class="flex items-center gap-2 w-full px-3 py-2 rounded-xl bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-100 hover:bg-blue-100 dark:hover:bg-blue-800/40 transition">
-                <i data-lucide="users"></i> User Management
-            </a>
-
-            <hr class="my-3">
-
-            <!-- Logout -->
-            <div class="pt-4">
-                <a href="{{ route('logout') }}" class="flex items-center gap-2 w-full px-3 py-2 rounded-xl text-red-600 hover:bg-red-100 dark:hover:bg-red-800/40 transition">
-                    <i data-lucide="log-out"></i> Logout
-                </a>
-            </div>
-            </nav>
-        </aside>
-
-        <!-- Main Content -->
-        <main class="flex-1 p-6">
             <!-- Topbar -->
-            <div class="flex justify-between items-center mb-6">
-            <div class="flex items-center gap-3 text-lg font-semibold">
-                <i data-lucide="layout-dashboard"></i> Super Admin Dashboard
-            </div>
+            <div class="flex justify-between items-center mb-8">
+                <button class="px-4 py-2 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700 transition">
+                    + New Action
+                </button>
 
-            <div class="flex items-center gap-3">
-                <!-- Monthly, Quarterly, and Yearly Dropdown -->
-                <div class="relative">
-                <select id="analyticsRange" class="bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 text-sm rounded-lg px-3 py-2 pr-8 cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500">
-                    <option value="monthly" selected>Monthly</option>
-                    <option value="quarterly">Quarterly</option>
-                    <option value="yearly">Yearly</option>
-                </select>
-                </div>
+                <button onclick="toggleSidebar()"
+                    class="md:hidden p-2 rounded bg-gray-200 dark:bg-gray-700">
+                    <i data-lucide="menu"></i>
+                </button>
 
-                <!-- Toggle Dark Mode -->
-                <button id="themeToggle" class="text-gray-600 dark:text-gray-300 cursor-pointer" title="Toggle Dark Mode">
-                <span id="themeIcon" data-lucide="moon"></span>
+                <button id="themeToggle"
+                    class="p-2 rounded bg-gray-200 dark:bg-gray-700 hover:scale-105 transition">
+                    <i id="themeIcon" data-lucide="moon"></i>
                 </button>
             </div>
-            </div>
+            
+        </div>
 
-            <!-- Welcome -->
-            <p class="text-gray-500 dark:text-gray-400 mb-6">
-            Welcome to the Open University Administrative Portal, 
-            <span class="font-semibold text-blue-600 dark:text-blue-400">{{ session('superadmin_name') ?? 'Super Admin' }}</span> 
-            👋 You have full system oversight and management privileges.
-            </p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
 
-            <!-- Stats Grid (UI Only) -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
-            <div class="p-4 bg-white dark:bg-gray-800 rounded-xl shadow">
-                <div class="flex justify-between items-center">
-                <p class="text-gray-500 text-sm">Active Super Admin</p>
-                <i data-lucide="users" class="text-gray-400 w-5 h-5"></i>
-                </div>
-                <h2 class="text-2xl font-bold">0</h2>
-                <p class="text-green-600 text-xs font-medium">Active in last 30 days</p>
-            </div>
+            @php
+                $cards = [
+                    ['icon'=>'newspaper','title'=>'News Articles','desc'=>'Create and manage news posts','color'=>'bg-blue-100 dark:bg-blue-900/40'],
+                    ['icon'=>'graduation-cap','title'=>'Programs','desc'=>'Manage academic programs','color'=>'bg-green-100 dark:bg-green-900/40'],
+                    ['icon'=>'bot','title'=>'Chatbot Knowledge','desc'=>'Update chatbot responses','color'=>'bg-purple-100 dark:bg-purple-900/40'],
+                    ['icon'=>'users','title'=>'User Management','desc'=>'Approve users and assign roles','color'=>'bg-yellow-100 dark:bg-yellow-900/40'],
+                    ['icon'=>'settings','title'=>'Site Settings','desc'=>'Contact info and announcements','color'=>'bg-red-100 dark:bg-red-900/40'],
+                ];
+            @endphp
 
-            <div class="p-4 bg-white dark:bg-gray-800 rounded-xl shadow">
-                <div class="flex justify-between items-center">
-                <p class="text-gray-500 text-sm">Active Faculty</p>
-                <i data-lucide="users" class="text-gray-400 w-5 h-5"></i>
-                </div>
-                <h2 class="text-2xl font-bold">0</h2>
-                <p class="text-green-600 text-xs font-medium">Active in last 30 days</p>
-            </div>
-
-            <div class="p-4 bg-white dark:bg-gray-800 rounded-xl shadow">
-                <div class="flex justify-between items-center">
-                <p class="text-gray-500 text-sm">Inactive Super Admin</p>
-                <i data-lucide="users" class="text-gray-400 w-5 h-5"></i>
-                </div>
-                <h2 class="text-2xl font-bold">0</h2>
-                <p class="text-green-600 text-xs font-medium">Active in last 30 days</p>
-            </div>
-
-            <div class="p-4 bg-white dark:bg-gray-800 rounded-xl shadow">
-                <div class="flex justify-between items-center">
-                <p class="text-gray-500 text-sm">Inactive Faculty</p>
-                <i data-lucide="users" class="text-gray-400 w-5 h-5"></i>
-                </div>
-                <h2 class="text-2xl font-bold">0</h2>
-                <p class="text-green-600 text-xs font-medium">Active in last 30 days</p>
-            </div>
-            </div>
-
-            <!-- Quick Actions (UI Only) -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-            <div class="bg-white dark:bg-gray-800 rounded-xl shadow p-4">
-                <h3 class="font-semibold mb-4">Quick Actions</h3>
-                <ul class="space-y-3">
-                <li>
-                    <a href="#" class="flex items-center gap-3 p-3 rounded-lg bg-blue-50 dark:bg-blue-900/20 text-gray-700 dark:text-gray-300 hover:bg-blue-100 dark:hover:bg-blue-800/40 transition">
-                    <i data-lucide="upload" class="w-5 h-5"></i>
-                    <div>
-                        <p class="font-medium">Upload Document</p>
-                        <p class="text-sm text-gray-500 dark:text-gray-400">Add new documents</p>
+            @foreach($cards as $card)
+                <div class="flex items-start gap-4 p-6 rounded-xl bg-white dark:bg-[#1e293b] shadow hover:shadow-xl hover:scale-105 transition transform cursor-pointer">
+                    
+                    <div class="w-12 h-12 flex items-center justify-center rounded-lg {{ $card['color'] }}">
+                        <i data-lucide="{{ $card['icon'] }}" class="text-2xl text-gray-700 dark:text-gray-200"></i>
                     </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="flex items-center gap-3 p-3 rounded-lg bg-blue-50 dark:bg-blue-900/20 text-gray-700 dark:text-gray-300 hover:bg-blue-100 dark:hover:bg-blue-800/40 transition">
-                    <i data-lucide="search" class="w-5 h-5"></i>
-                    <div>
-                        <p class="font-medium">Search Documents</p>
-                        <p class="text-sm text-gray-500 dark:text-gray-400">Find documents quickly</p>
+
+                    <div class="flex-1">
+                        <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100">{{ $card['title'] }}</h3>
+                        <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">{{ $card['desc'] }}</p>
                     </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="flex items-center gap-3 p-3 rounded-lg bg-blue-50 dark:bg-blue-900/20 text-gray-700 dark:text-gray-300 hover:bg-blue-100 dark:hover:bg-blue-800/40 transition">
-                    <i data-lucide="folder-open" class="w-5 h-5"></i>
-                    <div>
-                        <p class="font-medium">View Categories</p>
-                        <p class="text-sm text-gray-500 dark:text-gray-400">Browse by document type</p>
-                    </div>
-                    </a>
-                </li>
-                </ul>
-            </div>
+                </div>
+            @endforeach
 
-            <div class="bg-white dark:bg-gray-800 rounded-xl shadow p-4">
-                <h3 class="font-semibold mb-4">Recent Activity</h3>
-                <p class="text-gray-400 dark:text-gray-500 text-sm italic">No recent activities</p>
-            </div>
-            </div>
-
-            <!-- System Logs (UI Only) -->
-            <div class="bg-white dark:bg-gray-800 rounded-xl shadow p-6 mt-6">
-            <h3 class="text-lg font-semibold mb-2">System Logs</h3>
-            <p class="text-gray-500 dark:text-gray-400 text-sm mb-6">Latest actions recorded in system logs</p>
-            <div class="flex items-center justify-center h-32 text-gray-400 dark:text-gray-500 text-sm italic">
-                No system logs available yet
-            </div>
-            </div>
-
-            <div class="bg-white dark:bg-gray-800 rounded-xl shadow p-6 mt-6">
-    <h3 class="text-lg font-semibold mb-4">Current Calendar Activities</h3>
-    <div class="overflow-x-auto">
-        <table class="w-full text-left text-sm">
-            <thead>
-                <tr class="border-b dark:border-gray-700">
-                    <th class="py-2 px-4">Date</th>
-                    <th class="py-2 px-4">Title</th>
-                    <th class="py-2 px-4">Location/Time</th>
-                    <th class="py-2 px-4 text-center">Theme</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($activities as $activity)
-                <tr class="border-b dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700/50">
-                    <td class="py-3 px-4 font-medium">{{ \Carbon\Carbon::parse($activity->event_date)->format('M d, Y') }}</td>
-                    <td class="py-3 px-4">{{ $activity->title }}</td>
-                    <td class="py-3 px-4 text-gray-500">{{ $activity->time_or_location }}</td>
-                    <td class="py-3 px-4 text-center">
-                        <span class="inline-block w-3 h-3 rounded-full" style="background-color: {{ $activity->color_code }}"></span>
-                    </td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
-    </div>
-</div>
-
-        </main>
+        </div>
     </div>
 
-    <!-- Footer -->
-    <footer class="text-center py-4 text-xs text-gray-400 dark:text-gray-500">
-    © 2025 Bicol University Board of Regents • All rights reserved.
-    </footer>
-
-        <script>
-        // Lucide Icons
+    <script>
         lucide.createIcons();
 
-        // Dark Mode Toggle
+        // Dark Mode
         const toggle = document.getElementById('themeToggle');
-        const icon = document.getElementById('themeIcon');
         const html = document.documentElement;
+        const icon = document.getElementById('themeIcon');
 
-        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        if (localStorage.theme === 'dark') {
             html.classList.add('dark');
             icon.setAttribute("data-lucide", "sun");
-        } else icon.setAttribute("data-lucide", "moon");
+        }
 
         toggle.addEventListener('click', () => {
             html.classList.toggle('dark');
@@ -256,6 +81,12 @@
             lucide.createIcons();
             localStorage.theme = isDark ? 'dark' : 'light';
         });
-        </script>
-    </body>
-</html>
+
+        // Mobile Sidebar
+        function toggleSidebar() {
+            document.getElementById('sidebar')
+                .classList.toggle('-translate-x-full');
+        }
+    </script>
+
+@endsection

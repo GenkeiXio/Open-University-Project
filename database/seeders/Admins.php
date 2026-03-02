@@ -21,11 +21,11 @@ class Admins extends Seeder
         ]);
 
         SuperAdmin::create([
-            'f_name' => 'Juan',
-            'l_name' => 'Dela Cruz',
-            'username' => 'faculty@bicol-u.edu.ph',
-            'password' => Hash::make('Faculty2026'),
-            'role' => 'faculty',
+            'f_name' => 'OpenU',
+            'l_name' => 'Admin',
+            'username' => 'admin@bicol-u.edu.ph',
+            'password' => Hash::make('admin2026'),
+            'role' => 'admin',
             'status' => 'active'
         ]);
     }

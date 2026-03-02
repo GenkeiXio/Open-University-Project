@@ -263,6 +263,11 @@ h6 {
     font-weight: bold;
 }
 
+.fade-out {
+    opacity: 0;
+    transition: opacity 0.25s ease;
+}
+
 /* ===========================
     STAT CARDS (COMBINED & ORGANIZED)
     =========================== */

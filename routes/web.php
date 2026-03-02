@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\SuperAdminLoginController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\ActivityController;
+use App\Http\Controllers\Auth\FacultyController;
 
 // --- Public Routes ---
 // The Home Route displays the News and the Calendar
@@ -15,21 +16,40 @@ Route::post('/superadmin/login', [SuperAdminLoginController::class, 'login']);
 // Change this in web.php
 Route::match(['get', 'post'], '/superadmin/logout', [SuperAdminLoginController::class, 'logout'])->name('logout');
 
+Route::get('/faculty/login', [FacultyController::class, 'showLogin'])->name('Auth.login');
+Route::post('/faculty/login', [FacultyController::class, 'login']);
+
 
 // --- Protected Super Admin Routes ---
 Route::middleware(['superadmin'])->group(function () {
-    
-    // Dashboard View
+
+    // ✅ Super Admin Dashboard
     Route::get('/Super-Admin/super_admin', function () {
         return view('Super-Admin.super_admin', [
-            'staffName' => session('superadmin_name'),
-            'activities' => \App\Models\Activity::orderBy('event_date', 'asc')->get() // Fetch data
+            'staffName' => session('superadmin_name')
         ]);
-    });
+    })->name('Super-Admin.super_admin');
 
-    // Activity Management (Handled by ActivityController)
+    // ✅ Faculty Page (if you need it)
+    Route::get('/Faculty/faculty', function () {
+        return view('Faculty.faculty', [
+            'staffName' => session('faculty_name')
+        ]);
+    })->name('Faculty.faculty');
+
+    // ✅ Activity Management
     Route::post('/admin/activities/store', [ActivityController::class, 'store'])->name('activities.store');
-    
-    // News Management (If you add a news form later)
+
+    // ✅ News Management (optional)
     // Route::post('/admin/news/store', [NewsController::class, 'store'])->name('news.store');
+});
+
+Route::middleware(['faculty'])->group(function () {
+
+    Route::get('/Faculty/faculty', function () {
+        return view('Faculty.faculty', [
+            'staffName' => session('faculty_name')
+        ]);
+    })->name('Faculty.faculty');
+
 });

@@ -1,6 +1,6 @@
 <div class="col-lg-3 d-none d-lg-block border-start pt-0 pb-5 text-center"> 
     <div class="px-4" style="top: 110px;"> 
-        <div id="facultySlider" class="carousel slide mb-5" data-bs-ride="false">
+        <div id="facultySlider" class="carousel slide mb-5" data-bs-ride="carousel" data-bs-interval="5000" data-bs-pause="hover">
             <div class="carousel-inner text-center pb-2">
                 <div class="carousel-item active">
                     <div class="mb-3 mx-auto" style="max-width: 205px;">

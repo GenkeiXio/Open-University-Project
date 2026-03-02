@@ -11,18 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('admins', function (Blueprint $table) {
-            $table->id('admin_id');
+        Schema::create('faculty', function (Blueprint $table) {
+            $table->id('faculty_id');
             $table->string('f_name', 45);
             $table->string('l_name', 45);
             $table->string('username', 45)->unique();
             $table->string('password', 255);
-            $table->enum('role', ['super admin', 'admin']);
+            $table->string('role', 25)->default('faculty');
             $table->enum('status', ['active', 'inactive'])->default('active');
             $table->json('permissions')->nullable();
             $table->datetime('last_login')->nullable();
             $table->datetime('last_logout')->nullable();
-            $table->timestamps(); // This automatically adds created_at and updated_at
+            $table->timestamps(); 
         });
     }
 
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('admins');
+        Schema::dropIfExists('faculty');
     }
 };
