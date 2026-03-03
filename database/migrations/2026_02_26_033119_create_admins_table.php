@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('l_name', 45);
             $table->string('username', 45)->unique();
             $table->string('password', 255);
-            $table->enum('role', ['super admin', 'admin']);
+            $table->enum('role', ['super admin', 'admin', 'faculty']);
             $table->enum('status', ['active', 'inactive'])->default('active');
             $table->json('permissions')->nullable();
             $table->datetime('last_login')->nullable();

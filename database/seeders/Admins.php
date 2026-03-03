@@ -28,5 +28,14 @@ class Admins extends Seeder
             'role' => 'admin',
             'status' => 'active'
         ]);
+
+        SuperAdmin::create([
+            'f_name' => 'OpenU',
+            'l_name' => 'Faculty',
+            'username' => 'faculty@bicol-u.edu.ph',
+            'password' => Hash::make('faculty2026'),
+            'role' => 'faculty',
+            'status' => 'active'
+        ]);
     }
 }

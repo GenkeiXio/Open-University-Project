@@ -15,7 +15,6 @@ class DatabaseSeeder extends Seeder
         $this->call([
             Admins::class,     // Creates your super admin and admin accounts
             NewsSeeder::class, // Fills the news and archive tables
-            FacultySeeder::class, //Creates faculty accounts
         ]);
     }
 }

@@ -87,7 +87,7 @@
     </aside>
 
     <!-- ================= MAIN ================= -->
-    <d<iv class="flex-1 md:ml-64 p-6 md:p-10">
+    <div class="flex-1 md:ml-64 p-6 md:p-10">
         @yield('content')
     </div>
 </div>
