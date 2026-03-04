@@ -22,8 +22,11 @@ Route::middleware(['superadmin'])->group(function () {
     // Match this name to the controller's redirect logic
     Route::get('/Super-Admin/super_admin', function () {
         return view('Super-Admin.super_admin');
-    })->name('Super-Admin.super_admin'); 
+    })->name('Super-Admin.super_admin');
+});
 
+// --- Protected Faculty Routes ---
+Route::middleware(['faculty'])->group(function () {
     Route::get('/Faculty/faculty', function () {
         return view('Faculty.faculty', [
             'staffName' => session('admin_name')
