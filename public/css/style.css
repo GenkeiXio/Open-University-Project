@@ -1596,6 +1596,12 @@ html {
         box-shadow 0.3s ease;
     cursor: pointer;
     border: none;
+    /* ensure content stacks vertically */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem 1rem;
 }
 
 .buou-module-link {
@@ -1611,28 +1617,31 @@ html {
 .buou-module-title {
     color: white;
     font-weight: 800;
-    font-size: 0.75rem;
+    font-size: 0.9rem;
     letter-spacing: 0.5px;
     text-transform: uppercase;
-    margin-bottom: 1.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 2rem;
+    margin-top: 0.75rem;
+    text-align: center;
 }
 
-/* Icon backgrounds stay white */
+/* Icon container now transparent/none so icon sits directly on gradient */
 .buou-module-icon-bg {
-    background-color: white;
-    width: 85px;
-    height: 85px;
-    border-radius: 50%;
+    background-color: transparent;
+    width: 60px;
+    height: 60px;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 12px;
-    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
 }
+
+/* ensure svg/png icons are white */
+.buou-module-icon-bg img.module-icon {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: brightness(0) invert(1);
+}
+
 
 /* Custom Scrollbar for Calendar */
 .calendar-scroll-area::-webkit-scrollbar {

@@ -67,7 +67,9 @@
                     <span class="sidebar-text">Dashboard</span>
                 </a>
 
-                <a href="#" class="menu-item flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-300 transition">
+                <a href="{{ route('admin.news.index') }}"
+                    class="menu-item flex items-center gap-3 px-3 py-2 rounded-lg transition
+                    {{ request()->routeIs('admin.news.index') ? 'bg-emerald-100 dark:bg-emerald-900 text-emerald-600 dark:text-emerald-400 font-medium' : 'hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-300' }}">
                     <i data-lucide="newspaper" class="w-5 h-5"></i>
                     <span class="sidebar-text">News</span>
                 </a>
@@ -144,6 +146,8 @@
         lucide.createIcons();
     });
 </script>
+
+@stack('scripts')
 
 </body>
 </html>

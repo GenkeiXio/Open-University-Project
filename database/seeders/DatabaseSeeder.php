@@ -14,7 +14,7 @@ class DatabaseSeeder extends Seeder
         // This calls your specific seeders in the order they should run
         $this->call([
             Admins::class,     // Creates your super admin and admin accounts
-            NewsSeeder::class, // Fills the news and archive tables
+            NewsSeeder::class, // Fills the news and archive tables    
         ]);
     }
 }
