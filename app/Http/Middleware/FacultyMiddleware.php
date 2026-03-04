@@ -5,10 +5,9 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\Auth; // Recommended to have this ready
 use Symfony\Component\HttpFoundation\Response;
 
-class SuperAdminMiddleware
+class FacultyMiddleware
 {
     public function handle(Request $request, Closure $next): Response
     {
@@ -17,9 +16,9 @@ class SuperAdminMiddleware
             return redirect('/superadmin/login')->with('error', 'Please login first.');
         }
 
-        // Ensure the admin has the super admin role
+        // Ensure the admin has the faculty role
         $role = Session::get('admin_role', null);
-        if ($role !== 'super admin') {
+        if ($role !== 'faculty') {
             return redirect('/')->with('error', 'Unauthorized access.');
         }
 

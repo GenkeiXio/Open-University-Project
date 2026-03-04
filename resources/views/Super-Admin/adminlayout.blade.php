@@ -5,6 +5,13 @@
     <title>@yield('title', 'Super Admin')</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <!-- Prevent dark mode flicker -->
+    <script>
+        if (localStorage.theme === 'dark') {
+            document.documentElement.classList.add('dark');
+        }
+    </script>
+
     <!-- Tailwind -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -14,7 +21,7 @@
     <!-- Lucide -->
     <script src="https://unpkg.com/lucide@latest"></script>
 
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 
 <body class="bg-gray-100 dark:bg-[#0b1120] text-gray-800 dark:text-gray-200 font-[Inter] transition-colors duration-300">
@@ -22,62 +29,121 @@
 <div class="flex min-h-screen">
 
     <!-- ================= SIDEBAR ================= -->
-    <aside id="sidebar" class="w-64 bg-gradient-to-b from-[#2f8fa6] to-[#2b7e94] text-white flex flex-col justify-between p-6">
-        <div>
-            <div class="flex items-center gap-3 mb-8">
-                <div class="w-11 h-11 rounded-full bg-white/20 flex items-center justify-center font-bold">
-                    BU
-                </div>
-                <div>
-                    <h3 class="font-semibold text-sm">BUOU Admin</h3>
-                    <span class="text-xs opacity-80">Super Admin</span>
-                </div>
+    <aside id="sidebar"
+        class="w-64 md:w-64 bg-white dark:bg-[#111827]
+        border-r border-gray-200 dark:border-gray-800
+        flex flex-col transition-all duration-300
+        fixed md:relative h-full md:h-auto
+        z-40 -translate-x-full md:translate-x-0">
+
+        <!-- Toggle Button -->
+        <button id="toggleSidebar"
+            class="hidden md:flex absolute -right-3 top-6 bg-white dark:bg-gray-800
+            border border-gray-200 dark:border-gray-700
+            rounded-full p-1 shadow-md hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+            <i data-lucide="chevron-left" class="w-4 h-4"></i>
+        </button>
+
+        <!-- Logo -->
+        <div class="flex items-center gap-3 px-6 py-6">
+            <div class="w-10 h-10 rounded-lg bg-emerald-100 text-emerald-600 flex items-center justify-center">
+                <i data-lucide="layout-dashboard"></i>
             </div>
-
-            <nav class="space-y-2 text-sm">
-                <a href="{{ route('Super-Admin.super_admin') }}" class="flex items-center gap-3 px-3 py-2 rounded-lg transition {{ request()->routeIs('Super-Admin.super_admin') ? 'bg-white/25' : 'hover:bg-white/20' }}">
-                    <i data-lucide="layout-dashboard"></i> Dashboard
-                </a>
-
-                <a href="#" class="flex items-center gap-3 px-3 py-2 rounded-lg transition {{ request()->routeIs('superadmin.news*') ? 'bg-white/25' : 'hover:bg-white/20' }}">
-                    <i data-lucide="newspaper"></i> News
-                </a>
-
-                <a href="#" class="flex items-center gap-3 px-3 py-2 rounded-lg transition {{ request()->routeIs('superadmin.programs*') ? 'bg-white/25' : 'hover:bg-white/20' }}">
-                    <i data-lucide="graduation-cap"></i> Programs
-                </a>
-
-                <a href="#" class="flex items-center gap-3 px-3 py-2 rounded-lg transition {{ request()->routeIs('superadmin.chatbot*') ? 'bg-white/25' : 'hover:bg-white/20' }}">
-                    <i data-lucide="bot"></i> Chatbot
-                </a>
-
-                <p class="text-xs opacity-70 mt-6 mb-2">SUPER ADMIN</p>
-
-                <a href="#" class="flex items-center gap-3 px-3 py-2 rounded-lg transition {{ request()->routeIs('superadmin.users*') ? 'bg-white/25' : 'hover:bg-white/20' }}">
-                    <i data-lucide="users"></i> User Management
-                </a>
-
-                <a href="#" class="flex items-center gap-3 px-3 py-2 rounded-lg transition {{ request()->routeIs('superadmin.settings') ? 'bg-white/25' : 'hover:bg-white/20' }}">
-                    <i data-lucide="settings"></i> Site Settings
-                </a>
-            </nav>
+            <span class="sidebar-text font-semibold text-gray-700 dark:text-gray-200 text-lg">
+                BUOU
+            </span>
         </div>
 
-        <div class="absolute bottom-6 left-6 space-y-4 text-sm">
-            <a href="{{ route('home') }}" class="flex items-center gap-3 hover:opacity-80">
-                <i data-lucide="arrow-left"></i> Back to Site
+        <!-- MENU -->
+        <nav class="flex-1 px-4 space-y-6 text-sm">
+
+            <div>
+                <p class="sidebar-text text-xs text-gray-400 uppercase mb-2">Main</p>
+
+                <a href="{{ route('Super-Admin.super_admin') }}"
+                    class="menu-item flex items-center gap-3 px-3 py-2 rounded-lg transition
+                    {{ request()->routeIs('Super-Admin.super_admin') ? 'bg-emerald-100 dark:bg-emerald-900 text-emerald-600 dark:text-emerald-400 font-medium' : 'hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-300' }}">
+                    <i data-lucide="layout-dashboard" class="w-5 h-5"></i>
+                    <span class="sidebar-text">Dashboard</span>
+                </a>
+
+                <a href="#" class="menu-item flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-300 transition">
+                    <i data-lucide="newspaper" class="w-5 h-5"></i>
+                    <span class="sidebar-text">News</span>
+                </a>
+
+                <a href="#" class="menu-item flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-300 transition">
+                    <i data-lucide="graduation-cap" class="w-5 h-5"></i>
+                    <span class="sidebar-text">Programs</span>
+                </a>
+
+                <a href="#" class="menu-item flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-300 transition">
+                    <i data-lucide="bot" class="w-5 h-5"></i>
+                    <span class="sidebar-text">Chatbot</span>
+                </a>
+            </div>
+
+            <div>
+                <p class="sidebar-text text-xs text-gray-400 uppercase mb-2">Super Admin</p>
+
+                <a href="#" class="menu-item flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-300 transition">
+                    <i data-lucide="users" class="w-5 h-5"></i>
+                    <span class="sidebar-text">User Management</span>
+                </a>
+
+                <a href="#" class="menu-item flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-300 transition">
+                    <i data-lucide="settings" class="w-5 h-5"></i>
+                    <span class="sidebar-text">Site Settings</span>
+                </a>
+            </div>
+
+        </nav>
+
+        <!-- Bottom -->
+        <div class="px-4 py-4 border-t border-gray-200 dark:border-gray-800 space-y-3 text-sm">
+            <a href="{{ route('home') }}"
+                class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-300 transition">
+                <i data-lucide="arrow-left" class="w-5 h-5"></i>
+                <span class="sidebar-text">Back to Site</span>
             </a>
-            <a href="{{ route('logout') }}" class="flex items-center gap-3 hover:opacity-80">
-                <i data-lucide="log-out"></i> Sign Out
+
+            <a href="{{ route('logout') }}"
+                class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-red-50 dark:hover:bg-red-900 text-gray-600 dark:text-gray-300 hover:text-red-500 transition">
+                <i data-lucide="log-out" class="w-5 h-5"></i>
+                <span class="sidebar-text">Sign Out</span>
             </a>
         </div>
     </aside>
 
-    <!-- ================= MAIN ================= -->
-    <div class="flex-1 md:ml-64 p-6 md:p-10">
+    <!-- PAGE CONTENT -->
+    <main class="flex-1 p-8 md:ml-0">
         @yield('content')
-    </div>
+    </main>
+
 </div>
+
+<script>
+    lucide.createIcons();
+
+    const sidebar = document.getElementById('sidebar');
+    const toggleBtn = document.getElementById('toggleSidebar');
+    const texts = document.querySelectorAll('.sidebar-text');
+
+    toggleBtn.addEventListener('click', () => {
+        sidebar.classList.toggle('md:w-64');
+        sidebar.classList.toggle('md:w-20');
+
+        texts.forEach(text => text.classList.toggle('hidden'));
+
+        const icon = toggleBtn.querySelector('i');
+        icon.setAttribute(
+            'data-lucide',
+            sidebar.classList.contains('md:w-20') ? 'chevron-right' : 'chevron-left'
+        );
+
+        lucide.createIcons();
+    });
+</script>
 
 </body>
 </html>
