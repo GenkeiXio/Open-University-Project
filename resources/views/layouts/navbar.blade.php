@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg fixed-top navbar-dark shadow-sm" 
      style="background: linear-gradient(to right, #0047ab 0%, #1ca9c9 100%); border-bottom: 1px solid rgba(255,255,255,0.1);">
     <div class="container">
-        <a class="navbar-brand d-flex align-items-center" href="#">
+        <a class="navbar-brand d-flex align-items-center" href="{{ route('home') }}">
             <div class="bu-logo me-2">
                 <img 
                     src="{{ asset('assets/Logo/OU LOGO.jpg') }}" 
@@ -33,12 +33,55 @@
                         Apply Now
                     </a>
                 </li>
-                <!-- LOGIN BUTTON -->
-                <li class="nav-item ms-lg-2">
-                    <a class="btn btn shadow-sm" href="{{ route('Auth.login') }}" style="background-color: #ff8c00; color: white; border: none; padding: 8px 24px; font-weight: 700; border-radius: 5px; transition: all 0.3s ease;">
-                        Login
-                    </a>
-                </li>
+                <!-- auth-aware UI -->
+                @if(session()->has('admin_id'))
+                    @php
+                        $name = session('admin_name');
+                        $initial = strtoupper(substr($name,0,1));
+                        $role = strtoupper(str_replace(' ', '_', session('admin_role')));
+                    @endphp
+
+                    <li class="nav-item dropdown ms-lg-3">
+                        <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="userMenu" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <span class="avatar-circle bg-secondary text-white d-flex justify-content-center align-items-center me-2" style="width:32px; height:32px; border-radius:50%; font-weight:600;">{{ $initial }}</span>
+                            <span class="d-none d-lg-inline text-white" style="font-size:0.9rem;">{{ $role }}</span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userMenu">
+                            <li class="dropdown-header text-center">
+                                <strong>{{ $name }}</strong><br>
+                                <small class="text-muted">{{ $role }}</small>
+                            </li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li>
+                                @php
+                                    $dashboardRoute = route('Super-Admin.super_admin');
+                                    if (strtolower(session('admin_role')) === 'faculty') {
+                                        $dashboardRoute = route('Faculty.faculty');
+                                    }
+                                @endphp
+                                <a class="dropdown-item d-flex align-items-center" href="{{ $dashboardRoute }}">
+                                    <i data-lucide="layout-dashboard" class="me-2"></i> Dashboard
+                                </a>
+                            </li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li>
+                                <form id="logout-form" method="POST" action="{{ route('logout') }}">
+                                    @csrf
+                                    <button type="submit" class="dropdown-item d-flex align-items-center">
+                                        <i data-lucide="log-out" class="me-2"></i> Logout
+                                    </button>
+                                </form>
+                            </li>
+                        </ul>
+                    </li>
+                @else
+                    <!-- show login when not authenticated -->
+                    <li class="nav-item ms-lg-2">
+                        <a class="btn btn shadow-sm" href="{{ route('Auth.login') }}" style="background-color: #ff8c00; color: white; border: none; padding: 8px 24px; font-weight: 700; border-radius: 5px; transition: all 0.3s ease;">
+                            Login
+                        </a>
+                    </li>
+                @endif
             </ul>
         </div>
     </div>
@@ -50,5 +93,11 @@
         background-color: #e67e00 !important;
         transform: translateY(-1px);
         box-shadow: 0 5px 15px rgba(0,0,0,0.2) !important;
+    }
+
+    /* small circular avatar used in logged-in navbar */
+    .avatar-circle {
+        font-size: 0.9rem; /* keep initials readable */
+        line-height: 1;
     }
 </style>

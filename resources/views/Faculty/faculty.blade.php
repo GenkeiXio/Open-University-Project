@@ -86,6 +86,10 @@
             </div>
 
             <div class="flex items-center gap-3">
+                <!-- Back to public site -->
+                <a href="{{ route('home') }}" class="text-sm px-3 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition">
+                    <i data-lucide="arrow-left" class="w-4 h-4"></i> Back to Site
+                </a>
                 <!-- Monthly, Quarterly, and Yearly Dropdown -->
                 <div class="relative">
                 <select id="analyticsRange" class="bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 text-sm rounded-lg px-3 py-2 pr-8 cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500">

@@ -41,12 +41,20 @@ class SuperAdminLoginController extends Controller
         Session::put('admin_role', $admin->role);
 
         // 🔥 ROLE BASED REDIRECT
+        // once logged in we no longer send admins off to the dashboard automatically
+        // instead stay on the homepage so the user can keep browsing the public site
+        // and access the dashboard via a button in the navbar.
         if ($admin->role === 'super admin') {
-            return redirect('/Super-Admin/super_admin');
+            // stay on the public site after login
+            return redirect()->intended(route('home'));
         }
 
         if ($admin->role === 'faculty') {
-            return redirect()->route('Faculty.faculty');
+            // faculty users should follow the same pattern as super admins
+            // keep them on the public site and let them navigate to the dashboard
+            // via the navbar or a button. this fixes the prior behaviour where
+            // faculty were automatically redirected immediately upon login.
+            return redirect()->intended(route('home'));
         }
 
         return back()->with('error', 'Unauthorized role.');
@@ -54,7 +62,9 @@ class SuperAdminLoginController extends Controller
 
     public function logout(Request $request)
     {
-        // Clear your custom sessions
+        // Clear the custom session keys we set during login
+        session()->forget(['admin_id', 'admin_name', 'admin_role']);
+        // compatibility with legacy names (if any were used elsewhere)
         session()->forget('superadmin');
         session()->forget('superadmin_name');
 

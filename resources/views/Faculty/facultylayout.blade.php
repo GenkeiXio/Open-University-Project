@@ -8,7 +8,7 @@
     <!-- Tailwind -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        tailwind.config = { darkMode: 'class' };
+        tailwind.config = { darkMode: 'class' }
     </script>
 
     <!-- Lucide -->
@@ -33,31 +33,44 @@
                     <span class="text-xs opacity-80">Super Admin</span>
                 </div>
             </div>
-
+        
             <nav class="space-y-2 text-sm">
-                <a href="{{ route('Super-Admin.super_admin') }}" class="flex items-center gap-3 px-3 py-2 rounded-lg transition {{ request()->routeIs('Super-Admin.super_admin') ? 'bg-white/25' : 'hover:bg-white/20' }}">
+
+                <a href="{{ route('Super-Admin.super_admin') }}"
+                class="flex items-center gap-3 px-3 py-2 rounded-lg transition
+                {{ request()->routeIs('Super-Admin.super_admin') ? 'bg-white/25' : 'hover:bg-white/20' }}">
                     <i data-lucide="layout-dashboard"></i> Dashboard
                 </a>
 
-                <a href="#" class="flex items-center gap-3 px-3 py-2 rounded-lg transition {{ request()->routeIs('superadmin.news*') ? 'bg-white/25' : 'hover:bg-white/20' }}">
+                <a href="#"
+                class="flex items-center gap-3 px-3 py-2 rounded-lg transition
+                {{ request()->routeIs('superadmin.news*') ? 'bg-white/25' : 'hover:bg-white/20' }}">
                     <i data-lucide="newspaper"></i> News
                 </a>
 
-                <a href="#" class="flex items-center gap-3 px-3 py-2 rounded-lg transition {{ request()->routeIs('superadmin.programs*') ? 'bg-white/25' : 'hover:bg-white/20' }}">
+                <a href="#"
+                class="flex items-center gap-3 px-3 py-2 rounded-lg transition
+                {{ request()->routeIs('superadmin.programs*') ? 'bg-white/25' : 'hover:bg-white/20' }}">
                     <i data-lucide="graduation-cap"></i> Programs
                 </a>
 
-                <a href="#" class="flex items-center gap-3 px-3 py-2 rounded-lg transition {{ request()->routeIs('superadmin.chatbot*') ? 'bg-white/25' : 'hover:bg-white/20' }}">
+                <a href="#"
+                class="flex items-center gap-3 px-3 py-2 rounded-lg transition
+                {{ request()->routeIs('superadmin.chatbot*') ? 'bg-white/25' : 'hover:bg-white/20' }}">
                     <i data-lucide="bot"></i> Chatbot
                 </a>
 
                 <p class="text-xs opacity-70 mt-6 mb-2">SUPER ADMIN</p>
 
-                <a href="#" class="flex items-center gap-3 px-3 py-2 rounded-lg transition {{ request()->routeIs('superadmin.users*') ? 'bg-white/25' : 'hover:bg-white/20' }}">
+                <a href="#"
+                class="flex items-center gap-3 px-3 py-2 rounded-lg transition
+                {{ request()->routeIs('superadmin.users*') ? 'bg-white/25' : 'hover:bg-white/20' }}">
                     <i data-lucide="users"></i> User Management
                 </a>
 
-                <a href="#" class="flex items-center gap-3 px-3 py-2 rounded-lg transition {{ request()->routeIs('superadmin.settings') ? 'bg-white/25' : 'hover:bg-white/20' }}">
+                <a href="#"
+                class="flex items-center gap-3 px-3 py-2 rounded-lg transition
+                {{ request()->routeIs('superadmin.settings') ? 'bg-white/25' : 'hover:bg-white/20' }}">
                     <i data-lucide="settings"></i> Site Settings
                 </a>
             </nav>
@@ -78,6 +91,8 @@
         @yield('content')
     </div>
 </div>
+
+
 
 </body>
 </html>
