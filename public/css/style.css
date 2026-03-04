@@ -1642,7 +1642,6 @@ html {
     filter: brightness(0) invert(1);
 }
 
-
 /* Custom Scrollbar for Calendar */
 .calendar-scroll-area::-webkit-scrollbar {
     width: 6px;
