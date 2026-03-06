@@ -67,7 +67,7 @@
                             <span class="sidebar-text">Dashboard</span>
                         </a>
 
-                <a href="{{ route('admin.news.index') }}"
+                <a href="#"
                     class="menu-item flex items-center gap-3 px-3 py-2 rounded-lg transition
                     {{ request()->routeIs('admin.news.index') ? 'bg-emerald-100 dark:bg-emerald-900 text-emerald-600 dark:text-emerald-400 font-medium' : 'hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-300' }}">
                     <i data-lucide="newspaper" class="w-5 h-5"></i>
@@ -157,9 +157,48 @@
                     sidebar.classList.contains('md:w-20') ? 'chevron-right' : 'chevron-left'
                 );
 
-        lucide.createIcons();
-    });
-</script>
+                lucide.createIcons();
+            });
+
+            /* ================= THEME TOGGLE ================= */
+            const toggle = document.getElementById('themeToggle');
+            const circle = document.getElementById('toggleCircle');
+            const html = document.documentElement;
+            const icon = document.getElementById('themeIcon');
+
+                function setTheme(mode){
+                    if(mode === 'dark'){
+                        html.classList.add('dark');
+                        circle.style.transform = "translateX(20px)";
+                        icon.setAttribute("data-lucide","sun");
+                    }else{
+                        html.classList.remove('dark');
+                        circle.style.transform = "translateX(0px)";
+                        icon.setAttribute("data-lucide","moon");
+                    }
+
+                    lucide.createIcons();
+                    localStorage.theme = mode;
+                }
+
+                /* LOAD SAVED THEME */
+                if(localStorage.theme === 'dark'){
+                    setTheme('dark');
+                }else{
+                    setTheme('light');
+                }
+
+                /* TOGGLE */
+                toggle.addEventListener('click', () => {
+                    if(html.classList.contains('dark')){
+                        setTheme('light');
+                    }else{
+                        setTheme('dark');
+                    }
+                });
+        </script>
+
+@stack('scripts')
 
     </body>
 </html>
