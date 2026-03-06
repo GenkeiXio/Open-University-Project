@@ -34,13 +34,28 @@
                     </a>
                 </li>
                 <!-- auth-aware UI -->
-                @if(session()->has('admin_id'))
-                    @php
-                        $name = session('admin_name');
-                        $initial = strtoupper(substr($name,0,1));
-                        $role = strtoupper(str_replace(' ', '_', session('admin_role')));
-                    @endphp
+                @php
+                    $isLoggedIn = false;
+                    $name = '';
+                    $role = '';
+                    $initial = '';
+                    $isUser = false;
 
+                    if(session()->has('admin_id')) {
+                        $isLoggedIn = true;
+                        $name = session('admin_name');
+                        $role = strtoupper(str_replace(' ', '_', session('admin_role')));
+                        $initial = strtoupper(substr($name, 0, 1));
+                    } elseif(session()->has('user_id')) {
+                        $isLoggedIn = true;
+                        $name = session('name');
+                        $role = 'USER'; // Label for regular users
+                        $initial = strtoupper(substr($name, 0, 1));
+                        $isUser = true;
+                    }
+                @endphp
+
+                @if($isLoggedIn)
                     <li class="nav-item dropdown ms-lg-3">
                         <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="userMenu" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <span class="avatar-circle bg-secondary text-white d-flex justify-content-center align-items-center me-2" style="width:32px; height:32px; border-radius:50%; font-weight:600;">{{ $initial }}</span>
@@ -52,17 +67,29 @@
                                 <small class="text-muted">{{ $role }}</small>
                             </li>
                             <li><hr class="dropdown-divider"></li>
-                            <li>
-                                @php
-                                    $dashboardRoute = route('Super-Admin.super_admin');
-                                    if (strtolower(session('admin_role')) === 'faculty') {
-                                        $dashboardRoute = route('Faculty.faculty');
-                                    }
-                                @endphp
-                                <a class="dropdown-item d-flex align-items-center" href="{{ $dashboardRoute }}">
-                                    <i data-lucide="layout-dashboard" class="me-2"></i> Dashboard
-                                </a>
-                            </li>
+                            
+                            @if(!$isUser)
+                                {{-- Admin/Faculty Dashboard Link --}}
+                                <li>
+                                    @php
+                                        $dashboardRoute = route('Super-Admin.super_admin');
+                                        if (strtolower(session('admin_role')) === 'faculty') {
+                                            $dashboardRoute = route('Faculty.faculty');
+                                        }
+                                    @endphp
+                                    <a class="dropdown-item d-flex align-items-center" href="{{ $dashboardRoute }}">
+                                        <i data-lucide="layout-dashboard" class="me-2"></i> Dashboard
+                                    </a>
+                                </li>
+                                @else
+                                   {{-- Regular User specific links --}}
+                                    <li>
+                                        <a class="dropdown-item d-flex align-items-center" href="{{ route('home') }}">
+                                            <i data-lucide="graduation-cap" class="me-2"></i> Student Portal
+                                        </a>
+                                    </li>
+                                @endif
+
                             <li><hr class="dropdown-divider"></li>
                             <li>
                                 <form id="logout-form" method="POST" action="{{ route('logout') }}">
@@ -75,9 +102,8 @@
                         </ul>
                     </li>
                 @else
-                    <!-- show login when not authenticated -->
                     <li class="nav-item ms-lg-2">
-                        <a class="btn btn shadow-sm" href="{{ route('Auth.login') }}" style="background-color: #ff8c00; color: white; border: none; padding: 8px 24px; font-weight: 700; border-radius: 5px; transition: all 0.3s ease;">
+                        <a class="btn shadow-sm" href="{{ route('Auth.login') }}" style="background-color: #ff8c00; color: white; border: none; padding: 8px 24px; font-weight: 700; border-radius: 5px; transition: all 0.3s ease;">
                             Login
                         </a>
                     </li>

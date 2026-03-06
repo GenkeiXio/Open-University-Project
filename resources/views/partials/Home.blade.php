@@ -42,11 +42,11 @@
 
                                                 @foreach($modules as $mod)
                                                     <a href="#" class="buou-module-link">
-                                                        <div class="buou-module-card shadow text-center">
-                                                            <h6 class="buou-module-title">{{ $mod['title'] }}</h6>
-                                                            <div class="buou-module-icon-bg mx-auto">
-                                                                <img src="{{ asset('assets/Icons/' . $mod['icon']) }}" alt="{{ $mod['title'] }}" class="img-fluid">
+                                                        <div class="buou-module-card shadow text-center flex flex-col items-center justify-center">
+                                                            <div class="buou-module-icon-bg mx-auto mb-3">
+                                                                <img src="{{ asset('assets/Icons/' . $mod['icon']) }}" alt="{{ $mod['title'] }}" class="img-fluid module-icon">
                                                             </div>
+                                                            <h6 class="buou-module-title">{{ $mod['title'] }}</h6>
                                                         </div>
                                                     </a>
                                                 @endforeach

@@ -32,7 +32,11 @@
             @forelse($latestNewsItems as $news)
                 <div class="buou-side-news-card mb-4 p-3 shadow-sm" style="background: #ffffff; border-radius: 12px; border: 1px solid #f0f0f0;">
                     <div class="buou-side-news-img-frame mb-3" style="overflow: hidden; border-radius: 8px;">
-                        <img src="{{ asset('assets/' . $news->image) }}" class="img-fluid" alt="{{ $news->title }}" style="width: 100%;">
+                        <img
+                            src="{{ $news->image ? asset('storage/' . $news->image) : 'https://via.placeholder.com/400x250?text=No+Image' }}"
+                            class="img-fluid"
+                            alt="{{ $news->title }}"
+                            style="width: 100%; object-fit: cover; height: 140px;">
                     </div>
                     <h6 class="buou-side-news-title fw-bold mb-1" style="line-height: 1.4; color: #2d3436; font-size: 0.85rem;">{{ $news->title }}</h6>
                     <p class="buou-side-news-date mb-3" style="font-size: 0.7rem; color: #a0a0a0; font-style: italic;">{{ $news->created_at->format('F d, Y') }}</p>
