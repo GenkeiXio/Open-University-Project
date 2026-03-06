@@ -1,76 +1,72 @@
 @extends('Super-Admin.adminlayout')
 
 @section('content')
-<div class="p-6 transition-colors duration-300">
-    
-    <div class="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
-        <div>
-            <h2 class="text-2xl font-bold text-gray-800 dark:text-white">News Management</h2>
-            <p class="text-gray-500 dark:text-gray-400">Create and manage official BUOU news updates.</p>
+<div class="p-8 min-h-screen transition-colors duration-300">
+    <div class="flex flex-col md:flex-row md:items-center justify-between mb-10 gap-6">
+        <div class="space-y-1">
+            <h2 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white">News Management</h2>
+            <p class="text-gray-500 dark:text-gray-400 text-sm">Create and manage official BUOU news updates.</p>
         </div>
-        <button class="bg-emerald-600 hover:bg-emerald-700 text-white px-5 py-2.5 rounded-lg flex items-center gap-2 transition-all shadow-md active:scale-95" 
-                data-bs-toggle="modal" data-bs-target="#addNewsModal">
-            <i data-lucide="plus" class="w-5 h-5"></i>
-            <span class="font-medium">Add News</span>
+        <button onclick="toggleModal('addNewsModal')" 
+            class="bg-emerald-600 hover:bg-emerald-500 text-white px-6 py-3 rounded-xl flex items-center gap-2 transition-all shadow-lg shadow-emerald-500/20 active:scale-95">
+            <i data-lucide="plus-circle" class="w-5 h-5"></i>
+            <span class="font-bold text-sm tracking-wide uppercase">Add News</span>
         </button>
     </div>
 
     @if(session('success'))
-        <div class="bg-emerald-100 border-l-4 border-emerald-500 text-emerald-700 px-4 py-3 rounded-r-lg mb-6 shadow-sm dark:bg-emerald-900/20 dark:text-emerald-400" role="alert">
-            <p class="text-sm font-medium">{{ session('success') }}</p>
+        <div class="flex items-center p-4 mb-8 text-emerald-800 border-l-4 border-emerald-500 bg-emerald-50 dark:bg-emerald-900/10 dark:text-emerald-400 rounded-lg animate-fade-in">
+            <i data-lucide="check-circle" class="w-5 h-5 mr-3"></i>
+            <span class="text-sm font-bold">{{ session('success') }}</span>
         </div>
     @endif
 
-    <div class="bg-white dark:bg-[#111827] border border-gray-200 dark:border-gray-800 rounded-xl shadow-sm overflow-hidden">
+    <div class="bg-white dark:bg-[#111827] border border-gray-100 dark:border-gray-800 rounded-2xl shadow-xl overflow-hidden">
         <div class="overflow-x-auto">
-            <table class="w-full text-left border-collapse">
-                <thead class="bg-gray-50 dark:bg-gray-800/50 border-b border-gray-200 dark:border-gray-800">
-                    <tr>
-                        <th class="px-6 py-4 text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider">ID</th>
-                        <th class="px-6 py-4 text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider">Title</th>
-                        <th class="px-6 py-4 text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider">Content Preview</th>
-                        <th class="px-6 py-4 text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider text-center">Date</th>
-                        <th class="px-6 py-4 text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider text-right">Actions</th>
+            <table class="w-full text-left">
+                <thead>
+                    <tr class="bg-gray-50/50 dark:bg-gray-800/40 border-b border-gray-100 dark:border-gray-800">
+                        <th class="px-8 py-5 text-[10px] font-black text-gray-400 uppercase tracking-widest">ID</th>
+                        <th class="px-8 py-5 text-[10px] font-black text-gray-400 uppercase tracking-widest">Headline</th>
+                        <th class="px-8 py-5 text-[10px] font-black text-gray-400 uppercase tracking-widest text-center">Date</th>
+                        <th class="px-8 py-5 text-[10px] font-black text-gray-400 uppercase tracking-widest text-right">Actions</th>
                     </tr>
                 </thead>
-                <tbody class="divide-y divide-gray-100 dark:divide-gray-800">
+                <tbody class="divide-y divide-gray-50 dark:divide-gray-800/50">
                     @forelse($news as $item)
-                    <tr class="hover:bg-gray-50/50 dark:hover:bg-gray-800/30 transition-colors group"
+                    <tr class="group hover:bg-emerald-50/30 dark:hover:bg-emerald-500/5 transition-all"
                         data-id="{{ $item->id }}" 
                         data-title="{{ htmlspecialchars($item->title, ENT_QUOTES) }}" 
                         data-content="{{ htmlspecialchars($item->content, ENT_QUOTES) }}" 
                         data-created_at="{{ $item->created_at->format('Y-m-d') }}">
-                        
-                        <td class="px-6 py-4 text-sm text-gray-400 dark:text-gray-500 font-mono">#{{ $item->id }}</td>
-                        <td class="px-6 py-4 text-sm font-semibold text-gray-800 dark:text-gray-100">
-                            {{ Str::limit($item->title, 35) }}
+                        <td class="px-8 py-6 text-xs text-gray-400 font-mono">#{{ $item->id }}</td>
+                        <td class="px-8 py-6">
+                            <div class="flex flex-col">
+                                <span class="text-sm font-bold text-gray-800 dark:text-gray-200 group-hover:text-emerald-600 transition-colors">{{ Str::limit($item->title, 50) }}</span>
+                                <span class="text-xs text-gray-400 mt-0.5">{{ Str::limit($item->content, 70) }}</span>
+                            </div>
                         </td>
-                        <td class="px-6 py-4 text-sm text-gray-500 dark:text-gray-400 max-w-xs">
-                            {{ Str::limit($item->content, 50) }}
-                        </td>
-                        <td class="px-6 py-4 text-center">
-                            <span class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium bg-gray-100 text-gray-600 dark:bg-gray-800 dark:text-gray-400">
+                        <td class="px-8 py-6 text-center">
+                            <span class="text-xs font-semibold text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-800 px-3 py-1 rounded-full">
                                 {{ $item->created_at->format('M d, Y') }}
                             </span>
                         </td>
-                        <td class="px-6 py-4 text-right space-x-3">
-                            <button class="text-emerald-600 hover:text-emerald-700 dark:text-emerald-400 dark:hover:text-emerald-300 font-semibold text-sm edit-btn transition-colors" 
-                                    data-bs-toggle="modal" data-bs-target="#editNewsModal">
-                                Edit
-                            </button>
-                            <form action="{{ route('news.destroy', $item->id) }}" method="POST" class="inline">
-                                @csrf @method('DELETE')
-                                <button type="submit" class="text-red-500 hover:text-red-600 dark:text-red-400 dark:hover:text-red-300 font-semibold text-sm transition-colors" 
-                                        onclick="return confirm('Delete this news item?');">
-                                    Delete
+                        <td class="px-8 py-6 text-right">
+                            <div class="flex items-center justify-end gap-3">
+                                <button onclick="openEditModal(this)" class="text-emerald-600 hover:text-emerald-400 p-2">
+                                    <i data-lucide="edit-3" class="w-4 h-4"></i>
                                 </button>
-                            </form>
+                                <form action="{{ route('news.destroy', $item->id) }}" method="POST" class="inline">
+                                    @csrf @method('DELETE')
+                                    <button type="submit" class="text-red-500 hover:text-red-400 p-2" onclick="return confirm('Delete this?');">
+                                        <i data-lucide="trash-2" class="w-4 h-4"></i>
+                                    </button>
+                                </form>
+                            </div>
                         </td>
                     </tr>
                     @empty
-                    <tr>
-                        <td colspan="5" class="px-6 py-12 text-center text-gray-400 italic">No news items found.</td>
-                    </tr>
+                    <tr><td colspan="4" class="px-8 py-20 text-center text-gray-400 italic">No news found.</td></tr>
                     @endforelse
                 </tbody>
             </table>
@@ -78,93 +74,122 @@
     </div>
 </div>
 
-<div class="modal fade" id="addNewsModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content bg-white dark:bg-[#111827] border-0 shadow-2xl rounded-2xl overflow-hidden">
-            <div class="modal-header border-b border-gray-100 dark:border-gray-800 p-6">
-                <h5 class="text-lg font-bold text-gray-800 dark:text-white">Create New Update</h5>
-                <button type="button" class="btn-close dark:btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+<div id="modalBackdrop" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-[60] hidden flex items-center justify-center p-4">
+    
+    <div id="addNewsModal" class="hidden bg-white dark:bg-[#111827] w-full max-w-lg rounded-3xl shadow-2xl border border-gray-200 dark:border-gray-800 overflow-hidden transform transition-all scale-95 opacity-0">
+        <div class="p-8">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-xl font-bold text-gray-900 dark:text-white uppercase tracking-tighter">New Broadcast</h3>
+                <button onclick="toggleModal('addNewsModal')" class="text-gray-400 hover:text-gray-600 dark:hover:text-white"><i data-lucide="x"></i></button>
             </div>
-            <form action="{{ route('news.store') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('news.store') }}" method="POST" enctype="multipart/form-data" class="space-y-5">
                 @csrf
-                <div class="modal-body p-8 space-y-5 text-left">
+                <div>
+                    <label class="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">Headline</label>
+                    <input type="text" name="title" class="w-full bg-transparent border-b-2 border-gray-200 dark:border-gray-800 px-0 py-2.5 text-gray-900 dark:text-white outline-none focus:border-emerald-500 transition-all" placeholder="Enter headline..." required>
+                </div>
+                <div>
+                    <label class="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">Content</label>
+                    <textarea name="content" rows="3" class="w-full bg-transparent border-b-2 border-gray-200 dark:border-gray-800 px-0 py-2.5 text-gray-900 dark:text-white outline-none focus:border-emerald-500 transition-all resize-none" placeholder="Enter details..." required></textarea>
+                </div>
+                <div class="grid grid-cols-2 gap-6">
                     <div>
-                        <label class="block text-xs font-bold text-gray-400 dark:text-gray-500 uppercase tracking-widest mb-2">News Title</label>
-                        <input type="text" name="title" class="w-full bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl px-4 py-3 text-gray-900 dark:text-white outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all" placeholder="Enter headline..." required>
+                        <label class="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">Date</label>
+                        <input type="date" name="created_at" class="w-full bg-transparent border-b-2 border-gray-200 dark:border-gray-800 py-2 text-sm dark:text-white outline-none focus:border-emerald-500" required>
                     </div>
                     <div>
-                        <label class="block text-xs font-bold text-gray-400 dark:text-gray-500 uppercase tracking-widest mb-2">Content Details</label>
-                        <textarea name="content" rows="6" class="w-full bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl px-4 py-3 text-gray-900 dark:text-white outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all resize-none" placeholder="Write news content here..." required></textarea>
-                    </div>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div>
-                            <label class="block text-xs font-bold text-gray-400 dark:text-gray-500 uppercase tracking-widest mb-2">Publish Date</label>
-                            <input type="date" name="created_at" class="w-full bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl px-4 py-3 text-gray-900 dark:text-white focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all" required>
-                        </div>
-                        <div>
-                            <label class="block text-xs font-bold text-gray-400 dark:text-gray-500 uppercase tracking-widest mb-2">Feature Image</label>
-                            <input type="file" name="image" class="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-emerald-50 file:text-emerald-700 dark:file:bg-emerald-900/30 dark:file:text-emerald-400 hover:file:bg-emerald-100 transition-all">
-                        </div>
+                        <label class="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">Cover Image</label>
+                        <input type="file" name="image" class="text-[10px] text-gray-400 file:mr-4 file:py-1 file:px-3 file:rounded-full file:border-0 file:bg-emerald-500/10 file:text-emerald-500 cursor-pointer">
                     </div>
                 </div>
-                <div class="modal-footer bg-gray-50 dark:bg-gray-800/30 border-t border-gray-100 dark:border-gray-800 p-6 flex justify-end gap-3">
-                    <button type="button" class="px-5 py-2 text-sm font-semibold text-gray-500 hover:text-gray-700 transition-colors" data-bs-dismiss="modal">Discard</button>
-                    <button type="submit" class="bg-emerald-600 text-white px-8 py-2.5 rounded-xl font-bold hover:bg-emerald-700 shadow-lg shadow-emerald-500/20 transition-all">Publish Now</button>
-                </div>
+                <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-4 rounded-xl shadow-lg shadow-emerald-500/20 transition-all mt-4 uppercase text-xs tracking-widest">Publish News</button>
             </form>
         </div>
     </div>
-</div>
 
-<div class="modal fade" id="editNewsModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content bg-white dark:bg-[#111827] border-0 shadow-2xl rounded-2xl overflow-hidden">
-            <div class="modal-header border-b border-gray-100 dark:border-gray-800 p-6">
-                <h5 class="text-lg font-bold text-gray-800 dark:text-white">Modify News Item</h5>
-                <button type="button" class="btn-close dark:btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+    <div id="editNewsModal" class="hidden bg-white dark:bg-[#111827] w-full max-w-lg rounded-3xl shadow-2xl border border-gray-200 dark:border-gray-800 overflow-hidden transform transition-all scale-95 opacity-0">
+        <div class="p-8">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-xl font-bold text-gray-900 dark:text-white uppercase tracking-tighter">Modify Update</h3>
+                <button onclick="toggleModal('editNewsModal')" class="text-gray-400 hover:text-white"><i data-lucide="x"></i></button>
             </div>
-            <form id="editNewsForm" method="POST" enctype="multipart/form-data">
+            <form id="editNewsForm" method="POST" enctype="multipart/form-data" class="space-y-5">
                 @csrf @method('PUT')
-                <div class="modal-body p-8 space-y-5 text-left">
+                
+                <div>
+                    <label class="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">Title</label>
+                    <input type="text" name="title" id="editTitle" class="w-full bg-transparent border-b-2 border-gray-200 dark:border-gray-800 py-2.5 text-gray-900 dark:text-white outline-none focus:border-emerald-500 transition-all" required>
+                </div>
+
+                <div>
+                    <label class="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">Body Content</label>
+                    <textarea name="content" id="editContent" rows="3" class="w-full bg-transparent border-b-2 border-gray-200 dark:border-gray-800 py-2.5 text-gray-900 dark:text-white outline-none focus:border-emerald-500 transition-all resize-none" required></textarea>
+                </div>
+
+                <div class="grid grid-cols-2 gap-6">
                     <div>
-                        <label class="block text-xs font-bold text-gray-400 dark:text-gray-500 uppercase tracking-widest mb-2">News Title</label>
-                        <input type="text" name="title" id="editTitle" class="w-full bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl px-4 py-3 text-gray-900 dark:text-white focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all" required>
+                        <label class="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">Date</label>
+                        <input type="date" name="created_at" id="editDate" class="w-full bg-transparent border-b-2 border-gray-200 dark:border-gray-800 py-2 text-sm dark:text-white outline-none focus:border-emerald-500" required>
                     </div>
                     <div>
-                        <label class="block text-xs font-bold text-gray-400 dark:text-gray-500 uppercase tracking-widest mb-2">Content</label>
-                        <textarea name="content" id="editContent" rows="6" class="w-full bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl px-4 py-3 text-gray-900 dark:text-white focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all resize-none" required></textarea>
-                    </div>
-                    <div>
-                        <label class="block text-xs font-bold text-gray-400 dark:text-gray-500 uppercase tracking-widest mb-2">Publication Date</label>
-                        <input type="date" name="created_at" id="editDate" class="w-full bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl px-4 py-3 text-gray-900 dark:text-white focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all" required>
+                        <label class="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1 text-emerald-500">Update Image</label>
+                        <input type="file" name="image" class="text-[10px] text-gray-400 file:mr-3 file:py-1 file:px-3 file:rounded-full file:border-0 file:bg-emerald-500/10 file:text-emerald-500 cursor-pointer">
                     </div>
                 </div>
-                <div class="modal-footer bg-gray-50 dark:bg-gray-800/30 border-t border-gray-100 dark:border-gray-800 p-6 flex justify-end gap-3">
-                    <button type="button" class="px-5 py-2 text-sm font-semibold text-gray-500 hover:text-gray-700 transition-colors" data-bs-dismiss="modal">Cancel</button>
-                    <button type="submit" class="bg-emerald-600 text-white px-8 py-2.5 rounded-xl font-bold hover:bg-emerald-700 transition-all">Save Changes</button>
+
+                <div class="flex gap-4 pt-4">
+                    <button type="button" onclick="toggleModal('editNewsModal')" class="flex-1 bg-gray-100 dark:bg-gray-800 text-gray-500 py-4 rounded-xl font-bold text-xs uppercase hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">Discard</button>
+                    <button type="submit" class="flex-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-4 px-8 rounded-xl shadow-lg shadow-emerald-500/20 transition-all uppercase text-xs tracking-widest">Save Changes</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
 
-@endsection
-
-@push('scripts')
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        if (window.lucide) { lucide.createIcons(); }
+    function toggleModal(modalId) {
+        const backdrop = document.getElementById('modalBackdrop');
+        const modal = document.getElementById(modalId);
+        const isOpening = backdrop.classList.contains('hidden');
 
-        document.querySelectorAll('.edit-btn').forEach(button => {
-            button.addEventListener('click', event => {
-                const row = event.target.closest('tr');
-                const id = row.dataset.id;
-                document.getElementById('editTitle').value = row.dataset.title;
-                document.getElementById('editContent').value = row.dataset.content;
-                document.getElementById('editDate').value = row.dataset.created_at;
-                document.getElementById('editNewsForm').action = '/Super-Admin/news/' + id;
+        if (isOpening) {
+            backdrop.classList.remove('hidden');
+            backdrop.classList.add('flex');
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.add('scale-100', 'opacity-100');
+                modal.classList.remove('scale-95', 'opacity-0');
+            }, 10);
+        } else {
+            modal.classList.add('scale-95', 'opacity-0');
+            modal.classList.remove('scale-100', 'opacity-100');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                backdrop.classList.add('hidden');
+                backdrop.classList.remove('flex');
+            }, 200);
+        }
+    }
+
+    function openEditModal(btn) {
+        const row = btn.closest('tr');
+        document.getElementById('editTitle').value = row.dataset.title;
+        document.getElementById('editContent').value = row.dataset.content;
+        document.getElementById('editDate').value = row.dataset.created_at;
+        
+        // Dynamic route matching your Laravel controller
+        document.getElementById('editNewsForm').action = '/Super-Admin/news/' + row.dataset.id;
+        
+        toggleModal('editNewsModal');
+    }
+
+    // Close on backdrop click
+    document.getElementById('modalBackdrop').addEventListener('click', function(e) {
+        if (e.target === this) {
+            document.querySelectorAll('#modalBackdrop > div').forEach(m => {
+                if (!m.classList.contains('hidden')) toggleModal(m.id);
             });
-        });
+        }
     });
 </script>
-@endpush
+@endsection
