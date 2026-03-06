@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\Auth; //
 
 class SuperAdminLoginController extends Controller
 {
@@ -23,46 +22,44 @@ class SuperAdminLoginController extends Controller
             'password' => 'required'
         ]);
 
-        // 1. Check admins table
-        $admin = DB::table('admins')->where('username', $request->username)->first();
+        $admin = DB::table('admins')
+            ->where('username', $request->username)
+            ->first();
 
-        if ($admin && Hash::check($request->password, $admin->password)) {
-            if ($admin->status !== 'active') {
-                return back()->with('error', 'Account is inactive.');
-            }
-
-            // Aligning keys with your Middleware
-            Session::put('admin_id', $admin->admin_id); 
-            Session::put('admin_name', $admin->f_name . ' ' . $admin->l_name);
-            Session::put('admin_role', $admin->role);
-            
-            Session::save();
-
-            // Specific redirects based on role
-            if ($admin->role === 'super admin') {
-                return redirect()->route('home');
-            } elseif ($admin->role === 'faculty') {
-                return redirect()->route('home');
-            }
+        if (!$admin || !Hash::check($request->password, $admin->password)) {
+            return back()->with('error', 'Invalid username or password');
         }
 
-        // 2. Check users table
-        $user = DB::table('users')->where('username', $request->username)->first();
-
-        if ($user && Hash::check($request->password, $user->password)) {
-            Session::put('user_id', $user->user_id); 
-            Session::put('name', $user->f_name . ' ' . $user->l_name);
-
-            Session::save(); 
-            return redirect()->route('home'); 
+        if ($admin->status !== 'active') {
+            return back()->with('error', 'Account is inactive. Contact administrator.');
         }
 
-        return back()->with('error', 'Invalid username or password');
+        // ✅ Update last_login
+        DB::table('admins')
+            ->where('admin_id', $admin->admin_id)
+            ->update(['last_login' => now()]);
+
+        // Store session
+        Session::put('admin_id', $admin->admin_id);
+        Session::put('admin_name', $admin->f_name . ' ' . $admin->l_name);
+        Session::put('admin_role', $admin->role);
+
+        return redirect()->intended(route('home'));
     }
 
     public function logout(Request $request)
     {
-        Session::flush(); // Wipes all custom session keys at once
+        $adminId = session('admin_id');
+
+        if ($adminId) {
+            // ✅ Update last_logout
+            DB::table('admins')
+                ->where('admin_id', $adminId)
+                ->update(['last_logout' => now()]);
+        }
+
+        // Clear session
+        $request->session()->forget(['admin_id', 'admin_name', 'admin_role']);
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 

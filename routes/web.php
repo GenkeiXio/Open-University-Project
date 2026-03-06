@@ -2,9 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\SuperAdminLoginController;
-
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\ActivityController;
+use App\Http\Controllers\Admin\UserManagementController;
 
 // --- Public Routes ---
 // The Home Route displays the News and the Calendar
@@ -24,25 +24,35 @@ Route::match(['get', 'post'], '/superadmin/logout', [SuperAdminLoginController::
 
 // --- Protected Super Admin Routes ---
 Route::middleware(['superadmin'])->group(function () {
-    
-    // Main Dashboard
+    // Match this name to the controller's redirect logic
     Route::get('/Super-Admin/super_admin', function () {
         return view('Super-Admin.super_admin');
     })->name('Super-Admin.super_admin');
 
-    // News Management Routes
-    // This shows the list of news in the dashboard
-    Route::get('/Super-Admin/news', [NewsController::class, 'manage'])->name('admin.news.index');
-    
-    // This handles the "Add News" form submission
-    Route::post('/Super-Admin/news/store', [NewsController::class, 'store'])->name('news.store');
-    
-    // Edit and update routes for existing news items
-    Route::get('/Super-Admin/news/{id}/edit', [NewsController::class, 'edit'])->name('admin.news.edit');
-    Route::put('/Super-Admin/news/{id}', [NewsController::class, 'update'])->name('news.update');
+    // USER MANAGEMENT PAGE
+    Route::get('/Super-Admin/user-management',
+        [UserManagementController::class, 'index']
+    )->name('Super-Admin.user_management');
 
-    // Delete route to remove news items
-    Route::delete('/Super-Admin/news/{id}', [NewsController::class, 'destroy'])->name('news.destroy');
+    // CREATE USER
+    Route::post('/Super-Admin/user-management/store',
+        [UserManagementController::class, 'store']
+    )->name('Super-Admin.user.store');
+
+    // EDIT USER (AJAX)
+    Route::get('/Super-Admin/user-management/edit/{id}',
+        [UserManagementController::class, 'edit']
+    )->name('Super-Admin.user.edit');
+
+    // UPDATE USER
+    Route::post('/Super-Admin/user-management/update/{id}',
+        [UserManagementController::class, 'update']
+    )->name('Super-Admin.user.update');
+
+    // TOGGLE STATUS
+    Route::post('/Super-Admin/user-management/toggle/{id}',
+        [UserManagementController::class, 'toggleStatus']
+    )->name('Super-Admin.user.toggle');
 });
 
 // --- Protected Faculty Routes ---
