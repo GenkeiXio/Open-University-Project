@@ -14,6 +14,9 @@ Route::get('/', [NewsController::class, 'index'])->name('home');
 Route::get('/superadmin/login', [SuperAdminLoginController::class, 'showLogin'])->name('Auth.login'); 
 Route::post('/superadmin/login', [SuperAdminLoginController::class, 'login'])->name('login.submit');
 
+Route::middleware(['User'])->group(function () {
+    Route::get('/home', [NewsController::class, 'index'])->name('user.home');
+});
 
 // Change this in web.php
 Route::match(['get', 'post'], '/superadmin/logout', [SuperAdminLoginController::class, 'logout'])->name('logout');
