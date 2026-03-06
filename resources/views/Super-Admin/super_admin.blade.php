@@ -181,6 +181,7 @@
 
     <script>
         lucide.createIcons();
+        
         const ctx1 = document.getElementById('userGrowthChart');
         const ctx2 = document.getElementById('activityChart');
 
