@@ -12,7 +12,7 @@ class NewsController extends Controller
     /**
      * EXISTING: Display public home page
      */
-    public function index()
+    private function index()
     {
         // 1. Fetch all news from the database
         $allNews = \App\Models\News::orderBy('created_at', 'desc')->get();
@@ -38,7 +38,7 @@ class NewsController extends Controller
     /**
      * NEW: Display the Admin News Management page
      */
-    public function manage()
+    private function manage()
     {
         $news = \App\Models\News::latest()->get();
         
@@ -54,6 +54,7 @@ class NewsController extends Controller
         $request->validate([
             'title' => 'required|string|max:255',
             'content' => 'required',
+            'created_at' => 'nullable|date',
             'image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
@@ -77,7 +78,7 @@ class NewsController extends Controller
     /**
      * NEW: Show the edit form or return data for JavaScript
      */
-    public function edit($id)
+    private function edit($id)
     {
         $news = News::findOrFail($id);
         return response()->json($news);
@@ -86,7 +87,7 @@ class NewsController extends Controller
     /**
      * NEW: Update an existing news item
      */
-    public function update(Request $request, $id)
+    private function update(Request $request, $id)
     {
         $news = News::findOrFail($id);
 
@@ -116,7 +117,7 @@ class NewsController extends Controller
     /**
      * NEW: Delete a news item
      */
-    public function destroy($id)
+    private function destroy($id)
     {
         $news = News::findOrFail($id);
         if ($news->image) {

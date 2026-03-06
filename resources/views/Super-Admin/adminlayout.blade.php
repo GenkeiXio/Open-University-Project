@@ -145,6 +145,33 @@
 
         lucide.createIcons();
     });
+
+    // global helper for opening/closing modals with backdrop
+    function toggleModal(modalId) {
+        const backdrop = document.getElementById('modalBackdrop');
+        if (!backdrop) return; // nothing to toggle
+        const modal = document.getElementById(modalId);
+        if (!modal) return;
+        const isOpening = backdrop.classList.contains('hidden');
+
+        if (isOpening) {
+            backdrop.classList.remove('hidden');
+            backdrop.classList.add('flex');
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.add('scale-100', 'opacity-100');
+                modal.classList.remove('scale-95', 'opacity-0');
+            }, 10);
+        } else {
+            modal.classList.add('scale-95', 'opacity-0');
+            modal.classList.remove('scale-100', 'opacity-100');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                backdrop.classList.add('hidden');
+                backdrop.classList.remove('flex');
+            }, 200);
+        }
+    }
 </script>
 
 @stack('scripts')
