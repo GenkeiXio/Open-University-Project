@@ -12,7 +12,7 @@ class NewsController extends Controller
     /**
      * EXISTING: Display public home page
      */
-    private function index()
+    public function index()
     {
         // 1. Fetch all news from the database
         $allNews = \App\Models\News::orderBy('created_at', 'desc')->get();
@@ -38,7 +38,7 @@ class NewsController extends Controller
     /**
      * NEW: Display the Admin News Management page
      */
-    private function manage()
+    public function manage()
     {
         $news = \App\Models\News::latest()->get();
         
@@ -54,14 +54,13 @@ class NewsController extends Controller
         $request->validate([
             'title' => 'required|string|max:255',
             'content' => 'required',
-            'created_at' => 'nullable|date',
             'image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
         $imagePath = null;
         if ($request->hasFile('image')) {
-            // Stores in storage/app/public/News to match your seeder path
-            $imagePath = $request->file('image')->store('News', 'public');
+            // Changed disk to 'local' (storage/app/News)
+            $imagePath = $request->file('image')->store('News', 'local');
         }
 
         News::create([
@@ -70,6 +69,7 @@ class NewsController extends Controller
             'image' => $imagePath,
             'created_at' => $request->created_at ?? now(),
             'published_at' => $request->created_at ?? now(),
+            'image' => $imagePath,
         ]);
 
         return redirect()->back()->with('success', 'News published successfully!');
@@ -78,7 +78,7 @@ class NewsController extends Controller
     /**
      * NEW: Show the edit form or return data for JavaScript
      */
-    private function edit($id)
+    public function edit($id)
     {
         $news = News::findOrFail($id);
         return response()->json($news);
@@ -87,7 +87,7 @@ class NewsController extends Controller
     /**
      * NEW: Update an existing news item
      */
-    private function update(Request $request, $id)
+    public function update(Request $request, $id)
     {
         $news = News::findOrFail($id);
 
@@ -98,11 +98,11 @@ class NewsController extends Controller
         ]);
 
         if ($request->hasFile('image')) {
-            // delete old image if exists
+            // Delete from 'local' disk
             if ($news->image) {
-                Storage::disk('public')->delete($news->image);
+                Storage::disk('local')->delete($news->image);
             }
-            $news->image = $request->file('image')->store('News', 'public');
+            $news->image = $request->file('image')->store('News', 'local');
         }
 
         $news->title = $request->title;
@@ -117,14 +117,32 @@ class NewsController extends Controller
     /**
      * NEW: Delete a news item
      */
-    private function destroy($id)
+    public function destroy($id)
     {
         $news = News::findOrFail($id);
         if ($news->image) {
-            Storage::disk('public')->delete($news->image);
+            Storage::disk('local')->delete($news->image);
         }
         $news->delete();
+        return redirect()->back()->with('success', 'Deleted!');
+    }
 
-        return redirect()->back()->with('success', 'News deleted successfully!');
+    public function showImage($id)
+    {
+        // 1. Find the news record
+        $news = \App\Models\News::findOrFail($id);
+
+        // 2. Build the full system path to storage/app/News/filename.jpg
+        // Since you moved the folder to storage/app/News, and the database 
+        // stores "News/filename.jpg", this math works:
+        $path = storage_path('app/' . $news->image);
+
+        // 3. Verify if the file physically exists in the new location
+        if ($news->image && file_exists($path)) {
+            return response()->file($path);
+        }
+
+        // 4. If it fails, we know the database string doesn't match the filename
+        abort(404, "File not found at: " . $path); 
     }
 }

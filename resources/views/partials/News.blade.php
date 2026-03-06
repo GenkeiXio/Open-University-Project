@@ -21,7 +21,7 @@
                             {{-- Check if there is an image --}}
                             @if($item->image)
                                 <div class="news-img-wrapper mb-3 text-center">
-                                    <img src="{{ asset('storage/' . $item->image) }}" class="img-fluid rounded shadow-sm news-img" alt="{{ $item->title }}">
+                                    <img src="{{ route('news.image.show', $item->id) }}" alt="{{ $item->title }}" class="img-fluid rounded shadow-sm news-img">
                                 </div>
                             @endif
 

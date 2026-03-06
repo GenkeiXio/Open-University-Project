@@ -160,6 +160,31 @@
 @endif
 
 <script>
+    // simple utility for showing/hiding the centered modal and backdrop
+    function toggleModal(id) {
+        const modal = document.getElementById(id);
+        const backdrop = document.getElementById('modalBackdrop');
+        if (!modal || !backdrop) return;
+
+        const showing = !modal.classList.contains('hidden');
+        if (!showing) {
+            backdrop.classList.remove('hidden');
+            modal.classList.remove('hidden');
+            // allow transition to occur
+            setTimeout(() => {
+                modal.classList.remove('opacity-0','scale-95');
+                modal.classList.add('opacity-100','scale-100');
+            }, 10);
+        } else {
+            modal.classList.add('opacity-0','scale-95');
+            modal.classList.remove('opacity-100','scale-100');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                backdrop.classList.add('hidden');
+            }, 200);
+        }
+    }
+
     function openEditModal(btn) {
         const row = btn.closest('tr');
         document.getElementById('editTitle').value = row.dataset.title;
