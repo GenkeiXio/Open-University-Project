@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('l_name', 45);
             $table->string('username', 45)->unique();
             $table->string('password', 255);
+            //$table->enum('course', [/*courses*/])
             $table->enum('role', ['user']);
             $table->enum('status', ['active', 'inactive'])->default('active');
             $table->datetime('last_login')->nullable();

@@ -84,7 +84,7 @@
                                 @else
                                    {{-- Regular User specific links --}}
                                     <li>
-                                        <a class="dropdown-item d-flex align-items-center" href="{{ route('home') }}">
+                                        <a class="dropdown-item d-flex align-items-center" href="{{ route('user.student.portal') }}">
                                             <i data-lucide="graduation-cap" class="me-2"></i> Student Portal
                                         </a>
                                     </li>

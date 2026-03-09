@@ -16,7 +16,13 @@ Route::post('/superadmin/login', [SuperAdminLoginController::class, 'login'])->n
 
 Route::middleware(['User'])->group(function () {
     Route::get('/home', [NewsController::class, 'index'])->name('user.home');
+
+    // ADD THIS LINE:
+    Route::get('/student-portal', function () {
+        return view('Users.userstudentportal');
+    })->name('user.student.portal');
 });
+
 
 // Change this in web.php
 Route::match(['get', 'post'], '/superadmin/logout', [SuperAdminLoginController::class, 'logout'])->name('logout');
