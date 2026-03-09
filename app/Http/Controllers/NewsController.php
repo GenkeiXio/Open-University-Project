@@ -59,8 +59,8 @@ class NewsController extends Controller
 
         $imagePath = null;
         if ($request->hasFile('image')) {
-            // Stores in storage/app/public/News to match your seeder path
-            $imagePath = $request->file('image')->store('News', 'public');
+            // Changed disk to 'local' (storage/app/News)
+            $imagePath = $request->file('image')->store('News', 'local');
         }
 
         News::create([
@@ -69,6 +69,7 @@ class NewsController extends Controller
             'image' => $imagePath,
             'created_at' => $request->created_at ?? now(),
             'published_at' => $request->created_at ?? now(),
+            'image' => $imagePath,
         ]);
 
         return redirect()->back()->with('success', 'News published successfully!');
@@ -97,11 +98,11 @@ class NewsController extends Controller
         ]);
 
         if ($request->hasFile('image')) {
-            // delete old image if exists
+            // Delete from 'local' disk
             if ($news->image) {
-                Storage::disk('public')->delete($news->image);
+                Storage::disk('local')->delete($news->image);
             }
-            $news->image = $request->file('image')->store('News', 'public');
+            $news->image = $request->file('image')->store('News', 'local');
         }
 
         $news->title = $request->title;
@@ -120,10 +121,28 @@ class NewsController extends Controller
     {
         $news = News::findOrFail($id);
         if ($news->image) {
-            Storage::disk('public')->delete($news->image);
+            Storage::disk('local')->delete($news->image);
         }
         $news->delete();
+        return redirect()->back()->with('success', 'Deleted!');
+    }
 
-        return redirect()->back()->with('success', 'News deleted successfully!');
+    public function showImage($id)
+    {
+        // 1. Find the news record
+        $news = \App\Models\News::findOrFail($id);
+
+        // 2. Build the full system path to storage/app/News/filename.jpg
+        // Since you moved the folder to storage/app/News, and the database 
+        // stores "News/filename.jpg", this math works:
+        $path = storage_path('app/' . $news->image);
+
+        // 3. Verify if the file physically exists in the new location
+        if ($news->image && file_exists($path)) {
+            return response()->file($path);
+        }
+
+        // 4. If it fails, we know the database string doesn't match the filename
+        abort(404, "File not found at: " . $path); 
     }
 }

@@ -7,7 +7,7 @@
             <h2 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white">News Management</h2>
             <p class="text-gray-500 dark:text-gray-400 text-sm">Create and manage official BUOU news updates.</p>
         </div>
-        <button onclick="toggleModal('addNewsModal')" 
+        <button type="button" onclick="toggleModal('addNewsModal')" 
             class="bg-emerald-600 hover:bg-emerald-500 text-white px-6 py-3 rounded-xl flex items-center gap-2 transition-all shadow-lg shadow-emerald-500/20 active:scale-95">
             <i data-lucide="plus-circle" class="w-5 h-5"></i>
             <span class="font-bold text-sm tracking-wide uppercase">Add News</span>
@@ -86,20 +86,24 @@
                 @csrf
                 <div>
                     <label class="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">Headline</label>
-                    <input type="text" name="title" class="w-full bg-transparent border-b-2 border-gray-200 dark:border-gray-800 px-0 py-2.5 text-gray-900 dark:text-white outline-none focus:border-emerald-500 transition-all" placeholder="Enter headline..." required>
+                    <input type="text" name="title" value="{{ old('title') }}" class="w-full bg-transparent border-b-2 border-gray-200 dark:border-gray-800 px-0 py-2.5 text-gray-900 dark:text-white outline-none focus:border-emerald-500 transition-all" placeholder="Enter headline..." required>
+                    @error('title')<p class="text-red-500 text-xs mt-1">{{ $message }}</p>@enderror
                 </div>
                 <div>
                     <label class="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">Content</label>
-                    <textarea name="content" rows="3" class="w-full bg-transparent border-b-2 border-gray-200 dark:border-gray-800 px-0 py-2.5 text-gray-900 dark:text-white outline-none focus:border-emerald-500 transition-all resize-none" placeholder="Enter details..." required></textarea>
+                    <textarea name="content" rows="3" class="w-full bg-transparent border-b-2 border-gray-200 dark:border-gray-800 px-0 py-2.5 text-gray-900 dark:text-white outline-none focus:border-emerald-500 transition-all resize-none" placeholder="Enter details..." required>{{ old('content') }}</textarea>
+                    @error('content')<p class="text-red-500 text-xs mt-1">{{ $message }}</p>@enderror
                 </div>
                 <div class="grid grid-cols-2 gap-6">
                     <div>
                         <label class="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">Date</label>
-                        <input type="date" name="created_at" class="w-full bg-transparent border-b-2 border-gray-200 dark:border-gray-800 py-2 text-sm dark:text-white outline-none focus:border-emerald-500" required>
+                        <input type="date" name="created_at" value="{{ old('created_at') }}" class="w-full bg-transparent border-b-2 border-gray-200 dark:border-gray-800 py-2 text-sm dark:text-white outline-none focus:border-emerald-500">
+                        @error('created_at')<p class="text-red-500 text-xs mt-1">{{ $message }}</p>@enderror
                     </div>
                     <div>
                         <label class="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">Cover Image</label>
                         <input type="file" name="image" class="text-[10px] text-gray-400 file:mr-4 file:py-1 file:px-3 file:rounded-full file:border-0 file:bg-emerald-500/10 file:text-emerald-500 cursor-pointer">
+                        @error('image')<p class="text-red-500 text-xs mt-1">{{ $message }}</p>@enderror
                     </div>
                 </div>
                 <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-4 rounded-xl shadow-lg shadow-emerald-500/20 transition-all mt-4 uppercase text-xs tracking-widest">Publish News</button>
@@ -146,27 +150,37 @@
     </div>
 </div>
 
-<script>
-    function toggleModal(modalId) {
-        const backdrop = document.getElementById('modalBackdrop');
-        const modal = document.getElementById(modalId);
-        const isOpening = backdrop.classList.contains('hidden');
+@if($errors->any())
+    <script>
+        // if validation failed after submitting add news form, open the add modal again
+        document.addEventListener('DOMContentLoaded', function() {
+            toggleModal('addNewsModal');
+        });
+    </script>
+@endif
 
-        if (isOpening) {
+<script>
+    // simple utility for showing/hiding the centered modal and backdrop
+    function toggleModal(id) {
+        const modal = document.getElementById(id);
+        const backdrop = document.getElementById('modalBackdrop');
+        if (!modal || !backdrop) return;
+
+        const showing = !modal.classList.contains('hidden');
+        if (!showing) {
             backdrop.classList.remove('hidden');
-            backdrop.classList.add('flex');
             modal.classList.remove('hidden');
+            // allow transition to occur
             setTimeout(() => {
-                modal.classList.add('scale-100', 'opacity-100');
-                modal.classList.remove('scale-95', 'opacity-0');
+                modal.classList.remove('opacity-0','scale-95');
+                modal.classList.add('opacity-100','scale-100');
             }, 10);
         } else {
-            modal.classList.add('scale-95', 'opacity-0');
-            modal.classList.remove('scale-100', 'opacity-100');
+            modal.classList.add('opacity-0','scale-95');
+            modal.classList.remove('opacity-100','scale-100');
             setTimeout(() => {
                 modal.classList.add('hidden');
                 backdrop.classList.add('hidden');
-                backdrop.classList.remove('flex');
             }, 200);
         }
     }

@@ -33,7 +33,8 @@
                 <div class="buou-side-news-card mb-4 p-3 shadow-sm" style="background: #ffffff; border-radius: 12px; border: 1px solid #f0f0f0;">
                     <div class="buou-side-news-img-frame mb-3" style="overflow: hidden; border-radius: 8px;">
                         <img
-                            src="{{ $news->image ? asset('storage/' . $news->image) : 'https://via.placeholder.com/400x250?text=No+Image' }}"
+                            {{-- UPDATED: Points to the secure route instead of public assets --}}
+                            src="{{ $news->image ? route('news.image.show', $news->id) : 'https://via.placeholder.com/400x250?text=No+Image' }}"
                             class="img-fluid"
                             alt="{{ $news->title }}"
                             style="width: 100%; object-fit: cover; height: 140px;">
@@ -45,7 +46,9 @@
                     </div>
                 </div>
             @empty
-                <p class="text-muted small text-center">No recent updates available.</p>
+                <div class="p-4 text-center bg-light rounded-3">
+                    <p class="text-muted small mb-0">No recent updates available.</p>
+                </div>
             @endforelse
         </div>
 
