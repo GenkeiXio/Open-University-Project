@@ -20,6 +20,11 @@ Route::post('/admin/logout', [AdminLoginController::class, 'logout'])->name('log
 
 Route::middleware(['user'])->group(function () {
     Route::get('/home', [NewsController::class, 'index'])->name('user.home');
+
+    // ADD THIS LINE:
+    Route::get('/student-portal', function () {
+        return view('Users.userstudentportal');
+    })->name('user.student.portal');
 });
 
 // --- Protected Admin Routes ---
