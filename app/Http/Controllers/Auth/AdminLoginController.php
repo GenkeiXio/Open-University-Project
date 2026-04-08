@@ -34,6 +34,11 @@ class AdminLoginController extends Controller
             return back()->with('error', 'Account inactive');
         }
 
+        // ✅ Update last_login
+        DB::table('admins')
+            ->where('admin_id', $admin->admin_id)
+            ->update(['txt_lastlogin' => now()]);
+
         // ✅ STORE SESSION
         session([
             'admin_id' => $admin->admin_id,
