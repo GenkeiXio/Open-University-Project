@@ -13,7 +13,7 @@ class UserMiddleware
     {
         // Check for the user_id session we set in the controller
         if (!Session::has('user_id')) {
-            return redirect('/superadmin/login')->with('error', 'Please login first.');
+            return redirect('/admin/login')->with('error', 'Please login first.');
         }
 
         return $next($request);

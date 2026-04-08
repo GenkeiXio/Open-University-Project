@@ -2,7 +2,7 @@
 <html lang="en" class="transition-colors duration-300">
 <head>
     <meta charset="UTF-8">
-    <title>@yield('title', 'Super Admin')</title>
+    <title>@yield('title', 'Admin')</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Prevent dark mode flicker -->
@@ -50,7 +50,7 @@
                         <i data-lucide="layout-dashboard"></i>
                     </div>
                     <span class="sidebar-text font-semibold text-gray-700 dark:text-gray-200 text-lg">
-                        BUOU
+                        BICOL UNIVERSITY
                     </span>
                 </div>
 
@@ -60,9 +60,9 @@
                     <div>
                         <p class="sidebar-text text-xs text-gray-400 uppercase mb-2">Main</p>
 
-                        <a href="{{ route('Super-Admin.super_admin') }}"
+                        <a href="{{ route('admin.dashboard') }}"
                             class="menu-item flex items-center gap-3 px-3 py-2 rounded-lg transition
-                            {{ request()->routeIs('Super-Admin.super_admin') ? 'bg-emerald-100 dark:bg-emerald-900 text-emerald-600 dark:text-emerald-400 font-medium' : 'hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-300' }}">
+                            {{ request()->routeIs('admin.dashboard') ? 'bg-emerald-100 dark:bg-emerald-900 text-emerald-600 dark:text-emerald-400 font-medium' : 'hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-300' }}">
                             <i data-lucide="layout-dashboard" class="w-5 h-5"></i>
                             <span class="sidebar-text">Dashboard</span>
                         </a>
@@ -86,9 +86,9 @@
                     </div>
 
                     <div>
-                        <p class="sidebar-text text-xs text-gray-400 uppercase mb-2">Super Admin</p>
+                        <p class="sidebar-text text-xs text-gray-400 uppercase mb-2">Admin</p>
 
-                        <a href="{{ route('Super-Admin.user_management') }}" class="menu-item flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-300 transition">
+                        <a href="{{ route('admin.user_management') }}" class="menu-item flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-300 transition">
                             <i data-lucide="users" class="w-5 h-5"></i>
                             <span class="sidebar-text">User Management</span>
                         </a>
@@ -123,11 +123,14 @@
                         <span class="sidebar-text">Back to Site</span>
                     </a>
 
-                    <a href="{{ route('logout') }}"
+                    <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
                         class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-red-50 dark:hover:bg-red-900 text-gray-600 dark:text-gray-300 hover:text-red-500 transition">
                         <i data-lucide="log-out" class="w-5 h-5"></i>
                         <span class="sidebar-text">Sign Out</span>
                     </a>
+                    <form id="logout-form" method="POST" action="{{ route('logout') }}" class="hidden">
+                        @csrf
+                    </form>
                 </div>
             </aside>
 

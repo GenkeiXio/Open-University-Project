@@ -1,6 +1,6 @@
-@extends('Super-Admin.adminlayout')
+@extends('Admin.adminlayout')
 
-@section('title', 'OU Super Admin Dashboard')
+@section('title', 'OU Admin Dashboard')
 
 @section('content')
 
@@ -11,7 +11,7 @@
 
             <div>
                 <h1 class="text-3xl md:text-4xl font-bold tracking-tight text-gray-900 dark:text-white">
-                    Super Admin Dashboard
+                    Admin Dashboard
                 </h1>
                 <p class="text-gray-500 dark:text-gray-400 mt-2 text-sm">
                     Full control over the BUOU platform.
@@ -48,7 +48,7 @@
             <p class="text-gray-700 dark:text-gray-300 text-sm">
                 Welcome,
                 <span class="font-semibold text-blue-600 dark:text-blue-400">
-                    {{ session('admin_name') ?? 'Super Admin' }}
+                    {{ session('admin_name') ?? 'Admin' }}
                 </span>
                 👋 You have full system oversight.
             </p>
@@ -65,7 +65,7 @@
 
                 <div class="flex justify-between items-center mb-3">
                     <p class="text-gray-500 dark:text-gray-400 text-sm font-medium">
-                        {{ ['Active Super Admin','Active Admins','Faculty'][$i] }}
+                        {{ ['Active Admins','Active Admins','Faculty'][$i] }}
                     </p>
                     <i data-lucide="users" class="w-5 h-5 text-gray-400"></i>
                 </div>
@@ -206,7 +206,7 @@
         let activityChart = new Chart(ctx2, {
             type: 'bar',
             data: {
-                labels: ['Super Admin','Admins','Faculty'],
+                labels: ['Admin','Admins','Faculty'],
                 datasets: [{
                     data: [12,19,7],
                     backgroundColor: ['#3b82f6','#10b981','#f59e0b']

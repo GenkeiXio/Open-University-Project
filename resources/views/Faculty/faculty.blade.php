@@ -73,7 +73,7 @@
             <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="flex items-center gap-2 px-3 text-gray-700 dark:text-gray-100">
                 <i data-lucide="log-out"></i> LogOut
             </a>
-            <form id="logout-form" method="GET" action="{{ url('/superadmin/logout') }}" class="hidden">@csrf</form>
+            <form id="logout-form" method="POST" action="{{ route('logout') }}" class="hidden">@csrf</form>
             </nav>
         </aside>
 
@@ -109,7 +109,7 @@
             <!-- Welcome -->
             <p class="text-gray-500 dark:text-gray-400 mb-6">
             Welcome to the Open University Administrative Portal, 
-            <span class="font-semibold text-blue-600 dark:text-blue-400">{{ session('admin_name') ?? 'Super Admin' }}</span> 
+            <span class="font-semibold text-blue-600 dark:text-blue-400">{{ session('admin_name') ?? 'Admin' }}</span> 
             👋 You have full system oversight and management privileges.
             </p>
 
@@ -117,7 +117,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
             <div class="p-4 bg-white dark:bg-gray-800 rounded-xl shadow">
                 <div class="flex justify-between items-center">
-                <p class="text-gray-500 text-sm">Active Super Admin</p>
+                <p class="text-gray-500 text-sm">Active Admin</p>
                 <i data-lucide="users" class="text-gray-400 w-5 h-5"></i>
                 </div>
                 <h2 class="text-2xl font-bold">0</h2>
@@ -135,7 +135,7 @@
 
             <div class="p-4 bg-white dark:bg-gray-800 rounded-xl shadow">
                 <div class="flex justify-between items-center">
-                <p class="text-gray-500 text-sm">Inactive Super Admin</p>
+                <p class="text-gray-500 text-sm">Inactive Admin</p>
                 <i data-lucide="users" class="text-gray-400 w-5 h-5"></i>
                 </div>
                 <h2 class="text-2xl font-bold">0</h2>

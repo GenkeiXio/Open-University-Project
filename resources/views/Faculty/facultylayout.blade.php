@@ -2,7 +2,7 @@
 <html lang="en" class="transition-colors duration-300">
 <head>
     <meta charset="UTF-8">
-    <title>@yield('title', 'Super Admin')</title>
+    <title>@yield('title', 'Admin')</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Tailwind -->
@@ -30,7 +30,7 @@
                 </div>
                 <div>
                     <h3 class="font-semibold text-sm">BUOU Admin</h3>
-                    <span class="text-xs opacity-80">Super Admin</span>
+                    <span class="text-xs opacity-80">Admin</span>
                 </div>
             </div>
         
@@ -44,33 +44,33 @@
 
                 <a href="#"
                 class="flex items-center gap-3 px-3 py-2 rounded-lg transition
-                {{ request()->routeIs('superadmin.news*') ? 'bg-white/25' : 'hover:bg-white/20' }}">
+                {{ request()->routeIs('admin.news*') ? 'bg-white/25' : 'hover:bg-white/20' }}">
                     <i data-lucide="newspaper"></i> News
                 </a>
 
                 <a href="#"
                 class="flex items-center gap-3 px-3 py-2 rounded-lg transition
-                {{ request()->routeIs('superadmin.programs*') ? 'bg-white/25' : 'hover:bg-white/20' }}">
+                {{ request()->routeIs('admin.programs*') ? 'bg-white/25' : 'hover:bg-white/20' }}">
                     <i data-lucide="graduation-cap"></i> Programs
                 </a>
 
                 <a href="#"
                 class="flex items-center gap-3 px-3 py-2 rounded-lg transition
-                {{ request()->routeIs('superadmin.chatbot*') ? 'bg-white/25' : 'hover:bg-white/20' }}">
+                {{ request()->routeIs('admin.chatbot*') ? 'bg-white/25' : 'hover:bg-white/20' }}">
                     <i data-lucide="bot"></i> Chatbot
                 </a>
 
-                <p class="text-xs opacity-70 mt-6 mb-2">SUPER ADMIN</p>
+                <p class="text-xs opacity-70 mt-6 mb-2">ADMIN</p>
 
                 <a href="#"
                 class="flex items-center gap-3 px-3 py-2 rounded-lg transition
-                {{ request()->routeIs('superadmin.users*') ? 'bg-white/25' : 'hover:bg-white/20' }}">
+                {{ request()->routeIs('admin.users*') ? 'bg-white/25' : 'hover:bg-white/20' }}">
                     <i data-lucide="users"></i> User Management
                 </a>
 
                 <a href="#"
                 class="flex items-center gap-3 px-3 py-2 rounded-lg transition
-                {{ request()->routeIs('superadmin.settings') ? 'bg-white/25' : 'hover:bg-white/20' }}">
+                {{ request()->routeIs('admin.settings') ? 'bg-white/25' : 'hover:bg-white/20' }}">
                     <i data-lucide="settings"></i> Site Settings
                 </a>
             </nav>
@@ -80,9 +80,12 @@
             <a href="{{ route('home') }}" class="flex items-center gap-3 hover:opacity-80">
                 <i data-lucide="arrow-left"></i> Back to Site
             </a>
-            <a href="{{ route('logout') }}" class="flex items-center gap-3 hover:opacity-80">
+            <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="flex items-center gap-3 hover:opacity-80">
                 <i data-lucide="log-out"></i> Sign Out
             </a>
+            <form id="logout-form" method="POST" action="{{ route('logout') }}" class="hidden">
+                @csrf
+            </form>
         </div>
     </aside>
 

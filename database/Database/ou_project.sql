@@ -18,38 +18,38 @@ USE `ou_project`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `super_admins`
+-- Table structure for table `admins`
 --
 
-DROP TABLE IF EXISTS `super_admins`;
+DROP TABLE IF EXISTS `admins`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `super_admins` (
-  `superadmin_id` int NOT NULL AUTO_INCREMENT,
+CREATE TABLE `admins` (
+  `admin_id` int NOT NULL AUTO_INCREMENT,
   `f_name` varchar(45) NOT NULL,
   `l_name` varchar(45) NOT NULL,
   `username` varchar(45) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `role` enum('super admin','faculty','students') NOT NULL,
+  `role` enum('admin','faculty','students') NOT NULL,
   `status` enum('active','inactive') NOT NULL DEFAULT 'active',
   `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `permissions` json DEFAULT NULL,
   `last_login` datetime DEFAULT NULL,
   `last_logout` datetime DEFAULT NULL,
-  PRIMARY KEY (`superadmin_id`),
+  PRIMARY KEY (`admin_id`),
   UNIQUE KEY `username_UNIQUE` (`username`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `super_admins`
+-- Dumping data for table `admins`
 --
 
-LOCK TABLES `super_admins` WRITE;
-/*!40000 ALTER TABLE `super_admins` DISABLE KEYS */;
-INSERT INTO `super_admins` VALUES (1,'Prince','Jaylo','superadmin','$2y$12$q4pt630XFNd0744JLDu/wOOTSmizJUuQaqfYXHmTN0Qfnb.wVMeDO','super admin','active','2026-02-24 01:14:58','2026-02-24 01:14:58',NULL,NULL,NULL),(2,'OpenU','SuperAdmin','superadmin@bicol-u.edu.ph','$2y$12$.dRuqQRzihabALEPNDOBR.M53eJ/Gv84joF8RoFdu2E/lVUmpLige','super admin','active','2026-02-24 01:17:33','2026-02-24 01:17:33',NULL,NULL,NULL);
-/*!40000 ALTER TABLE `super_admins` ENABLE KEYS */;
+LOCK TABLES `admins` WRITE;
+/*!40000 ALTER TABLE `admins` DISABLE KEYS */;
+INSERT INTO `admins` VALUES (1,'Prince','Jaylo','superadmin','$2y$12$q4pt630XFNd0744JLDu/wOOTSmizJUuQaqfYXHmTN0Qfnb.wVMeDO','admin','active','2026-02-24 01:14:58','2026-02-24 01:14:58',NULL,NULL,NULL),(2,'OpenU','Admin','admin@bicol-u.edu.ph','$2y$12$.dRuqQRzihabALEPNDOBR.M53eJ/Gv84joF8RoFdu2E/lVUmpLige','admin','active','2026-02-24 01:17:33','2026-02-24 01:17:33',NULL,NULL,NULL);
+/*!40000 ALTER TABLE `admins` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --

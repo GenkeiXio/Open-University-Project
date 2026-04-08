@@ -16,7 +16,7 @@
 
     <div class="container" id="container">
         <div class="form-container sign-in">
-            <form method="POST" action="{{ route('login.submit') }}">
+            <form method="POST" action="/admin/login">
                 @csrf
                 <h1>Sign In</h1>
                 <div class="social-icons">
@@ -25,8 +25,8 @@
                 </div>
                 <span style="color: #555; margin-bottom: 15px;">Welcome to BU Open University</span>
 
-                <input type="text" name="username" placeholder="Username or Email" required>
-                <input type="password" name="password" placeholder="Password" required>
+                <input type="email" name="txt_email" placeholder="Email" required>
+                <input type="password" name="txt_password" placeholder="Password" required>
 
                 <a href="#" class="forgot-pass" style="text-decoration: none; font-size: 13px; color: #6f42c1; margin-top: 10px;">Forgot Your Password?</a>
                 

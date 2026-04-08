@@ -72,7 +72,7 @@
                                 {{-- Admin/Faculty Dashboard Link --}}
                                 <li>
                                     @php
-                                        $dashboardRoute = route('Super-Admin.super_admin');
+                                        $dashboardRoute = route('admin.dashboard');
                                         if (strtolower(session('admin_role')) === 'faculty') {
                                             $dashboardRoute = route('Faculty.faculty');
                                         }
