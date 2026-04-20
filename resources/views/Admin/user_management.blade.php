@@ -44,7 +44,6 @@
             <select name="role" id="roleFilter" class="w-full px-3 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-sm">
                 <option value="all">All Roles</option>
                 <option value="admin" {{ request('role')=='admin'?'selected':'' }}>Admin</option>
-                <option value="admin" {{ request('role')=='admin'?'selected':'' }}>Admin</option>
                 <option value="faculty" {{ request('role')=='faculty'?'selected':'' }}>Faculty</option>
             </select>
         

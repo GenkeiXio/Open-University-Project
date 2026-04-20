@@ -5,6 +5,8 @@ use App\Http\Controllers\Auth\AdminLoginController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\Admin\UserManagementController;
+use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Admin\PendingUserController;
 
 // --- Public Routes ---
 Route::get('/', [NewsController::class, 'index'])->name('home');
@@ -13,10 +15,13 @@ Route::get('/', [NewsController::class, 'index'])->name('home');
 // This allows your <img> tags to work even though the files aren't in /public
 Route::get('/news/image/{id}', [NewsController::class, 'showImage'])->name('news.image.show');
 
-// --- Login & Authentication ---
+// --- Login, Register & Authentication ---
 Route::get('/admin/login', [AdminLoginController::class, 'showLogin'])->name('Auth.login'); 
 Route::post('/admin/login', [AdminLoginController::class, 'login'])->name('login.submit');
 Route::post('/admin/logout', [AdminLoginController::class, 'logout'])->name('logout');
+
+Route::get('/register', [RegisterController::class, 'show'])->name('register.show');
+Route::post('/register', [RegisterController::class, 'store'])->name('register.store');
 
 Route::middleware(['user'])->group(function () {
     Route::get('/home', [NewsController::class, 'index'])->name('user.home');
@@ -48,6 +53,16 @@ Route::middleware(['admin'])->group(function () {
     Route::get('/admin/user-management/edit/{id}', [UserManagementController::class, 'edit'])->name('admin.user.edit');
     Route::post('/admin/user-management/update/{id}', [UserManagementController::class, 'update'])->name('admin.user.update');
     Route::post('/admin/user-management/toggle/{id}', [UserManagementController::class, 'toggleStatus'])->name('admin.user.toggle');
+
+    // --- PENDING USERS ---
+    Route::get('/admin/pending-users', [PendingUserController::class, 'index'])
+        ->name('admin.pending');
+
+    Route::post('/admin/pending-users/approve/{id}', [PendingUserController::class, 'approve'])
+        ->name('admin.pending.approve');
+
+    Route::post('/admin/pending-users/reject/{id}', [PendingUserController::class, 'reject'])
+        ->name('admin.pending.reject');
 });
 
 // --- Protected Faculty Routes ---

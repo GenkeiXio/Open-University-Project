@@ -104,7 +104,7 @@
                 @else
                     <li class="nav-item ms-lg-2">
                         <a class="btn shadow-sm" href="{{ route('Auth.login') }}" style="background-color: #ff8c00; color: white; border: none; padding: 8px 24px; font-weight: 700; border-radius: 5px; transition: all 0.3s ease;">
-                            Login
+                            Sign In
                         </a>
                     </li>
                 @endif
