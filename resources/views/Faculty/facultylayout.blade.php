@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" class="transition-colors duration-300">
+
 <head>
     <meta charset="UTF-8">
     <title>@yield('title', 'Faculty Portal') | BUOU</title>
@@ -29,37 +30,74 @@
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
         body {
             font-family: 'DM Sans', sans-serif;
         }
 
         /* ── Sidebar collapsed state ── */
-        #sidebar.collapsed { width: 68px !important; }
-        #sidebar.collapsed .sidebar-text { display: none !important; }
-        #sidebar.collapsed .sidebar-section-label { display: none !important; }
-        #sidebar.collapsed .menu-item { justify-content: center; padding: 10px; }
-        #sidebar.collapsed .logo-text { display: none !important; }
-        #sidebar.collapsed .logo-icon { margin: 0 auto; }
+        #sidebar.collapsed {
+            width: 68px !important;
+        }
+
+        #sidebar.collapsed .sidebar-text {
+            display: none !important;
+        }
+
+        #sidebar.collapsed .sidebar-section-label {
+            display: none !important;
+        }
+
+        #sidebar.collapsed .menu-item {
+            justify-content: center;
+            padding: 10px;
+        }
+
+        #sidebar.collapsed .logo-text {
+            display: none !important;
+        }
+
+        #sidebar.collapsed .logo-icon {
+            margin: 0 auto;
+        }
 
         /* ── Mobile overlay ── */
         #sidebarOverlay {
             display: none;
             position: fixed;
             inset: 0;
-            background: rgba(0,0,0,.5);
+            background: rgba(0, 0, 0, .5);
             z-index: 30;
             backdrop-filter: blur(2px);
         }
 
-        #sidebarOverlay.active { display: block; }
+        #sidebarOverlay.active {
+            display: block;
+        }
 
         /* ── Scrollbar ── */
-        ::-webkit-scrollbar { width: 5px; height: 5px; }
-        ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 99px; }
-        .dark ::-webkit-scrollbar-thumb { background: #374151; }
+        ::-webkit-scrollbar {
+            width: 5px;
+            height: 5px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #d1d5db;
+            border-radius: 99px;
+        }
+
+        .dark ::-webkit-scrollbar-thumb {
+            background: #374151;
+        }
 
         /* ── Active nav item ── */
         .menu-item.active {
@@ -74,7 +112,10 @@
         }
 
         /* ── Tooltip for collapsed sidebar ── */
-        .menu-item { position: relative; }
+        .menu-item {
+            position: relative;
+        }
+
         #sidebar.collapsed .menu-item:hover::after {
             content: attr(data-label);
             position: absolute;
@@ -92,11 +133,20 @@
         }
 
         /* ── Page content fade-in ── */
-        main { animation: pageFadeIn .3s ease; }
+        main {
+            animation: pageFadeIn .3s ease;
+        }
 
         @keyframes pageFadeIn {
-            from { opacity: 0; transform: translateY(8px); }
-            to   { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
     </style>
 </head>
@@ -109,10 +159,9 @@
     <div class="flex min-h-screen">
 
         {{-- ══════════════════════════════════════════
-             SIDEBAR
+        SIDEBAR
         ══════════════════════════════════════════ --}}
-        <aside id="sidebar"
-            class="w-64 bg-white dark:bg-[#111827]
+        <aside id="sidebar" class="w-64 bg-white dark:bg-[#111827]
                    border-r border-gray-200 dark:border-gray-800
                    flex flex-col
                    fixed inset-y-0 left-0
@@ -121,8 +170,7 @@
                    transition-all duration-300">
 
             {{-- Toggle collapse button (desktop) --}}
-            <button id="toggleSidebar"
-                class="hidden md:flex absolute -right-3 top-[72px]
+            <button id="toggleSidebar" class="hidden md:flex absolute -right-3 top-[72px]
                        bg-white dark:bg-gray-800
                        border border-gray-200 dark:border-gray-700
                        rounded-full w-6 h-6 items-center justify-center
@@ -151,79 +199,65 @@
                     <p class="sidebar-section-label sidebar-text text-[10px] text-gray-400 uppercase
                                tracking-widest font-semibold px-2 mb-1.5">Main</p>
 
-                    <a href="{{ route('Faculty.dashboard') }}"
-                       data-label="Dashboard"
-                       class="menu-item flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm
+                    <a href="{{ route('Faculty.dashboard') }}" data-label="Dashboard" class="menu-item flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm
                               transition-all duration-150
                               {{ request()->routeIs('Faculty.dashboard')
-                                 ? 'active'
-                                 : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800' }}">
+    ? 'active'
+    : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800' }}">
                         <i data-lucide="layout-dashboard" class="w-4.5 h-4.5 flex-shrink-0"></i>
                         <span class="sidebar-text">Dashboard</span>
                     </a>
 
-                    <a href="{{ route('Faculty.trainings') }}"
-                       data-label="Trainings"
-                       class="menu-item flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm
+                    <a href="{{ route('Faculty.trainings') }}" data-label="Trainings" class="menu-item flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm
                               transition-all duration-150
                               {{ request()->routeIs('Faculty.trainings')
-                                 ? 'active'
-                                 : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800' }}">
+    ? 'active'
+    : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800' }}">
                         <i data-lucide="book-open" class="w-4.5 h-4.5 flex-shrink-0"></i>
                         <span class="sidebar-text">Trainings</span>
                     </a>
 
-                    <a href="{{ route('Faculty.seminars') }}"
-                       data-label="Seminars"
-                       class="menu-item flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm
+                    <a href="{{ route('Faculty.seminars') }}" data-label="Seminars" class="menu-item flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm
                               transition-all duration-150
                               {{ request()->routeIs('Faculty.seminars')
-                                 ? 'active'
-                                 : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800' }}">
+    ? 'active'
+    : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800' }}">
                         <i data-lucide="mic" class="w-4.5 h-4.5 flex-shrink-0"></i>
                         <span class="sidebar-text">Seminars</span>
                     </a>
 
-                    <a href="{{ route('Faculty.tns') }}"
-                       data-label="TNS"
-                       class="menu-item flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm
+                    <a href="{{ route('Faculty.tns') }}" data-label="TNS" class="menu-item flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm
                               transition-all duration-150
                               {{ request()->routeIs('Faculty.tns')
-                                 ? 'active'
-                                 : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800' }}">
+    ? 'active'
+    : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800' }}">
                         <i data-lucide="clipboard-list" class="w-4.5 h-4.5 flex-shrink-0"></i>
                         <span class="sidebar-text">TNA</span>
                     </a>
 
-                    <a href="{{ route('Faculty.publications') }}"
-                       data-label="Publications"
-                       class="menu-item flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm
+                    <a href="{{ route('Faculty.publications') }}" data-label="Publications" class="menu-item flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm
                               transition-all duration-150
                               {{ request()->routeIs('Faculty.publications')
-                                 ? 'active'
-                                 : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800' }}">
+    ? 'active'
+    : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800' }}">
                         <i data-lucide="newspaper" class="w-4.5 h-4.5 flex-shrink-0"></i>
                         <span class="sidebar-text">Publications</span>
                     </a>
 
-                    <a href="{{ route('Faculty.presentations') }}"
-                       data-label="Presentations"
-                       class="menu-item flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm
+                    <a href="{{ route('Faculty.presentations') }}" data-label="Presentations" class="menu-item flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm
                               transition-all duration-150
                               {{ request()->routeIs('Faculty.presentations')
-                                 ? 'active'
-                                 : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800' }}">
+    ? 'active'
+    : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800' }}">
                         <i data-lucide="presentation" class="w-4.5 h-4.5 flex-shrink-0"></i>
                         <span class="sidebar-text">Presentations</span>
                     </a>
 
-                    <a href="{{ route('Faculty.reports') }}"
-                       data-label="Reports"
-                       class="menu-item flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm
+                    <a href="{{ route('Faculty.reports') }}" data-label="Reports" class="menu-item flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm
                               transition-all duration-150
                               {{ request()->routeIs('Faculty.reports')
-                                 ? 'active'
-                                 : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800' }}">
+    ? 'active'
+    : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800' }}">
                         <i data-lucide="file-bar-chart" class="w-4.5 h-4.5 flex-shrink-0"></i>
                         <span class="sidebar-text">Reports</span>
                     </a>
@@ -234,13 +268,11 @@
                     <p class="sidebar-section-label sidebar-text text-[10px] text-gray-400 uppercase
                                tracking-widest font-semibold px-2 mb-1.5">Faculty</p>
 
-                    <a href="{{ route('Faculty.profile') }}"
-                       data-label="Profile"
-                       class="menu-item flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm
+                    <a href="{{ route('Faculty.profile') }}" data-label="Profile" class="menu-item flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm
                               transition-all duration-150
                               {{ request()->routeIs('Faculty.profile')
-                                 ? 'active'
-                                 : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800' }}">
+    ? 'active'
+    : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800' }}">
                         <i data-lucide="user-circle" class="w-4.5 h-4.5 flex-shrink-0"></i>
                         <span class="sidebar-text">Profile</span>
                     </a>
@@ -253,17 +285,15 @@
 
                     {{-- Dark mode toggle --}}
                     <div class="flex items-center justify-between px-3 py-2.5 rounded-xl
-                                hover:bg-gray-100 dark:hover:bg-gray-800 transition cursor-pointer"
-                         id="themeRow">
+                                hover:bg-gray-100 dark:hover:bg-gray-800 transition cursor-pointer" id="themeRow">
                         <div class="flex items-center gap-3">
-                            <i id="themeIcon" data-lucide="moon" class="w-4.5 h-4.5 text-gray-500 dark:text-gray-400 flex-shrink-0"></i>
+                            <i id="themeIcon" data-lucide="moon"
+                                class="w-4.5 h-4.5 text-gray-500 dark:text-gray-400 flex-shrink-0"></i>
                             <span class="sidebar-text text-sm text-gray-600 dark:text-gray-400">Dark Mode</span>
                         </div>
-                        <button id="themeToggle"
-                                class="relative w-10 h-5 bg-gray-300 dark:bg-emerald-500
+                        <button id="themeToggle" class="relative w-10 h-5 bg-gray-300 dark:bg-emerald-500
                                        rounded-full transition-colors duration-300 flex-shrink-0">
-                            <span id="toggleCircle"
-                                  class="absolute left-0.5 top-0.5 w-4 h-4 bg-white rounded-full
+                            <span id="toggleCircle" class="absolute left-0.5 top-0.5 w-4 h-4 bg-white rounded-full
                                          shadow transition-transform duration-300"></span>
                         </button>
                     </div>
@@ -274,31 +304,32 @@
             {{-- Bottom actions --}}
             <div class="px-3 py-4 border-t border-gray-100 dark:border-gray-800 space-y-1">
 
-                <a href="{{ route('home') }}"
-                   data-label="Back to Site"
-                   class="menu-item flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm
+                <a href="{{ route('home') }}" data-label="Back to Site" class="menu-item flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm
                           text-gray-600 dark:text-gray-400
                           hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-150">
                     <i data-lucide="arrow-left" class="w-4.5 h-4.5 flex-shrink-0"></i>
                     <span class="sidebar-text">Back to Site</span>
                 </a>
 
-                <a href="{{ route('logout') }}"
-                   data-label="Sign Out"
-                   class="menu-item flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm
-                          text-gray-600 dark:text-gray-400
-                          hover:bg-red-50 dark:hover:bg-red-950
-                          hover:text-red-500 dark:hover:text-red-400 transition-all duration-150">
-                    <i data-lucide="log-out" class="w-4.5 h-4.5 flex-shrink-0"></i>
-                    <span class="sidebar-text">Sign Out</span>
-                </a>
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <button type="submit" data-label="Sign Out"
+                        class="menu-item flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm
+                               text-gray-600 dark:text-gray-400
+                               hover:bg-red-50 dark:hover:bg-red-950
+                               hover:text-red-500 dark:hover:text-red-400 transition-all duration-150 w-full text-left">
+
+                        <i data-lucide="log-out" class="w-4.5 h-4.5 flex-shrink-0"></i>
+                        <span class="sidebar-text">Sign Out</span>
+                    </button>
+                </form>
 
             </div>
 
         </aside>
 
         {{-- ══════════════════════════════════════════
-             TOPBAR (mobile only)
+        TOPBAR (mobile only)
         ══════════════════════════════════════════ --}}
         <div class="fixed top-0 left-0 right-0 h-14 bg-white dark:bg-[#111827]
                     border-b border-gray-200 dark:border-gray-800
@@ -318,10 +349,9 @@
         </div>
 
         {{-- ══════════════════════════════════════════
-             PAGE CONTENT
+        PAGE CONTENT
         ══════════════════════════════════════════ --}}
-        <main class="flex-1 md:ml-64 p-6 md:p-8 pt-20 md:pt-8 transition-all duration-300"
-              id="mainContent">
+        <main class="flex-1 md:ml-64 p-6 md:p-8 pt-20 md:pt-8 transition-all duration-300" id="mainContent">
             @yield('content')
         </main>
 
@@ -331,11 +361,11 @@
         lucide.createIcons();
 
         /* ── Sidebar collapse (desktop) ──────────────── */
-        const sidebar     = document.getElementById('sidebar');
-        const toggleBtn   = document.getElementById('toggleSidebar');
-        const toggleIcon  = document.getElementById('toggleIcon');
+        const sidebar = document.getElementById('sidebar');
+        const toggleBtn = document.getElementById('toggleSidebar');
+        const toggleIcon = document.getElementById('toggleIcon');
         const mainContent = document.getElementById('mainContent');
-        let collapsed     = localStorage.getItem('sidebarCollapsed') === 'true';
+        let collapsed = localStorage.getItem('sidebarCollapsed') === 'true';
 
         function applySidebar() {
             if (collapsed) {
@@ -361,8 +391,8 @@
         });
 
         /* ── Mobile menu ─────────────────────────────── */
-        const mobileBtn     = document.getElementById('mobileMenuBtn');
-        const overlay       = document.getElementById('sidebarOverlay');
+        const mobileBtn = document.getElementById('mobileMenuBtn');
+        const overlay = document.getElementById('sidebarOverlay');
 
         function openMobileSidebar() {
             sidebar.classList.remove('-translate-x-full');
@@ -378,9 +408,9 @@
         overlay.addEventListener('click', closeMobileSidebar);
 
         /* ── Dark mode ───────────────────────────────── */
-        const toggle   = document.getElementById('themeToggle');
-        const circle   = document.getElementById('toggleCircle');
-        const html     = document.documentElement;
+        const toggle = document.getElementById('themeToggle');
+        const circle = document.getElementById('toggleCircle');
+        const html = document.documentElement;
         const themeIcon = document.getElementById('themeIcon');
 
         function setTheme(mode) {
@@ -414,4 +444,5 @@
     @stack('scripts')
 
 </body>
+
 </html>
