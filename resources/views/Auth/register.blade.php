@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,65 +8,137 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('css/login.css') }}">
 </head>
+
 <body>
-    <a href="{{ route('home') }}" class="back-to-home">
-        <i class="fa-solid fa-house"></i>
-    </a>
 
-    <div class="login-bg-image"></div>
+    <!-- MAIN -->
+    <main>
+        <div class="card">
 
-    <div class="container">
-        <div class="form-container">
+            <h1 class="card-title">Create Account</h1>
+            <p class="card-sub">Register with your official university email</p>
+
+            <!-- Alerts -->
+            @if(session('error'))
+                <div class="alert alert-error">{{ session('error') }}</div>
+            @endif
+
+            @if ($errors->any())
+                <div class="alert alert-error">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
 
             <form method="POST" action="/register">
                 @csrf
 
-                <h1>Create Account</h1>
-
-                <!-- ERROR -->
-                @if(session('error'))
-                    <div class="error-msg">
-                        {{ session('error') }}
+                <!-- Name row -->
+                <div class="field-row">
+                    <div class="field">
+                        <label for="txt_fname">
+                            First Name <span class="required">*</span>
+                        </label>
+                        <input type="text" id="txt_fname" name="txt_fname" placeholder="Juan" required
+                            value="{{ old('txt_fname') }}">
                     </div>
-                @endif
-
-                <!-- VALIDATION -->
-                @if ($errors->any())
-                    <div class="error-msg">
-                        <ul style="padding-left:15px;">
-                            @foreach ($errors->all() as $error)
-                                <li style="font-size:13px;">{{ $error }}</li>
-                            @endforeach
-                        </ul>
+                    <div class="field">
+                        <label for="txt_lname">
+                            Last Name <span class="required">*</span>
+                        </label>
+                        <input type="text" id="txt_lname" name="txt_lname" placeholder="Dela Cruz" required
+                            value="{{ old('txt_lname') }}">
                     </div>
-                @endif
+                </div>
 
-                <span style="color:#555; margin-bottom:15px;">
-                    Use your @bicol-u.edu.ph email
-                </span>
+                <!-- Email note -->
+                <!-- <div class="email-note">
+                    <i class="fa-solid fa-circle-info"></i>
+                    Use your <span>@bicol-u.edu.ph</span> email address
+                </div> -->
 
-                <input type="text" name="txt_fname" placeholder="First Name" required>
-                <!-- <input type="text" name="txt_minitial" placeholder="Middle Initial"> -->
-                <input type="text" name="txt_lname" placeholder="Last Name" required>
-                <!-- <input type="text" name="txt_extension" placeholder="Extension"> -->
+                <!-- Email -->
+                <div class="field">
+                    <label for="txt_email">
+                        University Email <span class="required">*</span>
+                    </label>
+                    <input type="email" id="txt_email" name="txt_email" placeholder="juandelacruz@bicol-u.edu.ph"
+                        required value="{{ old('txt_email') }}">
+                </div>
 
-                <input type="email" name="txt_email" placeholder="Email" required>
-                <input type="password" name="txt_password" placeholder="Password" required>
-                <input type="password" name="txt_password_confirmation" placeholder="Confirm Password" required>
+                <!-- Password with toggle -->
+                <div class="field">
+                    <label for="txt_password">
+                        Password <span class="required">*</span>
+                    </label>
+                    <div class="input-wrapper">
+                        <input type="password" id="txt_password" name="txt_password"
+                            placeholder="Create a strong password" required>
+                        <button type="button" class="toggle-pw" onclick="togglePassword('txt_password', this)"
+                            tabindex="-1" aria-label="Show password">
+                            <i class="fa-regular fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
 
-                <button type="submit">REGISTER</button>
+                <!-- Confirm Password with toggle -->
+                <div class="field">
+                    <label for="txt_password_confirmation">
+                        Confirm Password <span class="required">*</span>
+                    </label>
+                    <div class="input-wrapper">
+                        <input type="password" id="txt_password_confirmation" name="txt_password_confirmation"
+                            placeholder="Repeat your password" required>
+                        <button type="button" class="toggle-pw"
+                            onclick="togglePassword('txt_password_confirmation', this)" tabindex="-1"
+                            aria-label="Show confirm password">
+                            <i class="fa-regular fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
 
-                <!-- 🔁 GO TO LOGIN -->
-                <p style="margin-top:15px; font-size:13px;">
-                    Already have an account?
-                    <a href="{{ route('Auth.login') }}" style="color:#ea6a0e; font-weight:600;">
-                        Sign in here
-                    </a>
-                </p>
+                <button type="submit" class="btn-submit">
+                    Create My Account <i class="fa-solid fa-arrow-right"></i>
+                </button>
 
             </form>
 
+            <div class="divider">or</div>
+
+            <p class="signin-link">
+                Already have an account?
+                <a href="{{ route('Auth.login') }}">Sign in here</a>
+            </p>
+
+            <p class="policy-note">
+                By continuing, you agree to the Bicol University
+                <a href="https://bicol-u.edu.ph/privacy-statement/" target="_blank">Privacy Policy</a>.
+            </p>
+
         </div>
-    </div>
+    </main>
+
+    <a href="{{ route('home') }}" class="back-to-home" title="Back to Home">
+        <i class="fa-solid fa-house"></i>
+    </a>
+
+    <script>
+        function togglePassword(fieldId, btn) {
+            const input = document.getElementById(fieldId);
+            const icon = btn.querySelector('i');
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.classList.replace('fa-eye', 'fa-eye-slash');
+            } else {
+                input.type = 'password';
+                icon.classList.replace('fa-eye-slash', 'fa-eye');
+            }
+        }
+    </script>
+
 </body>
+
 </html>
