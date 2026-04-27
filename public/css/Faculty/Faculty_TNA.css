@@ -1,0 +1,336 @@
+/* ============================================================
+   Faculty TNA (Training Needs Analysis) — Polished UI
+   Inherits CSS variables from Faculty_Dashboard.css
+   ============================================================ */
+
+/* ── TNA layout ────────────────────────────────────────────── */
+.tna-layout {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 24px;
+    align-items: start;
+}
+
+@media (max-width: 1024px) { .tna-layout { grid-template-columns: 1fr; } }
+
+/* ── Step indicator ────────────────────────────────────────── */
+.step-bar {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    margin-bottom: 28px;
+}
+
+.step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    position: relative;
+}
+
+.step:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    top: 16px;
+    left: calc(50% + 18px);
+    right: calc(-50% + 18px);
+    height: 2px;
+    background: var(--clr-border);
+    z-index: 0;
+}
+
+.step.done:not(:last-child)::after { background: var(--clr-accent); }
+
+.step-circle {
+    width: 34px; height: 34px;
+    border-radius: 50%;
+    border: 2px solid var(--clr-border);
+    background: var(--clr-surface);
+    color: var(--clr-muted);
+    font-size: .82rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    transition: all .3s ease;
+}
+
+.step.done   .step-circle { background: var(--clr-accent); border-color: var(--clr-accent); color: #fff; }
+.step.active .step-circle { border-color: var(--clr-accent); color: var(--clr-accent); }
+
+.step-label {
+    font-size: .7rem;
+    color: var(--clr-muted);
+    font-weight: 500;
+    margin-top: 6px;
+    text-align: center;
+}
+
+.step.done .step-label, .step.active .step-label { color: var(--clr-accent); }
+
+/* ── Section card ──────────────────────────────────────────── */
+.tna-section {
+    margin-bottom: 24px;
+}
+
+.tna-section-title {
+    font-size: .85rem;
+    font-weight: 700;
+    color: var(--clr-text);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.tna-section-title-icon {
+    width: 28px; height: 28px;
+    border-radius: 8px;
+    background: var(--clr-accent-soft);
+    color: var(--clr-accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ── Category cards (checkbox grid) ───────────────────────── */
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+@media (max-width: 768px) { .category-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 480px) { .category-grid { grid-template-columns: 1fr; } }
+
+.category-card {
+    position: relative;
+    border: 2px solid var(--clr-border);
+    border-radius: 12px;
+    padding: 14px 12px;
+    cursor: pointer;
+    transition: all .2s ease;
+    background: var(--clr-surface);
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.category-card:hover {
+    border-color: var(--clr-accent);
+    background: var(--clr-accent-soft);
+}
+
+.category-card.selected {
+    border-color: var(--clr-accent);
+    background: var(--clr-accent-soft);
+}
+
+.category-card input[type="checkbox"] {
+    display: none;
+}
+
+.category-check {
+    width: 18px; height: 18px;
+    border-radius: 5px;
+    border: 2px solid var(--clr-border);
+    background: var(--clr-surface);
+    flex-shrink: 0;
+    margin-top: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all .15s ease;
+}
+
+.category-card.selected .category-check {
+    background: var(--clr-accent);
+    border-color: var(--clr-accent);
+}
+
+.category-check-icon {
+    display: none;
+    color: #fff;
+}
+
+.category-card.selected .category-check-icon { display: block; }
+
+.category-text strong {
+    font-size: .83rem;
+    font-weight: 600;
+    color: var(--clr-text);
+    display: block;
+}
+
+.category-text span {
+    font-size: .73rem;
+    color: var(--clr-muted);
+    margin-top: 2px;
+    display: block;
+}
+
+/* ── Priority select ───────────────────────────────────────── */
+.priority-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+@media (max-width: 560px) { .priority-row { grid-template-columns: 1fr; } }
+
+/* ── Textarea ──────────────────────────────────────────────── */
+.form-textarea {
+    width: 100%;
+    padding: 10px 14px;
+    border-radius: 10px;
+    border: 1px solid var(--clr-border);
+    background: var(--clr-surface);
+    color: var(--clr-text);
+    font-size: .85rem;
+    font-family: inherit;
+    resize: vertical;
+    min-height: 80px;
+    outline: none;
+    transition: border-color .2s ease, box-shadow .2s ease;
+}
+
+.form-textarea:focus {
+    border-color: var(--clr-accent);
+    box-shadow: 0 0 0 3px rgba(16,185,129,.12);
+}
+
+.form-textarea::placeholder { color: var(--clr-muted); }
+
+/* ── Rating stars ──────────────────────────────────────────── */
+.rating-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.rating-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--clr-border);
+}
+
+.rating-row:last-child { border-bottom: none; }
+
+.rating-label {
+    font-size: .83rem;
+    color: var(--clr-text);
+    font-weight: 500;
+    flex: 1;
+}
+
+.star-row {
+    display: flex;
+    gap: 4px;
+}
+
+.star-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--clr-border);
+    font-size: 18px;
+    transition: color .15s ease, transform .15s ease;
+    padding: 0;
+    line-height: 1;
+}
+
+.star-btn:hover,
+.star-btn.active { color: #f59e0b; transform: scale(1.2); }
+
+/* ── Sidebar summary panel ─────────────────────────────────── */
+.summary-panel {
+    background: var(--clr-surface);
+    border: 1px solid var(--clr-border);
+    border-radius: var(--radius);
+    padding: 20px;
+    box-shadow: var(--shadow-sm);
+    position: sticky;
+    top: 24px;
+    animation: fadeUp .4s ease both .1s;
+}
+
+.summary-panel h6 {
+    font-size: .9rem;
+    font-weight: 700;
+    color: var(--clr-text);
+    margin-bottom: 16px;
+}
+
+.summary-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--clr-border);
+    font-size: .82rem;
+}
+
+.summary-item:last-child { border-bottom: none; }
+.summary-item span:first-child { color: var(--clr-muted); }
+.summary-item span:last-child  { font-weight: 600; color: var(--clr-text); }
+
+/* Selected categories tags */
+.selected-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 12px;
+    min-height: 28px;
+}
+
+.selected-tag {
+    padding: 3px 10px;
+    border-radius: 999px;
+    background: var(--clr-accent-soft);
+    color: var(--clr-accent);
+    font-size: .72rem;
+    font-weight: 600;
+    animation: fadeUp .2s ease;
+}
+
+/* ── Submit button ─────────────────────────────────────────── */
+.tna-submit-btn {
+    width: 100%;
+    padding: 12px;
+    border-radius: 12px;
+    background: var(--clr-accent);
+    color: #fff;
+    border: none;
+    font-size: .88rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background .2s ease, box-shadow .2s ease, transform .15s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 16px;
+}
+
+.tna-submit-btn:hover {
+    background: #059669;
+    box-shadow: 0 4px 16px rgba(16,185,129,.4);
+    transform: translateY(-1px);
+}
+
+/* ── Previous submissions ──────────────────────────────────── */
+.submission-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--clr-border);
+    font-size: .83rem;
+}
+
+.submission-row:last-child { border-bottom: none; }

@@ -74,7 +74,7 @@
                                     @php
                                         $dashboardRoute = route('admin.dashboard');
                                         if (strtolower(session('admin_role')) === 'faculty') {
-                                            $dashboardRoute = route('Faculty.faculty');
+                                            $dashboardRoute = route('Faculty.dashboard');
                                         }
                                     @endphp
                                     <a class="dropdown-item d-flex align-items-center" href="{{ $dashboardRoute }}">

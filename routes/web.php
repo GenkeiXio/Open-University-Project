@@ -66,6 +66,26 @@ Route::middleware(['admin'])->group(function () {
 });
 
 // --- Protected Faculty Routes ---
+Route::middleware(['faculty'])->prefix('Faculty')->group(function () {
+
+    Route::get('/dashboard', fn() => view('Faculty.dashboard'))->name('Faculty.dashboard');
+
+    Route::get('/profile', fn() => view('Faculty.profile'))->name('Faculty.profile');
+
+    Route::get('/trainings', fn() => view('Faculty.trainings.index'))->name('Faculty.trainings');
+
+    Route::get('/tns', fn() => view('Faculty.tna.index'))->name('Faculty.tns');
+
+    Route::get('/reports', fn() => view('Faculty.reports.index'))->name('Faculty.reports');
+
+    Route::get('/publications', fn() => view('Faculty.publications.index'))->name('Faculty.publications');
+
+    Route::get('/seminars', fn() => view('Faculty.seminars.index'))->name('Faculty.seminars');
+
+    Route::get('/presentations', fn() => view('Faculty.presentations.index'))->name('Faculty.presentations');
+
+});
+
 Route::middleware(['faculty'])->group(function () {
     Route::get('/Faculty/faculty', function () {
         return view('Faculty.faculty', [
