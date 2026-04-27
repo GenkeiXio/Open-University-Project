@@ -45,11 +45,13 @@
                 </span>
 
                 <input type="text" name="txt_fname" placeholder="First Name" required>
-                <input type="text" name="txt_minitial" placeholder="Middle Initial">
+                <!-- <input type="text" name="txt_minitial" placeholder="Middle Initial"> -->
                 <input type="text" name="txt_lname" placeholder="Last Name" required>
-                <input type="text" name="txt_extension" placeholder="Extension">
+                <!-- <input type="text" name="txt_extension" placeholder="Extension"> -->
 
                 <input type="email" name="txt_email" placeholder="Email" required>
+                <input type="password" name="txt_password" placeholder="Password" required>
+                <input type="password" name="txt_password_confirmation" placeholder="Confirm Password" required>
 
                 <button type="submit">REGISTER</button>
 

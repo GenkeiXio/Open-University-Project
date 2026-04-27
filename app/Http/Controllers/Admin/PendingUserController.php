@@ -29,11 +29,9 @@ class PendingUserController extends Controller
 
         Admin::create([
             'txt_fname' => $pending->txt_fname,
-            'txt_minitial' => $pending->txt_minitial,
             'txt_lname' => $pending->txt_lname,
-            'txt_extension' => $pending->txt_extension,
             'txt_email' => $pending->txt_email,
-            'txt_password' => Hash::make('default123'),
+            'txt_password' => $pending->txt_password,
             'txt_role' => $request->txt_role, // ✅ dynamic role
             'txt_status' => 'active'
         ]);

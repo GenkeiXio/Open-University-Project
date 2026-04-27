@@ -10,12 +10,9 @@ class PendingUser extends Model
 
     protected $fillable = [
         'txt_fname',
-        'txt_minitial',
         'txt_lname',
-        'txt_extension',
         'txt_email',
-        'verification_token',
-        'email_verified_at',
+        'txt_password',
         'status'
     ];
 }

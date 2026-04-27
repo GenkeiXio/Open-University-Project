@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\PendingUser;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Hash;
 
 class RegisterController extends Controller
 {
@@ -19,9 +20,10 @@ class RegisterController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'txt_fname' => 'required',
-            'txt_lname' => 'required',
-            'txt_email' => 'required|email|unique:pending_users,txt_email',
+            'txt_fname' => 'required|string|max:45',
+            'txt_lname' => 'required|string|max:45',
+            'txt_email' => 'required|email|max:100|unique:pending_users,txt_email',
+            'txt_password' => 'required|string|min:6|confirmed',
         ]);
 
         // check email domain
@@ -33,11 +35,10 @@ class RegisterController extends Controller
 
         PendingUser::create([
             'txt_fname' => $request->txt_fname,
-            'txt_minitial' => $request->txt_minitial,
             'txt_lname' => $request->txt_lname,
-            'txt_extension' => $request->txt_extension,
             'txt_email' => $request->txt_email,
-            'verification_token' => $token,
+            'txt_password' => Hash::make($request->txt_password),
+            'status' => 'pending'
         ]);
 
         return redirect('/admin/login')->with('success','Registered! Wait for approval.');
