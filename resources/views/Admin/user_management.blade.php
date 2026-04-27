@@ -1,4 +1,4 @@
-@extends('super-admin.adminlayout')
+@extends('admin.adminlayout')
 
 @section('title', 'User Management')
 
@@ -37,13 +37,12 @@
             <div class="relative">
                 <i data-lucide="search"
                     class="absolute left-3 top-3 w-4 h-4 text-gray-400"></i>
-                <input type="text" name="search" id="searchInput" value="{{ request('search') }}" placeholder="Search name or username..." class="w-full pl-9 pr-3 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-sm">
+                <input type="text" name="search" id="searchInput" value="{{ request('search') }}" placeholder="Search name or email..." class="w-full pl-9 pr-3 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-sm">
             </div>
 
             <!-- ROLE FILTER -->
             <select name="role" id="roleFilter" class="w-full px-3 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-sm">
                 <option value="all">All Roles</option>
-                <option value="super admin" {{ request('role')=='super admin'?'selected':'' }}>Super Admin</option>
                 <option value="admin" {{ request('role')=='admin'?'selected':'' }}>Admin</option>
                 <option value="faculty" {{ request('role')=='faculty'?'selected':'' }}>Faculty</option>
             </select>
@@ -64,8 +63,9 @@
                 <thead class="bg-gray-50 dark:bg-gray-800 text-gray-600 dark:text-gray-400">
                     <tr>
                         <th class="px-6 py-4">Name</th>
-                        <th class="px-6 py-4">Username</th>
+                        <th class="px-6 py-4">Email</th>
                         <th class="px-6 py-4">Role</th>
+                        <th class="px-6 py-4">Position</th>
                         <th class="px-6 py-4">Status</th>
                         <th class="px-6 py-4">Last Login</th>
                         <th class="px-6 py-4">Last Logout</th>
@@ -78,24 +78,24 @@
                     <tr class="border-t border-gray-100 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-800 transition">
                         <!-- NAME -->
                         <td class="px-6 py-4 font-medium">
-                            {{ $user->f_name }} {{ $user->l_name }}
+                            {{ $user->txt_fname }} {{ $user->txt_lname }}
                         </td>
 
-                        <!-- USERNAME -->
+                        <!-- EMAIL -->
                         <td class="px-6 py-4 text-gray-500">
-                            {{ $user->username }}
+                            {{ $user->txt_email }}
                         </td>
 
                         <!-- ROLE -->
                         <td class="px-6 py-4">
-                            @if($user->role == 'super admin')
+                            @if($user->txt_role == 'admin')
                                 <span class="px-3 py-1 text-xs rounded-full bg-purple-100 text-purple-600">
-                                    Super Admin
+                                    Admin
                                 </span>
 
-                            @elseif($user->role == 'admin')
+                            @elseif($user->txt_role == 'faculty')
                                 <span class="px-3 py-1 text-xs rounded-full bg-blue-100 text-blue-600">
-                                    Admin
+                                    Faculty
                                 </span>
 
                             @else
@@ -105,9 +105,14 @@
                             @endif
                         </td>
 
+                        <!-- POSITION -->
+                        <td class="px-6 py-4 text-gray-700 dark:text-gray-300">
+                            {{ $user->txt_position ?? 'N/A' }}
+                        </td>
+
                         <!-- STATUS -->
                         <td class="px-6 py-4">
-                            @if($user->status == 'active')
+                            @if($user->txt_status == 'active')
                                 <span class="px-3 py-1 text-xs rounded-full bg-green-100 text-green-600">
                                     Active
                                 </span>
@@ -120,12 +125,12 @@
 
                         <!-- LAST LOGIN -->
                         <td class="px-6 py-4 text-gray-500">
-                            {{ $user->last_login ?? 'Never' }}
+                            {{ $user->txt_lastlogin ?? 'Never' }}
                         </td>
 
                         <!-- LAST LOGOUT -->
                         <td class="px-6 py-4 text-gray-500">
-                            {{ $user->last_logout ?? 'Never' }}
+                            {{ $user->txt_lastlogout ?? 'Never' }}
                         </td>
 
                         <!-- ACTIONS -->
@@ -136,10 +141,10 @@
                             </button>
 
                             <!-- ACTIVATE / DEACTIVATE -->
-                            <form method="POST" action="{{ route('Super-Admin.user.toggle',$user->admin_id) }}">
+                            <form method="POST" action="{{ route('admin.user.toggle',$user->admin_id) }}">
                                 @csrf
-                                <button type="submit" class="p-2 rounded-lg {{ $user->status=='active' ? 'bg-red-100 text-red-600 hover:bg-red-200': 'bg-green-100 text-green-600 hover:bg-green-200'}}">
-                                    <i data-lucide="{{ $user->status=='active' ? 'user-x' : 'user-check' }}" class="w-4 h-4"></i>
+                                <button type="submit" class="p-2 rounded-lg {{ $user->txt_status=='active' ? 'bg-red-100 text-red-600 hover:bg-red-200': 'bg-green-100 text-green-600 hover:bg-green-200'}}">
+                                    <i data-lucide="{{ $user->txt_status=='active' ? 'user-x' : 'user-check' }}" class="w-4 h-4"></i>
                                 </button>
                             </form>
                         </td>
@@ -162,28 +167,32 @@
                         </button>
                     </div>
 
-                    <form method="POST" action="{{ route('Super-Admin.user.store') }}">
+                    <form method="POST" action="{{ route('admin.user.store') }}">
                         @csrf
                         <div class="grid grid-cols-2 gap-3">
-                            <input name="f_name" placeholder="First Name" required class="px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-sm">
-                            <input name="l_name" placeholder="Last Name" required class="px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-sm">
+                            <input name="txt_fname" placeholder="First Name" required class="px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-sm">
+                            <input name="txt_lname" placeholder="Last Name" required class="px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-sm">
                         </div>
 
                         <div class="mt-3">
-                            <input name="username" placeholder="Username / Email" required class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-sm">
+                            <input name="txt_email" type="email" placeholder="Email" required class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-sm">
                         </div>
 
                         <div class="grid grid-cols-2 gap-3 mt-3">
-                            <input type="password" name="password" placeholder="Password" required class="px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-sm">
-                            <input type="password" name="password_confirmation" placeholder="Confirm Password" required class="px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-sm">
+                            <input type="password" name="txt_password" placeholder="Password" required class="px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-sm">
+                            <input type="password" name="txt_password_confirmation" placeholder="Confirm Password" required class="px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-sm">
                         </div>
 
                         <div class="mt-3">
-                            <select name="role" class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-sm">
-                                <option value="super admin">Super Admin</option>
+                            <select name="txt_role" class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-sm">
                                 <option value="admin">Admin</option>
                                 <option value="faculty">Faculty</option>
+                                <option value="staff">Staff</option>
                             </select>
+                        </div>
+
+                        <div class="mt-3">
+                            <input name="txt_position" type="text" placeholder="Position (e.g., Administrative Aide)" class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-sm">
                         </div>
 
                         <div class="flex justify-end gap-2 mt-5">
@@ -216,26 +225,30 @@
                     <form method="POST" id="editUserForm">
                         @csrf
                         <div class="grid grid-cols-2 gap-3">
-                            <input type="text" name="f_name" required class="px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-sm">
-                            <input type="text" name="l_name" required class="px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-sm">
+                            <input type="text" name="txt_fname" required class="px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-sm">
+                            <input type="text" name="txt_lname" required class="px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-sm">
                         </div>
 
                         <div class="mt-3">
-                            <input type="text" name="username" required class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-sm">
+                            <input type="email" name="txt_email" required class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-sm">
                         </div>
 
                         <div class="grid grid-cols-2 gap-3 mt-3">
-                            <input type="password" name="password" placeholder="New Password (optional)" class="px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-sm">
-                            <input type="password" name="password_confirmation" placeholder="Confirm Password" class="px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-sm">
+                            <input type="password" name="txt_password" placeholder="New Password (optional)" class="px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-sm">
+                            <input type="password" name="txt_password_confirmation" placeholder="Confirm Password" class="px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-sm">
                         </div>
 
                         <div class="mt-3">
-                            <select name="role"
+                            <select name="txt_role"
                                 class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-sm">
-                                <option value="super admin">Super Admin</option>
                                 <option value="admin">Admin</option>
                                 <option value="faculty">Faculty</option>
+                                <option value="staff">Staff</option>
                             </select>
+                        </div>
+
+                        <div class="mt-3">
+                            <input type="text" name="txt_position" placeholder="Position (e.g., Administrative Aide)" class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-sm">
                         </div>
 
                         <div class="flex justify-end gap-2 mt-5">
@@ -290,40 +303,15 @@
         document.querySelectorAll('.editUserBtn').forEach(btn => {
             btn.addEventListener('click', async () => {
                 const id = btn.dataset.id;
-                const res = await fetch(`/Super-Admin/user-management/edit/${id}`);
+                const res = await fetch(`/admin/user-management/edit/${id}`);
                 const data = await res.json();
                 const form = document.getElementById('editUserForm');
-                form.action = `/Super-Admin/user-management/update/${id}`;
-                form.f_name.value = data.f_name;
-                form.l_name.value = data.l_name;
-                form.username.value = data.username;
-                form.role.value = data.role;
-                document.getElementById('editUserModal').classList.remove('hidden');
-            });
-        });
-
-        function closeModal(id){
-            document.getElementById(id).classList.add('hidden');
-        }
-        document.querySelectorAll('[data-modal-target]').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const modal = document.getElementById(btn.getAttribute('data-modal-target'));
-                modal.classList.remove('hidden');
-            });
-        });
-
-
-        document.querySelectorAll('.editUserBtn').forEach(btn => {
-            btn.addEventListener('click', async () => {
-                const id = btn.dataset.id;
-                const res = await fetch(`/Super-Admin/user-management/edit/${id}`);
-                const data = await res.json();
-                const form = document.getElementById('editUserForm');
-                form.action = `/Super-Admin/user-management/update/${id}`;
-                form.f_name.value = data.f_name;
-                form.l_name.value = data.l_name;
-                form.username.value = data.username;
-                form.role.value = data.role;
+                form.action = `/admin/user-management/update/${id}`;
+                form.txt_fname.value = data.txt_fname;
+                form.txt_lname.value = data.txt_lname;
+                form.txt_email.value = data.txt_email;
+                form.txt_role.value = data.txt_role;
+                form.txt_position.value = data.txt_position || '';
                 document.getElementById('editUserModal').classList.remove('hidden');
             });
         });

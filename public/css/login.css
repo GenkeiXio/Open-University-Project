@@ -39,7 +39,8 @@ body {
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
     width: 450px; /* Centered for single form */
     max-width: 90%;
-    min-height: 500px;
+    min-height: 600px; /*Changed from 500px*/
+    padding: 20px 0; /* ✅ add vertical breathing space */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -56,6 +57,7 @@ body {
     flex-direction: column;
     padding: 0 40px;
     width: 100%;
+    gap: 10px; /* 🔥 adds consistent spacing between elements */
 }
 
 .form-container {
@@ -63,7 +65,7 @@ body {
 }
 
 h1 {
-    margin-bottom: 10px;
+    margin-bottom: 15px;
     color: #333;
 }
 
@@ -71,8 +73,8 @@ h1 {
 .container input {
     background-color: rgba(255, 255, 255, 0.5);
     border: 1px solid rgba(0, 0, 0, 0.1);
-    margin: 10px 0;
-    padding: 12px 15px;
+    margin: 12px 0; /* 🔥 increased from 10px */
+    padding: 14px 15px; /* 🔥 slightly taller */
     font-size: 14px;
     border-radius: 10px;
     width: 100%;
@@ -96,7 +98,7 @@ h1 {
     border-radius: 10px;
     font-weight: 700;
     text-transform: uppercase;
-    margin-top: 25px;
+    margin-top: 30px; /* 🔥 more space before button */
     cursor: pointer;
     width: 100%;
     transition:
@@ -107,6 +109,11 @@ h1 {
 .container button:hover {
     transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(234, 106, 14, 0.4);
+}
+
+.container span {
+    margin-bottom: 10px;
+    display: block;
 }
 
 /* Social Icons */

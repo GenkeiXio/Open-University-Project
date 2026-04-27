@@ -72,7 +72,7 @@
                                 {{-- Admin/Faculty Dashboard Link --}}
                                 <li>
                                     @php
-                                        $dashboardRoute = route('Super-Admin.super_admin');
+                                        $dashboardRoute = route('admin.dashboard');
                                         if (strtolower(session('admin_role')) === 'faculty') {
                                             $dashboardRoute = route('Faculty.dashboard');
                                         }
@@ -84,7 +84,7 @@
                                 @else
                                    {{-- Regular User specific links --}}
                                     <li>
-                                        <a class="dropdown-item d-flex align-items-center" href="{{ route('home') }}">
+                                        <a class="dropdown-item d-flex align-items-center" href="{{ route('user.student.portal') }}">
                                             <i data-lucide="graduation-cap" class="me-2"></i> Student Portal
                                         </a>
                                     </li>
@@ -104,7 +104,7 @@
                 @else
                     <li class="nav-item ms-lg-2">
                         <a class="btn shadow-sm" href="{{ route('Auth.login') }}" style="background-color: #ff8c00; color: white; border: none; padding: 8px 24px; font-weight: 700; border-radius: 5px; transition: all 0.3s ease;">
-                            Login
+                            Sign In
                         </a>
                     </li>
                 @endif

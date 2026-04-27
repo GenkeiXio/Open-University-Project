@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class SuperAdmin extends Authenticatable
+class Admin extends Authenticatable
 {
     use HasFactory;
 
@@ -16,15 +16,21 @@ class SuperAdmin extends Authenticatable
     protected $primaryKey = 'admin_id';
 
     protected $fillable = [
-        'f_name',
-        'l_name',
-        'username',
-        'password',
-        'role',
-        'status',
+        'txt_fname',
+        'txt_minitial',
+        'txt_lname',
+        'txt_extension',
+        'txt_email',
+        'txt_password',
+        'txt_role',
+        'txt_status',
+        'txt_position',
+        'txt_permissions',
+        'txt_lastlogin',
+        'txt_lastlogout',
     ];
 
     protected $hidden = [
-        'password',
+        'txt_password',
     ];
 }

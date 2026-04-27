@@ -1,4 +1,5 @@
-@extends('Super-Admin.adminlayout')
+@extends('Admin.adminlayout')
+@php use Illuminate\Support\Str; @endphp
 
 @section('content')
 <div class="p-8 min-h-screen transition-colors duration-300">
@@ -192,7 +193,7 @@
         document.getElementById('editDate').value = row.dataset.created_at;
         
         // Dynamic route matching your Laravel controller
-        document.getElementById('editNewsForm').action = '/Super-Admin/news/' + row.dataset.id;
+        document.getElementById('editNewsForm').action = '/admin/news/' + row.dataset.id;
         
         toggleModal('editNewsModal');
     }

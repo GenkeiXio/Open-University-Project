@@ -1,10 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Auth\SuperAdminLoginController;
+use App\Http\Controllers\Auth\AdminLoginController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\Admin\UserManagementController;
+use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Admin\PendingUserController;
 
 // --- Public Routes ---
 Route::get('/', [NewsController::class, 'index'])->name('home');
@@ -13,36 +15,54 @@ Route::get('/', [NewsController::class, 'index'])->name('home');
 // This allows your <img> tags to work even though the files aren't in /public
 Route::get('/news/image/{id}', [NewsController::class, 'showImage'])->name('news.image.show');
 
-// --- Login & Authentication ---
-Route::get('/superadmin/login', [SuperAdminLoginController::class, 'showLogin'])->name('Auth.login'); 
-Route::post('/superadmin/login', [SuperAdminLoginController::class, 'login'])->name('login.submit');
-Route::match(['get', 'post'], '/superadmin/logout', [SuperAdminLoginController::class, 'logout'])->name('logout');
+// --- Login, Register & Authentication ---
+Route::get('/admin/login', [AdminLoginController::class, 'showLogin'])->name('Auth.login'); 
+Route::post('/admin/login', [AdminLoginController::class, 'login'])->name('login.submit');
+Route::post('/admin/logout', [AdminLoginController::class, 'logout'])->name('logout');
 
-Route::middleware(['User'])->group(function () {
+Route::get('/register', [RegisterController::class, 'show'])->name('register.show');
+Route::post('/register', [RegisterController::class, 'store'])->name('register.store');
+
+Route::middleware(['user'])->group(function () {
     Route::get('/home', [NewsController::class, 'index'])->name('user.home');
+
+    // ADD THIS LINE:
+    Route::get('/student-portal', function () {
+        return view('Users.userstudentportal');
+    })->name('user.student.portal');
 });
 
-// --- Protected Super Admin Routes ---
-Route::middleware(['superadmin'])->group(function () {
+// --- Protected Admin Routes ---
+Route::middleware(['admin'])->group(function () {
     
     // DASHBOARD
-    Route::get('/Super-Admin/super_admin', function () {
-        return view('Super-Admin.super_admin');
-    })->name('Super-Admin.super_admin');
+    Route::get('/admin/dashboard', function () {
+        return view('Admin.admin');
+    })->name('admin.dashboard');
 
     // --- NEWS MANAGEMENT (Added these for you) ---
-    Route::get('/Super-Admin/news', [NewsController::class, 'manage'])->name('admin.news.index');
-    Route::post('/Super-Admin/news', [NewsController::class, 'store'])->name('news.store');
-    Route::get('/Super-Admin/news/{id}/edit', [NewsController::class, 'edit'])->name('news.edit');
-    Route::put('/Super-Admin/news/{id}', [NewsController::class, 'update'])->name('news.update');
-    Route::delete('/Super-Admin/news/{id}', [NewsController::class, 'destroy'])->name('news.destroy');
+    Route::get('/admin/news', [NewsController::class, 'manage'])->name('admin.news.index');
+    Route::post('/admin/news', [NewsController::class, 'store'])->name('news.store');
+    Route::get('/admin/news/{id}/edit', [NewsController::class, 'edit'])->name('news.edit');
+    Route::put('/admin/news/{id}', [NewsController::class, 'update'])->name('news.update');
+    Route::delete('/admin/news/{id}', [NewsController::class, 'destroy'])->name('news.destroy');
 
     // --- USER MANAGEMENT ---
-    Route::get('/Super-Admin/user-management', [UserManagementController::class, 'index'])->name('Super-Admin.user_management');
-    Route::post('/Super-Admin/user-management/store', [UserManagementController::class, 'store'])->name('Super-Admin.user.store');
-    Route::get('/Super-Admin/user-management/edit/{id}', [UserManagementController::class, 'edit'])->name('Super-Admin.user.edit');
-    Route::post('/Super-Admin/user-management/update/{id}', [UserManagementController::class, 'update'])->name('Super-Admin.user.update');
-    Route::post('/Super-Admin/user-management/toggle/{id}', [UserManagementController::class, 'toggleStatus'])->name('Super-Admin.user.toggle');
+    Route::get('/admin/user-management', [UserManagementController::class, 'index'])->name('admin.user_management');
+    Route::post('/admin/user-management/store', [UserManagementController::class, 'store'])->name('admin.user.store');
+    Route::get('/admin/user-management/edit/{id}', [UserManagementController::class, 'edit'])->name('admin.user.edit');
+    Route::post('/admin/user-management/update/{id}', [UserManagementController::class, 'update'])->name('admin.user.update');
+    Route::post('/admin/user-management/toggle/{id}', [UserManagementController::class, 'toggleStatus'])->name('admin.user.toggle');
+
+    // --- PENDING USERS ---
+    Route::get('/admin/pending-users', [PendingUserController::class, 'index'])
+        ->name('admin.pending');
+
+    Route::post('/admin/pending-users/approve/{id}', [PendingUserController::class, 'approve'])
+        ->name('admin.pending.approve');
+
+    Route::post('/admin/pending-users/reject/{id}', [PendingUserController::class, 'reject'])
+        ->name('admin.pending.reject');
 });
 
 // --- Protected Faculty Routes ---
@@ -64,6 +84,24 @@ Route::middleware(['faculty'])->prefix('Faculty')->group(function () {
 
     Route::get('/presentations', fn() => view('Faculty.presentations.index'))->name('Faculty.presentations');
 
-    
+});
 
+Route::middleware(['faculty'])->group(function () {
+    Route::get('/Faculty/faculty', function () {
+        return view('Faculty.faculty', [
+            'staffName' => session('admin_name')
+        ]);
+    })->name('Faculty.faculty');
+});
+
+Route::middleware(['staff'])->group(function () {
+    Route::get('/staff/dashboard', function () {
+        return view('Staff.dashboard', [
+            'staffName' => session('admin_name')
+        ]);
+    })->name('staff.dashboard');
+
+    // Example: allow staff to manage news
+    Route::get('/staff/news', [NewsController::class, 'manage'])->name('staff.news.index');
+    Route::post('/staff/news', [NewsController::class, 'store'])->name('staff.news.store');
 });

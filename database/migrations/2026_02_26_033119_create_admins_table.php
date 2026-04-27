@@ -13,16 +13,19 @@ return new class extends Migration
     {
         Schema::create('admins', function (Blueprint $table) {
             $table->id('admin_id');
-            $table->string('f_name', 45);
-            $table->string('l_name', 45);
-            $table->string('username', 45)->unique();
-            $table->string('password', 255);
-            $table->enum('role', ['super admin', 'admin', 'faculty']);
-            $table->enum('status', ['active', 'inactive'])->default('active');
-            $table->json('permissions')->nullable();
-            $table->datetime('last_login')->nullable();
-            $table->datetime('last_logout')->nullable();
-            $table->timestamps(); // This automatically adds created_at and updated_at
+            $table->string('txt_fname', 45);
+            $table->string('txt_minitial', 10)->nullable();
+            $table->string('txt_lname', 45);
+            $table->string('txt_extension', 10)->nullable();
+            $table->string('txt_email', 100)->unique();
+            $table->string('txt_password', 255);
+            $table->enum('txt_role', ['admin', 'faculty', 'staff']);
+            $table->enum('txt_status', ['active', 'inactive'])->default('active');
+            $table->string('txt_position', 100)->nullable(); // NEW: Position field
+            $table->json('txt_permissions')->nullable();
+            $table->datetime('txt_lastlogin')->nullable();
+            $table->datetime('txt_lastlogout')->nullable();
+            $table->timestamps();
         });
     }
 

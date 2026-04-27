@@ -2,14 +2,12 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 
-class User extends Authenticatable
+class Student extends Authenticatable
 {
-        use HasFactory;
+    use HasFactory;
 
     // Point to the 'students' table
     protected $table = 'students';
@@ -28,9 +26,8 @@ class User extends Authenticatable
         'txt_lastlogin',
         'txt_lastlogout',
     ];
-    
+
     protected $hidden = [
         'txt_password',
     ];
-    
 }

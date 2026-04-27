@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 
-class SuperAdminLoginController extends Controller
+class AdminLoginController extends Controller
 {
     public function showLogin()
     {
@@ -18,33 +18,35 @@ class SuperAdminLoginController extends Controller
     public function login(Request $request)
     {
         $request->validate([
-            'username' => 'required',
-            'password' => 'required'
+            'txt_email' => 'required|email',
+            'txt_password' => 'required'
         ]);
 
         $admin = DB::table('admins')
-            ->where('username', $request->username)
+            ->where('txt_email', $request->txt_email)
             ->first();
 
-        if (!$admin || !Hash::check($request->password, $admin->password)) {
-            return back()->with('error', 'Invalid username or password');
+        if (!$admin || !Hash::check($request->txt_password, $admin->txt_password)) {
+            return back()->with('error', 'Invalid email or password');
         }
 
-        if ($admin->status !== 'active') {
-            return back()->with('error', 'Account is inactive. Contact administrator.');
+        if ($admin->txt_status !== 'active') {
+            return back()->with('error', 'Account inactive');
         }
 
         // ✅ Update last_login
         DB::table('admins')
             ->where('admin_id', $admin->admin_id)
-            ->update(['last_login' => now()]);
+            ->update(['txt_lastlogin' => now()]);
 
-        // Store session
-        Session::put('admin_id', $admin->admin_id);
-        Session::put('admin_name', $admin->f_name . ' ' . $admin->l_name);
-        Session::put('admin_role', $admin->role);
+        // ✅ STORE SESSION
+        session([
+            'admin_id' => $admin->admin_id,
+            'admin_name' => $admin->txt_fname . ' ' . $admin->txt_lname,
+            'admin_role' => $admin->txt_role,
+        ]);
 
-        return redirect()->intended(route('home'));
+        return redirect('/admin/dashboard');
     }
 
     public function logout(Request $request)
@@ -55,7 +57,7 @@ class SuperAdminLoginController extends Controller
             // ✅ Update last_logout
             DB::table('admins')
                 ->where('admin_id', $adminId)
-                ->update(['last_logout' => now()]);
+                ->update(['txt_lastlogout' => now()]);
         }
 
         // Clear session
@@ -63,6 +65,6 @@ class SuperAdminLoginController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect('/superadmin/login');
+        return redirect('/admin/login');
     }
 }

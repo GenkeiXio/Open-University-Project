@@ -16,27 +16,59 @@
 
     <div class="container" id="container">
         <div class="form-container sign-in">
-            <form method="POST" action="{{ route('login.submit') }}">
+            <form method="POST" action="/admin/login">
                 @csrf
                 <h1>Sign In</h1>
+
+                <!-- ✅ SUCCESS MESSAGE (FROM REGISTER) -->
+                @if(session('success'))
+                    <div class="success-msg" style="color: green; margin-bottom: 10px;">
+                        {{ session('success') }}
+                    </div>
+                @endif
+
+                <!-- ✅ ERROR MESSAGE -->
+                @if(session('error'))
+                    <div class="error-msg" style="color: red; margin-bottom: 10px;">
+                        {{ session('error') }}
+                    </div>
+                @endif
+
+                <!-- ✅ VALIDATION ERRORS (OPTIONAL BUT GOOD) -->
+                @if ($errors->any())
+                    <div class="error-msg" style="color: red; margin-bottom: 10px;">
+                        <ul style="padding-left: 15px;">
+                            @foreach ($errors->all() as $error)
+                                <li style="font-size: 13px;">{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
                 <div class="social-icons">
                     <a href="#" class="icon"><i class="fa-brands fa-google"></i></a>
                     <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
                 </div>
-                <span style="color: #555; margin-bottom: 15px;">Welcome to BU Open University</span>
 
-                <input type="text" name="username" placeholder="Username or Email" required>
-                <input type="password" name="password" placeholder="Password" required>
+                <span style="color: #555; margin-bottom: 15px;">
+                    Welcome to BU Open University
+                </span>
 
-                <a href="#" class="forgot-pass" style="text-decoration: none; font-size: 13px; color: #6f42c1; margin-top: 10px;">Forgot Your Password?</a>
+                <input type="email" name="txt_email" placeholder="Email" required>
+                <input type="password" name="txt_password" placeholder="Password" required>
                 
                 <button type="submit">SIGN IN</button>
 
-                @if(session('error'))
-                    <div class="error-msg">
-                        {{ session('error') }}
-                    </div>
-                @endif
+                <a href="#" class="forgot-pass" style="text-decoration: none; font-size: 13px; color: #6f42c1; margin-top: 10px;">
+                    Forgot Your Password?
+                </a>
+                
+                <p style="margin-top:15px; font-size:13px;">
+                    Don't have an account?
+                    <a href="{{ route('register.show') }}" style="color:#ea6a0e; font-weight:600;">
+                        Register here
+                    </a>
+                </p>
             </form>
         </div>
     </div>
