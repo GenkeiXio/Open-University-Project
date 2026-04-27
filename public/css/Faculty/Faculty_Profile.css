@@ -1,0 +1,409 @@
+/* ============================================================
+   Faculty Profile — Polished UI
+   Inherits CSS variables from Faculty_Dashboard.css
+   ============================================================ */
+
+/* ── Profile layout grid ───────────────────────────────────── */
+.profile-layout {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 24px;
+    align-items: start;
+}
+
+@media (max-width: 1024px) {
+    .profile-layout { grid-template-columns: 1fr; }
+}
+
+/* ── Left sidebar card ─────────────────────────────────────── */
+.profile-sidebar {
+    background: var(--clr-surface);
+    border: 1px solid var(--clr-border);
+    border-radius: var(--radius);
+    padding: 28px 22px;
+    box-shadow: var(--shadow-sm);
+    animation: fadeUp .35s ease both;
+    position: sticky;
+    top: 24px;
+}
+
+.profile-avatar-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.profile-avatar-xl {
+    width: 80px;
+    height: 80px;
+    border-radius: 20px;
+    background: linear-gradient(135deg, #10b981, #059669);
+    color: #fff;
+    font-size: 2rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 12px;
+    box-shadow: 0 6px 20px rgba(16,185,129,.35);
+}
+
+.profile-name {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--clr-text);
+    margin-bottom: 4px;
+}
+
+.profile-role-pill {
+    display: inline-block;
+    padding: 3px 12px;
+    border-radius: 999px;
+    font-size: .72rem;
+    font-weight: 600;
+    background: var(--clr-accent-soft);
+    color: var(--clr-accent);
+}
+
+/* Sidebar divider */
+.profile-divider {
+    border: none;
+    border-top: 1px solid var(--clr-border);
+    margin: 18px 0;
+}
+
+/* Section label */
+.sidebar-section-label {
+    font-size: .7rem;
+    text-transform: uppercase;
+    letter-spacing: .8px;
+    font-weight: 700;
+    color: var(--clr-muted);
+    margin-bottom: 10px;
+}
+
+/* Contact info rows */
+.contact-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 7px 0;
+    font-size: .83rem;
+    color: var(--clr-muted);
+    border-bottom: 1px solid var(--clr-border);
+}
+
+.contact-row:last-child { border-bottom: none; }
+
+.contact-icon {
+    width: 30px; height: 30px;
+    border-radius: 8px;
+    background: var(--clr-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: var(--clr-accent);
+}
+
+/* Skills */
+.skills-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 4px;
+}
+
+.badge-skill {
+    padding: 4px 12px;
+    border-radius: 999px;
+    font-size: .72rem;
+    font-weight: 600;
+    background: var(--clr-bg);
+    color: var(--clr-text);
+    border: 1px solid var(--clr-border);
+    transition: all .15s ease;
+}
+
+.badge-skill:hover {
+    background: var(--clr-accent-soft);
+    color: var(--clr-accent);
+    border-color: var(--clr-accent);
+}
+
+/* Sidebar action buttons */
+.sidebar-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: 9px 16px;
+    border-radius: 10px;
+    font-size: .83rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all .2s ease;
+    text-decoration: none;
+}
+
+.sidebar-btn-primary {
+    background: var(--clr-accent);
+    color: #fff;
+    border: 1px solid var(--clr-accent);
+}
+
+.sidebar-btn-primary:hover {
+    background: #059669;
+    box-shadow: 0 4px 12px rgba(16,185,129,.35);
+}
+
+.sidebar-btn-outline {
+    background: transparent;
+    color: var(--clr-text);
+    border: 1px solid var(--clr-border);
+}
+
+.sidebar-btn-outline:hover {
+    background: var(--clr-bg);
+    border-color: var(--clr-accent);
+    color: var(--clr-accent);
+}
+
+/* ── Main content ──────────────────────────────────────────── */
+.profile-main {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* ── Skill score grid ──────────────────────────────────────── */
+.skill-scores-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 12px;
+}
+
+@media (max-width: 900px)  { .skill-scores-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 540px)  { .skill-scores-grid { grid-template-columns: repeat(2, 1fr); } }
+
+.skill-score-card {
+    background: var(--clr-surface);
+    border: 1px solid var(--clr-border);
+    border-radius: var(--radius);
+    padding: 16px 12px;
+    text-align: center;
+    box-shadow: var(--shadow-sm);
+    transition: transform .2s ease, box-shadow .2s ease;
+    animation: fadeUp .4s ease both;
+}
+
+.skill-score-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+}
+
+.skill-score-card h4 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--clr-accent);
+    line-height: 1;
+    margin-bottom: 4px;
+}
+
+.skill-score-card small {
+    font-size: .72rem;
+    color: var(--clr-muted);
+    font-weight: 500;
+}
+
+/* Progress bar thin */
+.prog-bar-wrap {
+    width: 100%;
+    height: 4px;
+    background: var(--clr-border);
+    border-radius: 99px;
+    margin-top: 8px;
+    overflow: hidden;
+}
+
+.prog-bar-fill {
+    height: 100%;
+    border-radius: 99px;
+    background: linear-gradient(90deg, #10b981, #059669);
+    transition: width 1s ease;
+}
+
+/* ── Three-column summary row ──────────────────────────────── */
+.summary-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+@media (max-width: 768px) { .summary-row { grid-template-columns: 1fr; } }
+
+/* ── Circular progress ─────────────────────────────────────── */
+.circle-wrap {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    margin: 16px auto 0;
+}
+
+.circle-wrap svg {
+    transform: rotate(-90deg);
+}
+
+.circle-bg {
+    fill: none;
+    stroke: var(--clr-border);
+    stroke-width: 10;
+}
+
+.circle-fill {
+    fill: none;
+    stroke: var(--clr-accent);
+    stroke-width: 10;
+    stroke-linecap: round;
+    stroke-dasharray: 314;
+    stroke-dashoffset: 314;
+    transition: stroke-dashoffset 1.2s ease;
+}
+
+.circle-label {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.circle-label span {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--clr-text);
+    line-height: 1;
+}
+
+.circle-label small {
+    font-size: .65rem;
+    color: var(--clr-muted);
+    margin-top: 2px;
+}
+
+/* ── Bullet list ───────────────────────────────────────────── */
+.check-list {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.check-list li {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: .83rem;
+    color: var(--clr-muted);
+}
+
+.check-list li::before {
+    content: '';
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--clr-accent);
+    flex-shrink: 0;
+}
+
+/* Training summary progress */
+.training-row {
+    margin-bottom: 14px;
+}
+
+.training-row-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: .82rem;
+    margin-bottom: 6px;
+}
+
+.training-row-header span:first-child { color: var(--clr-text); font-weight: 500; }
+.training-row-header span:last-child  { color: var(--clr-muted); }
+
+/* ── Portfolio section ─────────────────────────────────────── */
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+@media (max-width: 768px) { .portfolio-grid { grid-template-columns: 1fr; } }
+
+.portfolio-item {
+    padding: 16px;
+    border-radius: 12px;
+    background: var(--clr-bg);
+    border: 1px solid var(--clr-border);
+}
+
+.portfolio-item-icon {
+    width: 36px; height: 36px;
+    border-radius: 10px;
+    background: var(--clr-accent-soft);
+    color: var(--clr-accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.portfolio-item h6 {
+    font-size: .85rem;
+    font-weight: 700;
+    color: var(--clr-text);
+    margin-bottom: 6px;
+}
+
+.portfolio-item p {
+    font-size: .8rem;
+    color: var(--clr-muted);
+    line-height: 1.5;
+}
+
+/* ── Training history table ────────────────────────────────── */
+.training-history-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--clr-border);
+}
+
+.training-history-row:last-child { border-bottom: none; }
+
+.training-history-info { flex: 1; }
+
+.training-history-info strong {
+    font-size: .85rem;
+    font-weight: 600;
+    color: var(--clr-text);
+    display: block;
+}
+
+.training-history-info span {
+    font-size: .75rem;
+    color: var(--clr-muted);
+}
+
+/* ── Animations ────────────────────────────────────────────── */
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
