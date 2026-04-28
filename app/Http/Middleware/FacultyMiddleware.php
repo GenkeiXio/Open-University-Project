@@ -16,9 +16,9 @@ class FacultyMiddleware
             return redirect('/admin/login')->with('error', 'Please login first.');
         }
 
-        // Ensure the admin has the faculty role
+        // ✅ Allow both faculty AND admin roles
         $role = Session::get('admin_role', null);
-        if ($role !== 'faculty') {
+        if (!in_array($role, ['faculty', 'admin'])) {
             return redirect('/')->with('error', 'Unauthorized access.');
         }
 

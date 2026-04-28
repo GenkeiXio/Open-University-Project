@@ -67,12 +67,12 @@
                             <span class="sidebar-text">Dashboard</span>
                         </a>
 
-                <a href="{{ route('admin.news.index') }}"
-                    class="menu-item flex items-center gap-3 px-3 py-2 rounded-lg transition
-                    {{ request()->routeIs('admin.news.index') ? 'bg-emerald-100 dark:bg-emerald-900 text-emerald-600 dark:text-emerald-400 font-medium' : 'hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-300' }}">
-                    <i data-lucide="newspaper" class="w-5 h-5"></i>
-                    <span class="sidebar-text">News</span>
-                </a>
+                        <a href="{{ route('admin.news.index') }}"
+                            class="menu-item flex items-center gap-3 px-3 py-2 rounded-lg transition
+                            {{ request()->routeIs('admin.news.index') ? 'bg-emerald-100 dark:bg-emerald-900 text-emerald-600 dark:text-emerald-400 font-medium' : 'hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-300' }}">
+                            <i data-lucide="newspaper" class="w-5 h-5"></i>
+                            <span class="sidebar-text">News</span>
+                        </a>
 
                         <a href="#" class="menu-item flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-300 transition">
                             <i data-lucide="graduation-cap" class="w-5 h-5"></i>
@@ -100,14 +100,50 @@
                             <i data-lucide="user-check" class="w-5 h-5"></i>
                             <span class="sidebar-text">User Approvals</span>
                         </a>
+                    </div>
 
-                        {{-- CORRECT --}}
+                    <div>
+                        <p class="sidebar-text text-xs text-gray-400 uppercase mb-2">Students</p>
+                    
+                        {{-- ADD THIS LINK --}}
+                        <a href="{{ route('admin.students.index') }}"
+                            class="menu-item flex items-center gap-3 px-3 py-2 rounded-lg transition
+                            {{ request()->routeIs('admin.students.index') ? 'bg-emerald-100 dark:bg-emerald-900 text-emerald-600 dark:text-emerald-400 font-medium' : 'hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-300' }}">
+                            <i data-lucide="users" class="w-5 h-5"></i>
+                            <span class="sidebar-text">Student Management</span>
+                        </a>
+                    
+                        {{-- EXISTING --}}
                         <a href="{{ route('admin.pending-students.index') }}"
                             class="menu-item flex items-center gap-3 px-3 py-2 rounded-lg transition
                             {{ request()->routeIs('admin.pending-students.index') ? 'bg-emerald-100 dark:bg-emerald-900 text-emerald-600 dark:text-emerald-400 font-medium' : 'hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-300' }}">
-
                             <i data-lucide="graduation-cap" class="w-5 h-5"></i>
                             <span class="sidebar-text">Student Approvals</span>
+                        </a>
+                    </div>
+
+                    <div>
+                        <p class="sidebar-text text-xs text-gray-400 uppercase mb-2">Modules</p>
+                    
+                        <a href="{{ route('admin.faculty.dashboard') }}"
+                            class="menu-item flex items-center gap-3 px-3 py-2 rounded-lg transition
+                            {{ request()->routeIs('admin.faculty.*') ? 'bg-emerald-100 dark:bg-emerald-900 text-emerald-600 dark:text-emerald-400 font-medium' : 'hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-300' }}">
+                            <i data-lucide="book-open" class="w-5 h-5"></i>
+                            <span class="sidebar-text">Faculty Module</span>
+                        </a>
+
+                        <a href="{{ route('admin.thesis') }}"
+                            class="menu-item flex items-center gap-3 px-3 py-2 rounded-lg transition
+                            {{ request()->routeIs('admin.thesis') ? 'bg-emerald-100 dark:bg-emerald-900 text-emerald-600 dark:text-emerald-400 font-medium' : 'hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-300' }}">
+                            <i data-lucide="book-open" class="w-5 h-5"></i>
+                            <span class="sidebar-text">Thesis Dissertation</span>
+                        </a>
+                        
+                        <a href="{{ route('admin.office') }}"
+                            class="menu-item flex items-center gap-3 px-3 py-2 rounded-lg transition
+                            {{ request()->routeIs('admin.office') ? 'bg-emerald-100 dark:bg-emerald-900 text-emerald-600 dark:text-emerald-400 font-medium' : 'hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-300' }}">
+                            <i data-lucide="file-text" class="w-5 h-5"></i>
+                            <span class="sidebar-text">Office Transaction</span>
                         </a>
                     </div>
 
