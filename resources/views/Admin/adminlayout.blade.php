@@ -100,7 +100,17 @@
                             <i data-lucide="user-check" class="w-5 h-5"></i>
                             <span class="sidebar-text">User Approvals</span>
                         </a>
+
+                        <a href="{{ route('admin.students.pending') }}"
+                            class="menu-item flex items-center gap-3 px-3 py-2 rounded-lg transition
+                            {{ request()->routeIs('admin.students.pending') ? 'bg-emerald-100 dark:bg-emerald-900 text-emerald-600 dark:text-emerald-400 font-medium' : 'hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-300' }}">
+                        
+                            <i data-lucide="graduation-cap" class="w-5 h-5"></i>
+                            <span class="sidebar-text">Student Approvals</span>
+                        </a>
                     </div>
+
+                    
 
                     <div>
                         <p class="sidebar-text text-xs text-gray-400 uppercase mb-2">System</p>
