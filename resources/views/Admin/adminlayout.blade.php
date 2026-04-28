@@ -101,10 +101,11 @@
                             <span class="sidebar-text">User Approvals</span>
                         </a>
 
-                        <a href="{{ route('admin.students.pending') }}"
+                        {{-- CORRECT --}}
+                        <a href="{{ route('admin.pending-students.index') }}"
                             class="menu-item flex items-center gap-3 px-3 py-2 rounded-lg transition
-                            {{ request()->routeIs('admin.students.pending') ? 'bg-emerald-100 dark:bg-emerald-900 text-emerald-600 dark:text-emerald-400 font-medium' : 'hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-300' }}">
-                        
+                            {{ request()->routeIs('admin.pending-students.index') ? 'bg-emerald-100 dark:bg-emerald-900 text-emerald-600 dark:text-emerald-400 font-medium' : 'hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-300' }}">
+
                             <i data-lucide="graduation-cap" class="w-5 h-5"></i>
                             <span class="sidebar-text">Student Approvals</span>
                         </a>

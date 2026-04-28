@@ -40,7 +40,7 @@
                     <i class="fa-solid fa-user-tie"></i>
                 </div>
                 <div class="option-text">
-                    <strong>Faculty, Staff &amp; Personnel</strong>
+                    <strong>Admin, Faculty &amp; Staff</strong>
                     <span>Sign in using your Bicol University staff account</span>
                 </div>
                 <i class="fa-solid fa-chevron-right option-chevron" id="faculty-chevron"></i>
