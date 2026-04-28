@@ -36,24 +36,12 @@ Route::post('/register', [RegisterController::class, 'store'])->name('register.s
 // STUDENT AUTH
 // ─────────────────────────────────────────────────────────────────────────────
 
-// Student login — separate endpoint so the controller can check the students table
+Route::get('/student/login', [AdminLoginController::class, 'showLogin'])->name('student.login.show');
 Route::post('/student/login', [StudentLoginController::class, 'login'])->name('student.login');
 Route::post('/student/logout', [StudentLoginController::class, 'logout'])->name('student.logout');
 
 // Student registration (goes to pending_students)
 Route::post('/student/register', [StudentRegisterController::class, 'store'])->name('student.register');
-
-// ─────────────────────────────────────────────────────────────────────────────
-// PROTECTED — USER (generic authenticated user)
-// ─────────────────────────────────────────────────────────────────────────────
-
-Route::middleware(['user'])->group(function () {
-    Route::get('/home', [NewsController::class, 'index'])->name('user.home');
-
-    Route::get('/student-portal', function () {
-        return view('Users.userstudentportal');
-    })->name('user.student.portal');
-});
 
 // ─────────────────────────────────────────────────────────────────────────────
 // PROTECTED — STUDENT

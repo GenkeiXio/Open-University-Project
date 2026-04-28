@@ -15,7 +15,7 @@
 
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        tailwind.config = { 
+        tailwind.config = {
             darkMode: 'class',
             theme: {
                 extend: {
@@ -58,7 +58,7 @@
         <nav class="flex-1 px-4 space-y-2 text-sm">
             <p class="sidebar-text text-[10px] font-bold text-gray-400 uppercase tracking-widest px-3 mb-2">Academic</p>
 
-            <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-xl bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 font-semibold">
+            <a href="{{ route('student.dashboard') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-xl bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 font-semibold">
                 <i data-lucide="layout-dashboard" class="w-5 h-5"></i>
                 <span class="sidebar-text">Overview</span>
             </a>
@@ -88,10 +88,15 @@
                 <i data-lucide="sun" class="w-5 h-5 hidden dark:block"></i>
                 <span class="sidebar-text">Appearance</span>
             </button>
-            <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 transition">
-                <i data-lucide="log-out" class="w-5 h-5"></i>
-                <span class="sidebar-text font-medium">Logout</span>
-            </a>
+
+            {{-- Logout --}}
+            <form method="POST" action="{{ route('student.logout') }}">
+                @csrf
+                <button type="submit" class="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 transition">
+                    <i data-lucide="log-out" class="w-5 h-5"></i>
+                    <span class="sidebar-text font-medium">Logout</span>
+                </button>
+            </form>
         </div>
     </aside>
 
@@ -102,8 +107,8 @@
             </button>
             <div class="flex items-center gap-4 ml-auto">
                 <div class="text-right hidden sm:block">
-                    <p class="text-xs font-bold text-gray-900 dark:text-white">Alex Johnson</p>
-                    <p class="text-[10px] text-gray-500">2023-10492</p>
+                    <p class="text-xs font-bold text-gray-900 dark:text-white">{{ session('student_name') }}</p>
+                    <p class="text-[10px] text-gray-500">{{ session('student_email') }}</p>
                 </div>
                 <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-blue-600 to-indigo-600 border-2 border-white dark:border-gray-800 shadow-sm"></div>
             </div>
@@ -122,7 +127,6 @@
     const toggleBtn = document.getElementById('toggleSidebar');
     const texts = document.querySelectorAll('.sidebar-text');
 
-    // Sidebar Collapse Logic
     toggleBtn?.addEventListener('click', () => {
         sidebar.classList.toggle('md:w-64');
         sidebar.classList.toggle('md:w-20');
@@ -132,7 +136,6 @@
         lucide.createIcons();
     });
 
-    // Dark Mode Toggle Logic
     function toggleDarkMode() {
         if (document.documentElement.classList.contains('dark')) {
             document.documentElement.classList.remove('dark');

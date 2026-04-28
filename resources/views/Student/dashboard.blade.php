@@ -1,10 +1,12 @@
-@extends('Users.userstudentportallayout')
+@extends('Student.layout')
 
 @section('title', 'Student Dashboard')
 
 @section('content')
 <div class="mb-10">
-    <h1 class="text-3xl font-black text-gray-900 dark:text-white tracking-tight">Welcome back, Alex! 👋</h1>
+    <h1 class="text-3xl font-black text-gray-900 dark:text-white tracking-tight">
+        Welcome back, {{ session('student_name') }}! 👋
+    </h1>
     <p class="text-gray-500 dark:text-gray-400 mt-1">Here is what's happening with your studies today.</p>
 </div>
 
