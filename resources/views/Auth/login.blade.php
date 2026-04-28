@@ -11,22 +11,19 @@
 
 <body>
 
-    <!-- MAIN -->
     <main>
         <div class="card">
 
             <h1 class="card-title">Sign in options</h1>
-            <br>
+            <p class="card-sub">Choose your account type to continue</p>
 
             <!-- Alerts -->
             @if(session('success'))
                 <div class="alert alert-success">{{ session('success') }}</div>
             @endif
-
             @if(session('error'))
                 <div class="alert alert-error">{{ session('error') }}</div>
             @endif
-
             @if ($errors->any())
                 <div class="alert alert-error">
                     <ul>
@@ -37,32 +34,58 @@
                 </div>
             @endif
 
-            <!-- Faculty / Staff option — clicking reveals the form -->
-            <div class="option-row" id="faculty-option" onclick="showForm()">
+            <!-- Option 1: Faculty / Staff -->
+            <div class="option-row" id="faculty-option" onclick="showForm('faculty')">
                 <div class="option-icon orange">
-                    <i class="fa-solid fa-user"></i>
+                    <i class="fa-solid fa-user-tie"></i>
                 </div>
                 <div class="option-text">
-                    <strong>Faculty, Staff &amp; Students</strong>
-                    <span>Sign in using your Bicol University email account</span>
+                    <strong>Faculty, Staff &amp; Personnel</strong>
+                    <span>Sign in using your Bicol University staff account</span>
                 </div>
+                <i class="fa-solid fa-chevron-right option-chevron" id="faculty-chevron"></i>
             </div>
 
-            <!-- Login form (revealed after clicking above) -->
+            <!-- Option 2: Students -->
+            <div class="option-row" id="student-option" onclick="showForm('student')">
+                <div class="option-icon blue">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                </div>
+                <div class="option-text">
+                    <strong>Students</strong>
+                    <span>Sign in using your Bicol University student account</span>
+                </div>
+                <i class="fa-solid fa-chevron-right option-chevron" id="student-chevron"></i>
+            </div>
+
+            <!-- Login form — revealed on option click -->
             <div class="login-form" id="login-form">
-                <form method="POST" action="/admin/login">
+
+                <!-- Role identity banner -->
+                <div class="role-banner" id="role-banner">
+                    <div class="role-banner-icon" id="role-banner-icon">
+                        <i class="fa-solid fa-user-tie"></i>
+                    </div>
+                    <div class="role-banner-text">
+                        <span class="role-banner-label">Signing in as</span>
+                        <strong id="role-banner-name">Faculty / Staff</strong>
+                    </div>
+                    <!-- <button type="button" class="role-banner-change" onclick="hideForm()">
+                        Change
+                    </button> -->
+                </div>
+
+                <form method="POST" id="login-form-el" action="/admin/login">
                     @csrf
 
-                    <!-- Email -->
                     <div class="field">
                         <label for="txt_email">
                             Email <span class="required">*</span>
                         </label>
                         <input type="email" id="txt_email" name="txt_email" placeholder="yourname@bicol-u.edu.ph"
-                            required>
+                            required value="{{ old('txt_email') }}">
                     </div>
 
-                    <!-- Password with toggle -->
                     <div class="field">
                         <label for="txt_password">
                             Password <span class="required">*</span>
@@ -77,7 +100,10 @@
                         </div>
                     </div>
 
-                    <button type="submit" class="btn-submit">Sign In</button>
+                    <button type="submit" class="btn-submit" id="submit-btn">
+                        <i class="fa-solid fa-user-tie" id="submit-icon"></i>
+                        Sign In as Faculty / Staff
+                    </button>
 
                     <div style="text-align:right; margin-top:10px;">
                         <a href="#" style="font-size:12.5px; color:var(--blue); text-decoration:none;">
@@ -89,7 +115,6 @@
 
             <div class="divider">OR</div>
 
-            <!-- Extra links -->
             <div class="extra-links">
                 <a href="{{ route('register.show') }}" class="extra-link">
                     <i class="fa-solid fa-user-plus"></i>
@@ -110,13 +135,68 @@
     </a>
 
     <script>
-        function showForm() {
-            const opt = document.getElementById('faculty-option');
-            const form = document.getElementById('login-form');
-            opt.style.borderColor = 'var(--blue)';
-            opt.style.background = 'var(--row-hover)';
-            form.classList.add('visible');
-            form.querySelector('input').focus();
+        const ROLES = {
+            faculty: {
+                action: '/admin/login',
+                banner: 'Faculty / Staff',
+                icon: 'fa-user-tie',
+                btnText: 'Sign In as Faculty / Staff',
+                bannerClass: 'banner-orange',
+            },
+            student: {
+                action: '/student/login',
+                banner: 'Student',
+                icon: 'fa-graduation-cap',
+                btnText: 'Sign In as Student',
+                bannerClass: 'banner-blue',
+            },
+        };
+
+        let currentRole = null;
+
+        function showForm(role) {
+            currentRole = role;
+            const cfg = ROLES[role];
+
+            // Reset both option rows
+            ['faculty', 'student'].forEach(r => {
+                document.getElementById(r + '-option').classList.remove('option-row--active-orange', 'option-row--active-blue');
+                document.getElementById(r + '-chevron').style.opacity = '0';
+            });
+
+            // Highlight selected row
+            const colorClass = role === 'student' ? 'option-row--active-blue' : 'option-row--active-orange';
+            document.getElementById(role + '-option').classList.add(colorClass);
+            document.getElementById(role + '-chevron').style.opacity = '1';
+
+            // Update banner
+            const banner = document.getElementById('role-banner');
+            banner.className = 'role-banner ' + cfg.bannerClass;
+            document.getElementById('role-banner-icon').innerHTML = `<i class="fa-solid ${cfg.icon}"></i>`;
+            document.getElementById('role-banner-name').textContent = cfg.banner;
+
+            // Update form action
+            document.getElementById('login-form-el').action = cfg.action;
+
+            // Update submit button
+            const btn = document.getElementById('submit-btn');
+            btn.className = 'btn-submit ' + (role === 'student' ? 'btn-blue' : 'btn-orange');
+            document.getElementById('submit-icon').className = `fa-solid ${cfg.icon}`;
+            btn.childNodes[btn.childNodes.length - 1].textContent = ' ' + cfg.btnText;
+
+            // Show the form
+            const formEl = document.getElementById('login-form');
+            formEl.classList.add('visible');
+            formEl.querySelector('input').focus();
+        }
+
+        function hideForm() {
+            document.getElementById('login-form').classList.remove('visible');
+            ['faculty', 'student'].forEach(r => {
+                document.getElementById(r + '-option').classList.remove('option-row--active-orange', 'option-row--active-blue');
+                document.getElementById(r + '-chevron').style.opacity = '0';
+            });
+            currentRole = null;
         }
 
         function togglePassword(fieldId, btn) {
@@ -131,9 +211,12 @@
             }
         }
 
-        // Auto-show form if there are validation errors
-        @if($errors->any() || session('error'))
-            document.addEventListener('DOMContentLoaded', showForm);
+        // Reopen the correct tab after a failed login redirect
+        @php $activeTab = session('active_tab', ''); @endphp
+        @if($activeTab === 'faculty' || $activeTab === 'student')
+            document.addEventListener('DOMContentLoaded', () => showForm('{{ $activeTab }}'));
+        @elseif($errors->any())
+            document.addEventListener('DOMContentLoaded', () => showForm('faculty'));
         @endif
     </script>
 

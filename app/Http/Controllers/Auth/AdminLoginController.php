@@ -1,12 +1,15 @@
 <?php
 
+// ============================================================
+// FILE PATH: app/Http/Controllers/Auth/AdminLoginController.php
+// ============================================================
+
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Session;
 
 class AdminLoginController extends Controller
 {
@@ -19,7 +22,7 @@ class AdminLoginController extends Controller
     {
         $request->validate([
             'txt_email' => 'required|email',
-            'txt_password' => 'required'
+            'txt_password' => 'required',
         ]);
 
         $admin = DB::table('admins')
@@ -27,19 +30,24 @@ class AdminLoginController extends Controller
             ->first();
 
         if (!$admin || !Hash::check($request->txt_password, $admin->txt_password)) {
-            return back()->with('error', 'Invalid email or password');
+            return back()
+                ->withInput($request->only('txt_email'))
+                ->with('error', 'Invalid email or password.')
+                ->with('active_tab', 'faculty'); // reopen the faculty tab
         }
 
         if ($admin->txt_status !== 'active') {
-            return back()->with('error', 'Account inactive');
+            return back()
+                ->withInput($request->only('txt_email'))
+                ->with('error', 'Account inactive. Please contact the administrator.')
+                ->with('active_tab', 'faculty');
         }
 
-        // ✅ Update last_login
+        // Update last login
         DB::table('admins')
             ->where('admin_id', $admin->admin_id)
             ->update(['txt_lastlogin' => now()]);
 
-        // ✅ STORE SESSION
         session([
             'admin_id' => $admin->admin_id,
             'admin_name' => $admin->txt_fname . ' ' . $admin->txt_lname,
@@ -54,13 +62,11 @@ class AdminLoginController extends Controller
         $adminId = session('admin_id');
 
         if ($adminId) {
-            // ✅ Update last_logout
             DB::table('admins')
                 ->where('admin_id', $adminId)
                 ->update(['txt_lastlogout' => now()]);
         }
 
-        // Clear session
         $request->session()->forget(['admin_id', 'admin_name', 'admin_role']);
         $request->session()->invalidate();
         $request->session()->regenerateToken();
