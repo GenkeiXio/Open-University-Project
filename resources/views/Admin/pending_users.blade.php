@@ -41,7 +41,7 @@
                                     <!-- ROLE SELECT -->
                                     <select name="txt_role" required class="border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded px-2 py-1 text-sm">
                                         <option value="">Select Role</option>
-                                        <option value="admin">Admin</option>
+                                        <!-- <option value="admin">Admin</option> -->
                                         <option value="faculty">Faculty</option>
                                         <option value="staff">Staff</option>
                                     </select>
