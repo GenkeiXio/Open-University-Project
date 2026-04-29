@@ -18,7 +18,7 @@ class AdminLoginController extends Controller
     public function login(Request $request)
     {
         $request->validate([
-            'txt_email' => 'required|email',
+            'txt_email'    => 'required|email',
             'txt_password' => 'required',
         ]);
 
@@ -45,7 +45,7 @@ class AdminLoginController extends Controller
             ->update(['txt_lastlogin' => now()]);
 
         session([
-            'admin_id' => $admin->admin_id,
+            'admin_id'   => $admin->admin_id,
             'admin_name' => $admin->txt_fname . ' ' . $admin->txt_lname,
             'admin_role' => $admin->txt_role,
         ]);
@@ -55,7 +55,13 @@ class AdminLoginController extends Controller
             module: 'Auth',
         );
 
-        return redirect('/admin/dashboard');
+        // Redirect based on role
+        return match($admin->txt_role) {
+            'admin'   => redirect()->route('admin.dashboard'),
+            'faculty' => redirect()->route('Faculty.dashboard'),
+            'staff'   => redirect()->route('staff.dashboard'),
+            default   => redirect()->route('home'),
+        };
     }
 
     public function logout(Request $request)
@@ -77,6 +83,6 @@ class AdminLoginController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect('/admin/login');
+        return redirect()->route('Auth.login');
     }
 }

@@ -140,7 +140,7 @@ Route::middleware(['faculty'])->group(function () {
 
 Route::middleware(['staff'])->group(function () {
     Route::get('/staff/dashboard', function () {
-        return view('Staff.dashboard', ['staffName' => session('admin_name')]);
+        return view('Staff.dashboard');
     })->name('staff.dashboard');
 
     Route::get('/staff/news', [NewsController::class, 'manage'])->name('staff.news.index');
