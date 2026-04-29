@@ -41,7 +41,7 @@
                 </div>
                 <div class="option-text">
                     <strong>Admin, Faculty &amp; Staff</strong>
-                    <span>Sign in using your Bicol University staff account</span>
+                    <!-- <span>Sign in using your Bicol University staff account</span> -->
                 </div>
                 <i class="fa-solid fa-chevron-right option-chevron" id="faculty-chevron"></i>
             </div>
@@ -53,7 +53,7 @@
                 </div>
                 <div class="option-text">
                     <strong>Students</strong>
-                    <span>Sign in using your Bicol University student account</span>
+                    <!-- <span>Sign in using your Bicol University student account</span> -->
                 </div>
                 <i class="fa-solid fa-chevron-right option-chevron" id="student-chevron"></i>
             </div>
@@ -82,7 +82,7 @@
                         <label for="txt_email">
                             Email <span class="required">*</span>
                         </label>
-                        <input type="email" id="txt_email" name="txt_email" placeholder="yourname@bicol-u.edu.ph"
+                        <input type="email" id="txt_email" name="txt_email" placeholder="youremail@example.com"
                             required value="{{ old('txt_email') }}">
                     </div>
 

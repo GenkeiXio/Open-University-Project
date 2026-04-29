@@ -14,8 +14,8 @@
         <div class="card">
 
             <h1 class="card-title">Create Account</h1>
-            <p class="card-sub">Register with your official university email</p>
-
+            <!-- <p class="card-sub">Register with your email</p> -->
+            <br>
             <!-- Alerts -->
             @if(session('error'))
                 <div class="alert alert-error">{{ session('error') }}</div>
@@ -67,10 +67,10 @@
                 <!-- Email -->
                 <div class="field">
                     <label for="txt_email">
-                        University Email <span class="required">*</span>
+                        Email <span class="required">*</span>
                     </label>
                     <input type="email" id="txt_email" name="txt_email"
-                           placeholder="juandelacruz@bicol-u.edu.ph" required
+                           placeholder="youremail@example.com" required
                            value="{{ old('txt_email') }}">
                 </div>
 

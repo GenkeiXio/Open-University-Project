@@ -1668,3 +1668,59 @@ html {
 .calendar-day-item:hover {
     transform: translateX(5px);
 }
+
+/* ===========================
+   WELCOME CARD — SIDEBAR VARIANT
+   =========================== */
+.col-lg-3 .welcome-card {
+    max-width: 100%;
+    padding: 16px 18px;
+    border-top-width: 3px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.07);
+}
+
+.col-lg-3 .welcome-card:hover {
+    transform: translateY(-2px);
+}
+
+.col-lg-3 .welcome-title {
+    font-size: 0.95rem;
+    margin-bottom: 4px;
+}
+
+.col-lg-3 .welcome-divider {
+    width: 36px;
+    height: 2px;
+    margin: 6px auto;
+}
+
+.col-lg-3 .welcome-text {
+    font-size: 0.78rem;
+    line-height: 1.6;
+    margin-top: 6px;
+    color: #555;
+}
+
+.col-lg-3 .welcome-text::before,
+.col-lg-3 .welcome-text::after {
+    font-size: 1.2rem;
+}
+
+.col-lg-3 .welcome-signature {
+    margin-top: 10px !important;
+}
+
+.col-lg-3 .welcome-name {
+    font-size: 0.82rem;
+}
+
+.col-lg-3 .welcome-position {
+    font-size: 0.75rem;
+}
+
+/* FA icon inside module cards */
+.module-fa-icon {
+    font-size: 2rem;
+    color: white;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}

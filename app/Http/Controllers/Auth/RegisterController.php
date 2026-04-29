@@ -26,11 +26,6 @@ class RegisterController extends Controller
             'txt_password' => 'required|string|min:6|confirmed',
         ]);
 
-        // check email domain
-        if (!str_ends_with($request->txt_email, '@bicol-u.edu.ph')) {
-            return back()->with('error', 'Only bicol-u email allowed');
-        }
-
         $token = Str::random(60);
 
         PendingUser::create([

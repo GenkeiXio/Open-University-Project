@@ -25,14 +25,6 @@ class StudentRegisterController extends Controller
             'txt_password' => 'required|string|min:6|confirmed',
         ]);
 
-        // Enforce BU email domain
-        if (!str_ends_with($request->txt_email, '@bicol-u.edu.ph')) {
-            return back()
-                ->withInput()
-                ->with('error', 'Only @bicol-u.edu.ph email addresses are allowed.')
-                ->with('active_role', 'student');
-        }
-
         // Block if already an approved student
         if (Student::where('txt_email', $request->txt_email)->exists()) {
             return back()

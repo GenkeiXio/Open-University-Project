@@ -74,7 +74,7 @@
                             <span class="sidebar-text">News</span>
                         </a>
 
-                        <a href="#" class="menu-item flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-300 transition">
+                        <!-- <a href="#" class="menu-item flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-300 transition">
                             <i data-lucide="graduation-cap" class="w-5 h-5"></i>
                             <span class="sidebar-text">Programs</span>
                         </a>
@@ -82,7 +82,7 @@
                         <a href="#" class="menu-item flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-300 transition">
                             <i data-lucide="bot" class="w-5 h-5"></i>
                             <span class="sidebar-text">Chatbot</span>
-                        </a>
+                        </a> -->
                     </div>
 
                     <div>
