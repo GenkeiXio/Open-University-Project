@@ -12,6 +12,21 @@
         </div>
     @endif
 
+    {{-- Per-page selector --}}
+    <form method="GET" class="flex items-center gap-2 mb-4">
+        <label class="text-sm text-gray-500 dark:text-gray-400">Show</label>
+        <select name="per_page" onchange="this.form.submit()"
+            class="border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800
+                   text-gray-700 dark:text-gray-300 rounded-lg px-3 py-1.5 text-sm">
+            @foreach([5, 10, 15, 25] as $size)
+                <option value="{{ $size }}" {{ request('per_page', 5) == $size ? 'selected' : '' }}>
+                    {{ $size }}
+                </option>
+            @endforeach
+        </select>
+        <label class="text-sm text-gray-500 dark:text-gray-400">entries</label>
+    </form>
+
     <div class="bg-white dark:bg-[#1e293b] rounded-2xl border border-gray-200 dark:border-gray-700 shadow-sm overflow-hidden">
         <div class="overflow-x-auto">
             <table class="w-full text-sm text-left">
@@ -38,15 +53,12 @@
                                 <form method="POST" action="{{ route('admin.pending.approve', $user->pending_id) }}" class="flex gap-2">
                                     @csrf
 
-                                    <!-- ROLE SELECT -->
                                     <select name="txt_role" required class="border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded px-2 py-1 text-sm">
                                         <option value="">Select Role</option>
-                                        <!-- <option value="admin">Admin</option> -->
                                         <option value="faculty">Faculty</option>
                                         <option value="staff">Staff</option>
                                     </select>
 
-                                    <!-- APPROVE BUTTON -->
                                     <button class="bg-green-500 text-white px-3 py-1 rounded text-xs hover:bg-green-600">
                                         Approve
                                     </button>
@@ -67,9 +79,25 @@
                     @endforelse
                 </tbody>
             </table>
-        </div> <!-- overflow-x-auto -->
-    </div> <!-- card container -->
+        </div>
 
-</div> <!-- p-6 -->
+        {{-- Pagination footer --}}
+        @if($users->hasPages())
+            <div class="px-4 py-3 border-t border-gray-100 dark:border-gray-700 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+                <p class="text-xs text-gray-400">
+                    Showing {{ $users->firstItem() }}–{{ $users->lastItem() }} of {{ $users->total() }} entries
+                </p>
+                {{ $users->appends(request()->query())->links() }}
+            </div>
+        @else
+            <div class="px-4 py-3 border-t border-gray-100 dark:border-gray-700">
+                <p class="text-xs text-gray-400">
+                    Showing {{ $users->total() }} {{ Str::plural('entry', $users->total()) }}
+                </p>
+            </div>
+        @endif
+    </div>
+
+</div>
 
 @endsection

@@ -106,6 +106,14 @@
                             <i data-lucide="user-check" class="w-4 h-4"></i>
                             <span class="sidebar-text">User Approvals</span>
                         </a>
+
+                        {{-- NEW --}}
+                        <a href="{{ route('admin.logs') }}"
+                            class="menu-item flex items-center gap-3 px-3 py-2 rounded-lg transition
+                                    {{ request()->routeIs('admin.logs') ? 'bg-emerald-100 dark:bg-emerald-900 text-emerald-600 dark:text-emerald-400 font-medium' : 'hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-300' }}">
+                            <i data-lucide="scroll-text" class="w-4 h-4"></i>
+                            <span class="sidebar-text">Activity Logs</span>
+                        </a>
                     </div>
                 </div>
 

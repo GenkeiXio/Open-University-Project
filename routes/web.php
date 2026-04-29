@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\UserManagementController;
 use App\Http\Controllers\Admin\PendingUserController;
 use App\Http\Controllers\Admin\PendingStudentController;
 use App\Http\Controllers\Admin\StudentManagementController;
+use App\Http\Controllers\Admin\ActivityLogController;
 
 // ─────────────────────────────────────────────────────────────────────────────
 // PUBLIC ROUTES
@@ -108,6 +109,8 @@ Route::middleware(['admin'])->group(function () {
     // Placeholder modules (to be implemented later CJ & Jane)
     Route::get('/admin/thesis-dissertation', fn() => view('Admin.placeholder', ['title' => 'Thesis Dissertation']))->name('admin.thesis');
     Route::get('/admin/office-transaction', fn() => view('Admin.placeholder', ['title' => 'Office Transaction']))->name('admin.office');
+
+    Route::get('/admin/activity-logs', [ActivityLogController::class, 'index'])->name('admin.logs');
 });
 
 // ─────────────────────────────────────────────────────────────────────────────

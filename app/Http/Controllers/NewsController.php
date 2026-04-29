@@ -5,41 +5,30 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\News;
 use App\Models\Activity;
+use App\Services\ActivityLogger;
 use Illuminate\Support\Facades\Storage;
 
 class NewsController extends Controller
 {
-    /**
-     * Display public home page
-     */
-    public function index()
+    public function index(Request $request)
     {
-        $allNews = News::orderBy('created_at', 'desc')->get();
+        $perPage = in_array($request->per_page, [5, 10, 15, 25]) ? (int) $request->per_page : 5;
 
-        $latestNewsItems = $allNews->take(2);
-        $news = $allNews;
+        $news = News::latest()->paginate($perPage);
 
-        $activities = Activity::orderBy('event_date', 'asc')->get();
-
-        return view('home', compact(
-            'latestNewsItems',
-            'news',
-            'activities'
-        ));
-    }
-
-    /**
-     * Admin News Management page
-     */
-    public function manage()
-    {
-        $news = News::latest()->get();
         return view('Admin.SidebarContent.news_management', compact('news'));
     }
 
-    /**
-     * Store new news
-     */
+    public function manage(Request $request)
+    {
+        // ✅ FIX: use paginate instead of get()
+        $perPage = in_array($request->per_page, [5, 10, 15, 25]) ? (int) $request->per_page : 5;
+
+        $news = News::latest()->paginate($perPage);
+
+        return view('Admin.SidebarContent.news_management', compact('news'));
+    }
+
     public function store(Request $request)
     {
         $request->validate([
@@ -56,28 +45,27 @@ class NewsController extends Controller
 
         $date = $request->input('created_at');
 
-        News::create([
+        $news = News::create([
             'title' => $request->input('title'),
             'content' => $request->input('content'),
             'image' => $imagePath,
             'created_at' => $date ? $date : now(),
         ]);
 
+        ActivityLogger::log(
+            action: 'Created news article: ' . $news->title,
+            module: 'News',
+        );
+
         return redirect()->back()->with('success', 'News published successfully!');
     }
 
-    /**
-     * Get news (AJAX)
-     */
     public function edit($id)
     {
         $news = News::findOrFail($id);
         return response()->json($news);
     }
 
-    /**
-     * Update news
-     */
     public function update(Request $request, $id)
     {
         $news = News::findOrFail($id);
@@ -92,7 +80,6 @@ class NewsController extends Controller
             if ($news->image) {
                 Storage::disk('local')->delete($news->image);
             }
-
             $news->image = $request->file('image')->store('News', 'local');
         }
 
@@ -100,21 +87,27 @@ class NewsController extends Controller
         $news->content = $request->input('content');
 
         if ($request->filled('created_at')) {
-            $date = $request->input('created_at');
-            $news->created_at = $date;
+            $news->created_at = $request->input('created_at');
         }
 
         $news->save();
 
+        ActivityLogger::log(
+            action: 'Updated news article: ' . $news->title,
+            module: 'News',
+        );
+
         return redirect()->back()->with('success', 'News updated successfully!');
     }
 
-    /**
-     * Delete news
-     */
     public function destroy($id)
     {
         $news = News::findOrFail($id);
+
+        ActivityLogger::log(
+            action: 'Deleted news article: ' . $news->title,
+            module: 'News',
+        );
 
         if ($news->image) {
             Storage::disk('local')->delete($news->image);
@@ -125,13 +118,9 @@ class NewsController extends Controller
         return redirect()->back()->with('success', 'Deleted!');
     }
 
-    /**
-     * Show image from storage
-     */
     public function showImage($id)
     {
         $news = News::findOrFail($id);
-
         $path = storage_path('app/' . $news->image);
 
         if ($news->image && file_exists($path)) {

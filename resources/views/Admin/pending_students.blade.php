@@ -1,5 +1,5 @@
 {{-- resources/views/Admin/pending_students.blade.php --}}
-@extends('Admin.adminlayout')   {{-- was: Admin.layouts.app --}}
+@extends('Admin.adminlayout')
 
 @section('title', 'Pending Student Registrations')
 
@@ -14,6 +14,21 @@
                 {{ session('success') }}
             </div>
         @endif
+
+        {{-- Per-page selector --}}
+        <form method="GET" class="flex items-center gap-2 mb-4">
+            <label class="text-sm text-gray-500 dark:text-gray-400">Show</label>
+            <select name="per_page" onchange="this.form.submit()"
+                class="border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800
+                       text-gray-700 dark:text-gray-300 rounded-lg px-3 py-1.5 text-sm">
+                @foreach([5, 10, 15, 25] as $size)
+                    <option value="{{ $size }}" {{ request('per_page', 5) == $size ? 'selected' : '' }}>
+                        {{ $size }}
+                    </option>
+                @endforeach
+            </select>
+            <label class="text-sm text-gray-500 dark:text-gray-400">entries</label>
+        </form>
 
         <div class="bg-white dark:bg-[#1e293b] rounded-2xl border border-gray-200 dark:border-gray-700 shadow-sm overflow-hidden">
             <div class="overflow-x-auto">
@@ -30,7 +45,7 @@
                     <tbody class="text-gray-700 dark:text-gray-300">
                         @forelse($students as $student)
                             <tr class="border-t border-gray-100 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-800 transition">
-                                <td class="p-3">{{ $loop->iteration }}</td>
+                                <td class="p-3">{{ $students->firstItem() + $loop->index }}</td>
                                 <td class="p-3">{{ $student->txt_fname }} {{ $student->txt_lname }}</td>
                                 <td class="p-3">{{ $student->txt_email }}</td>
                                 <td class="p-3">{{ $student->created_at->format('M d, Y h:i A') }}</td>
@@ -72,6 +87,22 @@
                     </tbody>
                 </table>
             </div>
+
+            {{-- Pagination footer --}}
+            @if($students->hasPages())
+                <div class="px-4 py-3 border-t border-gray-100 dark:border-gray-700 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+                    <p class="text-xs text-gray-400">
+                        Showing {{ $students->firstItem() }}–{{ $students->lastItem() }} of {{ $students->total() }} entries
+                    </p>
+                    {{ $students->appends(request()->query())->links() }}
+                </div>
+            @else
+                <div class="px-4 py-3 border-t border-gray-100 dark:border-gray-700">
+                    <p class="text-xs text-gray-400">
+                        Showing {{ $students->total() }} {{ Str::plural('entry', $students->total()) }}
+                    </p>
+                </div>
+            @endif
         </div>
     </div>
 @endsection

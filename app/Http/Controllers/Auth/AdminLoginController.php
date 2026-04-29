@@ -1,12 +1,9 @@
 <?php
 
-// ============================================================
-// FILE PATH: app/Http/Controllers/Auth/AdminLoginController.php
-// ============================================================
-
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Services\ActivityLogger;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -33,7 +30,7 @@ class AdminLoginController extends Controller
             return back()
                 ->withInput($request->only('txt_email'))
                 ->with('error', 'Invalid email or password.')
-                ->with('active_tab', 'faculty'); // reopen the faculty tab
+                ->with('active_tab', 'faculty');
         }
 
         if ($admin->txt_status !== 'active') {
@@ -43,7 +40,6 @@ class AdminLoginController extends Controller
                 ->with('active_tab', 'faculty');
         }
 
-        // Update last login
         DB::table('admins')
             ->where('admin_id', $admin->admin_id)
             ->update(['txt_lastlogin' => now()]);
@@ -54,6 +50,11 @@ class AdminLoginController extends Controller
             'admin_role' => $admin->txt_role,
         ]);
 
+        ActivityLogger::log(
+            action: 'Logged in',
+            module: 'Auth',
+        );
+
         return redirect('/admin/dashboard');
     }
 
@@ -62,6 +63,11 @@ class AdminLoginController extends Controller
         $adminId = session('admin_id');
 
         if ($adminId) {
+            ActivityLogger::log(
+                action: 'Logged out',
+                module: 'Auth',
+            );
+
             DB::table('admins')
                 ->where('admin_id', $adminId)
                 ->update(['txt_lastlogout' => now()]);
