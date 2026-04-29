@@ -23,6 +23,17 @@
             </div>
         </div>
 
+        <!-- MODERN WELCOME CARD -->
+        <div class="welcome-card mt-4 mx-auto text-center p-4">
+            <h3 id="welcomeTitle" class="welcome-title"></h3>
+            <div class="welcome-divider my-2"></div>
+            <p id="welcomeText" class="welcome-text"></p>
+            <div class="welcome-signature mt-4">
+                <strong id="welcomeSignature" class="welcome-name"></strong><br>
+                <span id="welcomePosition" class="welcome-position"></span>
+            </div>
+        </div>
+
         <div class="buou-side-news-container mt-4 text-start">
             <div class="d-flex align-items-center mb-3">
                 <h6 class="fw-bold text-uppercase mb-0" style="letter-spacing: 1.5px; color: #333; font-size: 0.9rem;">Latest News</h6>

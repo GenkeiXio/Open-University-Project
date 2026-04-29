@@ -304,6 +304,15 @@
             {{-- Bottom actions --}}
             <div class="px-3 py-4 border-t border-gray-100 dark:border-gray-800 space-y-1">
 
+                {{-- Admin-only: Return to Admin Dashboard --}}
+                @if(session('admin_role') === 'admin')
+                    <a href="{{ route('admin.dashboard') }}" data-label="Admin Dashboard"
+                        class="menu-item flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm text-emerald-600 dark:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-emerald-950 transition-all duration-150">
+                        <i data-lucide="layout-dashboard" class="w-4.5 h-4.5 flex-shrink-0"></i>
+                        <span class="sidebar-text font-medium">Admin Dashboard</span>
+                    </a>
+                @endif
+
                 <a href="{{ route('home') }}" data-label="Back to Site" class="menu-item flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm
                           text-gray-600 dark:text-gray-400
                           hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-150">

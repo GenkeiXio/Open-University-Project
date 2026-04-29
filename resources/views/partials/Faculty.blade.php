@@ -68,4 +68,77 @@
                                 </button>
                             </div>
                         </section>
+
+                        <!-- ================= PUBLICATIONS ================= -->
+                        <div class="faculty-publications">
+
+                            <!-- Toolbar -->
+                            <div class="pub-toolbar">
+                                <input type="text" class="pub-search" placeholder="Search publications...">
+
+                                <div class="pub-filters">
+                                    <button class="pub-filter active" data-filter="all">All</button>
+                                    <button class="pub-filter" data-filter="International">International</button>
+                                    <button class="pub-filter" data-filter="National">National</button>
+                                    <button class="pub-filter" data-filter="Local">Local</button>
+                                    <button class="pub-filter" data-filter="Pending">Pending</button>
+                                </div>
+
+                                <span class="pub-count">5 publications</span>
+                            </div>
+
+                            <!-- GRID -->
+                            <div class="pub-grid">
+
+                                @php
+                                $publications = [
+                                    [
+                                        'title'=>'Integrating AI Tools in Higher Education',
+                                        'authors'=>'Dela Cruz, J., Santos, M.',
+                                        'journal'=>'International Journal of EdTech',
+                                        'year'=>2024,
+                                        'type'=>'International',
+                                        'abstract'=>'AI integration in higher education institutions...',
+                                        'if'=>'IF: 3.2'
+                                    ],
+                                    [
+                                        'title'=>'STEM Competency Assessment',
+                                        'authors'=>'Dela Cruz, J.',
+                                        'journal'=>'Philippine Journal',
+                                        'year'=>2024,
+                                        'type'=>'National',
+                                        'abstract'=>'Assessment frameworks in STEM...',
+                                        'if'=>'Peer-reviewed'
+                                    ],
+                                ];
+                                @endphp
+
+                                @foreach($publications as $pub)
+                                <div class="pub-card" data-type="{{ $pub['type'] }}">
+
+                                    <div class="pub-card-header">
+                                        <h6>{{ $pub['title'] }}</h6>
+                                    </div>
+
+                                    <p class="pub-authors">{{ $pub['authors'] }}</p>
+
+                                    <div class="pub-meta">
+                                        <span>{{ $pub['journal'] }}</span>
+                                        <span>·</span>
+                                        <span>{{ $pub['year'] }}</span>
+                                        <span class="badge">{{ $pub['type'] }}</span>
+                                    </div>
+
+                                    <p class="pub-abstract">{{ $pub['abstract'] }}</p>
+
+                                    <div class="pub-footer">
+                                        <span>{{ $pub['if'] }}</span>
+                                    </div>
+
+                                </div>
+                                @endforeach
+
+                            </div>
+
+                        </div>
                     </div>

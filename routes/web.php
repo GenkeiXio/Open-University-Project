@@ -10,6 +10,7 @@ use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\Admin\UserManagementController;
 use App\Http\Controllers\Admin\PendingUserController;
 use App\Http\Controllers\Admin\PendingStudentController;
+use App\Http\Controllers\Admin\StudentManagementController;
 
 // ─────────────────────────────────────────────────────────────────────────────
 // PUBLIC ROUTES
@@ -87,6 +88,26 @@ Route::middleware(['admin'])->group(function () {
     Route::get('/admin/pending-students', [PendingStudentController::class, 'index'])->name('admin.pending-students.index');
     Route::post('/admin/pending-students/approve/{id}', [PendingStudentController::class, 'approve'])->name('admin.pending-students.approve');
     Route::post('/admin/pending-students/reject/{id}', [PendingStudentController::class, 'reject'])->name('admin.pending-students.reject');
+
+    // Student management
+    Route::get('/admin/student-management', [StudentManagementController::class, 'index'])->name('admin.students.index');
+    Route::post('/admin/student-management/toggle/{id}', [StudentManagementController::class, 'toggleStatus'])->name('admin.students.toggle');
+
+    // Faculty module access for admin (separate prefix to avoid faculty middleware conflict)
+    Route::prefix('admin/faculty-module')->group(function () {
+        Route::get('/dashboard', fn() => view('Faculty.dashboard'))->name('admin.faculty.dashboard');
+        Route::get('/profile', fn() => view('Faculty.profile'))->name('admin.faculty.profile');
+        Route::get('/trainings', fn() => view('Faculty.trainings.index'))->name('admin.faculty.trainings');
+        Route::get('/tns', fn() => view('Faculty.tna.index'))->name('admin.faculty.tns');
+        Route::get('/reports', fn() => view('Faculty.reports.index'))->name('admin.faculty.reports');
+        Route::get('/publications', fn() => view('Faculty.publications.index'))->name('admin.faculty.publications');
+        Route::get('/seminars', fn() => view('Faculty.seminars.index'))->name('admin.faculty.seminars');
+        Route::get('/presentations', fn() => view('Faculty.presentations.index'))->name('admin.faculty.presentations');
+    });
+
+    // Placeholder modules (to be implemented later CJ & Jane)
+    Route::get('/admin/thesis-dissertation', fn() => view('Admin.placeholder', ['title' => 'Thesis Dissertation']))->name('admin.thesis');
+    Route::get('/admin/office-transaction', fn() => view('Admin.placeholder', ['title' => 'Office Transaction']))->name('admin.office');
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
