@@ -50,11 +50,6 @@ class AdminLoginController extends Controller
             'admin_role' => $admin->txt_role,
         ]);
 
-        ActivityLogger::log(
-            action: 'Logged in',
-            module: 'Auth',
-        );
-
         // Redirect based on role
         return match($admin->txt_role) {
             'admin'   => redirect()->route('admin.dashboard'),
