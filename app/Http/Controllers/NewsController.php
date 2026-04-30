@@ -10,13 +10,15 @@ use Illuminate\Support\Facades\Storage;
 
 class NewsController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
-        $perPage = in_array($request->per_page, [5, 10, 15, 25]) ? (int) $request->per_page : 5;
+        $news = News::latest()->get(); // for main news section
 
-        $news = News::latest()->paginate($perPage);
+        $latestNewsItems = News::latest()->take(5)->get(); // sidebar
 
-        return view('Admin.SidebarContent.news_management', compact('news'));
+        $activities = Activity::orderBy('event_date', 'asc')->get();
+
+        return view('home', compact('news', 'latestNewsItems', 'activities'));
     }
 
     public function manage(Request $request)
