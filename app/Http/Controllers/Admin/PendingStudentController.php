@@ -14,7 +14,9 @@ class PendingStudentController extends Controller
     {
         $perPage = in_array($request->per_page, [5, 10, 15, 25]) ? (int) $request->per_page : 5;
         $students = PendingStudent::latest()->paginate($perPage);
-        return view('Admin.pending_students', compact('students'));
+
+        $view = $request->is('staff/*') ? 'Staff.pending_students' : 'Admin.pending_students';
+        return view($view, compact('students'));
     }
 
     public function approve($id)

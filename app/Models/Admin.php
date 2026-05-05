@@ -33,4 +33,8 @@ class Admin extends Authenticatable
     protected $hidden = [
         'txt_password',
     ];
+
+    protected $casts = [
+        'txt_permissions' => 'array',
+    ];
 }

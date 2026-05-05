@@ -3,26 +3,26 @@
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
-use App\Http\Middleware\AdminMiddleware;
-use App\Http\Middleware\FacultyMiddleware;
-use App\Http\Middleware\StaffMiddleware;
-use App\Http\Middleware\StudentMiddleware;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
-        web: __DIR__.'/../routes/web.php',
-        commands: __DIR__.'/../routes/console.php',
+        web: __DIR__ . '/../routes/web.php',
+        commands: __DIR__ . '/../routes/console.php',
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
-        $middleware->alias([
-            'admin'   => AdminMiddleware::class,
-            'faculty' => FacultyMiddleware::class,
-            'staff'   => StaffMiddleware::class,
-            'student' => StudentMiddleware::class,
-        ]);
-    })
 
-    ->withExceptions(function (Exceptions $exceptions): void {
+        // ── Route-level middleware aliases ──────────────────────────────────
+        $middleware->alias([
+            'admin' => \App\Http\Middleware\AdminMiddleware::class,
+            'staff' => \App\Http\Middleware\StaffMiddleware::class,
+            'faculty' => \App\Http\Middleware\FacultyMiddleware::class,
+            'student' => \App\Http\Middleware\StudentMiddleware::class,
+            'permission' => \App\Http\Middleware\CheckPermission::class,
+            'sync.permissions' => \App\Http\Middleware\SyncPermissions::class,
+        ]);
+
+    })
+    ->withExceptions(function (Exceptions $exceptions) {
         //
     })->create();

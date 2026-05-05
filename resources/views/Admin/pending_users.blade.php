@@ -50,23 +50,35 @@
                             <td class="p-3">{{ $user->txt_email }}</td>
 
                             <td class="p-3 flex gap-2">
-                                <form method="POST" action="{{ route('admin.pending.approve', $user->pending_id) }}" class="flex gap-2">
+                                <form method="POST"
+                                      action="{{ request()->is('staff/*')
+                                          ? route('staff.pending.approve', $user->pending_id)
+                                          : route('admin.pending.approve', $user->pending_id) }}"
+                                      class="flex gap-2">
                                     @csrf
 
-                                    <select name="txt_role" required class="border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded px-2 py-1 text-sm">
+                                    <select name="txt_role" required
+                                        class="border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800
+                                               text-gray-700 dark:text-gray-300 rounded px-2 py-1 text-sm">
                                         <option value="">Select Role</option>
                                         <option value="faculty">Faculty</option>
                                         <option value="staff">Staff</option>
                                     </select>
 
-                                    <button class="bg-green-500 text-white px-3 py-1 rounded text-xs hover:bg-green-600">
+                                    <button
+                                        class="bg-green-500 text-white px-3 py-1 rounded text-xs hover:bg-green-600">
                                         Approve
                                     </button>
                                 </form>
 
-                                <form method="POST" action="{{ route('admin.pending.reject', $user->pending_id) }}">
+                                <form method="POST"
+                                      action="{{ request()->is('staff/*')
+                                          ? route('staff.pending.reject', $user->pending_id)
+                                          : route('admin.pending.reject', $user->pending_id) }}">
                                     @csrf
-                                    <button class="bg-red-500 text-white px-3 py-1 rounded">Reject</button>
+                                    <button class="bg-red-500 text-white px-3 py-1 rounded text-xs hover:bg-red-600">
+                                        Reject
+                                    </button>
                                 </form>
                             </td>
                         </tr>

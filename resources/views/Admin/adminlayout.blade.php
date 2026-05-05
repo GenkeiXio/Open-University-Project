@@ -106,13 +106,26 @@
                             <i data-lucide="user-check" class="w-4 h-4"></i>
                             <span class="sidebar-text">User Approvals</span>
                         </a>
-
-                        {{-- NEW --}}
                         <a href="{{ route('admin.logs') }}"
                             class="menu-item flex items-center gap-3 px-3 py-2 rounded-lg transition
-                                    {{ request()->routeIs('admin.logs') ? 'bg-emerald-100 dark:bg-emerald-900 text-emerald-600 dark:text-emerald-400 font-medium' : 'hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-300' }}">
+                            {{ request()->routeIs('admin.logs') ? 'bg-emerald-100 dark:bg-emerald-900 text-emerald-600 dark:text-emerald-400 font-medium' : 'hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-300' }}">
                             <i data-lucide="scroll-text" class="w-4 h-4"></i>
                             <span class="sidebar-text">Activity Logs</span>
+                        </a>
+
+                        {{-- ── NEW: Permissions ── --}}
+                        <a href="{{ route('admin.permissions') }}"
+                            class="menu-item flex items-center gap-3 px-3 py-2 rounded-lg transition
+                            {{ request()->routeIs('admin.permissions') ? 'bg-emerald-100 dark:bg-emerald-900 text-emerald-600 dark:text-emerald-400 font-medium' : 'hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-300' }}">
+                            <i data-lucide="shield-check" class="w-4 h-4"></i>
+                            <span class="sidebar-text">Permissions</span>
+                            {{-- Badge: shows count of staff/faculty with no permissions set --}}
+                            @if(isset($pendingPermissionsCount) && $pendingPermissionsCount > 0)
+                                <span class="sidebar-text ml-auto text-[10px] font-bold px-1.5 py-0.5 rounded-full
+                                             bg-amber-100 dark:bg-amber-900/40 text-amber-600 dark:text-amber-400">
+                                    {{ $pendingPermissionsCount }}
+                                </span>
+                            @endif
                         </a>
                     </div>
                 </div>

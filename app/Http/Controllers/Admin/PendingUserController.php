@@ -15,7 +15,9 @@ class PendingUserController extends Controller
     {
         $perPage = in_array($request->per_page, [5, 10, 15, 25]) ? (int) $request->per_page : 5;
         $users = PendingUser::latest()->paginate($perPage);
-        return view('admin.pending_users', compact('users'));
+
+        $view = $request->is('staff/*') ? 'Staff.pending_users' : 'admin.pending_users';
+        return view($view, compact('users'));
     }
 
     public function approve(Request $request, $id)

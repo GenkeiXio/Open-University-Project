@@ -10,7 +10,6 @@
                     style="height: 50px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.3);"
                 >
             </div>
-
             <div class="brand-text">
                 <div class="fw-bold text-white" style="line-height: 1.2; font-size: 1.2rem; letter-spacing: 0.5px;">
                     Bicol University
@@ -33,66 +32,93 @@
                         Apply Now
                     </a>
                 </li>
-                <!-- auth-aware UI -->
+
                 @php
                     $isLoggedIn = false;
-                    $name = '';
-                    $role = '';
-                    $initial = '';
-                    $isUser = false;
+                    $name       = '';
+                    $role       = '';
+                    $initial    = '';
+                    $isUser     = false;
 
-                    if(session()->has('admin_id')) {
+                    if (session()->has('admin_id')) {
                         $isLoggedIn = true;
-                        $name = session('admin_name');
-                        $role = strtoupper(str_replace(' ', '_', session('admin_role')));
-                        $initial = strtoupper(substr($name, 0, 1));
-                    } elseif(session()->has('user_id')) {
+                        $name       = session('admin_name');
+                        $role       = strtoupper(str_replace(' ', '_', session('admin_role')));
+                        $initial    = strtoupper(substr($name, 0, 1));
+                    } elseif (session()->has('user_id')) {
                         $isLoggedIn = true;
-                        $name = session('name');
-                        $role = 'USER'; // Label for regular users
-                        $initial = strtoupper(substr($name, 0, 1));
-                        $isUser = true;
+                        $name       = session('name');
+                        $role       = 'USER';
+                        $initial    = strtoupper(substr($name, 0, 1));
+                        $isUser     = true;
+                    } elseif (session()->has('student_id')) {
+                        $isLoggedIn = true;
+                        $name       = session('student_name');
+                        $role       = 'STUDENT';
+                        $initial    = strtoupper(substr($name, 0, 1));
+                    }
+
+                    // Route each role to its own dashboard.
+                    // Old code only checked for 'faculty' and defaulted everything
+                    // else — including staff — to admin.dashboard, which is blocked
+                    // by AdminMiddleware for non-admin sessions.
+                    $dashboardRoute = match (strtolower(session('admin_role', ''))) {
+                        'admin'   => route('admin.dashboard'),
+                        'staff'   => route('staff.dashboard'),
+                        'faculty' => route('Faculty.dashboard'),
+                        default   => null,
+                    };
+
+                    if (!$dashboardRoute && session()->has('student_id')) {
+                        $dashboardRoute = route('student.dashboard');
+                    } elseif (!$dashboardRoute && session()->has('user_id')) {
+                        $dashboardRoute = route('user.student.portal');
+                    }
+
+                    // Staff must POST to /staff/logout, not /admin/logout.
+                    $logoutRoute = match (strtolower(session('admin_role', ''))) {
+                        'staff'  => route('staff.logout'),
+                        default  => route('logout'),
+                    };
+                    if (session()->has('student_id')) {
+                        $logoutRoute = route('student.logout');
                     }
                 @endphp
 
                 @if($isLoggedIn)
                     <li class="nav-item dropdown ms-lg-3">
-                        <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="userMenu" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <span class="avatar-circle bg-secondary text-white d-flex justify-content-center align-items-center me-2" style="width:32px; height:32px; border-radius:50%; font-weight:600;">{{ $initial }}</span>
-                            <span class="d-none d-lg-inline text-white" style="font-size:0.9rem;">{{ $role }}</span>
+                        <a class="nav-link dropdown-toggle d-flex align-items-center"
+                           href="#" id="userMenu" role="button"
+                           data-bs-toggle="dropdown" aria-expanded="false">
+                            <span class="avatar-circle bg-secondary text-white d-flex justify-content-center align-items-center me-2"
+                                  style="width:32px; height:32px; border-radius:50%; font-weight:600;">
+                                {{ $initial }}
+                            </span>
+                            <span class="d-none d-lg-inline text-white" style="font-size:0.9rem;">
+                                {{ $role }}
+                            </span>
                         </a>
+
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userMenu">
                             <li class="dropdown-header text-center">
                                 <strong>{{ $name }}</strong><br>
                                 <small class="text-muted">{{ $role }}</small>
                             </li>
                             <li><hr class="dropdown-divider"></li>
-                            
-                            @if(!$isUser)
-                                {{-- Admin/Faculty Dashboard Link --}}
+
+                            @if ($dashboardRoute)
                                 <li>
-                                    @php
-                                        $dashboardRoute = route('admin.dashboard');
-                                        if (strtolower(session('admin_role')) === 'faculty') {
-                                            $dashboardRoute = route('Faculty.dashboard');
-                                        }
-                                    @endphp
-                                    <a class="dropdown-item d-flex align-items-center" href="{{ $dashboardRoute }}">
-                                        <i data-lucide="layout-dashboard" class="me-2"></i> Dashboard
+                                    <a class="dropdown-item d-flex align-items-center"
+                                       href="{{ $dashboardRoute }}">
+                                        <i data-lucide="layout-dashboard" class="me-2"></i>
+                                        Dashboard
                                     </a>
                                 </li>
-                                @else
-                                   {{-- Regular User specific links --}}
-                                    <li>
-                                        <a class="dropdown-item d-flex align-items-center" href="{{ route('user.student.portal') }}">
-                                            <i data-lucide="graduation-cap" class="me-2"></i> Student Portal
-                                        </a>
-                                    </li>
-                                @endif
+                            @endif
 
                             <li><hr class="dropdown-divider"></li>
                             <li>
-                                <form id="logout-form" method="POST" action="{{ route('logout') }}">
+                                <form method="POST" action="{{ $logoutRoute }}">
                                     @csrf
                                     <button type="submit" class="dropdown-item d-flex align-items-center">
                                         <i data-lucide="log-out" class="me-2"></i> Logout
@@ -101,29 +127,29 @@
                             </li>
                         </ul>
                     </li>
+
                 @else
                     <li class="nav-item ms-lg-2">
-                        <a class="btn shadow-sm" href="{{ route('Auth.login') }}" style="background-color: #ff8c00; color: white; border: none; padding: 8px 24px; font-weight: 700; border-radius: 5px; transition: all 0.3s ease;">
+                        <a class="btn shadow-sm" href="{{ route('Auth.login') }}"
+                           style="background-color: #ff8c00; color: white; border: none; padding: 8px 24px; font-weight: 700; border-radius: 5px; transition: all 0.3s ease;">
                             Sign In
                         </a>
                     </li>
                 @endif
+
             </ul>
         </div>
     </div>
 </nav>
 
 <style>
-    /* Smooth hover effect for the Apply Now button */
     .btn:hover {
         background-color: #e67e00 !important;
         transform: translateY(-1px);
         box-shadow: 0 5px 15px rgba(0,0,0,0.2) !important;
     }
-
-    /* small circular avatar used in logged-in navbar */
     .avatar-circle {
-        font-size: 0.9rem; /* keep initials readable */
+        font-size: 0.9rem;
         line-height: 1;
     }
 </style>

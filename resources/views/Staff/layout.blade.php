@@ -19,45 +19,95 @@
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'DM Sans', sans-serif; }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-        #sidebar.collapsed { width: 68px !important; }
-        #sidebar.collapsed .sidebar-text { display: none !important; }
-        #sidebar.collapsed .sidebar-section-label { display: none !important; }
-        #sidebar.collapsed .menu-item { justify-content: center; padding: 10px; }
-        #sidebar.collapsed .logo-text { display: none !important; }
-        #sidebar.collapsed .logo-icon { margin: 0 auto; }
-        #sidebar.collapsed .submenu { display: none !important; }
-        #sidebar.collapsed .chevron { display: none !important; }
+        body {
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        #sidebar.collapsed {
+            width: 68px !important;
+        }
+
+        #sidebar.collapsed .sidebar-text {
+            display: none !important;
+        }
+
+        #sidebar.collapsed .sidebar-section-label {
+            display: none !important;
+        }
+
+        #sidebar.collapsed .menu-item {
+            justify-content: center;
+            padding: 10px;
+        }
+
+        #sidebar.collapsed .logo-text {
+            display: none !important;
+        }
+
+        #sidebar.collapsed .logo-icon {
+            margin: 0 auto;
+        }
+
+        #sidebar.collapsed .submenu {
+            display: none !important;
+        }
+
+        #sidebar.collapsed .chevron {
+            display: none !important;
+        }
 
         #sidebarOverlay {
             display: none;
             position: fixed;
             inset: 0;
-            background: rgba(0,0,0,.5);
+            background: rgba(0, 0, 0, .5);
             z-index: 30;
             backdrop-filter: blur(2px);
         }
-        #sidebarOverlay.active { display: block; }
 
-        ::-webkit-scrollbar { width: 5px; height: 5px; }
-        ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 99px; }
-        .dark ::-webkit-scrollbar-thumb { background: #374151; }
+        #sidebarOverlay.active {
+            display: block;
+        }
 
-        /* Staff accent: violet instead of blue */
+        ::-webkit-scrollbar {
+            width: 5px;
+            height: 5px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #d1d5db;
+            border-radius: 99px;
+        }
+
+        .dark ::-webkit-scrollbar-thumb {
+            background: #374151;
+        }
+
         .menu-item.active {
             background: #ede9fe;
             color: #7c3aed;
             font-weight: 600;
         }
+
         .dark .menu-item.active {
             background: #2e1065;
             color: #a78bfa;
         }
 
-        .menu-item { position: relative; }
+        .menu-item {
+            position: relative;
+        }
+
         #sidebar.collapsed .menu-item:hover::after {
             content: attr(data-label);
             position: absolute;
@@ -80,21 +130,36 @@
             max-height: 0;
             opacity: 0;
         }
+
         .submenu.open {
             max-height: 300px;
             opacity: 1;
         }
 
-        .chevron { transition: transform 0.25s ease; }
-        .chevron.open { transform: rotate(180deg); }
-
-        main { animation: pageFadeIn .3s ease; }
-        @keyframes pageFadeIn {
-            from { opacity: 0; transform: translateY(8px); }
-            to   { opacity: 1; transform: translateY(0); }
+        .chevron {
+            transition: transform 0.25s ease;
         }
 
-        /* Staff-specific badge pill on nav */
+        .chevron.open {
+            transform: rotate(180deg);
+        }
+
+        main {
+            animation: pageFadeIn .3s ease;
+        }
+
+        @keyframes pageFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         .nav-badge {
             font-size: 10px;
             font-weight: 700;
@@ -104,7 +169,10 @@
             color: white;
             line-height: 1.5;
         }
-        .dark .nav-badge { background: #6d28d9; }
+
+        .dark .nav-badge {
+            background: #6d28d9;
+        }
     </style>
 
     @stack('styles')
@@ -116,18 +184,13 @@
 
     <div class="flex min-h-screen">
 
-        {{-- ═══════════════════════════
-        STAFF SIDEBAR
-        ═══════════════════════════ --}}
-        <aside id="sidebar"
-            class="w-64 bg-white dark:bg-[#111827]
+        <aside id="sidebar" class="w-64 bg-white dark:bg-[#111827]
                    border-r border-gray-200 dark:border-gray-800
                    flex flex-col fixed inset-y-0 left-0 z-40
                    -translate-x-full md:translate-x-0
                    transition-all duration-300">
 
-            <button id="toggleSidebar"
-                class="hidden md:flex absolute -right-3 top-[72px]
+            <button id="toggleSidebar" class="hidden md:flex absolute -right-3 top-[72px]
                        bg-white dark:bg-gray-800
                        border border-gray-200 dark:border-gray-700
                        rounded-full w-6 h-6 items-center justify-center
@@ -163,13 +226,11 @@
                         <i data-lucide="clipboard-list" class="w-4 h-4 flex-shrink-0"></i>
                         <span class="sidebar-text flex-1 text-left">Requests</span>
                         <span class="nav-badge sidebar-text">12</span>
-                        <i data-lucide="chevron-down"
-                           class="chevron w-3.5 h-3.5 flex-shrink-0 sidebar-text ml-1
+                        <i data-lucide="chevron-down" class="chevron w-3.5 h-3.5 flex-shrink-0 sidebar-text ml-1
                                   {{ request()->routeIs('staff.requests*') ? 'open' : '' }}"></i>
                     </button>
 
-                    <div id="requestsSubmenu"
-                         class="submenu pl-4 mt-0.5 space-y-0.5
+                    <div id="requestsSubmenu" class="submenu pl-4 mt-0.5 space-y-0.5
                                 {{ request()->routeIs('staff.requests*') ? 'open' : '' }}">
 
                         <a href="{{ route('staff.requests.index') }}" data-label="All Requests"
@@ -199,25 +260,21 @@
                                {{ request()->routeIs('staff.thesis*') ? 'active' : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800' }}">
                         <i data-lucide="book-marked" class="w-4 h-4 flex-shrink-0"></i>
                         <span class="sidebar-text flex-1 text-left">Thesis & Dissertation</span>
-                        <i data-lucide="chevron-down"
-                           class="chevron w-3.5 h-3.5 flex-shrink-0 sidebar-text
+                        <i data-lucide="chevron-down" class="chevron w-3.5 h-3.5 flex-shrink-0 sidebar-text
                                   {{ request()->routeIs('staff.thesis*') ? 'open' : '' }}"></i>
                     </button>
 
-                    <div id="thesisSubmenu"
-                         class="submenu pl-4 mt-0.5 space-y-0.5
+                    <div id="thesisSubmenu" class="submenu pl-4 mt-0.5 space-y-0.5
                                 {{ request()->routeIs('staff.thesis*') ? 'open' : '' }}">
 
-                        <a href="#" data-label="Submissions"
-                            class="menu-item flex items-center gap-3 px-3 py-2 rounded-xl text-sm
+                        <a href="#" data-label="Submissions" class="menu-item flex items-center gap-3 px-3 py-2 rounded-xl text-sm
                                    transition-all duration-150
                                    text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800">
                             <i data-lucide="file-text" class="w-3.5 h-3.5 flex-shrink-0"></i>
                             <span class="sidebar-text">Submissions</span>
                         </a>
 
-                        <a href="#" data-label="Defense Schedule"
-                            class="menu-item flex items-center gap-3 px-3 py-2 rounded-xl text-sm
+                        <a href="#" data-label="Defense Schedule" class="menu-item flex items-center gap-3 px-3 py-2 rounded-xl text-sm
                                    transition-all duration-150
                                    text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800">
                             <i data-lucide="calendar" class="w-3.5 h-3.5 flex-shrink-0"></i>
@@ -227,15 +284,57 @@
                     </div>
                 </div>
 
-                {{-- User Approval --}}
-                <a href="#" data-label="User Approval"
-                    class="menu-item flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm
-                           transition-all duration-150
-                           {{ request()->routeIs('staff.users*') ? 'active' : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800' }}">
-                    <i data-lucide="user-plus" class="w-4 h-4 flex-shrink-0"></i>
-                    <span class="sidebar-text">User Approval</span>
-                    <span class="nav-badge sidebar-text ml-auto">3</span>
-                </a>
+                {{-- ── Approvals (collapsible) — permission-gated ── --}}
+                @php
+                    $perms = session('admin_permissions', []);
+                    if (is_string($perms))
+                        $perms = json_decode($perms, true) ?? [];
+                    $canApproveUsers = in_array('user_approvals', $perms);
+                    $canApproveStudents = in_array('student_approvals', $perms);
+                    $showApprovals = $canApproveUsers || $canApproveStudents;
+                @endphp
+
+                @if($showApprovals)
+                            <div>
+                                <button id="approvalToggle" data-label="Approvals"
+                                    class="menu-item w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm
+                                           transition-all duration-150
+                                           {{ request()->routeIs('staff.users*') || request()->routeIs('staff.students*') || request()->routeIs('staff.pending*')
+                    ? 'active' : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800' }}">
+                                    <i data-lucide="user-check" class="w-4 h-4 flex-shrink-0"></i>
+                                    <span class="sidebar-text flex-1 text-left">Approvals</span>
+                                    <i data-lucide="chevron-down" class="chevron w-3.5 h-3.5 flex-shrink-0 sidebar-text
+                                              {{ request()->routeIs('staff.users*') || request()->routeIs('staff.students*') || request()->routeIs('staff.pending*')
+                    ? 'open' : '' }}"></i>
+                                </button>
+
+                                <div id="approvalSubmenu" class="submenu pl-4 mt-0.5 space-y-0.5
+                                            {{ request()->routeIs('staff.users*') || request()->routeIs('staff.students*') || request()->routeIs('staff.pending*')
+                    ? 'open' : '' }}">
+
+                                    @if($canApproveUsers)
+                                        <a href="{{ route('staff.users.index') }}" data-label="Faculty / Staff"
+                                            class="menu-item flex items-center gap-3 px-3 py-2 rounded-xl text-sm
+                                                   transition-all duration-150
+                                                   {{ request()->routeIs('staff.users.index') ? 'active' : 'text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800' }}">
+                                            <i data-lucide="user-plus" class="w-3.5 h-3.5 flex-shrink-0"></i>
+                                            <span class="sidebar-text">Faculty / Staff</span>
+                                        </a>
+                                    @endif
+
+                                    @if($canApproveStudents)
+                                        <a href="{{ route('staff.students.index') }}" data-label="Students"
+                                            class="menu-item flex items-center gap-3 px-3 py-2 rounded-xl text-sm
+                                                   transition-all duration-150
+                                                   {{ request()->routeIs('staff.students.index') ? 'active' : 'text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800' }}">
+                                            <i data-lucide="graduation-cap" class="w-3.5 h-3.5 flex-shrink-0"></i>
+                                            <span class="sidebar-text">Students</span>
+                                        </a>
+                                    @endif
+
+                                </div>
+                            </div>
+                @endif
 
                 {{-- System --}}
                 <div class="pt-3">
@@ -243,18 +342,15 @@
                                tracking-widest font-semibold px-2 pb-1.5">System</p>
 
                     <div class="flex items-center justify-between px-3 py-2.5 rounded-xl
-                                hover:bg-gray-100 dark:hover:bg-gray-800 transition cursor-pointer"
-                         id="themeRow">
+                                hover:bg-gray-100 dark:hover:bg-gray-800 transition cursor-pointer" id="themeRow">
                         <div class="flex items-center gap-3">
                             <i id="themeIcon" data-lucide="moon"
                                 class="w-4 h-4 text-gray-500 dark:text-gray-400 flex-shrink-0"></i>
                             <span class="sidebar-text text-sm text-gray-600 dark:text-gray-400">Dark Mode</span>
                         </div>
-                        <button id="themeToggle"
-                            class="relative w-10 h-5 bg-gray-300 dark:bg-violet-500
+                        <button id="themeToggle" class="relative w-10 h-5 bg-gray-300 dark:bg-violet-500
                                    rounded-full transition-colors duration-300 flex-shrink-0">
-                            <span id="toggleCircle"
-                                class="absolute left-0.5 top-0.5 w-4 h-4 bg-white rounded-full
+                            <span id="toggleCircle" class="absolute left-0.5 top-0.5 w-4 h-4 bg-white rounded-full
                                        shadow transition-transform duration-300"></span>
                         </button>
                     </div>
@@ -265,22 +361,20 @@
             {{-- Bottom actions --}}
             <div class="px-3 py-4 border-t border-gray-100 dark:border-gray-800 space-y-1">
 
-                {{-- Staff info chip --}}
                 <div class="flex items-center gap-3 px-3 py-2.5 mb-1">
                     <div class="w-8 h-8 rounded-xl bg-violet-100 dark:bg-violet-900/40 text-violet-700
                                 dark:text-violet-300 flex items-center justify-center font-bold text-sm flex-shrink-0">
-                        {{ strtoupper(substr(session('staff_name') ?? 'S', 0, 1)) }}
+                        {{ strtoupper(substr(session('admin_name') ?? 'S', 0, 1)) }}
                     </div>
                     <div class="sidebar-text min-w-0">
                         <p class="text-xs font-semibold text-gray-700 dark:text-gray-300 truncate">
-                            {{ session('staff_name') ?? 'Staff Member' }}
+                            {{ session('admin_name') ?? 'Staff Member' }}
                         </p>
                         <p class="text-[10px] text-gray-400 truncate">Graduate School Staff</p>
                     </div>
                 </div>
 
-                <a href="{{ route('home') }}" data-label="Back to Site"
-                    class="menu-item flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm
+                <a href="{{ route('home') }}" data-label="Back to Site" class="menu-item flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm
                            text-gray-600 dark:text-gray-400
                            hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-150">
                     <i data-lucide="arrow-left" class="w-4 h-4 flex-shrink-0"></i>
@@ -289,8 +383,7 @@
 
                 <form method="POST" action="{{ route('staff.logout') }}">
                     @csrf
-                    <button type="submit" data-label="Sign Out"
-                        class="menu-item flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm
+                    <button type="submit" data-label="Sign Out" class="menu-item flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm
                                text-gray-600 dark:text-gray-400
                                hover:bg-red-50 dark:hover:bg-red-950
                                hover:text-red-500 dark:hover:text-red-400
@@ -307,14 +400,13 @@
         <div class="fixed top-0 left-0 right-0 h-14 bg-white dark:bg-[#111827]
                     border-b border-gray-200 dark:border-gray-800
                     flex items-center justify-between px-4 z-30 md:hidden shadow-sm">
-            <button id="mobileMenuBtn"
-                class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition">
+            <button id="mobileMenuBtn" class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition">
                 <i data-lucide="menu" class="w-5 h-5"></i>
             </button>
             <span class="font-bold text-gray-800 dark:text-white">BUOU Staff</span>
             <div class="w-9 h-9 rounded-xl bg-violet-600 text-white
                         flex items-center justify-center font-bold text-sm">
-                {{ strtoupper(substr(session('staff_name') ?? 'S', 0, 1)) }}
+                {{ strtoupper(substr(session('admin_name') ?? 'S', 0, 1)) }}
             </div>
         </div>
 
@@ -328,10 +420,9 @@
     <script>
         lucide.createIcons();
 
-        /* ── Sidebar collapse ── */
-        const sidebar     = document.getElementById('sidebar');
-        const toggleBtn   = document.getElementById('toggleSidebar');
-        const toggleIcon  = document.getElementById('toggleIcon');
+        const sidebar = document.getElementById('sidebar');
+        const toggleBtn = document.getElementById('toggleSidebar');
+        const toggleIcon = document.getElementById('toggleIcon');
         const mainContent = document.getElementById('mainContent');
         let collapsed = localStorage.getItem('staffSidebarCollapsed') === 'true';
 
@@ -358,7 +449,6 @@
             applySidebar();
         });
 
-        /* ── Mobile menu ── */
         document.getElementById('mobileMenuBtn').addEventListener('click', () => {
             sidebar.classList.remove('-translate-x-full');
             document.getElementById('sidebarOverlay').classList.add('active');
@@ -369,7 +459,7 @@
         });
 
         /* ── Requests submenu toggle ── */
-        const requestsToggle  = document.getElementById('requestsToggle');
+        const requestsToggle = document.getElementById('requestsToggle');
         const requestsSubmenu = document.getElementById('requestsSubmenu');
         requestsToggle.addEventListener('click', () => {
             const isOpen = requestsSubmenu.classList.contains('open');
@@ -378,7 +468,7 @@
         });
 
         /* ── Thesis submenu toggle ── */
-        const thesisToggle  = document.getElementById('thesisToggle');
+        const thesisToggle = document.getElementById('thesisToggle');
         const thesisSubmenu = document.getElementById('thesisSubmenu');
         thesisToggle.addEventListener('click', () => {
             const isOpen = thesisSubmenu.classList.contains('open');
@@ -386,10 +476,21 @@
             thesisToggle.querySelector('.chevron').classList.toggle('open', !isOpen);
         });
 
+        /* ── Approvals submenu toggle — only wired if element exists ── */
+        const approvalToggle = document.getElementById('approvalToggle');
+        const approvalSubmenu = document.getElementById('approvalSubmenu');
+        if (approvalToggle && approvalSubmenu) {
+            approvalToggle.addEventListener('click', () => {
+                const isOpen = approvalSubmenu.classList.contains('open');
+                approvalSubmenu.classList.toggle('open', !isOpen);
+                approvalToggle.querySelector('.chevron').classList.toggle('open', !isOpen);
+            });
+        }
+
         /* ── Dark mode ── */
-        const toggle    = document.getElementById('themeToggle');
-        const circle    = document.getElementById('toggleCircle');
-        const html      = document.documentElement;
+        const toggle = document.getElementById('themeToggle');
+        const circle = document.getElementById('toggleCircle');
+        const html = document.documentElement;
         const themeIcon = document.getElementById('themeIcon');
 
         function setTheme(mode) {
@@ -421,4 +522,5 @@
 
     @stack('scripts')
 </body>
+
 </html>
