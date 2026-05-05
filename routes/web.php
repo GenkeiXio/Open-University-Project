@@ -50,9 +50,22 @@ Route::post('/student/register', [StudentRegisterController::class, 'store'])->n
 // ─────────────────────────────────────────────────────────────────────────────
 
 Route::middleware(['student'])->group(function () {
+
     Route::get('/student/dashboard', function () {
         return view('Student.dashboard');
     })->name('student.dashboard');
+
+    // Request type picker page (requestlist.blade.php)
+    Route::get('/student/requests', function () {
+        return view('Student.requestlist');
+    })->name('student.requests.list');
+
+    // Checklist page — only reachable after starting a request
+    // FIX: was 'Student.checklist', correct filename is student-checklist
+    Route::get('/student/requests/checklist', function () {
+        return view('Student.checklist');
+    })->name('student.checklist');
+
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -106,11 +119,12 @@ Route::middleware(['admin'])->group(function () {
         Route::get('/presentations', fn() => view('Faculty.presentations.index'))->name('admin.faculty.presentations');
     });
 
-    // Placeholder modules (to be implemented later CJ & Jane)
+    // Placeholder modules (to be implemented later — CJ & Jane)
     Route::get('/admin/thesis-dissertation', fn() => view('Admin.placeholder', ['title' => 'Thesis Dissertation']))->name('admin.thesis');
     Route::get('/admin/office-transaction', fn() => view('Admin.placeholder', ['title' => 'Office Transaction']))->name('admin.office');
 
     Route::get('/admin/activity-logs', [ActivityLogController::class, 'index'])->name('admin.logs');
+
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -139,10 +153,51 @@ Route::middleware(['faculty'])->group(function () {
 // ─────────────────────────────────────────────────────────────────────────────
 
 Route::middleware(['staff'])->group(function () {
+
+    // Dashboard — staff land here after login
+    // FIX: was pointing to 'Staff.request' (the requests table), now correctly Staff.dashboard
     Route::get('/staff/dashboard', function () {
         return view('Staff.dashboard');
     })->name('staff.dashboard');
 
+    Route::post('/staff/logout', [AdminLoginController::class, 'logout'])->name('staff.logout');
+
+    // News
     Route::get('/staff/news', [NewsController::class, 'manage'])->name('staff.news.index');
     Route::post('/staff/news', [NewsController::class, 'store'])->name('staff.news.store');
+
+    // ── Requests ──────────────────────────────────────────────────────────────
+
+    // All requests table (request.blade.php)
+    Route::get('/staff/requests', function () {
+        return view('Staff.request');
+    })->name('staff.requests.index');
+
+    // My Assigned — reuses request.blade.php for now, filter client-side
+    Route::get('/staff/requests/assigned', function () {
+        return view('Staff.request');
+    })->name('staff.requests.assigned');
+
+    // Student checklist — ONLY reachable by clicking "View Checklist" in the table
+    // The {id} means a direct URL without a valid row link won't match anything useful
+    Route::get('/staff/requests/{id}/checklist', function ($id) {
+        return view('Staff.stdntchecklist', ['requestId' => $id]);
+    })->name('staff.requests.checklist');
+
+    // ── Thesis & Dissertation ──────────────────────────────────────────────────
+
+    Route::get('/staff/thesis-dissertation', function () {
+        return view('Admin.placeholder', ['title' => 'Thesis & Dissertation']);
+    })->name('staff.thesis.index');
+
+    Route::get('/staff/thesis-dissertation/defense-schedule', function () {
+        return view('Admin.placeholder', ['title' => 'Defense Schedule']);
+    })->name('staff.thesis.defense');
+
+    // ── User Approval ──────────────────────────────────────────────────────────
+
+    Route::get('/staff/user-approval', function () {
+        return view('Admin.placeholder', ['title' => 'User Approval']);
+    })->name('staff.users.index');
+
 });
