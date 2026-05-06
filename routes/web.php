@@ -56,6 +56,9 @@ Route::middleware(['admin'])->group(function () {
     Route::get('/admin/dashboard', fn() => view('Admin.admin'))->name('admin.dashboard');
 
     // News
+   
+
+    // --- NEWS MANAGEMENT (Added these for you) ---
     Route::get('/admin/news', [NewsController::class, 'manage'])->name('admin.news.index');
     Route::post('/admin/news', [NewsController::class, 'store'])->name('news.store');
     Route::get('/admin/news/{id}/edit', [NewsController::class, 'edit'])->name('news.edit');
@@ -169,3 +172,10 @@ Route::middleware(['staff', 'sync.permissions'])->group(function () {
     });
 
 });
+});
+
+
+Route::view('/theses', 'Users.theses_dissertation')->name('theses_dissertation');
+Route::view('/theses-output', 'Users.theses_output')->name('theses_output');
+Route::view('/view-theses', 'Users.view_theses')->name('view_theses');
+Route::view('/add-theses', 'Users.add_theses')->name('add_theses');
