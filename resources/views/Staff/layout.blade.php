@@ -267,11 +267,12 @@
                     <div id="thesisSubmenu" class="submenu pl-4 mt-0.5 space-y-0.5
                                 {{ request()->routeIs('staff.thesis*') ? 'open' : '' }}">
 
-                        <a href="#" data-label="Submissions" class="menu-item flex items-center gap-3 px-3 py-2 rounded-xl text-sm
-                                   transition-all duration-150
-                                   text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800">
-                            <i data-lucide="file-text" class="w-3.5 h-3.5 flex-shrink-0"></i>
-                            <span class="sidebar-text">Submissions</span>
+                       <a href="{{ route('staff.thesis.index') }}" data-label="Submissions"
+                            class="menu-item flex items-center gap-3 px-3 py-2 rounded-xl text-sm
+                            transition-all duration-150
+                            text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800">
+                          <i data-lucide="file-text" class="w-3.5 h-3.5 flex-shrink-0"></i>
+                           <span class="sidebar-text">Submissions</span>
                         </a>
 
                         <a href="#" data-label="Defense Schedule" class="menu-item flex items-center gap-3 px-3 py-2 rounded-xl text-sm

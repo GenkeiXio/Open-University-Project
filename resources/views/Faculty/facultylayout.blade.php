@@ -244,6 +244,15 @@
                         <span class="sidebar-text">Publications</span>
                     </a>
 
+                    <a href="{{ route('Faculty.facultythesis') }}" data-label="Presentations" class="menu-item flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm
+                              transition-all duration-150
+                              {{ request()->routeIs('Faculty.facultythesis')
+    ? 'active'
+    : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800' }}">
+                        <i data-lucide="book-open" class="w-4.5 h-4.5 flex-shrink-0"></i>
+                        <span class="sidebar-text">Theses and Dissertation</span>
+                    </a>
+
                     <a href="{{ route('Faculty.presentations') }}" data-label="Presentations" class="menu-item flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm
                               transition-all duration-150
                               {{ request()->routeIs('Faculty.presentations')

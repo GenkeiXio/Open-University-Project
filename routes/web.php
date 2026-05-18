@@ -13,6 +13,8 @@ use App\Http\Controllers\Admin\PendingStudentController;
 use App\Http\Controllers\Admin\StudentManagementController;
 use App\Http\Controllers\Admin\ActivityLogController;
 use App\Http\Controllers\Admin\PermissionsController;
+use App\Http\Controllers\Admin\ThesesDissertationController;
+
 
 // ─────────────────────────────────────────────────────────────────────────────
 // PUBLIC ROUTES
@@ -98,7 +100,6 @@ Route::middleware(['admin'])->group(function () {
         Route::get('/presentations', fn() => view('Faculty.presentations.index'))->name('admin.faculty.presentations');
     });
 
-    Route::get('/admin/thesis-dissertation', fn() => view('Admin.placeholder', ['title' => 'Thesis Dissertation']))->name('admin.thesis');
     Route::get('/admin/office-transaction', fn() => view('Admin.placeholder', ['title' => 'Office Transaction']))->name('admin.office');
 
     // Activity logs
@@ -147,7 +148,6 @@ Route::middleware(['staff', 'sync.permissions'])->group(function () {
     })->name('staff.requests.checklist');
 
     // ── Thesis ────────────────────────────────────────────────────────────────
-    Route::get('/staff/thesis-dissertation', fn() => view('Admin.placeholder', ['title' => 'Thesis & Dissertation']))->name('staff.thesis.index');
     Route::get('/staff/thesis-dissertation/defense-schedule', fn() => view('Admin.placeholder', ['title' => 'Defense Schedule']))->name('staff.thesis.defense');
 
     // ─────────────────────────────────────────────────────────────────────────
@@ -172,10 +172,52 @@ Route::middleware(['staff', 'sync.permissions'])->group(function () {
     });
 
 });
-});
+
+// ─────────────────────────────────────────────────────────────────────────────
+// THESES AND DISSERTATION
+// ─────────────────────────────────────────────────────────────────────────────
 
 
 Route::view('/theses', 'Users.theses_dissertation')->name('theses_dissertation');
 Route::view('/theses-output', 'Users.theses_output')->name('theses_output');
 Route::view('/view-theses', 'Users.view_theses')->name('view_theses');
 Route::view('/add-theses', 'Users.add_theses')->name('add_theses');
+
+// ─────────────────────────────────────────────────────────────────────────────
+// THESES AND DISSERTATION FOR STAFF
+// ─────────────────────────────────────────────────────────────────────────────
+
+Route::get('/staff/thesis-dissertation',
+    [ThesesDissertationController::class, 'index'])
+    ->name('staff.thesis.index');
+
+Route::get('/staff/thesis-dissertation/create',
+    [ThesesDissertationController::class, 'create'])
+    ->name('staff.thesis.create');
+
+    Route::get('/staff/thesis-dissertation/upload',
+    [ThesesDissertationController::class, 'upload'])
+    ->name('staff.theses.upload');
+
+    
+// ─────────────────────────────────────────────────────────────────────────────
+// THESES AND DISSERTATION FOR FACULTY
+// ─────────────────────────────────────────────────────────────────────────────
+Route::get(
+    '/faculty/theses-dissertation/facultythesis',
+    [ThesesDissertationController::class, 'index']
+)->name('Faculty.facultythesis');
+
+Route::get(
+    '/faculty/theses and dissertation/facultythesis_upload',
+    [ThesesDissertationController::class, 'facultyUpload']
+)->name('faculty.theses.upload');
+
+// ─────────────────────────────────────────────────────────────────────────────
+// THESES AND DISSERTATION FOR ADMIN
+// ─────────────────────────────────────────────────────────────────────────────
+
+Route::get(
+    '/Admin/admintheses_dissertation',
+    [ThesesDissertationController::class, 'Adminindex']
+)->name('admin.admintheses_dissertation');

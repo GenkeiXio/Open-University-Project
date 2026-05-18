@@ -1,379 +1,520 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>BU Open University - Theses & Dissertations Repository</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <!-- Tesseract.js for OCR -->
-    <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'bu-blue': '#0B439B',
-                        'bu-orange': '#F5A623',
-                        'bu-light': '#D1E1F5',
-                        'bu-light-blue': '#E6F0FF'
-                    },
-                    fontFamily: {
-                        raleway: ['Raleway', 'sans-serif'],
-                    }
-                }
-            }
+@extends('Staff.layout')
+
+@section('title', 'Theses & Dissertations')
+
+@push('styles')
+<style>
+    .page-fade-in {
+        animation: fadeIn 0.3s ease both;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(10px);
         }
-    </script>
-</head>
-<body class="font-raleway bg-gray-50 antialiased">
 
-    <!-- Navigation - compact minimalist -->
-    <nav class="bg-bu-blue sticky top-0 z-50 px-5 lg:px-8 py-2.5 flex justify-between items-center shadow-md">
-        <div class="flex items-center gap-3">
-            <div class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center">
-                <span class="text-white font-black text-sm">BU</span>
-            </div>
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .table-container {
+        scrollbar-width: thin;
+        scrollbar-color: #e5e7eb transparent;
+    }
+    
+    .status-badge {
+        transition: all 0.2s ease;
+    }
+</style>
+@endpush
+
+@section('content')
+
+{{-- ── Header Section ── --}}
+<div class="mb-7 flex flex-col md:flex-row md:items-center justify-between gap-4 page-fade-in">
+    <div>
+        <h1 class="text-2xl font-bold text-gray-900 dark:text-white flex items-center gap-2">
+            <i data-lucide="book-marked" class="w-7 h-7 text-sky-500"></i>
+            Theses & Dissertations
+        </h1>
+
+        <p class="text-sm text-gray-500 dark:text-gray-400 mt-0.5">
+            Manage and archive the Graduate School's research repository.
+        </p>
+    </div>
+
+    <button onclick="window.location='{{ route('staff.theses.upload') }}'"
+        class="inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-violet-600 hover:bg-violet-700 text-white text-sm font-bold rounded-xl transition-all shadow-sm shadow-violet-200 dark:shadow-none active:scale-95">
+        <i data-lucide="plus-circle" class="w-4 h-4"></i>
+        Add Thesis/Dissertation
+    </button>
+</div>
+
+{{-- ── Repository Stats ── --}}
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-7 page-fade-in">
+    <div class="bg-white dark:bg-[#111827] rounded-2xl border border-gray-200 dark:border-gray-800 p-5 flex items-center gap-4">
+        <div class="w-10 h-10 rounded-xl bg-sky-50 dark:bg-sky-900/20 text-sky-600 flex items-center justify-center">
+            <i data-lucide="layers" class="w-5 h-5"></i>
+        </div>
+        <div>
+            <p class="text-[10px] font-bold text-gray-400 uppercase tracking-wider">
+                Total Records
+            </p>
+            <h3 class="text-xl font-bold text-gray-900 dark:text-white">
+                1,284
+            </h3>
+        </div>
+    </div>
+
+    <div class="bg-white dark:bg-[#111827] rounded-2xl border border-gray-200 dark:border-gray-800 p-5 flex items-center gap-4">
+        <div class="w-10 h-10 rounded-xl bg-violet-50 dark:bg-violet-900/20 text-violet-600 flex items-center justify-center">
+            <i data-lucide="graduation-cap" class="w-5 h-5"></i>
+        </div>
+        <div>
+            <p class="text-[10px] font-bold text-gray-400 uppercase tracking-wider">
+                Master's Theses
+            </p>
+            <h3 class="text-xl font-bold text-gray-900 dark:text-white">
+                842
+            </h3>
+        </div>
+    </div>
+
+    <div class="bg-white dark:bg-[#111827] rounded-2xl border border-gray-200 dark:border-gray-800 p-5 flex items-center gap-4">
+        <div class="w-10 h-10 rounded-xl bg-amber-50 dark:bg-amber-900/20 text-amber-500 flex items-center justify-center">
+            <i data-lucide="award" class="w-5 h-5"></i>
+        </div>
+        <div>
+            <p class="text-[10px] font-bold text-gray-400 uppercase tracking-wider">
+                Doctoral Dissertations
+            </p>
+            <h3 class="text-xl font-bold text-gray-900 dark:text-white">
+                442
+            </h3>
+        </div>
+    </div>
+</div>
+
+{{-- ── Analytics + Monitoring ── --}}
+<div class="grid grid-cols-1 xl:grid-cols-3 gap-6 mb-7 page-fade-in">
+    {{-- Chart --}}
+    <div class="xl:col-span-2 bg-white dark:bg-[#111827] rounded-2xl border border-gray-200 dark:border-gray-800 shadow-sm p-5">
+        <div class="flex items-center justify-between mb-5">
             <div>
-                <h1 class="font-extrabold text-white text-sm tracking-wide">Bicol University</h1>
-                <p class="text-[10px] font-medium text-white/80">Open University · Repository</p>
+                <h2 class="text-base font-bold text-gray-800 dark:text-white flex items-center gap-2">
+                    <i data-lucide="bar-chart-3" class="w-5 h-5 text-violet-500"></i>
+                    Degree Program Research Count
+                </h2>
+                <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                    Tracks which degree program has the highest uploaded theses/dissertations.
+                </p>
             </div>
+            <span class="px-3 py-1 rounded-lg text-[10px] font-bold bg-violet-50 dark:bg-violet-900/20 text-violet-600">
+                Updated Today
+            </span>
         </div>
-        <div class="bg-white/95 backdrop-blur rounded-full py-1 px-4 shadow-sm">
-            <div class="flex items-center gap-2 text-xs font-semibold text-bu-blue">
-                <i class="fas fa-graduation-cap text-bu-orange text-xs"></i>
-                <span>Submit Thesis</span>
-            </div>
+        <div class="h-[340px]">
+            <canvas id="degreeChart"></canvas>
         </div>
-    </nav>
+    </div>
 
-    <main class="max-w-6xl mx-auto px-4 py-8">
-        <!-- header compact -->
-        <div class="flex items-center gap-4 mb-6">
-            <div class="w-2 h-12 bg-bu-orange rounded-full"></div>
-            <div>
-                <h2 class="text-xl md:text-4xl font-bold text-bu-blue tracking-tight">Add New Submission</h2>
-                <p class="text-xs text-gray-500">Theses and Dissertations</p>
-            </div>
+    {{-- Upload Monitoring --}}
+    <div class="bg-white dark:bg-[#111827] rounded-2xl border border-gray-200 dark:border-gray-800 shadow-sm p-5">
+        <div class="mb-5">
+            <h2 class="text-base font-bold text-gray-800 dark:text-white flex items-center gap-2">
+                <i data-lucide="activity" class="w-5 h-5 text-sky-500"></i>
+                Upload Monitoring
+            </h2>
+            <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                Recent upload activities showing date and faculty uploader.
+            </p>
         </div>
 
-        <!-- form card - compact grid -->
-        <div class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
-            <div class="grid grid-cols-1 lg:grid-cols-2 divide-y lg:divide-y-0 lg:divide-x divide-gray-100">
-                
-                <!-- LEFT COLUMN -->
-                <div class="p-5 md:p-6 space-y-5">
-                    <!-- Title - full width -->
-                    <div>
-                        <label class="text-xs font-bold text-bu-blue uppercase tracking-wide block mb-1">Thesis / Dissertation Title</label>
-                        <input type="text" id="thesisTitle" class="w-full bg-white border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:border-bu-blue focus:ring-2 focus:ring-bu-blue/20 outline-none transition" placeholder="Enter full title">
+        <div class="space-y-4 max-h-[340px] overflow-y-auto pr-1">
+            {{-- Item 1 --}}
+            <div class="flex items-start gap-3 pb-4 border-b border-gray-100 dark:border-gray-800">
+                <div class="w-10 h-10 rounded-xl bg-violet-50 dark:bg-violet-900/20 flex items-center justify-center text-violet-600 flex-shrink-0">
+                    <i data-lucide="upload-cloud" class="w-5 h-5"></i>
+                </div>
+                <div class="flex-1">
+                    <div class="flex items-center justify-between">
+                        <h4 class="text-xs font-semibold text-gray-800 dark:text-gray-200">
+                            Prof. James Wilson
+                        </h4>
                     </div>
-
-                    <!-- Degree Program - below title, full width -->
-                    <div>
-                        <label class="text-xs font-bold text-bu-blue uppercase tracking-wide block mb-1">Degree Program</label>
-                        <select id="degreeSelect" class="w-full bg-white border border-gray-200 rounded-xl px-4 py-2.5 text-sm appearance-none focus:border-bu-blue focus:ring-2 focus:ring-bu-blue/20 outline-none" style="background-image: url('data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" fill=\"%230B439B\" viewBox=\"0 0 20 20\"><path fill-rule=\"evenodd\" d=\"M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z\"/></svg>'); background-repeat: no-repeat; background-position: right 1rem center; background-size: 1em;">
-                            <option disabled selected>Select degree</option>
-                            <option>Doctor of Education in Educational Leadership & Management (EdDELM)</option>
-                            <option>Master of Arts in Educational Leadership & Management (MAELM)</option>
-                            <option>Master of Arts in English Education (MAEngEd)</option>
-                            <option>Master of Arts in Social Studies Education (MASocStEd)</option>
-                            <option>Master in Management (MM)</option>
-                            <option>Master of Public Administration (MPA)</option>
-                        </select>
-                    </div>
-
-                    <!-- Document Type + Date Row -->
-                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                        <div>
-                            <label class="text-xs font-bold text-bu-blue uppercase tracking-wide block mb-1">Document Type</label>
-                            <select id="docTypeSelect" class="w-full bg-white border border-gray-200 rounded-xl px-4 py-2.5 text-sm appearance-none focus:border-bu-blue focus:ring-2 focus:ring-bu-blue/20 outline-none" style="background-image: url('data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" fill=\"%230B439B\" viewBox=\"0 0 20 20\"><path fill-rule=\"evenodd\" d=\"M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z\"/></svg>'); background-repeat: no-repeat; background-position: right 1rem center; background-size: 1em;">
-                                <option disabled selected>Select type</option>
-                                <option value="thesis">Master Thesis</option>
-                                <option value="dissertation">Dissertation</option>
-                            </select>
+                    <p class="text-[11px] text-gray-500 dark:text-gray-400 mt-1">
+                        Uploaded "AI-Driven Predictive Analytics in Local Governance"
+                    </p>
+                    <div class="flex items-center gap-3 mt-2">
+                        <div class="flex items-center gap-1 text-[10px] text-gray-400">
+                            <i data-lucide="calendar-days" class="w-3 h-3"></i>
+                            May 12, 2026
                         </div>
-                        <div>
-                            <label class="text-xs font-bold text-bu-blue uppercase tracking-wide block mb-1">Month Completed</label>
-                            <select id="monthSelect" class="w-full bg-white border border-gray-200 rounded-xl px-4 py-2.5 text-sm appearance-none focus:border-bu-blue focus:ring-2 focus:ring-bu-blue/20 outline-none" style="background-image: url('data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" fill=\"%230B439B\" viewBox=\"0 0 20 20\"><path fill-rule=\"evenodd\" d=\"M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z\"/></svg>'); background-repeat: no-repeat; background-position: right 1rem center; background-size: 1em;">
-                                <option disabled selected>Month</option>
-                                <option>January</option><option>February</option><option>March</option><option>April</option><option>May</option><option>June</option>
-                                <option>July</option><option>August</option><option>September</option><option>October</option><option>November</option><option>December</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label class="text-xs font-bold text-bu-blue uppercase tracking-wide block mb-1">Year Completed</label>
-                            <select id="yearSelect" class="w-full bg-white border border-gray-200 rounded-xl px-4 py-2.5 text-sm appearance-none focus:border-bu-blue focus:ring-2 focus:ring-bu-blue/20 outline-none" style="background-image: url('data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" fill=\"%230B439B\" viewBox=\"0 0 20 20\"><path fill-rule=\"evenodd\" d=\"M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z\"/></svg>'); background-repeat: no-repeat; background-position: right 1rem center; background-size: 1em;">
-                                <option disabled selected>Year</option>
-                                <option>2026</option><option>2025</option><option>2024</option><option>2023</option><option>2022</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <!-- Author -->
-                    <div class="bg-bu-light-blue/30 rounded-xl p-3">
-                        <label class="text-xs font-bold text-bu-blue uppercase tracking-wide block mb-1">Author's Name</label>
-                        <input type="text" id="authorNameInput" class="w-full bg-white border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:border-bu-blue focus:ring-2 focus:ring-bu-blue/20 outline-none" placeholder="Full name as on document">
-                    </div>
-
-                    <!-- Keywords -->
-                    <div>
-                        <label class="text-xs font-bold text-bu-blue uppercase tracking-wide block mb-1">Keywords</label>
-                        <div class="flex flex-wrap gap-2 mb-2" id="keywordsContainer"></div>
-                        <div class="flex gap-2">
-                            <input type="text" id="keywordInput" class="flex-1 bg-white border border-gray-200 rounded-xl px-4 py-2 text-sm focus:border-bu-blue focus:ring-2 focus:ring-bu-blue/20 outline-none" placeholder="e.g., education, leadership" onkeypress="handleKeywordKeypress(event)">
-                            <button type="button" id="addKeywordBtn" class="bg-bu-blue hover:bg-blue-800 text-white text-sm font-semibold px-5 rounded-xl transition">Add</button>
-                        </div>
-                    </div>
-
-                    <!-- Dynamic Committee Section (compact) -->
-                    <div class="pt-2 border-t border-gray-100">
-                        <div class="flex items-center gap-2 mb-3">
-                            <div class="w-1 h-5 bg-bu-orange rounded-full"></div>
-                            <h3 class="font-bold text-bu-blue text-base">Committee</h3>
-                            <span id="committeeBadge" class="text-[10px] font-semibold bg-gray-100 text-bu-blue px-2 py-0.5 rounded-full">Select type</span>
-                        </div>
-                        <div id="dynamicCommitteeFields" class="space-y-3">
-                            <!-- dynamic injected -->
-                            <div class="text-sm text-gray-400 italic">Select Master Thesis or Dissertation</div>
-                        </div>
+                        <button class="text-[10px] text-violet-600 hover:text-violet-700 font-medium">View Details</button>
                     </div>
                 </div>
+            </div>
 
-                <!-- RIGHT COLUMN -->
-                <div class="p-5 md:p-6 space-y-5">
-                    <!-- Abstract with OCR -->
-                    <div>
-                        <div class="flex justify-between items-center mb-1">
-                            <label class="text-xs font-bold text-bu-blue uppercase tracking-wide">Abstract</label>
-                            <button type="button" id="scanAbstractBtn" class="bg-gray-100 hover:bg-gray-200 text-bu-blue text-xs font-semibold px-3 py-1.5 rounded-full transition"><i class="fas fa-camera mr-1"></i> Scan Image</button>
+            {{-- Item 2 --}}
+            <div class="flex items-start gap-3 pb-4 border-b border-gray-100 dark:border-gray-800">
+                <div class="w-10 h-10 rounded-xl bg-sky-50 dark:bg-sky-900/20 flex items-center justify-center text-sky-600 flex-shrink-0">
+                    <i data-lucide="file-check" class="w-5 h-5"></i>
+                </div>
+                <div class="flex-1">
+                    <div class="flex items-center justify-between">
+                        <h4 class="text-xs font-semibold text-gray-800 dark:text-gray-200">
+                            Dr. Sarah Parker
+                        </h4>
+                    </div>
+                    <p class="text-[11px] text-gray-500 dark:text-gray-400 mt-1">
+                        Uploaded "Impact of Hybrid Learning on Graduate Research"
+                    </p>
+                    <div class="flex items-center gap-3 mt-2">
+                        <div class="flex items-center gap-1 text-[10px] text-gray-400">
+                            <i data-lucide="calendar-days" class="w-3 h-3"></i>
+                            May 11, 2026
                         </div>
-                        <div class="relative">
-                            <textarea id="abstractTextarea" rows="5" class="w-full bg-white border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:border-bu-blue focus:ring-2 focus:ring-bu-blue/20 outline-none resize-y" placeholder="Paste abstract or click 'Scan Image' to extract from photo..."></textarea>
-                            <div id="ocrLoadingOverlay" class="absolute inset-0 bg-white/80 backdrop-blur-sm rounded-xl flex items-center justify-center flex-col gap-1 hidden">
-                                <div class="w-6 h-6 border-2 border-gray-200 border-t-bu-orange rounded-full animate-spin"></div>
-                                <span class="text-xs font-medium text-bu-blue">OCR processing...</span>
+                        <button class="text-[10px] text-violet-600 hover:text-violet-700 font-medium">View Details</button>
+                    </div>
+                </div>
+            </div>
+
+            {{-- Item 3 --}}
+            <div class="flex items-start gap-3 pb-4 border-b border-gray-100 dark:border-gray-800">
+                <div class="w-10 h-10 rounded-xl bg-red-50 dark:bg-red-900/20 flex items-center justify-center text-red-600 flex-shrink-0">
+                    <i data-lucide="shield-alert" class="w-5 h-5"></i>
+                </div>
+                <div class="flex-1">
+                    <div class="flex items-center justify-between">
+                        <h4 class="text-xs font-semibold text-gray-800 dark:text-gray-200">
+                            Dr. Andrea Cruz
+                        </h4>
+                    </div>
+                    <p class="text-[11px] text-gray-500 dark:text-gray-400 mt-1">
+                        Uploaded "Strategic Leadership in Digital Transformation"
+                    </p>
+                    <div class="flex items-center gap-3 mt-2">
+                        <div class="flex items-center gap-1 text-[10px] text-gray-400">
+                            <i data-lucide="calendar-days" class="w-3 h-3"></i>
+                            May 10, 2026
+                        </div>
+                        <button class="text-[10px] text-violet-600 hover:text-violet-700 font-medium">View Details</button>
+                    </div>
+                </div>
+            </div>
+
+            {{-- Item 4 --}}
+            <div class="flex items-start gap-3">
+                <div class="w-10 h-10 rounded-xl bg-emerald-50 dark:bg-emerald-900/20 flex items-center justify-center text-emerald-600 flex-shrink-0">
+                    <i data-lucide="badge-check" class="w-5 h-5"></i>
+                </div>
+                <div class="flex-1">
+                    <div class="flex items-center justify-between">
+                        <h4 class="text-xs font-semibold text-gray-800 dark:text-gray-200">
+                            Prof. Maria Santos
+                        </h4>
+                    </div>
+                    <p class="text-[11px] text-gray-500 dark:text-gray-400 mt-1">
+                        Uploaded "Social Studies Curriculum Development"
+                    </p>
+                    <div class="flex items-center gap-3 mt-2">
+                        <div class="flex items-center gap-1 text-[10px] text-gray-400">
+                            <i data-lucide="calendar-days" class="w-3 h-3"></i>
+                            May 09, 2026
+                        </div>
+                        <button class="text-[10px] text-violet-600 hover:text-violet-700 font-medium">View Details</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{-- ── Theses & Dissertations List (Table) ── --}}
+<div class="bg-white dark:bg-[#111827] rounded-2xl border border-gray-200 dark:border-gray-800 shadow-sm overflow-hidden page-fade-in">
+    
+    {{-- Table Filters --}}
+    <div class="p-4 border-b border-gray-100 dark:border-gray-800 flex flex-wrap items-center justify-between gap-4">
+        <div class="relative w-full max-w-sm">
+            <i data-lucide="search" class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400"></i>
+            <input type="text" id="searchInput" placeholder="Search by title, author, or year..." 
+                   class="w-full pl-10 pr-4 py-2 text-xs bg-gray-50 dark:bg-gray-900/50 border border-gray-200 
+                          dark:border-gray-800 rounded-xl focus:ring-2 focus:ring-violet-500 outline-none 
+                          text-gray-700 dark:text-gray-300 transition">
+        </div>
+        <div class="flex items-center gap-2">
+            <select id="degreeFilter" class="text-xs bg-gray-50 dark:bg-gray-900/50 border border-gray-200 dark:border-gray-800 
+                           rounded-lg px-3 py-2 outline-none text-gray-600 dark:text-gray-400 min-w-[200px]">
+                <option value="all">All Degrees</option>
+                <option value="Doctor of Education in Educational Leadership & Management (EdDELM)">Doctor of Education (EdDELM)</option>
+                <option value="Master of Arts in Educational Leadership & Management (MAELM)">Master of Arts in Educational Leadership (MAELM)</option>
+                <option value="Master of Arts in English Education (MAEngEd)">Master of Arts in English Education (MAEngEd)</option>
+                <option value="Master of Arts in Social Studies Education (MASocStEd)">Master of Arts in Social Studies (MASocStEd)</option>
+                <option value="Master in Management (MM)">Master in Management (MM)</option>
+                <option value="Master of Public Administration (MPA)">Master of Public Administration (MPA)</option>
+            </select>
+            
+            <select id="typeFilter" class="text-xs bg-gray-50 dark:bg-gray-900/50 border border-gray-200 dark:border-gray-800 
+                           rounded-lg px-3 py-2 outline-none text-gray-600 dark:text-gray-400">
+                <option value="all">All Types</option>
+                <option value="Thesis">Master's Theses</option>
+                <option value="Dissertation">Doctoral Dissertations</option>
+            </select>
+            
+            <button id="resetFilters" class="p-2 bg-gray-50 dark:bg-gray-900/50 border border-gray-200 dark:border-gray-800 rounded-lg text-gray-500 hover:text-violet-600 transition">
+                <i data-lucide="refresh-cw" class="w-4 h-4"></i>
+            </button>
+        </div>
+    </div>
+
+    {{-- Table --}}
+    <div class="overflow-x-auto table-container">
+        <table class="w-full text-left border-collapse">
+            <thead>
+                <tr class="bg-gray-50/50 dark:bg-gray-800/30">
+                    <th class="px-6 py-4 text-[10px] font-bold text-gray-400 uppercase tracking-wider">Research Details</th>
+                    <th class="px-6 py-4 text-[10px] font-bold text-gray-400 uppercase tracking-wider">Author</th>
+                    <th class="px-6 py-4 text-[10px] font-bold text-gray-400 uppercase tracking-wider">Degree Program</th>
+                    <th class="px-6 py-4 text-[10px] font-bold text-gray-400 uppercase tracking-wider">Year</th>
+                    <th class="px-6 py-4 text-[10px] font-bold text-gray-400 uppercase tracking-wider">Uploaded By</th>
+                    <th class="px-6 py-4 text-[10px] font-bold text-gray-400 uppercase tracking-wider">Upload Date</th>
+                    <th class="px-6 py-4 text-[10px] font-bold text-gray-400 uppercase tracking-wider text-right">Actions</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody" class="divide-y divide-gray-50 dark:divide-gray-800">
+                @php
+                $theses = [
+                    ['title'=>'AI-Driven Predictive Analytics in Local Governance','type'=>'Dissertation','degree'=>'Doctor of Education in Educational Leadership & Management (EdDELM)','author'=>'Dr. Robert Chen','year'=>'2025','uploader'=>'Prof. James Wilson','uploadDate'=>'May 12, 2026','color'=>'sky'],
+                    ['title'=>'Sustainability Models for Coastal Communities in Albay','type'=>'Thesis','degree'=>'Master of Public Administration (MPA)','author'=>'Mark V. Solis','year'=>'2024','uploader'=>'Dr. Sarah Parker','uploadDate'=>'May 11, 2026','color'=>'violet'],
+                    ['title'=>'Advanced Research Methods in Education','type'=>'Dissertation','degree'=>'Doctor of Education in Educational Leadership & Management (EdDELM)','author'=>'Dr. Sarah Parker','year'=>'2024','uploader'=>'Prof. Mark Solis','uploadDate'=>'May 10, 2026','color'=>'sky'],
+                    ['title'=>'Impact of Hybrid Learning on Graduate Research','type'=>'Thesis','degree'=>'Master of Arts in Educational Leadership & Management (MAELM)','author'=>'Roberto Gomez','year'=>'2023','uploader'=>'Dr. Elena Rossi','uploadDate'=>'May 9, 2026','color'=>'violet'],
+                    ['title'=>'Strategic Leadership in Digital Transformation','type'=>'Dissertation','degree'=>'Master in Management (MM)','author'=>'Dr. Andrea Cruz','year'=>'2025','uploader'=>'Prof. James Wilson','uploadDate'=>'May 8, 2026','color'=>'sky'],
+                    ['title'=>'Early Childhood Education Methodologies','type'=>'Thesis','degree'=>'Master of Arts in English Education (MAEngEd)','author'=>'Prof. James Wilson','year'=>'2024','uploader'=>'Dr. Sarah Parker','uploadDate'=>'May 7, 2026','color'=>'violet'],
+                    ['title'=>'Public Policy and Governance Reforms','type'=>'Thesis','degree'=>'Master of Public Administration (MPA)','author'=>'Dr. Elena Rossi','year'=>'2024','uploader'=>'Prof. Mark Solis','uploadDate'=>'May 6, 2026','color'=>'violet'],
+                    ['title'=>'Social Studies Curriculum Development','type'=>'Thesis','degree'=>'Master of Arts in Social Studies Education (MASocStEd)','author'=>'Prof. Maria Santos','year'=>'2025','uploader'=>'Dr. Andrea Cruz','uploadDate'=>'May 5, 2026','color'=>'violet'],
+                ];
+                @endphp
+
+                @foreach($theses as $t)
+                <tr class="hover:bg-gray-50 dark:hover:bg-gray-800/20 transition group" 
+                    data-title="{{ $t['title'] }}" 
+                    data-author="{{ $t['author'] }}" 
+                    data-year="{{ $t['year'] }}" 
+                    data-degree="{{ $t['degree'] }}" 
+                    data-type="{{ $t['type'] }}"
+                    data-uploader="{{ $t['uploader'] }}"
+                    data-upload-date="{{ $t['uploadDate'] }}">
+                    <td class="px-6 py-4">
+                        <div class="flex items-start gap-3">
+                            <div class="w-8 h-8 rounded-lg bg-{{ $t['color'] }}-50 dark:bg-{{ $t['color'] }}-900/20 
+                                        text-{{ $t['color'] }}-600 flex items-center justify-center flex-shrink-0 mt-1">
+                                <i data-lucide="file-text" class="w-4 h-4"></i>
                             </div>
-                        </div>
-                        <p class="text-[10px] text-gray-400 mt-1"><i class="fas fa-arrow-down text-bu-orange text-[9px] mr-1"></i> Drop an image on the box for auto-extraction</p>
-                    </div>
-
-                    <!-- Citation -->
-                    <div>
-                        <label class="text-xs font-bold text-bu-blue uppercase tracking-wide block mb-1">Recommended Citation (APA)</label>
-                        <textarea id="citationTextarea" rows="2" class="w-full bg-white border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:border-bu-blue focus:ring-2 focus:ring-bu-blue/20 outline-none resize-none" placeholder="e.g., Lastname, F. (2025). Title. BU Open University Repository."></textarea>
-                    </div>
-
-                    <!-- File Upload -->
-                    <div>
-                        <label class="text-xs font-bold text-bu-blue uppercase tracking-wide block mb-1">Full Manuscript</label>
-                        <div id="fileUploadArea" class="border-2 border-dashed border-gray-300 rounded-xl p-4 transition cursor-pointer hover:border-bu-orange hover:bg-orange-50/30">
-                            <div class="flex items-center gap-4">
-                                <div class="w-10 h-10 rounded-xl bg-bu-blue/10 flex items-center justify-center"><i class="fas fa-file-pdf text-bu-orange text-xl"></i></div>
-                                <div class="flex-1">
-                                    <button type="button" id="triggerFileUpload" class="bg-bu-blue hover:bg-blue-800 text-white text-xs font-semibold px-4 py-2 rounded-lg transition">Browse</button>
-                                    <div class="mt-2 flex items-center justify-between flex-wrap gap-1">
-                                        <span id="fileNameDisplay" class="text-gray-500 text-xs truncate">No file selected</span>
-                                        <button type="button" id="clearFileBtn" class="text-red-500 text-xs font-medium hidden">Remove</button>
-                                    </div>
-                                    <p class="text-[9px] text-gray-400 mt-1">PDF/DOC/DOCX up to 20MB</p>
+                            <div>
+                                <p class="text-sm font-semibold text-gray-800 dark:text-gray-200 line-clamp-1 group-hover:text-violet-600 transition">
+                                    {{ $t['title'] }}
+                                </p>
+                                <div class="flex items-center gap-2 mt-0.5">
+                                    <span class="text-[10px] font-bold px-2 py-0.5 rounded-md {{ $t['type'] == 'Thesis' ? 'bg-violet-50 text-violet-600 dark:bg-violet-900/20' : 'bg-sky-50 text-sky-600 dark:bg-sky-900/20' }}">
+                                        {{ $t['type'] == 'Thesis' ? "Master's Thesis" : 'Doctoral Dissertation' }}
+                                    </span>
                                 </div>
                             </div>
                         </div>
-                        <input type="file" id="thesisFileInput" class="hidden" accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document">
-                    </div>
+                    </td>
+                    <td class="px-6 py-4">
+                        <p class="text-xs font-medium text-gray-700 dark:text-gray-300">{{ $t['author'] }}</p>
+                    </td>
+                    <td class="px-6 py-4">
+                        <p class="text-xs text-gray-500 dark:text-gray-400">{{ $t['degree'] }}</p>
+                    </td>
+                    <td class="px-6 py-4">
+                        <p class="text-xs text-gray-500 dark:text-gray-400 font-mono">{{ $t['year'] }}</p>
+                    </td>
+                    <td class="px-6 py-4">
+                        <div class="flex items-center gap-2">
+                            <i data-lucide="user-check" class="w-3 h-3 text-gray-400"></i>
+                            <p class="text-xs text-gray-500 dark:text-gray-400">{{ $t['uploader'] }}</p>
+                        </div>
+                    </td>
+                    <td class="px-6 py-4">
+                        <div class="flex items-center gap-2">
+                            <i data-lucide="calendar-days" class="w-3 h-3 text-gray-400"></i>
+                            <p class="text-xs text-gray-500 dark:text-gray-400">{{ $t['uploadDate'] }}</p>
+                        </div>
+                    </td>
+                    <td class="px-6 py-4 text-right">
+                        <div class="flex items-center justify-end gap-2">
+                            <button class="p-2 text-gray-400 hover:text-violet-600 hover:bg-violet-50 dark:hover:bg-violet-900/20 rounded-lg transition" title="Edit Record">
+                                <i data-lucide="edit-3" class="w-4 h-4"></i>
+                            </button>
+                            <button class="p-2 text-gray-400 hover:text-sky-600 hover:bg-sky-50 dark:hover:bg-sky-900/20 rounded-lg transition" title="View Full File">
+                                <i data-lucide="external-link" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
 
-                    <!-- Submit -->
-                    <button id="submitFormBtn" class="w-full bg-bu-orange hover:bg-amber-600 text-white font-extrabold py-3 rounded-xl transition shadow-md text-sm tracking-wide"><i class="fas fa-paper-plane mr-2"></i> Publish to Repository</button>
-                </div>
-            </div>
+    {{-- Footer/Pagination --}}
+    <div class="px-6 py-4 bg-gray-50/50 dark:bg-gray-800/30 border-t border-gray-100 dark:border-gray-800 flex items-center justify-between">
+        <p id="showingInfo" class="text-[11px] text-gray-500 dark:text-gray-400">Showing 1 to 8 of 8 entries</p>
+        <div class="flex gap-1">
+            <button id="prevPage" class="px-3 py-1 text-[11px] font-bold text-gray-500 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-md hover:bg-gray-50 transition">Prev</button>
+            <button id="page1" class="page-btn px-3 py-1 text-[11px] font-bold text-white bg-violet-600 rounded-md">1</button>
+            <button id="nextPage" class="px-3 py-1 text-[11px] font-bold text-gray-500 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-md hover:bg-gray-50 transition">Next</button>
         </div>
-    </main>
+    </div>
+</div>
 
-    <script>
-        (function() {
-            // ---------- KEYWORDS ----------
-            let keywords = [];
-            const keywordsContainer = document.getElementById('keywordsContainer');
-            const keywordInput = document.getElementById('keywordInput');
-            const addKeywordBtn = document.getElementById('addKeywordBtn');
-            
-            function renderKeywords() {
-                if(!keywordsContainer) return;
-                keywordsContainer.innerHTML = '';
-                keywords.forEach((kw, idx) => {
-                    const tag = document.createElement('span');
-                    tag.className = 'bg-gray-100 text-bu-blue text-xs font-medium px-3 py-1.5 rounded-full flex items-center gap-2';
-                    tag.innerHTML = `${escapeHtml(kw)}<span class="keyword-remove text-gray-400 hover:text-red-500 cursor-pointer text-sm font-bold" data-index="${idx}">×</span>`;
-                    keywordsContainer.appendChild(tag);
-                });
-                document.querySelectorAll('.keyword-remove').forEach(el => {
-                    el.addEventListener('click', (e) => {
-                        const index = parseInt(el.getAttribute('data-index'), 10);
-                        if(!isNaN(index)) { keywords.splice(index, 1); renderKeywords(); }
-                        e.stopPropagation();
-                    });
-                });
-            }
-            function escapeHtml(str) { return str.replace(/[&<>]/g, function(m){if(m==='&') return '&amp;'; if(m==='<') return '&lt;'; if(m==='>') return '&gt;'; return m;}); }
-            function addKeyword() {
-                let val = keywordInput.value.trim();
-                if(val === '') return;
-                if(val.includes(',')) {
-                    val.split(',').forEach(part => { let clean = part.trim(); if(clean && !keywords.includes(clean)) keywords.push(clean); });
-                } else { if(!keywords.includes(val)) keywords.push(val); }
-                keywordInput.value = '';
-                renderKeywords();
-            }
-            window.handleKeywordKeypress = function(e) { if(e.key === 'Enter') { addKeyword(); e.preventDefault(); } };
-            if(addKeywordBtn) addKeywordBtn.addEventListener('click', addKeyword);
-            if(keywordInput) keywordInput.addEventListener('keypress', window.handleKeywordKeypress);
-            
-            // ---------- DYNAMIC COMMITTEE ----------
-            const docTypeSelect = document.getElementById('docTypeSelect');
-            const dynamicContainer = document.getElementById('dynamicCommitteeFields');
-            const committeeBadge = document.getElementById('committeeBadge');
-            
-            function buildCommitteeFields(docType) {
-                if(docType === 'thesis') {
-                    committeeBadge.innerText = '1 Adviser · 1 Chair · 2 Members';
-                    dynamicContainer.innerHTML = `
-                        <div><label class="text-xs font-semibold text-bu-blue/80 block mb-1">Thesis Adviser</label><input type="text" id="adviserInput" class="w-full bg-white border border-gray-200 rounded-xl px-3 py-2 text-sm" placeholder="Full name"></div>
-                        <div><label class="text-xs font-semibold text-bu-blue/80 block mb-1">Panel Chairperson</label><input type="text" id="chairpersonInput" class="w-full bg-white border border-gray-200 rounded-xl px-3 py-2 text-sm" placeholder="Chairperson name"></div>
-                        <div><label class="text-xs font-semibold text-bu-blue/80 block mb-1">Panel Member 1</label><input type="text" id="panelMember1" class="w-full bg-white border border-gray-200 rounded-xl px-3 py-2 text-sm" placeholder="Member name"></div>
-                        <div><label class="text-xs font-semibold text-bu-blue/80 block mb-1">Panel Member 2</label><input type="text" id="panelMember2" class="w-full bg-white border border-gray-200 rounded-xl px-3 py-2 text-sm" placeholder="Member name"></div>
-                    `;
-                } else if(docType === 'dissertation') {
-                    committeeBadge.innerText = '1 Adviser · 1 Chair · 4 Members';
-                    dynamicContainer.innerHTML = `
-                        <div><label class="text-xs font-semibold text-bu-blue/80 block mb-1">Dissertation Adviser</label><input type="text" id="adviserInput" class="w-full bg-white border border-gray-200 rounded-xl px-3 py-2 text-sm" placeholder="Full name"></div>
-                        <div><label class="text-xs font-semibold text-bu-blue/80 block mb-1">Panel Chairperson</label><input type="text" id="chairpersonInput" class="w-full bg-white border border-gray-200 rounded-xl px-3 py-2 text-sm" placeholder="Chairperson name"></div>
-                        <div><label class="text-xs font-semibold text-bu-blue/80 block mb-1">Panel Member 1</label><input type="text" id="panelMember1" class="w-full bg-white border border-gray-200 rounded-xl px-3 py-2 text-sm" placeholder="Member name"></div>
-                        <div><label class="text-xs font-semibold text-bu-blue/80 block mb-1">Panel Member 2</label><input type="text" id="panelMember2" class="w-full bg-white border border-gray-200 rounded-xl px-3 py-2 text-sm" placeholder="Member name"></div>
-                        <div><label class="text-xs font-semibold text-bu-blue/80 block mb-1">Panel Member 3</label><input type="text" id="panelMember3" class="w-full bg-white border border-gray-200 rounded-xl px-3 py-2 text-sm" placeholder="Member name"></div>
-                        <div><label class="text-xs font-semibold text-bu-blue/80 block mb-1">Panel Member 4</label><input type="text" id="panelMember4" class="w-full bg-white border border-gray-200 rounded-xl px-3 py-2 text-sm" placeholder="Member name"></div>
-                    `;
-                } else {
-                    committeeBadge.innerText = 'Select type';
-                    dynamicContainer.innerHTML = '<div class="text-sm text-gray-400 italic">Choose Master Thesis or Dissertation</div>';
+@endsection
+
+@push('scripts')
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    // Initialize Lucide icons
+    if (typeof lucide !== 'undefined') {
+        lucide.createIcons();
+    }
+
+    // Degree Program Chart
+    const degreeCtx = document.getElementById('degreeChart');
+    if (degreeCtx) {
+        new Chart(degreeCtx, {
+            type: 'bar',
+            data: {
+                labels: ['EdDELM', 'MAELM', 'MAEngEd', 'MASocStEd', 'MM', 'MPA'],
+                datasets: [{
+                    label: 'Uploaded Research',
+                    data: [145, 98, 76, 54, 87, 112],
+                    borderRadius: 10,
+                    backgroundColor: ['#8B5CF6', '#6366F1', '#0EA5E9', '#14B8A6', '#F59E0B', '#EC4899']
+                }]
+            },
+            options: {
+                maintainAspectRatio: false,
+                responsive: true,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: { callbacks: { label: function(context) { return context.raw + ' uploads'; } } }
+                },
+                scales: {
+                    y: {
+                        ticks: { color: '#9CA3AF', stepSize: 50 },
+                        grid: { color: 'rgba(156,163,175,0.1)' }
+                    },
+                    x: {
+                        ticks: { color: '#9CA3AF', font: { size: 10 } },
+                        grid: { display: false }
+                    }
                 }
             }
-            if(docTypeSelect) {
-                docTypeSelect.addEventListener('change', (e) => { buildCommitteeFields(e.target.value); });
-                buildCommitteeFields(docTypeSelect.value);
-            }
-            
-            // ---------- FILE HANDLING ----------
-            const fileInput = document.getElementById('thesisFileInput');
-            const browseBtn = document.getElementById('triggerFileUpload');
-            const fileNameSpan = document.getElementById('fileNameDisplay');
-            const clearBtn = document.getElementById('clearFileBtn');
-            let selectedFile = null;
-            
-            function resetFileSelection() {
-                fileInput.value = '';
-                selectedFile = null;
-                fileNameSpan.textContent = 'No file selected';
-                fileNameSpan.classList.remove('font-medium', 'text-gray-800');
-                if(clearBtn) clearBtn.classList.add('hidden');
-            }
-            function updateFileUI(file) {
-                if(file) {
-                    const maxSize = 20 * 1024 * 1024;
-                    if(file.size > maxSize) { alert(`File exceeds 20MB (${(file.size/(1024*1024)).toFixed(2)} MB).`); resetFileSelection(); return false; }
-                    const allowed = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
-                    if(!allowed.includes(file.type) && !file.name.match(/\.(pdf|doc|docx)$/i)) { alert('Only PDF, DOC, DOCX allowed.'); resetFileSelection(); return false; }
-                    selectedFile = file;
-                    fileNameSpan.textContent = file.name;
-                    fileNameSpan.classList.add('font-medium', 'text-gray-800');
-                    if(clearBtn) clearBtn.classList.remove('hidden');
-                    return true;
-                } else { resetFileSelection(); return false; }
-            }
-            if(browseBtn) browseBtn.addEventListener('click', () => fileInput.click());
-            if(fileInput) fileInput.addEventListener('change', (e) => { if(fileInput.files?.length) updateFileUI(fileInput.files[0]); else resetFileSelection(); });
-            if(clearBtn) clearBtn.addEventListener('click', (e) => { e.preventDefault(); resetFileSelection(); });
-            
-            // drag-drop for file zone
-            const dropZone = document.getElementById('fileUploadArea');
-            if(dropZone) {
-                ['dragenter','dragover','dragleave','drop'].forEach(ev => dropZone.addEventListener(ev, (e) => { e.preventDefault(); e.stopPropagation(); }));
-                dropZone.addEventListener('dragenter', () => dropZone.classList.add('border-bu-orange', 'bg-orange-50'));
-                dropZone.addEventListener('dragleave', () => dropZone.classList.remove('border-bu-orange', 'bg-orange-50'));
-                dropZone.addEventListener('drop', (e) => {
-                    dropZone.classList.remove('border-bu-orange', 'bg-orange-50');
-                    const files = e.dataTransfer.files;
-                    if(files?.length) {
-                        const dropped = files[0];
-                        const dt = new DataTransfer();
-                        dt.items.add(dropped);
-                        fileInput.files = dt.files;
-                        updateFileUI(dropped);
-                    }
-                });
-            }
-            
-            // ---------- OCR ABSTRACT ----------
-            const scanBtn = document.getElementById('scanAbstractBtn');
-            const abstractTextarea = document.getElementById('abstractTextarea');
-            const ocrOverlay = document.getElementById('ocrLoadingOverlay');
-            const hiddenImageInput = document.createElement('input');
-            hiddenImageInput.type = 'file';
-            hiddenImageInput.accept = 'image/jpeg,image/png,image/jpg,image/webp';
-            hiddenImageInput.classList.add('hidden');
-            document.body.appendChild(hiddenImageInput);
-            
-            if(scanBtn) {
-                scanBtn.addEventListener('click', () => hiddenImageInput.click());
-                hiddenImageInput.addEventListener('change', async (ev) => {
-                    const imgFile = ev.target.files[0];
-                    if(!imgFile) return;
-                    if(!imgFile.type.startsWith('image/')) { alert('Select valid image'); hiddenImageInput.value=''; return; }
-                    ocrOverlay.classList.remove('hidden');
-                    abstractTextarea.disabled = true;
-                    try {
-                        const { data: { text } } = await Tesseract.recognize(imgFile, 'eng+fil');
-                        const extracted = text.trim();
-                        if(!extracted) alert('No text found. Try clearer image.');
-                        else {
-                            const current = abstractTextarea.value.trim();
-                            if(current.length && confirm('Replace current abstract?')) abstractTextarea.value = extracted;
-                            else if(!current) abstractTextarea.value = extracted;
-                            else abstractTextarea.value = current + "\n\n[OCR Extracted]\n" + extracted;
-                        }
-                    } catch(err) { alert('OCR error: '+err.message); }
-                    finally { ocrOverlay.classList.add('hidden'); abstractTextarea.disabled = false; hiddenImageInput.value=''; }
-                });
-            }
-            // drop image on abstract container
-            if(abstractTextarea) {
-                const absContainer = abstractTextarea.parentElement;
-                absContainer.addEventListener('dragover', (e) => { e.preventDefault(); absContainer.classList.add('ring-2', 'ring-bu-orange', 'rounded-xl'); });
-                absContainer.addEventListener('dragleave', () => absContainer.classList.remove('ring-2', 'ring-bu-orange'));
-                absContainer.addEventListener('drop', async (e) => {
-                    e.preventDefault();
-                    absContainer.classList.remove('ring-2', 'ring-bu-orange');
-                    const files = e.dataTransfer.files;
-                    if(files.length && files[0].type.startsWith('image/')) {
-                        ocrOverlay.classList.remove('hidden');
-                        abstractTextarea.disabled = true;
-                        try {
-                            const { data: { text } } = await Tesseract.recognize(files[0], 'eng+fil');
-                            const extText = text.trim();
-                            if(extText) {
-                                const curr = abstractTextarea.value.trim();
-                                if(curr && confirm('Replace current abstract?')) abstractTextarea.value = extText;
-                                else if(!curr) abstractTextarea.value = extText;
-                                else abstractTextarea.value = curr + "\n\n--- Extracted ---\n" + extText;
-                            } else alert('No text extracted');
-                        } catch(err) { alert('OCR error'); }
-                        finally { ocrOverlay.classList.add('hidden'); abstractTextarea.disabled = false; }
-                    }
-                });
-            }
-            
-        })();
-    </script>
-</body>
-</html>
+        });
+    }
+
+    // Filter functionality
+    const searchInput = document.getElementById('searchInput');
+    const degreeFilter = document.getElementById('degreeFilter');
+    const typeFilter = document.getElementById('typeFilter');
+    const resetBtn = document.getElementById('resetFilters');
+    const tableRows = document.querySelectorAll('#tableBody tr');
+    const showingInfo = document.getElementById('showingInfo');
+    
+    let currentPage = 1;
+    const rowsPerPage = 5;
+    let filteredRows = [];
+
+    function filterTable() {
+        const searchTerm = searchInput.value.toLowerCase();
+        const degreeValue = degreeFilter.value;
+        const typeValue = typeFilter.value;
+
+        filteredRows = Array.from(tableRows).filter(row => {
+            const title = row.getAttribute('data-title').toLowerCase();
+            const author = row.getAttribute('data-author').toLowerCase();
+            const year = row.getAttribute('data-year');
+            const degree = row.getAttribute('data-degree');
+            const type = row.getAttribute('data-type');
+
+            const matchesSearch = title.includes(searchTerm) || author.includes(searchTerm) || year.includes(searchTerm);
+            const matchesDegree = degreeValue === 'all' || degree === degreeValue;
+            const matchesType = typeValue === 'all' || type === typeValue;
+
+            return matchesSearch && matchesDegree && matchesType;
+        });
+
+        currentPage = 1;
+        displayPage();
+    }
+
+    function displayPage() {
+        const start = (currentPage - 1) * rowsPerPage;
+        const end = start + rowsPerPage;
+        const pageRows = filteredRows.slice(start, end);
+
+        tableRows.forEach(row => row.style.display = 'none');
+        pageRows.forEach(row => row.style.display = '');
+
+        const total = filteredRows.length;
+        const startNum = total === 0 ? 0 : start + 1;
+        const endNum = Math.min(end, total);
+        
+        showingInfo.textContent = total === 0 ? 'Showing 0 entries' : `Showing ${startNum} to ${endNum} of ${total} entries`;
+
+        updatePaginationButtons(total);
+    }
+
+    function updatePaginationButtons(total) {
+        const totalPages = Math.ceil(total / rowsPerPage);
+        const prevBtn = document.getElementById('prevPage');
+        const nextBtn = document.getElementById('nextPage');
+
+        prevBtn.disabled = currentPage === 1;
+        nextBtn.disabled = currentPage === totalPages || totalPages === 0;
+        
+        prevBtn.style.opacity = prevBtn.disabled ? '0.5' : '1';
+        nextBtn.style.opacity = nextBtn.disabled ? '0.5' : '1';
+    }
+
+    // Event listeners
+    if (searchInput) searchInput.addEventListener('input', filterTable);
+    if (degreeFilter) degreeFilter.addEventListener('change', filterTable);
+    if (typeFilter) typeFilter.addEventListener('change', filterTable);
+    
+    if (resetBtn) {
+        resetBtn.addEventListener('click', () => {
+            if (searchInput) searchInput.value = '';
+            if (degreeFilter) degreeFilter.value = 'all';
+            if (typeFilter) typeFilter.value = 'all';
+            filterTable();
+        });
+    }
+
+    document.getElementById('prevPage')?.addEventListener('click', () => {
+        if (currentPage > 1) {
+            currentPage--;
+            displayPage();
+        }
+    });
+
+    document.getElementById('nextPage')?.addEventListener('click', () => {
+        const totalPages = Math.ceil(filteredRows.length / rowsPerPage);
+        if (currentPage < totalPages) {
+            currentPage++;
+            displayPage();
+        }
+    });
+
+    // Initialize
+    filterTable();
+});
+</script>
+@endpush

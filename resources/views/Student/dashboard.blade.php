@@ -472,7 +472,7 @@
                        px-4 py-2 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 transition">
                 Close
             </button>
-            <a href="{{ route('student.requests.checklist') }}"
+            <a href="{{ route('student.checklist') }}"
                 class="text-sm font-semibold text-white bg-blue-600 hover:bg-blue-700
                         px-5 py-2 rounded-xl transition shadow-sm flex items-center gap-2">
                     <i data-lucide="send" class="w-3.5 h-3.5"></i>

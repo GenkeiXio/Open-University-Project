@@ -171,7 +171,7 @@
                             <i data-lucide="book-open" class="w-4 h-4"></i>
                             <span class="sidebar-text">Faculty Module</span>
                         </a>
-                        <a href="{{ route('admin.thesis') }}"
+                        <a href="{{ route('admin.admintheses_dissertation') }}"
                             class="menu-item flex items-center gap-3 px-3 py-2 rounded-lg transition
                             {{ request()->routeIs('admin.thesis') ? 'bg-emerald-100 dark:bg-emerald-900 text-emerald-600 dark:text-emerald-400 font-medium' : 'hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-300' }}">
                             <i data-lucide="scroll-text" class="w-4 h-4"></i>
