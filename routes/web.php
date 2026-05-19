@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\PendingStudentController;
 use App\Http\Controllers\Admin\StudentManagementController;
 use App\Http\Controllers\Admin\ActivityLogController;
 use App\Http\Controllers\Admin\PermissionsController;
+use App\Http\Controllers\Theses\ThesisController;
 use App\Http\Controllers\Admin\ThesesDissertationController;
 
 
@@ -173,9 +174,14 @@ Route::middleware(['staff', 'sync.permissions'])->group(function () {
 
 });
 
-// ─────────────────────────────────────────────────────────────────────────────
-// THESES AND DISSERTATION
-// ─────────────────────────────────────────────────────────────────────────────
+// ─────────────────────────────────────────────────────────────
+// THESIS & DISSERTATION (PUBLIC BACKEND ROUTES)
+// ─────────────────────────────────────────────────────────────
+
+Route::get('/theses/data', [ThesisController::class, 'index']);
+Route::get('/theses/search', [ThesisController::class, 'search']);
+Route::get('/theses/program/{code}', [ThesisController::class, 'byProgram']);
+Route::get('/theses/insights', [ThesisController::class, 'insights']);
 
 
 Route::view('/theses', 'Users.theses_dissertation')->name('theses_dissertation');
