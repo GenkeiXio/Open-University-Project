@@ -183,6 +183,14 @@ Route::get('/theses/search', [ThesisController::class, 'search']);
 Route::get('/theses/program/{code}', [ThesisController::class, 'byProgram']);
 Route::get('/theses/insights', [ThesisController::class, 'insights']);
 
+Route::post('/faculty/theses-dissertation/store',
+    [ThesesDissertationController::class, 'store']
+)->name('faculty.theses.store');
+
+// Get single research by ID
+Route::get('/api/research/{id}', [ThesisController::class, 'show']);
+Route::get('/api/researches/all', [ThesisController::class, 'all']);
+
 
 Route::view('/theses', 'Users.theses_dissertation')->name('theses_dissertation');
 Route::view('/theses-output', 'Users.theses_output')->name('theses_output');
@@ -205,14 +213,28 @@ Route::get('/staff/thesis-dissertation/create',
     [ThesesDissertationController::class, 'upload'])
     ->name('staff.theses.upload');
 
+    Route::get(
+    '/faculty/theses-dissertation/edit/{id}',
+    [ThesesDissertationController::class, 'edit']
+)->name('faculty.theses.edit');
+
+Route::put(
+    '/faculty/theses-dissertation/update/{id}',
+    [ThesesDissertationController::class, 'update']
+)->name('faculty.theses.update');
+
     
 // ─────────────────────────────────────────────────────────────────────────────
 // THESES AND DISSERTATION FOR FACULTY
 // ─────────────────────────────────────────────────────────────────────────────
-Route::get(
-    '/faculty/theses-dissertation/facultythesis',
-    [ThesesDissertationController::class, 'index']
-)->name('Faculty.facultythesis');
+Route::middleware(['faculty'])->group(function () {
+
+    Route::get(
+        '/faculty/theses-dissertation/facultythesis',
+        [ThesesDissertationController::class, 'index']
+    )->name('Faculty.facultythesis');
+
+});
 
 Route::get(
     '/faculty/theses and dissertation/facultythesis_upload',

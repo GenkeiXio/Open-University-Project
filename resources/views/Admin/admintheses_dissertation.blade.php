@@ -98,7 +98,7 @@
                 </thead>
 
                 <tbody>
-                    @foreach($uploads as $upload)
+                    @foreach($uploadsArray as $upload)
                         <tr class="border-b">
                             <td class="py-2">{{ $upload['title'] }}</td>
                             <td>{{ $upload['uploaded_by'] }}</td>

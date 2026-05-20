@@ -41,4 +41,24 @@ class ThesisController extends Controller
             'doctorate' => Research::where('level', 'doctorate')->count(),
         ];
     }
+
+    // Get single research by ID
+public function show($id)
+{
+    $research = Research::with('program')->find($id);
+    
+    if (!$research) {
+        return response()->json(['error' => 'Research not found'], 404);
+    }
+    
+    return response()->json($research);
+}
+
+// Get all researches (for related publications)
+public function all()
+{
+    return Research::with('program')
+        ->orderBy('created_at', 'desc')
+        ->get();
+}
 }

@@ -32,6 +32,7 @@
         .program-link:hover { transform: translateX(4px); }
         .result-card {
             transition: all 0.25s ease;
+            cursor: pointer;
         }
         .result-card:hover {
             transform: translateY(-2px);
@@ -45,7 +46,9 @@
     <nav class="bg-bu-blue text-white px-6 md:px-8 py-3 flex justify-between items-center sticky top-0 z-50 shadow-lg">
         <div class="flex items-center gap-3">
             <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-md overflow-hidden">
-                <img src="https://upload.wikimedia.org/wikipedia/en/thumb/9/9a/Bicol_University.png/220px-Bicol_University.png" alt="BU Logo" class="w-8 h-8 object-contain">
+                <img 
+                    src="{{ asset('assets/Logo/OU LOGO.jpg') }}" 
+                    alt="Bicol University Logo">
             </div>
             <div>
                 <h1 class="font-black text-xs uppercase leading-tight tracking-wide">Bicol University</h1>
@@ -232,12 +235,17 @@
         function filterByYearRange(items, fromYear, toYear) {
             if (!fromYear && !toYear) return items;
             return items.filter(item => {
-                const year = extractYear(item.created_at);
+                const year = extractYear(item.published_date || item.created_at);
                 if (!year) return false;
                 if (fromYear && year < parseInt(fromYear)) return false;
                 if (toYear && year > parseInt(toYear)) return false;
                 return true;
             });
+        }
+
+        // Function to navigate to research details page
+        function viewResearchDetails(id) {
+            window.location.href = `/view-theses?id=${id}`;
         }
 
         function renderResults() {
@@ -261,7 +269,7 @@
             
             const groupedByYear = {};
             paginatedItems.forEach(item => {
-                const year = extractYear(item.created_at) || 'Unknown';
+                const year = extractYear(item.published_date || item.created_at) || 'Unknown';
                 if (!groupedByYear[year]) groupedByYear[year] = [];
                 groupedByYear[year].push(item);
             });
@@ -282,13 +290,13 @@
                     <div class="space-y-2">
                 `;
                 groupedByYear[year].forEach(res => {
-                    const levelLabel = (res.level === 'doctorate') ? 'Dissertation' : 'Master\'s Theses';
-                    const levelBadgeClass = (res.level === 'doctorate') ? 'bg-[#D1E1F5] text-bu-blue' : 'bg-[#FDECC8] text-[#916400]';
-                    const programName = res.program ? res.program.name : (res.program_name || 'General');
-                    const displayDate = res.created_at ? new Date(res.created_at).toLocaleDateString('en-US', { year: 'numeric', month: '2-digit', day: '2-digit' }) : 'Date unknown';
+                    const levelLabel = (res.document_type === 'Dissertation' || res.level === 'doctorate') ? 'Dissertation' : 'Thesis';
+                    const levelBadgeClass = (levelLabel === 'Dissertation') ? 'bg-[#D1E1F5] text-bu-blue' : 'bg-[#FDECC8] text-[#916400]';
+                    const programName = res.program ? res.program.name : (res.degree || 'General');
+                    const displayDate = res.published_date ? new Date(res.published_date).toLocaleDateString('en-US', { year: 'numeric', month: '2-digit', day: '2-digit' }) : 'Date unknown';
                     
                     html += `
-                        <div class="relative bg-white border border-gray-300 rounded-[15px] p-4 pr-32 hover:shadow-sm transition-shadow result-card">
+                        <div class="relative bg-white border border-gray-300 rounded-[15px] p-4 pr-32 hover:shadow-sm transition-shadow result-card" onclick="viewResearchDetails(${res.id})">
                             <span class="inline-block ${levelBadgeClass} text-[11px] font-medium px-3 py-0.5 rounded-full mb-1">
                                 ${levelLabel}
                             </span>
@@ -354,7 +362,7 @@
                 let data = await response.json();
                 
                 let filtered = filterByYearRange(data, currentYearFrom, currentYearTo);
-                filtered.sort((a,b) => new Date(b.created_at) - new Date(a.created_at));
+                filtered.sort((a,b) => new Date(b.published_date || b.created_at) - new Date(a.published_date || a.created_at));
                 currentResults = filtered;
                 currentPage = 1;
                 renderResults();

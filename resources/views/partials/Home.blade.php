@@ -27,7 +27,7 @@
                                     [
                                         'title' => 'Theses & Dissertation',
                                         'icon' => 'fa-solid fa-book-open',
-                                        'route' => route('admin.thesis'),
+                                        'route' => route('theses_dissertation'),
                                     ],
                                     [
                                         'title' => 'Student Request',

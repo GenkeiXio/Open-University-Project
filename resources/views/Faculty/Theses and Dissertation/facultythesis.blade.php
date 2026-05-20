@@ -63,7 +63,7 @@
             <div class="text-center">
 
                 <h1 class="text-2xl font-extrabold text-blue-800 dark:text-blue-300 leading-none">
-                    30
+                    {{ $adviserCount }}
                 </h1>
 
                 <p class="text-xs font-semibold text-blue-700 dark:text-blue-400">
@@ -100,7 +100,7 @@
             <div class="text-center">
 
                 <h1 class="text-2xl font-extrabold text-orange-700 dark:text-orange-300 leading-none">
-                    12
+                    {{ $chairCount }}
                 </h1>
 
                 <p class="text-xs font-semibold text-orange-600 dark:text-orange-400">
@@ -137,7 +137,7 @@
             <div class="text-center">
 
                 <h1 class="text-2xl font-extrabold text-green-700 dark:text-green-300 leading-none">
-                    18
+                    {{ $memberCount }}
                 </h1>
 
                 <p class="text-xs font-semibold text-green-600 dark:text-green-400">
@@ -191,6 +191,7 @@
 
                     <input
                         type="text"
+                        id="searchInput"
                         placeholder="Search title..."
                         class="w-full pl-9 pr-3 py-2 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-xs text-gray-700 dark:text-gray-200 focus:ring-2 focus:ring-blue-500 outline-none"
                     >
@@ -198,28 +199,30 @@
                 </div>
 
                 {{-- YEAR --}}
-                <select class="w-[120px] py-2 px-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-xs text-gray-700 dark:text-gray-200 focus:ring-2 focus:ring-blue-500 outline-none">
-                    <option>Year</option>
-                    <option>2026</option>
-                    <option>2025</option>
-                    <option>2024</option>
-                    <option>2023</option>
+                <select id="yearFilter" class="w-[120px] py-2 px-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-xs text-gray-700 dark:text-gray-200 focus:ring-2 focus:ring-blue-500 outline-none">
+                    <option value="">All Years</option>
+                    <option value="2026">2026</option>
+                    <option value="2025">2025</option>
+                    <option value="2024">2024</option>
+                    <option value="2023">2023</option>
                 </select>
 
                 {{-- DEGREE --}}
-                <select class="w-[130px] py-2 px-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-xs text-gray-700 dark:text-gray-200 focus:ring-2 focus:ring-blue-500 outline-none">
-                    <option>Degree</option>
-                    <option>MSIT</option>
-                    <option>MIT</option>
-                    <option>MIT-CS</option>
-                    <option>PhD IT</option>
+                <select id="degreeFilter" class="w-[130px] py-2 px-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-xs text-gray-700 dark:text-gray-200 focus:ring-2 focus:ring-blue-500 outline-none">
+                    <option value="">All Degrees</option>
+                    @php
+                        $uniqueDegrees = $uploadedRecords->pluck('degree')->unique()->sort();
+                    @endphp
+                    @foreach($uniqueDegrees as $deg)
+                        <option value="{{ $deg }}">{{ $deg }}</option>
+                    @endforeach
                 </select>
 
                 {{-- DOCUMENT TYPE --}}
-                <select class="w-[160px] py-2 px-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-xs text-gray-700 dark:text-gray-200 focus:ring-2 focus:ring-blue-500 outline-none">
-                    <option>Document Type</option>
-                    <option>Master's Thesis</option>
-                    <option>Dissertation</option>
+                <select id="docTypeFilter" class="w-[160px] py-2 px-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-xs text-gray-700 dark:text-gray-200 focus:ring-2 focus:ring-blue-500 outline-none">
+                    <option value="">All Types</option>
+                    <option value="Thesis">Thesis (Master's)</option>
+                    <option value="Dissertation">Dissertation (Doctoral)</option>
                 </select>
 
             </div>
@@ -240,7 +243,6 @@
                         <th class="px-4 py-3">Student</th>
                         <th class="px-4 py-3">Degree</th>
                         <th class="px-4 py-3">Document</th>
-                        <th class="px-4 py-3">Role</th>
                         <th class="px-4 py-3 text-center">Status</th>
                         <th class="px-4 py-3 text-center">Action</th>
 
@@ -248,140 +250,120 @@
 
                 </thead>
 
-                <tbody>
+                <tbody id="recordsTable">
 
-                    {{-- RECORD 1 --}}
-                    <tr class="border-b border-gray-100 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-900/40 transition">
+                    @forelse($uploadedRecords as $record)
+
+                    <tr class="border-b border-gray-100 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-900/40 transition record-row"
+                        data-title="{{ strtolower($record->title) }}"
+                        data-year="{{ \Carbon\Carbon::parse($record->published_date)->format('Y') }}"
+                        data-degree="{{ $record->degree }}"
+                        data-doctype="{{ $record->document_type }}">
 
                         <td class="px-4 py-3 text-xs text-gray-600 dark:text-gray-300">
-                            Apr 3, 2023
+                            {{ \Carbon\Carbon::parse($record->published_date)->format('M d, Y') }}
                         </td>
 
                         <td class="px-4 py-3">
 
                             <div class="font-semibold text-sm text-slate-800 dark:text-white">
-                                AI in Healthcare & Environmental Computing
+                                {{ $record->title }}
                             </div>
 
                             <div class="text-[10px] text-gray-400 mt-1">
-                                Uploaded Thesis Document
+                                Uploaded Research Document
                             </div>
 
                         </td>
 
                         <td class="px-4 py-3 text-xs text-gray-600 dark:text-gray-300">
-                            Anya Gupta
+                            {{ $record->author }}
                         </td>
 
                         <td class="px-4 py-3">
+
                             <span class="bg-slate-100 dark:bg-gray-700 px-2.5 py-1 rounded-full text-[10px]">
-                                MSIT
+                                {{ $record->degree }}
                             </span>
+
                         </td>
 
                         <td class="px-4 py-3">
-                            <span class="bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300 px-2.5 py-1 rounded-full text-[10px] font-semibold">
-                                Master's
-                            </span>
-                        </td>
 
-                        <td class="px-4 py-3">
-                            <span class="bg-indigo-100 text-indigo-700 dark:bg-indigo-900/30 dark:text-indigo-300 px-2.5 py-1 rounded-full text-[10px] font-semibold">
-                                Adviser
-                            </span>
+                            @if($record->document_type == 'Dissertation')
+
+                                <span class="bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-300 px-2.5 py-1 rounded-full text-[10px] font-semibold">
+                                    Dissertation
+                                </span>
+
+                            @else
+
+                                <span class="bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300 px-2.5 py-1 rounded-full text-[10px] font-semibold">
+                                    Thesis
+                                </span>
+
+                            @endif
+
                         </td>
 
                         <td class="px-4 py-3 text-center">
+
                             <span class="bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-300 px-2.5 py-1 rounded-full text-[10px] font-semibold">
-                                Approved
+                                Completed
                             </span>
+
                         </td>
 
                         <td class="px-4 py-3">
 
                             <div class="flex justify-center gap-1.5">
 
-                                <button class="bg-blue-50 hover:bg-blue-100 dark:bg-blue-900/20 p-1.5 rounded-lg transition">
-                                    <i data-lucide="eye" class="w-3.5 h-3.5 text-blue-600"></i>
-                                </button>
+                                {{-- VIEW --}}
+                                <a href="{{ route('view_theses', ['id' => $record->id]) }}"
+                                   class="bg-blue-50 hover:bg-blue-100 dark:bg-blue-900/20 p-1.5 rounded-lg transition">
 
-                                <button class="bg-yellow-50 hover:bg-yellow-100 dark:bg-yellow-900/20 p-1.5 rounded-lg transition">
+                                    <i data-lucide="eye" class="w-3.5 h-3.5 text-blue-600"></i>
+
+                                </a>
+
+                                {{-- EDIT --}}
+                                <a href="{{ route('faculty.theses.edit', $record->id) }}"
+                                   class="bg-yellow-50 hover:bg-yellow-100 dark:bg-yellow-900/20 p-1.5 rounded-lg transition">
+
                                     <i data-lucide="square-pen" class="w-3.5 h-3.5 text-yellow-600"></i>
-                                </button>
+
+                                </a>
+
                             </div>
 
                         </td>
 
                     </tr>
 
-                    {{-- RECORD 2 --}}
-                    <tr class="hover:bg-gray-50 dark:hover:bg-gray-900/40 transition">
+                    @empty
 
-                        <td class="px-4 py-3 text-xs text-gray-600 dark:text-gray-300">
-                            Jul 1, 2023
-                        </td>
+                    <tr>
 
-                        <td class="px-4 py-3">
+                        <td colspan="7"
+                            class="text-center py-10 text-sm text-gray-500 dark:text-gray-400">
 
-                            <div class="font-semibold text-sm text-slate-800 dark:text-white">
-                                Big Data Analytics in Healthcare Systems
-                            </div>
-
-                            <div class="text-[10px] text-gray-400 mt-1">
-                                Dissertation Defense Record
-                            </div>
-
-                        </td>
-
-                        <td class="px-4 py-3 text-xs text-gray-600 dark:text-gray-300">
-                            Sarah Williams
-                        </td>
-
-                        <td class="px-4 py-3">
-                            <span class="bg-slate-100 dark:bg-gray-700 px-2.5 py-1 rounded-full text-[10px]">
-                                PhD IT
-                            </span>
-                        </td>
-
-                        <td class="px-4 py-3">
-                            <span class="bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-300 px-2.5 py-1 rounded-full text-[10px] font-semibold">
-                                Dissertation
-                            </span>
-                        </td>
-
-                        <td class="px-4 py-3">
-                            <span class="bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-300 px-2.5 py-1 rounded-full text-[10px] font-semibold">
-                                Chair
-                            </span>
-                        </td>
-
-                        <td class="px-4 py-3 text-center">
-                            <span class="bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-300 px-2.5 py-1 rounded-full text-[10px] font-semibold">
-                                Pending
-                            </span>
-                        </td>
-
-                        <td class="px-4 py-3">
-
-                            <div class="flex justify-center gap-1.5">
-
-                                <button class="bg-blue-50 hover:bg-blue-100 dark:bg-blue-900/20 p-1.5 rounded-lg transition">
-                                    <i data-lucide="eye" class="w-3.5 h-3.5 text-blue-600"></i>
-                                </button>
-
-                                <button class="bg-yellow-50 hover:bg-yellow-100 dark:bg-yellow-900/20 p-1.5 rounded-lg transition">
-                                    <i data-lucide="square-pen" class="w-3.5 h-3.5 text-yellow-600"></i>
-                                </button>
-                            </div>
+                            No thesis/dissertation records found.
 
                         </td>
 
                     </tr>
+
+                    @endforelse
 
                 </tbody>
 
             </table>
 
+        </div>
+        
+        {{-- NO RESULTS MESSAGE (hidden by default) --}}
+        <div id="noResultsMsg" class="hidden text-center py-6 text-sm text-gray-500 dark:text-gray-400">
+            No matching records found.
         </div>
 
     </div>
@@ -397,7 +379,68 @@
         if (typeof lucide !== 'undefined') {
             lucide.createIcons();
         }
-
+        
+        // ==================== FILTER FUNCTIONALITY ====================
+        const searchInput = document.getElementById('searchInput');
+        const yearFilter = document.getElementById('yearFilter');
+        const degreeFilter = document.getElementById('degreeFilter');
+        const docTypeFilter = document.getElementById('docTypeFilter');
+        const recordsTable = document.getElementById('recordsTable');
+        const noResultsMsg = document.getElementById('noResultsMsg');
+        
+        // Get all record rows (excluding the empty row)
+        const allRows = Array.from(document.querySelectorAll('.record-row'));
+        
+        function filterTable() {
+            const searchTerm = searchInput.value.toLowerCase().trim();
+            const selectedYear = yearFilter.value;
+            const selectedDegree = degreeFilter.value;
+            const selectedDocType = docTypeFilter.value;
+            
+            let visibleCount = 0;
+            
+            allRows.forEach(row => {
+                const title = row.getAttribute('data-title') || '';
+                const year = row.getAttribute('data-year') || '';
+                const degree = row.getAttribute('data-degree') || '';
+                const doctype = row.getAttribute('data-doctype') || '';
+                
+                // Check search match
+                const matchesSearch = searchTerm === '' || title.includes(searchTerm);
+                
+                // Check year match
+                const matchesYear = selectedYear === '' || year === selectedYear;
+                
+                // Check degree match
+                const matchesDegree = selectedDegree === '' || degree === selectedDegree;
+                
+                // Check document type match
+                const matchesDocType = selectedDocType === '' || doctype === selectedDocType;
+                
+                if (matchesSearch && matchesYear && matchesDegree && matchesDocType) {
+                    row.style.display = '';
+                    visibleCount++;
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+            
+            // Show/hide no results message
+            if (visibleCount === 0 && allRows.length > 0) {
+                if (recordsTable) recordsTable.style.display = 'none';
+                if (noResultsMsg) noResultsMsg.classList.remove('hidden');
+            } else {
+                if (recordsTable) recordsTable.style.display = '';
+                if (noResultsMsg) noResultsMsg.classList.add('hidden');
+            }
+        }
+        
+        // Add event listeners
+        if (searchInput) searchInput.addEventListener('keyup', filterTable);
+        if (yearFilter) yearFilter.addEventListener('change', filterTable);
+        if (degreeFilter) degreeFilter.addEventListener('change', filterTable);
+        if (docTypeFilter) docTypeFilter.addEventListener('change', filterTable);
+        
     });
 </script>
 @endpush
